@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title><%= industry.h1 %> — Free PDF | GetInvoiceMaker</title>
+<meta name="description" content="<%= industry.desc %>">
+<link rel="canonical" href="<%= siteUrl %>/invoice-template-<%= industry.slug %>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "<%= industry.h1 %>",
+  "url": "<%= siteUrl %>/invoice-template-<%= industry.slug %>",
+  "description": "<%= industry.desc %>",
+  "applicationCategory": "BusinessApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#f8fafc;color:#0f172a}
+nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;justify-content:space-between;align-items:center;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-weight:700;font-size:18px}.logo span{color:#2563eb}
+.nav-r{display:flex;gap:8px;align-items:center}
+.nav-r a{color:#64748b;font-size:13px;font-weight:500;padding:6px 12px;border-radius:6px}
+.nav-r a:hover{background:#f1f5f9}
+.btn-blue{background:#2563eb;color:#fff;border:none;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer}
+.breadcrumb{padding:12px 32px;font-size:12px;color:#94a3b8;background:#fff;border-bottom:1px solid #f1f5f9}
+.breadcrumb a{color:#2563eb}
+.hero{background:#fff;border-bottom:1px solid #e2e8f0;padding:48px 24px 40px;text-align:center}
+.badge{display:inline-block;background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe;padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;margin-bottom:16px}
+.hero h1{font-size:clamp(24px,4vw,40px);font-weight:700;line-height:1.2;margin-bottom:14px}
+.hero p{color:#475569;font-size:15px;line-height:1.7;max-width:560px;margin:0 auto 24px}
+.trust{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:5px;font-size:12px;color:#64748b}
+.tdot{width:6px;height:6px;border-radius:50%;background:#22c55e}
+.main{max-width:1180px;margin:0 auto;padding:32px 20px;display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:start}
+@media(max-width:880px){.main{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:24px}
+.stitle{font-size:11px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid #f1f5f9}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.frow.one{grid-template-columns:1fr}
+.fg{display:flex;flex-direction:column;gap:4px}
+.fg label{font-size:11px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.4px}
+input,select,textarea{border:1px solid #e2e8f0;border-radius:6px;padding:9px 11px;font-size:13px;color:#0f172a;font-family:'Inter',sans-serif;outline:none;transition:border-color .15s;background:#fff;width:100%}
+input:focus,select:focus,textarea:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+textarea{resize:vertical;min-height:64px}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+.ih{display:grid;grid-template-columns:1fr 60px 88px 88px 30px;gap:6px;margin-bottom:5px}
+.ih span{font-size:10px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.4px}
+.ir{display:grid;grid-template-columns:1fr 60px 88px 88px 30px;gap:6px;margin-bottom:6px;align-items:center}
+.lt{font-size:13px;font-weight:600;text-align:right;padding:9px 0}
+.del{background:none;border:none;color:#cbd5e1;cursor:pointer;font-size:17px;padding:3px}
+.del:hover{color:#ef4444}
+.add-btn{background:none;border:1px dashed #cbd5e1;border-radius:6px;padding:7px;width:100%;color:#64748b;font-size:12px;cursor:pointer;margin-bottom:12px}
+.add-btn:hover{border-color:#2563eb;color:#2563eb;background:#eff6ff}
+.totals{border-top:1px solid #f1f5f9;padding-top:8px}
+.trow{display:flex;justify-content:space-between;padding:3px 0;font-size:13px;color:#64748b}
+.trow.grand{font-size:16px;font-weight:700;color:#0f172a;padding-top:7px;border-top:2px solid #e2e8f0;margin-top:3px}
+.colors{display:flex;gap:7px;flex-wrap:wrap;margin:7px 0 12px}
+.cdot{width:22px;height:22px;border-radius:50%;cursor:pointer;border:3px solid transparent}
+.cdot.on{border-color:#0f172a}
+.pdf-btn{width:100%;padding:13px;background:#2563eb;border:none;border-radius:8px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px}
+.pdf-btn:hover{background:#1d4ed8}
+.pdf-btn:disabled{background:#93c5fd;cursor:default}
+.preview-panel{background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;position:sticky;top:78px}
+.ph{padding:12px 16px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center}
+.ph span{font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.4px}
+#pframe{width:100%;height:540px;border:none;background:#f8fafc}
+.pro-bar{padding:12px 16px;background:#fffbeb;border-top:1px solid #fde68a;display:flex;align-items:center;gap:10px}
+.pro-bar p{font-size:12px;color:#92400e;flex:1}
+.content-sec{max-width:780px;margin:0 auto;padding:48px 20px}
+.content-sec h2{font-size:20px;font-weight:700;margin-bottom:12px;color:#0f172a}
+.content-sec p{font-size:14px;color:#475569;line-height:1.8;margin-bottom:16px}
+.content-sec ul{margin:0 0 16px 20px}
+.content-sec ul li{font-size:14px;color:#475569;line-height:1.8}
+.other-templates{padding:40px 20px;border-top:1px solid #e2e8f0;background:#f8fafc}
+.other-templates h2{text-align:center;font-size:16px;font-weight:500;color:#64748b;margin-bottom:16px}
+.sgrid{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;max-width:880px;margin:0 auto}
+.sl{background:#fff;border:1px solid #e2e8f0;padding:5px 13px;border-radius:50px;color:#475569;font-size:12px;transition:all .15s}
+.sl:hover{background:#eff6ff;border-color:#2563eb;color:#2563eb}
+footer{background:#0f172a;color:#94a3b8;padding:28px 20px;text-align:center;font-size:12px}
+footer a{color:#64748b;margin:0 10px}
+footer a:hover{color:#fff}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/"><div class="logo">Get<span>Invoice</span>Maker</div></a>
+  <div class="nav-r">
+    <a href="/#features">Features</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="/activate">Activate PRO</a>
+    <a href="/#pricing"><button class="btn-blue">Get PRO $9</button></a>
+  </div>
+</nav>
+<div class="breadcrumb">
+  <a href="/">Home</a> › <a href="/#templates">Templates</a> › <%= industry.label %>
+</div>
+<section class="hero">
+  <div class="badge">Free — No signup required</div>
+  <h1><%= industry.h1 %></h1>
+  <p><%= industry.intro %></p>
+  <div class="trust">
+    <span class="trust-item"><span class="tdot"></span>Free PDF download</span>
+    <span class="trust-item"><span class="tdot"></span>No signup needed</span>
+    <span class="trust-item"><span class="tdot"></span>18+ currencies</span>
+    <span class="trust-item"><span class="tdot"></span>Auto tax calculation</span>
+  </div>
+</section>
+<div class="main">
+  <div>
+    <div class="card">
+      <div class="stitle">Your details</div>
+      <div class="frow">
+        <div class="fg"><label>Name / company</label><input type="text" id="fromName" placeholder="Your Name" oninput="up()"></div>
+        <div class="fg"><label>Email</label><input type="email" id="fromEmail" placeholder="you@email.com" oninput="up()"></div>
+      </div>
+      <div class="frow one"><div class="fg"><label>Address</label><textarea id="fromAddress" rows="2" placeholder="Your address" oninput="up()"></textarea></div></div>
+      <div class="stitle" style="margin-top:16px">Bill to</div>
+      <div class="frow">
+        <div class="fg"><label>Client name</label><input type="text" id="toName" placeholder="Client Name" oninput="up()"></div>
+        <div class="fg"><label>Client email</label><input type="email" id="toEmail" placeholder="client@email.com" oninput="up()"></div>
+      </div>
+      <div class="frow one"><div class="fg"><label>Client address</label><textarea id="toAddress" rows="2" placeholder="Client address" oninput="up()"></textarea></div></div>
+      <div class="stitle" style="margin-top:16px">Invoice details</div>
+      <div class="frow">
+        <div class="fg"><label>Invoice number</label><input type="text" id="invNum" value="INV-001" oninput="up()"></div>
+        <div class="fg"><label>Currency</label>
+          <select id="currency" onchange="up()">
+            <option value="USD|$">USD — $</option>
+            <option value="GBP|£">GBP — £</option>
+            <option value="EUR|€">EUR — €</option>
+            <option value="CAD|CA$">CAD — CA$</option>
+            <option value="AUD|AU$">AUD — AU$</option>
+            <option value="INR|₹">INR — ₹</option>
+            <option value="AED|AED">AED</option>
+            <option value="SGD|S$">SGD — S$</option>
+            <option value="TRY|₺">TRY — ₺</option>
+            <option value="JPY|¥">JPY — ¥</option>
+          </select>
+        </div>
+      </div>
+      <div class="frow">
+        <div class="fg"><label>Issue date</label><input type="date" id="issueDate" oninput="up()"></div>
+        <div class="fg"><label>Due date</label><input type="date" id="dueDate" oninput="up()"></div>
+      </div>
+      <div class="stitle" style="margin-top:16px">Line items</div>
+      <div class="ih"><span>Description</span><span>Qty</span><span>Rate</span><span>Amount</span><span></span></div>
+      <div id="items">
+        <div class="ir">
+          <input type="text" placeholder="Service description" oninput="up()">
+          <input type="number" value="1" min="0" step="any" oninput="up()">
+          <input type="number" value="100" min="0" step="any" oninput="up()">
+          <div class="lt">$100.00</div>
+          <button class="del" onclick="delItem(this)">&#215;</button>
+        </div>
+      </div>
+      <button class="add-btn" onclick="addItem()">+ Add line item</button>
+      <div class="frow">
+        <div class="fg"><label>Tax rate (%)</label><input type="number" id="taxRate" placeholder="0" min="0" max="100" step="any" oninput="up()"></div>
+        <div class="fg"><label>Tax label</label><input type="text" id="taxLabel" value="Tax" placeholder="VAT / GST" oninput="up()"></div>
+      </div>
+      <div class="totals">
+        <div class="trow"><span>Subtotal</span><span id="sub">$0.00</span></div>
+        <div class="trow" id="taxrow" style="display:none"><span id="tlabel">Tax</span><span id="taxamt">$0.00</span></div>
+        <div class="trow grand"><span>Total Due</span><span id="tot" style="color:#2563eb">$0.00</span></div>
+      </div>
+      <div class="stitle" style="margin-top:16px">Notes</div>
+      <textarea id="notes" rows="3" placeholder="Payment terms, bank details..." oninput="up()"></textarea>
+      <div class="stitle" style="margin-top:16px">Color</div>
+      <div class="colors">
+        <div class="cdot on" style="background:#2563eb" data-c="#2563eb" onclick="setColor(this)"></div>
+        <div class="cdot" style="background:#7c3aed" data-c="#7c3aed" onclick="setColor(this)"></div>
+        <div class="cdot" style="background:#059669" data-c="#059669" onclick="setColor(this)"></div>
+        <div class="cdot" style="background:#dc2626" data-c="#dc2626" onclick="setColor(this)"></div>
+        <div class="cdot" style="background:#d97706" data-c="#d97706" onclick="setColor(this)"></div>
+        <div class="cdot" style="background:#374151" data-c="#374151" onclick="setColor(this)"></div>
+      </div>
+      <button class="pdf-btn" id="pbtn" onclick="dlPDF()">&#8595; Download Free PDF Invoice</button>
+    </div>
+  </div>
+  <div class="preview-panel">
+    <div class="ph"><span>Live Preview</span><span style="font-size:11px;color:#94a3b8">Updates as you type</span></div>
+    <iframe id="pframe" title="Invoice preview"></iframe>
+    <div class="pro-bar">
+      <p>PRO: No watermark &bull; Custom logo &bull; Unlimited invoices</p>
+      <a href="/#pricing"><button class="btn-blue" style="font-size:12px;padding:6px 12px;white-space:nowrap">Get PRO</button></a>
+    </div>
+  </div>
+</div>
+<div class="content-sec">
+  <h2>What to include in a <%= industry.label.toLowerCase() %> invoice</h2>
+  <p>A professional invoice for <%= industry.label.toLowerCase() %> should clearly state what services were provided, the total amount due, and your payment terms. Here are the key elements to include:</p>
+  <ul>
+    <li>Your full name or business name and contact details</li>
+    <li>Client name and billing address</li>
+    <li>Unique invoice number for your records</li>
+    <li>Invoice date and payment due date</li>
+    <li>Detailed breakdown of services with quantities and rates</li>
+    <li>Applicable tax (VAT, GST, or sales tax)</li>
+    <li>Total amount due in your currency</li>
+    <li>Payment method and bank details in the notes section</li>
+  </ul>
+  <h2>How to use this free <%= industry.label.toLowerCase() %> invoice template</h2>
+  <p>Fill in your details in the form above. The live preview on the right updates instantly so you can see exactly what your PDF will look like. When you are happy with your invoice, click "Download Free PDF Invoice" to save it to your device. No account or email address required.</p>
+</div>
+<section class="other-templates">
+  <h2>Other free invoice templates</h2>
+  <div class="sgrid">
+    <% industries.filter(function(i){ return i.slug !== industry.slug; }).forEach(function(ind){ %>
+    <a href="/invoice-template-<%= ind.slug %>" class="sl"><%= ind.label %></a>
+    <% }) %>
+  </div>
+</section>
+<footer>
+  <a href="/">Home</a>
+  <a href="/#pricing">Pricing</a>
+  <a href="/#templates">All Templates</a>
+  <a href="/activate">Activate PRO</a>
+  <p style="margin-top:12px">&#169; 2026 GetInvoiceMaker — Free Invoice Generator</p>
+</footer>
+<script>
+let color='#2563eb';
+function setColor(el){document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('on'));el.classList.add('on');color=el.dataset.c;up();}
+function sym(){return document.getElementById('currency').value.split('|')[1]||'$';}
+function items(){const rows=document.querySelectorAll('.ir');const r=[];rows.forEach(row=>{const ins=row.querySelectorAll('input');if(ins.length>=3){const d=ins[0].value,q=parseFloat(ins[1].value)||0,ra=parseFloat(ins[2].value)||0,t=q*ra;row.querySelector('.lt').textContent=sym()+t.toFixed(2);r.push({desc:d,qty:q,rate:ra});}});return r;}
+function calcs(its){const s=sym();const sub=its.reduce((a,i)=>a+i.qty*i.rate,0);const tr=parseFloat(document.getElementById('taxRate').value)||0;const tl=document.getElementById('taxLabel').value||'Tax';const ta=sub*tr/100;const tot=sub+ta;document.getElementById('sub').textContent=s+sub.toFixed(2);document.getElementById('tot').textContent=s+tot.toFixed(2);const trow=document.getElementById('taxrow');if(tr>0){trow.style.display='flex';document.getElementById('tlabel').textContent=tl+' ('+tr+'%)';document.getElementById('taxamt').textContent=s+ta.toFixed(2);}else trow.style.display='none';return{sub,ta,tot,tr,tl};}
+function buildHTML(d){const s=d.symbol||'$';const rows=(d.items||[]).map(i=>'<tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9;font-size:13px">'+(i.desc||'')+'</td><td style="padding:8px;border-bottom:1px solid #f1f5f9;text-align:center;font-size:13px">'+i.qty+'</td><td style="padding:8px;border-bottom:1px solid #f1f5f9;text-align:right;font-size:13px">'+s+parseFloat(i.rate).toFixed(2)+'</td><td style="padding:8px 0 8px 8px;border-bottom:1px solid #f1f5f9;text-align:right;font-size:13px;font-weight:600">'+s+(i.qty*i.rate).toFixed(2)+'</td></tr>').join('');const tl=d.tr>0?'<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:12px;color:#64748b"><span>'+(d.tl||'Tax')+' ('+d.tr+'%)</span><span>'+s+(d.ta||0).toFixed(2)+'</span></div>':'';return '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:Arial,sans-serif;color:#0f172a;margin:0;padding:22px;font-size:13px}*{box-sizing:border-box}</style></head><body><div style="display:flex;justify-content:space-between;margin-bottom:26px"><div><div style="font-size:24px;font-weight:700;color:'+d.color+'">INVOICE</div><div style="color:#94a3b8;font-size:11px;margin-top:2px">#'+(d.invNum||'001')+'</div></div><div style="text-align:right"><div style="font-weight:700;font-size:14px">'+(d.fromName||'')+'</div><div style="color:#64748b;font-size:11px">'+(d.fromEmail||'')+'</div><div style="color:#64748b;font-size:11px">'+(d.fromAddress||'').replace(/\n/g,'<br>')+'</div></div></div><div style="display:flex;justify-content:space-between;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid '+d.color+'"><div><div style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;margin-bottom:3px">Bill To</div><div style="font-weight:600;font-size:13px">'+(d.toName||'')+'</div><div style="color:#64748b;font-size:11px">'+(d.toEmail||'')+'</div><div style="color:#64748b;font-size:11px">'+(d.toAddress||'').replace(/\n/g,'<br>')+'</div></div><div style="text-align:right"><div style="margin-bottom:6px"><div style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase">Issue Date</div><div style="font-weight:600;font-size:12px">'+(d.issueDate||'')+'</div></div><div><div style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase">Due Date</div><div style="font-weight:600;font-size:12px">'+(d.dueDate||'')+'</div></div></div></div><table style="width:100%;border-collapse:collapse;margin-bottom:14px"><thead><tr style="background:'+d.color+';color:#fff"><th style="padding:8px 0;text-align:left;font-size:10px;font-weight:700">DESCRIPTION</th><th style="padding:8px;text-align:center;font-size:10px;font-weight:700">QTY</th><th style="padding:8px;text-align:right;font-size:10px;font-weight:700">RATE</th><th style="padding:8px 0 8px 8px;text-align:right;font-size:10px;font-weight:700">AMOUNT</th></tr></thead><tbody>'+rows+'</tbody></table><div style="display:flex;justify-content:flex-end;margin-bottom:16px"><div style="min-width:190px"><div style="display:flex;justify-content:space-between;padding:4px 0;font-size:12px;color:#64748b"><span>Subtotal</span><span>'+s+(d.sub||0).toFixed(2)+'</span></div>'+tl+'<div style="display:flex;justify-content:space-between;padding:7px 0 3px;font-size:15px;font-weight:700;border-top:2px solid '+d.color+';margin-top:3px"><span>Total Due</span><span style="color:'+d.color+'">'+s+(d.tot||0).toFixed(2)+'</span></div></div></div>'+(d.notes?'<div style="background:#f8fafc;border-left:4px solid '+d.color+';padding:9px 13px"><div style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;margin-bottom:3px">Notes</div><div style="font-size:12px;color:#475569">'+d.notes+'</div></div>':'')+'</body></html>';}
+function up(){const its=items();const{sub,ta,tot,tr,tl}=calcs(its);const s=sym();const d={fromName:document.getElementById('fromName').value,fromEmail:document.getElementById('fromEmail').value,fromAddress:document.getElementById('fromAddress').value,toName:document.getElementById('toName').value,toEmail:document.getElementById('toEmail').value,toAddress:document.getElementById('toAddress').value,invNum:document.getElementById('invNum').value,issueDate:document.getElementById('issueDate').value,dueDate:document.getElementById('dueDate').value,notes:document.getElementById('notes').value,tr,tl,ta,sub,tot,items:its,color,symbol:s};document.getElementById('pframe').srcdoc=buildHTML(d);}
+function addItem(){const c=document.getElementById('items');const d=document.createElement('div');d.className='ir';d.innerHTML='<input type="text" placeholder="Service" oninput="up()"><input type="number" value="1" min="0" step="any" oninput="up()"><input type="number" value="0" min="0" step="any" oninput="up()"><div class="lt">$0.00</div><button class="del" onclick="delItem(this)">&#215;</button>';c.appendChild(d);up();}
+function delItem(btn){if(document.querySelectorAll('.ir').length>1){btn.parentElement.remove();up();}}
+async function dlPDF(){const btn=document.getElementById('pbtn');btn.textContent='Generating...';btn.disabled=true;const its=items();const{sub,ta,tot,tr,tl}=calcs(its);const s=sym();const d={fromName:document.getElementById('fromName').value,fromEmail:document.getElementById('fromEmail').value,fromAddress:document.getElementById('fromAddress').value,toName:document.getElementById('toName').value,toEmail:document.getElementById('toEmail').value,toAddress:document.getElementById('toAddress').value,invoiceNumber:document.getElementById('invNum').value,issueDate:document.getElementById('issueDate').value,dueDate:document.getElementById('dueDate').value,notes:document.getElementById('notes').value,taxRate:tr,taxLabel:tl,taxAmt:ta,subtotal:sub,total:tot,items:its,color,symbol:s};try{const res=await fetch('/generate-pdf',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({invoiceData:JSON.stringify(d)})});if(!res.ok)throw new Error();const blob=await res.blob();const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='invoice-'+(d.invoiceNumber||'001')+'.pdf';a.click();URL.revokeObjectURL(url);btn.innerHTML='&#8595; Download Free PDF Invoice';btn.disabled=false;}catch(e){btn.textContent='Error — try again';btn.disabled=false;}}
+const t=new Date().toISOString().split('T')[0];const d2=new Date(Date.now()+14*864e5).toISOString().split('T')[0];
+document.getElementById('issueDate').value=t;document.getElementById('dueDate').value=d2;up();
+</script>
+</body>
+</html>
