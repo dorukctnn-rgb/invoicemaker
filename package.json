@@ -1,0 +1,21 @@
+{
+  "name": "invoicemaker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@sparticuz/chromium": "^147.0.0",
+    "axios": "^1.15.0",
+    "body-parser": "^2.2.2",
+    "cookie-parser": "^1.4.7",
+    "ejs": "^5.0.2",
+    "express": "^5.2.1",
+    "puppeteer-core": "^24.41.0"
+  }
+}

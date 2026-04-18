@@ -1,0 +1,547 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<% if (page === 'industry' && industry) { %>
+<title>Free Invoice Template for <%= industry.label %> — PDF Download | InvoiceMaker</title>
+<meta name="description" content="<%= industry.desc %> Free PDF invoice template. No signup required.">
+<% } else if (page === 'country' && country) { %>
+<title>Free Invoice Generator <%= country.label %> — <%= country.currency %> PDF | InvoiceMaker</title>
+<meta name="description" content="Free invoice generator for <%= country.label %>. Create <%= country.currency %> invoices with <%= country.tax %> automatically calculated. Download PDF instantly.">
+<% } else { %>
+<title>Free Invoice Generator — Create & Download PDF Invoices | InvoiceMaker</title>
+<meta name="description" content="Free online invoice generator. Create professional PDF invoices in seconds. No signup, no watermark on free plan. Used by 50,000+ freelancers worldwide.">
+<% } %>
+<meta property="og:title" content="InvoiceMaker — Free Invoice Generator">
+<meta property="og:description" content="Create and download professional PDF invoices for free. No signup required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#f8fafc;color:#0f172a}
+a{color:#2563eb;text-decoration:none}
+nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;justify-content:space-between;align-items:center;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-weight:700;font-size:18px;color:#0f172a}.logo span{color:#2563eb}
+.nav-r{display:flex;gap:12px;align-items:center}
+.nav-r a{color:#64748b;font-size:13px;font-weight:500;padding:6px 12px;border-radius:6px;transition:background .15s}
+.nav-r a:hover{background:#f1f5f9;color:#0f172a}
+.btn-blue{background:#2563eb;color:#fff;border:none;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:background .15s}
+.btn-blue:hover{background:#1d4ed8}
+.hero{background:#fff;border-bottom:1px solid #e2e8f0;padding:56px 24px 48px;text-align:center}
+.badge{display:inline-block;background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe;padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;margin-bottom:20px;letter-spacing:.3px}
+.hero h1{font-size:clamp(28px,5vw,46px);font-weight:700;line-height:1.15;margin-bottom:16px;color:#0f172a}
+.hero h1 span{color:#2563eb}
+.hero p{color:#475569;font-size:16px;line-height:1.7;max-width:600px;margin:0 auto 32px}
+.trust{display:flex;justify-content:center;gap:32px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:6px;font-size:13px;color:#64748b;font-weight:500}
+.trust-dot{width:8px;height:8px;border-radius:50%;background:#22c55e}
+.main{max-width:1200px;margin:0 auto;padding:40px 20px;display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:start}
+@media(max-width:900px){.main{grid-template-columns:1fr}}
+.invoice-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:28px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.section-title{font-size:13px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #f1f5f9}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.form-row.single{grid-template-columns:1fr}
+.form-group{display:flex;flex-direction:column;gap:4px}
+.form-group label{font-size:11px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.4px}
+input,select,textarea{border:1px solid #e2e8f0;border-radius:6px;padding:9px 11px;font-size:13px;color:#0f172a;font-family:'Inter',sans-serif;outline:none;transition:border-color .15s;background:#fff;width:100%}
+input:focus,select:focus,textarea:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+textarea{resize:vertical;min-height:72px}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+.items-table{width:100%;margin:16px 0}
+.items-header{display:grid;grid-template-columns:1fr 60px 90px 90px 32px;gap:6px;margin-bottom:6px}
+.items-header span{font-size:10px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.4px}
+.item-row{display:grid;grid-template-columns:1fr 60px 90px 90px 32px;gap:6px;margin-bottom:6px;align-items:center}
+.item-row .line-total{font-size:13px;font-weight:600;color:#0f172a;text-align:right;padding:9px 0}
+.del-btn{background:none;border:none;color:#cbd5e1;cursor:pointer;font-size:16px;padding:4px;border-radius:4px;transition:color .15s}
+.del-btn:hover{color:#ef4444}
+.add-item-btn{background:none;border:1px dashed #cbd5e1;border-radius:6px;padding:8px;width:100%;color:#64748b;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;margin-bottom:16px}
+.add-item-btn:hover{border-color:#2563eb;color:#2563eb;background:#eff6ff}
+.totals{border-top:1px solid #f1f5f9;padding-top:12px}
+.total-row{display:flex;justify-content:space-between;padding:4px 0;font-size:13px;color:#64748b}
+.total-row.grand{font-size:16px;font-weight:700;color:#0f172a;padding-top:8px;border-top:1px solid #e2e8f0;margin-top:4px}
+.color-row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px}
+.color-dot{width:26px;height:26px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:all .15s}
+.color-dot.active{border-color:#0f172a}
+.pdf-btn{width:100%;padding:14px;background:#2563eb;border:none;border-radius:8px;color:#fff;font-size:15px;font-weight:600;cursor:pointer;transition:background .15s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:20px}
+.pdf-btn:hover{background:#1d4ed8}
+.pdf-btn:disabled{background:#93c5fd;cursor:default}
+.preview-panel{background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05);position:sticky;top:80px}
+.preview-header{padding:14px 20px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center}
+.preview-header span{font-size:12px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.4px}
+#preview-frame{width:100%;height:600px;border:none;background:#f8fafc}
+.pro-lock{padding:20px;background:#fffbeb;border-top:1px solid #fde68a;display:flex;align-items:center;gap:12px}
+.pro-lock p{font-size:12px;color:#92400e;flex:1}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:960px;margin:0 auto 60px;padding:0 20px}
+@media(max-width:720px){.features-grid{grid-template-columns:1fr}}
+.feat{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:20px}
+.feat-icon{width:36px;height:36px;border-radius:8px;background:#eff6ff;display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:18px}
+.feat h3{font-size:14px;font-weight:600;color:#0f172a;margin-bottom:6px}
+.feat p{font-size:13px;color:#64748b;line-height:1.6}
+.pricing-sec{padding:60px 20px;background:#fff;border-top:1px solid #e2e8f0}
+.pricing-sec h2{text-align:center;font-size:26px;font-weight:700;margin-bottom:8px}
+.pricing-sub{text-align:center;color:#64748b;font-size:14px;margin-bottom:40px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:860px;margin:0 auto}
+@media(max-width:720px){.plans{grid-template-columns:1fr}}
+.plan{border:1px solid #e2e8f0;border-radius:12px;padding:24px;background:#fff;position:relative}
+.plan.pop{border:2px solid #2563eb}
+.pop-tag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#2563eb;color:#fff;font-size:11px;font-weight:700;padding:3px 14px;border-radius:50px;white-space:nowrap}
+.plan-name{font-size:12px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px}
+.plan-price{font-size:38px;font-weight:700;color:#0f172a;line-height:1}
+.plan-price sup{font-size:18px;font-weight:500}
+.plan-period{font-size:12px;color:#64748b;margin:4px 0 20px}
+.plan-feats{list-style:none;margin-bottom:20px;display:flex;flex-direction:column;gap:8px}
+.plan-feats li{display:flex;align-items:center;gap:8px;font-size:13px;color:#334155}
+.check{width:16px;height:16px;border-radius:50%;background:#dcfce7;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.check::after{content:'✓';font-size:9px;font-weight:700;color:#16a34a}
+.plan-btn{width:100%;padding:10px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid #e2e8f0;background:#f8fafc;color:#0f172a;transition:all .15s}
+.plan-btn:hover{background:#f1f5f9}
+.plan.pop .plan-btn{background:#2563eb;color:#fff;border-color:#2563eb}
+.plan.pop .plan-btn:hover{background:#1d4ed8}
+.seo-sec{padding:40px 20px;border-top:1px solid #e2e8f0}
+.seo-sec h2{text-align:center;font-size:16px;font-weight:500;color:#64748b;margin-bottom:20px}
+.seo-grid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:900px;margin:0 auto 20px}
+.seo-link{background:#f8fafc;border:1px solid #e2e8f0;padding:6px 14px;border-radius:50px;color:#475569;font-size:12px;transition:all .15s;white-space:nowrap}
+.seo-link:hover{background:#eff6ff;border-color:#2563eb;color:#2563eb}
+.blog-sec{padding:48px 20px;background:#f8fafc;border-top:1px solid #e2e8f0}
+.blog-sec h2{text-align:center;font-size:22px;font-weight:700;margin-bottom:32px}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:960px;margin:0 auto}
+@media(max-width:720px){.blog-grid{grid-template-columns:1fr}}
+.blog-card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:20px}
+.blog-tag{font-size:10px;font-weight:600;color:#2563eb;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.blog-card h3{font-size:14px;font-weight:600;color:#0f172a;line-height:1.5;margin-bottom:6px}
+.blog-card p{font-size:12px;color:#64748b;line-height:1.5}
+footer{text-align:center;padding:32px 20px;border-top:1px solid #e2e8f0;color:#94a3b8;font-size:12px}
+.footer-links{display:flex;justify-content:center;gap:24px;margin-bottom:12px}
+.footer-links a{color:#94a3b8;font-size:12px}
+.footer-links a:hover{color:#2563eb}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Invoice<span>Maker</span></div>
+  <div class="nav-r">
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#templates">Templates</a>
+    <% if (isPro) { %>
+      <span style="background:#dcfce7;color:#16a34a;padding:4px 12px;border-radius:50px;font-size:12px;font-weight:600">PRO Active</span>
+    <% } else { %>
+      <a href="/activate" style="color:#64748b;font-size:13px;font-weight:500;padding:6px 12px;border-radius:6px">Activate</a><a href="#pricing"><button class="btn-blue">Get PRO</button></a>
+    <% } %>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="badge">✦ Free · No signup required</div>
+  <% if (page === 'industry' && industry) { %>
+    <h1>Invoice Template for <span><%= industry.label %></span></h1>
+    <p><%= industry.desc %> Download as PDF instantly, no account needed.</p>
+  <% } else if (page === 'country' && country) { %>
+    <h1>Free Invoice Generator <span><%= country.label %></span></h1>
+    <p>Create <%= country.currency %> invoices with automatic <%= country.tax %> calculation. Download professional PDF invoices instantly.</p>
+  <% } else { %>
+    <h1>Create a Professional Invoice<br><span>in 60 Seconds — Free</span></h1>
+    <p>Fill in your details, add line items, download PDF. No signup, no watermark on free plan. Used by freelancers, contractors and small businesses worldwide.</p>
+  <% } %>
+  <div class="trust">
+    <span class="trust-item"><span class="trust-dot"></span>Free PDF download</span>
+    <span class="trust-item"><span class="trust-dot"></span>No signup required</span>
+    <span class="trust-item"><span class="trust-dot"></span>20+ currencies</span>
+    <span class="trust-item"><span class="trust-dot"></span>Auto tax calculation</span>
+  </div>
+</section>
+
+<div class="main">
+  <div>
+    <div class="invoice-card" id="invoice-form">
+
+      <div class="section-title">Your details (sender)</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your name / company</label>
+          <input type="text" id="fromName" placeholder="Acme Studio" oninput="updatePreview()">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="fromEmail" placeholder="hello@acme.com" oninput="updatePreview()">
+        </div>
+      </div>
+      <div class="form-row single">
+        <div class="form-group">
+          <label>Address</label>
+          <textarea id="fromAddress" rows="2" placeholder="123 Main St, London, UK" oninput="updatePreview()"></textarea>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top:20px">Bill to (client)</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Client name / company</label>
+          <input type="text" id="toName" placeholder="Client Corp" oninput="updatePreview()">
+        </div>
+        <div class="form-group">
+          <label>Client email</label>
+          <input type="email" id="toEmail" placeholder="client@email.com" oninput="updatePreview()">
+        </div>
+      </div>
+      <div class="form-row single">
+        <div class="form-group">
+          <label>Client address</label>
+          <textarea id="toAddress" rows="2" placeholder="456 Client Ave, New York, USA" oninput="updatePreview()"></textarea>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top:20px">Invoice details</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Invoice number</label>
+          <input type="text" id="invoiceNumber" value="INV-001" oninput="updatePreview()">
+        </div>
+        <div class="form-group">
+          <label>Currency</label>
+          <select id="currency" onchange="updatePreview()">
+            <option value="USD|$">USD — $</option>
+            <option value="GBP|£">GBP — £</option>
+            <option value="EUR|€">EUR — €</option>
+            <option value="CAD|CA$">CAD — CA$</option>
+            <option value="AUD|AU$">AUD — AU$</option>
+            <option value="INR|₹">INR — ₹</option>
+            <option value="AED|AED">AED</option>
+            <option value="SGD|S$">SGD — S$</option>
+            <option value="TRY|₺">TRY — ₺</option>
+            <option value="JPY|¥">JPY — ¥</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Issue date</label>
+          <input type="date" id="issueDate" oninput="updatePreview()">
+        </div>
+        <div class="form-group">
+          <label>Due date</label>
+          <input type="date" id="dueDate" oninput="updatePreview()">
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top:20px">Line items</div>
+      <div class="items-table">
+        <div class="items-header">
+          <span>Description</span><span>Qty</span><span>Rate</span><span>Amount</span><span></span>
+        </div>
+        <div id="items-container">
+          <div class="item-row" data-index="0">
+            <input type="text" placeholder="Service or product" oninput="updatePreview()">
+            <input type="number" value="1" min="0" step="any" oninput="updatePreview()">
+            <input type="number" value="100" min="0" step="any" oninput="updatePreview()">
+            <div class="line-total">.00</div>
+            <button class="del-btn" onclick="removeItem(this)" title="Remove">×</button>
+          </div>
+        </div>
+      </div>
+      <button class="add-item-btn" onclick="addItem()">+ Add line item</button>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+        <div class="form-group">
+          <label>Tax rate (%)</label>
+          <input type="number" id="taxRate" placeholder="0" min="0" max="100" step="any" oninput="updatePreview()">
+        </div>
+        <div class="form-group">
+          <label>Tax label</label>
+          <input type="text" id="taxLabel" value="Tax" placeholder="VAT / GST / Tax" oninput="updatePreview()">
+        </div>
+      </div>
+
+      <div class="totals" id="totals-display">
+        <div class="total-row"><span>Subtotal</span><span id="subtotal-display">.00</span></div>
+        <div class="total-row" id="tax-row" style="display:none"><span id="tax-label-display">Tax (0%)</span><span id="tax-display">.00</span></div>
+        <div class="total-row grand"><span>Total</span><span id="total-display">.00</span></div>
+      </div>
+
+      <div class="section-title" style="margin-top:20px">Notes & payment info</div>
+      <div class="form-row single">
+        <div class="form-group">
+          <textarea id="notes" rows="3" placeholder="Bank details, payment terms, thank you message..." oninput="updatePreview()"></textarea>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top:20px">Accent color</div>
+      <div class="color-row" id="color-picker">
+        <div class="color-dot active" style="background:#2563eb" data-color="#2563eb" onclick="setColor(this)"></div>
+        <div class="color-dot" style="background:#7c3aed" data-color="#7c3aed" onclick="setColor(this)"></div>
+        <div class="color-dot" style="background:#059669" data-color="#059669" onclick="setColor(this)"></div>
+        <div class="color-dot" style="background:#dc2626" data-color="#dc2626" onclick="setColor(this)"></div>
+        <div class="color-dot" style="background:#d97706" data-color="#d97706" onclick="setColor(this)"></div>
+        <div class="color-dot" style="background:#0891b2" data-color="#0891b2" onclick="setColor(this)"></div>
+        <div class="color-dot" style="background:#374151" data-color="#374151" onclick="setColor(this)"></div>
+      </div>
+
+      <button class="pdf-btn" id="pdf-btn" onclick="downloadPDF()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF — Free
+      </button>
+
+    </div>
+  </div>
+
+  <div class="preview-panel">
+    <div class="preview-header">
+      <span>Live Preview</span>
+      <span style="font-size:11px;color:#94a3b8">Updates as you type</span>
+    </div>
+    <iframe id="preview-frame" title="Invoice preview"></iframe>
+    <% if (!isPro) { %>
+    <div class="pro-lock">
+      <p>PRO: Remove watermark, custom logo, recurring invoices, client history</p>
+      <a href="#pricing"><button class="btn-blue" style="white-space:nowrap;font-size:12px;padding:7px 14px">Get PRO</button></a>
+    </div>
+    <% } %>
+  </div>
+</div>
+
+<section style="padding:60px 20px;background:#fff;border-top:1px solid #e2e8f0" id="features">
+  <h2 style="text-align:center;font-size:22px;font-weight:700;margin-bottom:8px">Everything you need to invoice</h2>
+  <p style="text-align:center;color:#64748b;font-size:14px;margin-bottom:36px">Built for freelancers, contractors and small businesses</p>
+  <div class="features-grid">
+    <div class="feat"><div class="feat-icon">⚡</div><h3>Instant PDF</h3><p>Professional PDF invoices generated in seconds. Download, email or print directly.</p></div>
+    <div class="feat"><div class="feat-icon">🌍</div><h3>20+ currencies</h3><p>USD, GBP, EUR, CAD, AUD, INR and more. Auto tax calculation for VAT, GST, and sales tax.</p></div>
+    <div class="feat"><div class="feat-icon">🎨</div><h3>Custom branding</h3><p>Choose your accent color. PRO users can add a logo and custom business details.</p></div>
+    <div class="feat"><div class="feat-icon">🔄</div><h3>Recurring invoices</h3><p>Set up monthly retainers and recurring billing. Send automatically to clients each cycle.</p></div>
+    <div class="feat"><div class="feat-icon">📊</div><h3>Invoice history</h3><p>PRO users get a dashboard to track paid, unpaid and overdue invoices at a glance.</p></div>
+    <div class="feat"><div class="feat-icon">🔒</div><h3>No watermark</h3><p>PRO invoices have zero branding. Send to clients with complete professionalism.</p></div>
+  </div>
+</section>
+
+<section class="pricing-sec" id="pricing">
+  <h2>Simple pricing</h2>
+  <p class="pricing-sub">Start free. Upgrade when your business grows.</p>
+  <div class="plans">
+    <div class="plan">
+      <div class="plan-name">Free</div>
+      <div class="plan-price"><sup>$</sup>0</div>
+      <div class="plan-period">forever</div>
+      <ul class="plan-feats">
+        <li><span class="check"></span>3 invoices per month</li>
+        <li><span class="check"></span>PDF download</li>
+        <li><span class="check"></span>All currencies</li>
+        <li><span class="check"></span>Tax calculation</li>
+      </ul>
+      <button class="plan-btn" onclick="document.getElementById('fromName').focus()">Start free</button>
+    </div>
+    <div class="plan pop">
+      <div class="pop-tag">Most popular</div>
+      <div class="plan-name">Pro</div>
+      <div class="plan-price"><sup>$</sup>9</div>
+      <div class="plan-period">per month</div>
+      <ul class="plan-feats">
+        <li><span class="check"></span>Unlimited invoices</li>
+        <li><span class="check"></span>No watermark</li>
+        <li><span class="check"></span>Custom logo</li>
+        <li><span class="check"></span>Invoice history</li>
+        <li><span class="check"></span>Recurring invoices</li>
+        <li><span class="check"></span>Client management</li>
+      </ul>
+      <button class="plan-btn">Get Pro — /month</button>
+    </div>
+    <div class="plan">
+      <div class="plan-name">Business</div>
+      <div class="plan-price"><sup>$</sup>19</div>
+      <div class="plan-period">per month</div>
+      <ul class="plan-feats">
+        <li><span class="check"></span>Everything in Pro</li>
+        <li><span class="check"></span>Multi-user team</li>
+        <li><span class="check"></span>API access</li>
+        <li><span class="check"></span>White-label PDF</li>
+        <li><span class="check"></span>Priority support</li>
+        <li><span class="check"></span>Custom domain</li>
+      </ul>
+      <button class="plan-btn">Get Business — /month</button>
+    </div>
+  </div>
+</section>
+
+<section class="seo-sec" id="templates">
+  <h2>Invoice templates by profession</h2>
+  <div class="seo-grid">
+    <% industries.forEach(function(ind) { %>
+    <a href="/invoice-template-<%= ind.slug %>" class="seo-link"><%= ind.label %></a>
+    <% }) %>
+  </div>
+  <h2 style="margin-top:24px">Invoice generators by country</h2>
+  <div class="seo-grid">
+    <% countries.forEach(function(c) { %>
+    <a href="/free-invoice-generator-<%= c.slug %>" class="seo-link"><%= c.label %> (<%= c.currency %>)</a>
+    <% }) %>
+  </div>
+</section>
+
+<section class="blog-sec">
+  <h2>Invoicing guides</h2>
+  <div class="blog-grid">
+    <div class="blog-card"><div class="blog-tag">Guide</div><h3>How to write a professional invoice: complete guide 2026</h3><p>Everything you need to know about creating invoices that get paid on time.</p></div>
+    <div class="blog-card"><div class="blog-tag">Tax</div><h3>Invoice tax rates by country: VAT, GST and sales tax explained</h3><p>A complete guide to applying the right tax rate on invoices for different countries.</p></div>
+    <div class="blog-card"><div class="blog-tag">Freelance</div><h3>How to invoice as a freelancer: what to include and when to send</h3><p>Practical tips for freelancers to invoice clients professionally and get paid faster.</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#templates">Templates</a>
+    <a href="/privacy-policy">Privacy Policy</a>
+    <a href="/terms">Terms of Service</a>
+  </div>
+  <p>© 2026 InvoiceMaker — Free Invoice Generator. Create professional invoices online.</p>
+</footer>
+
+<script>
+let selectedColor = '#2563eb';
+let itemCount = 1;
+
+function setColor(el) {
+  document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+  el.classList.add('active');
+  selectedColor = el.dataset.color;
+  updatePreview();
+}
+
+function getSymbol() {
+  const val = document.getElementById('currency').value;
+  return val.split('|')[1] || '$';
+}
+
+function getItems() {
+  const rows = document.querySelectorAll('.item-row');
+  const items = [];
+  rows.forEach(row => {
+    const inputs = row.querySelectorAll('input');
+    if (inputs.length >= 3) {
+      const desc = inputs[0].value;
+      const qty = parseFloat(inputs[1].value) || 0;
+      const rate = parseFloat(inputs[2].value) || 0;
+      const total = qty * rate;
+      row.querySelector('.line-total').textContent = getSymbol() + total.toFixed(2);
+      items.push({ desc, qty, rate });
+    }
+  });
+  return items;
+}
+
+function calcTotals(items) {
+  const sym = getSymbol();
+  const subtotal = items.reduce((s, i) => s + i.qty * i.rate, 0);
+  const taxRate = parseFloat(document.getElementById('taxRate').value) || 0;
+  const taxLabel = document.getElementById('taxLabel').value || 'Tax';
+  const taxAmt = subtotal * taxRate / 100;
+  const total = subtotal + taxAmt;
+  document.getElementById('subtotal-display').textContent = sym + subtotal.toFixed(2);
+  document.getElementById('total-display').textContent = sym + total.toFixed(2);
+  const taxRow = document.getElementById('tax-row');
+  if (taxRate > 0) {
+    taxRow.style.display = 'flex';
+    document.getElementById('tax-label-display').textContent = taxLabel + ' (' + taxRate + '%)';
+    document.getElementById('tax-display').textContent = sym + taxAmt.toFixed(2);
+  } else {
+    taxRow.style.display = 'none';
+  }
+  return { subtotal, taxAmt, total, taxRate, taxLabel };
+}
+
+function buildPreviewHTML(data) {
+  const sym = data.symbol || '$';
+  const rows = (data.items || []).map(i => {
+    const amt = (i.qty * i.rate).toFixed(2);
+    return '<tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9;font-size:13px">' + (i.desc||'') + '</td><td style="padding:8px;border-bottom:1px solid #f1f5f9;text-align:center;font-size:13px">' + i.qty + '</td><td style="padding:8px;border-bottom:1px solid #f1f5f9;text-align:right;font-size:13px">' + sym + parseFloat(i.rate).toFixed(2) + '</td><td style="padding:8px 0 8px 8px;border-bottom:1px solid #f1f5f9;text-align:right;font-size:13px;font-weight:600">' + sym + amt + '</td></tr>';
+  }).join('');
+  const taxLine = data.taxRate > 0 ? '<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:12px;color:#64748b"><span>' + (data.taxLabel||'Tax') + ' (' + data.taxRate + '%)</span><span>' + sym + (data.taxAmt||0).toFixed(2) + '</span></div>' : '';
+  return '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:Arial,sans-serif;color:#0f172a;margin:0;padding:24px;font-size:13px}*{box-sizing:border-box}</style></head><body><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px"><div><div style="font-size:22px;font-weight:700;color:' + data.color + ';letter-spacing:-0.5px">INVOICE</div><div style="color:#94a3b8;font-size:12px;margin-top:2px">#' + (data.invoiceNumber||'001') + '</div></div><div style="text-align:right"><div style="font-weight:600;font-size:14px">' + (data.fromName||'') + '</div><div style="color:#64748b;font-size:11px;margin-top:3px">' + (data.fromEmail||'') + '</div><div style="color:#64748b;font-size:11px;white-space:pre-line">' + (data.fromAddress||'').replace(/\n/g,'<br>') + '</div></div></div><div style="display:flex;justify-content:space-between;margin-bottom:24px"><div><div style="font-size:10px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Bill To</div><div style="font-weight:600;font-size:13px">' + (data.toName||'') + '</div><div style="color:#64748b;font-size:11px">' + (data.toEmail||'') + '</div><div style="color:#64748b;font-size:11px;white-space:pre-line">' + (data.toAddress||'').replace(/\n/g,'<br>') + '</div></div><div style="text-align:right"><div style="margin-bottom:8px"><div style="font-size:10px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px">Issue Date</div><div style="font-weight:600;font-size:12px">' + (data.issueDate||'') + '</div></div><div><div style="font-size:10px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px">Due Date</div><div style="font-weight:600;font-size:12px">' + (data.dueDate||'') + '</div></div></div></div><table style="width:100%;border-collapse:collapse;margin-bottom:16px"><thead><tr style="background:' + data.color + ';color:#fff"><th style="padding:8px 0;text-align:left;font-size:10px;letter-spacing:.5px;font-weight:600">DESCRIPTION</th><th style="padding:8px;text-align:center;font-size:10px;letter-spacing:.5px;font-weight:600">QTY</th><th style="padding:8px;text-align:right;font-size:10px;letter-spacing:.5px;font-weight:600">RATE</th><th style="padding:8px 0 8px 8px;text-align:right;font-size:10px;letter-spacing:.5px;font-weight:600">AMOUNT</th></tr></thead><tbody>' + rows + '</tbody></table><div style="display:flex;justify-content:flex-end;margin-bottom:20px"><div style="min-width:200px"><div style="display:flex;justify-content:space-between;padding:4px 0;font-size:12px;color:#64748b"><span>Subtotal</span><span>' + sym + (data.subtotal||0).toFixed(2) + '</span></div>' + taxLine + '<div style="display:flex;justify-content:space-between;padding:8px 0 4px;font-size:15px;font-weight:700;border-top:1px solid #e2e8f0;margin-top:4px"><span>Total</span><span style="color:' + data.color + '">' + sym + (data.total||0).toFixed(2) + '</span></div></div></div>' + (data.notes ? '<div style="background:#f8fafc;border-left:3px solid ' + data.color + ';padding:10px 14px;border-radius:0 4px 4px 0"><div style="font-size:10px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Notes</div><div style="font-size:12px;color:#475569">' + data.notes + '</div></div>' : '') + '</body></html>';
+}
+
+function updatePreview() {
+  const items = getItems();
+  const { subtotal, taxAmt, total, taxRate, taxLabel } = calcTotals(items);
+  const sym = getSymbol();
+  const data = {
+    fromName: document.getElementById('fromName').value,
+    fromEmail: document.getElementById('fromEmail').value,
+    fromAddress: document.getElementById('fromAddress').value,
+    toName: document.getElementById('toName').value,
+    toEmail: document.getElementById('toEmail').value,
+    toAddress: document.getElementById('toAddress').value,
+    invoiceNumber: document.getElementById('invoiceNumber').value,
+    issueDate: document.getElementById('issueDate').value,
+    dueDate: document.getElementById('dueDate').value,
+    notes: document.getElementById('notes').value,
+    taxRate, taxLabel, taxAmt, subtotal, total,
+    items, color: selectedColor, symbol: sym
+  };
+  const frame = document.getElementById('preview-frame');
+  frame.srcdoc = buildPreviewHTML(data);
+}
+
+function addItem() {
+  const container = document.getElementById('items-container');
+  const div = document.createElement('div');
+  div.className = 'item-row';
+  div.dataset.index = itemCount++;
+  div.innerHTML = '<input type="text" placeholder="Service or product" oninput="updatePreview()"><input type="number" value="1" min="0" step="any" oninput="updatePreview()"><input type="number" value="0" min="0" step="any" oninput="updatePreview()"><div class="line-total">.00</div><button class="del-btn" onclick="removeItem(this)" title="Remove">×</button>';
+  container.appendChild(div);
+  updatePreview();
+}
+
+function removeItem(btn) {
+  const rows = document.querySelectorAll('.item-row');
+  if (rows.length > 1) { btn.parentElement.remove(); updatePreview(); }
+}
+
+async function downloadPDF() {
+  const btn = document.getElementById('pdf-btn');
+  btn.textContent = 'Generating PDF...';
+  btn.disabled = true;
+  const items = getItems();
+  const { subtotal, taxAmt, total, taxRate, taxLabel } = calcTotals(items);
+  const sym = getSymbol();
+  const data = {
+    fromName: document.getElementById('fromName').value,
+    fromEmail: document.getElementById('fromEmail').value,
+    fromAddress: document.getElementById('fromAddress').value,
+    toName: document.getElementById('toName').value,
+    toEmail: document.getElementById('toEmail').value,
+    toAddress: document.getElementById('toAddress').value,
+    invoiceNumber: document.getElementById('invoiceNumber').value,
+    issueDate: document.getElementById('issueDate').value,
+    dueDate: document.getElementById('dueDate').value,
+    notes: document.getElementById('notes').value,
+    taxRate, taxLabel, taxAmt, subtotal, total,
+    items, color: selectedColor, symbol: sym
+  };
+  try {
+    const res = await fetch('/generate-pdf', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ invoiceData: JSON.stringify(data) }) });
+    if (!res.ok) throw new Error('Server error');
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'invoice-' + (data.invoiceNumber || '001') + '.pdf';
+    a.click();
+    URL.revokeObjectURL(url);
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download PDF — Free';
+    btn.disabled = false;
+  } catch(e) {
+    btn.textContent = 'Error — try again';
+    btn.disabled = false;
+  }
+}
+
+const today = new Date().toISOString().split('T')[0];
+const due = new Date(Date.now() + 14*24*60*60*1000).toISOString().split('T')[0];
+document.getElementById('issueDate').value = today;
+document.getElementById('dueDate').value = due;
+updatePreview();
+</script>
+</body>
+</html>
+
