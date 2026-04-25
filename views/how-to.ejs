@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title><%= page.title %> | GetInvoiceMaker</title>
+<meta name="description" content="<%= page.desc %>">
+<link rel="canonical" href="<%= siteUrl %>/<%= page.slug %>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#f8fafc;color:#0f172a}
+a{color:#2563eb;text-decoration:none}
+nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;justify-content:space-between;align-items:center;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-weight:700;font-size:18px}.logo span{color:#2563eb}
+.nav-r{display:flex;gap:8px;align-items:center}
+.nav-r a{color:#64748b;font-size:13px;padding:6px 12px;border-radius:6px}
+.nav-r a:hover{background:#f1f5f9}
+.btn-blue{background:#2563eb;color:#fff;border:none;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer}
+.breadcrumb{padding:12px 32px;font-size:12px;color:#94a3b8;background:#fff;border-bottom:1px solid #f1f5f9}
+.breadcrumb a{color:#2563eb}
+.hero{background:#fff;border-bottom:1px solid #e2e8f0;padding:48px 24px 40px;text-align:center}
+.hero h1{font-size:clamp(22px,4vw,36px);font-weight:700;margin-bottom:12px}
+.hero p{color:#475569;font-size:15px;max-width:540px;margin:0 auto 24px}
+.main{max-width:720px;margin:0 auto;padding:40px 20px}
+.step-box{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:24px;margin-bottom:16px}
+.step-num{width:28px;height:28px;background:#2563eb;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-bottom:12px}
+.step-box h3{font-size:15px;font-weight:600;margin-bottom:8px}
+.step-box p{font-size:14px;color:#475569;line-height:1.7}
+.cta-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:24px;margin:32px 0;text-align:center}
+.cta-box h3{font-size:16px;font-weight:700;margin-bottom:8px}
+.cta-box p{font-size:13px;color:#475569;margin-bottom:16px}
+.templates{margin-top:40px}
+.templates h2{font-size:18px;font-weight:700;margin-bottom:16px}
+.tgrid{display:flex;flex-wrap:wrap;gap:8px}
+.tlink{background:#fff;border:1px solid #e2e8f0;padding:6px 14px;border-radius:50px;font-size:12px;color:#475569}
+.tlink:hover{background:#eff6ff;border-color:#2563eb;color:#2563eb}
+footer{background:#0f172a;color:#94a3b8;padding:28px 20px;text-align:center;font-size:12px;margin-top:48px}
+footer a{color:#64748b;margin:0 10px}
+footer a:hover{color:#fff}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/"><div class="logo">Invoice<span>Maker</span></div></a>
+  <div class="nav-r">
+    <a href="/">Tool</a>
+    <a href="/blog">Blog</a>
+    <a href="/#pricing"><button class="btn-blue">Get PRO</button></a>
+  </div>
+</nav>
+<div class="breadcrumb"><a href="/">Home</a> › <a href="/blog">Guides</a> › <%= page.title %></div>
+<section class="hero">
+  <h1><%= page.title %></h1>
+  <p><%= page.desc %></p>
+  <a href="/"><button class="btn-blue" style="font-size:14px;padding:10px 24px">Create Free Invoice Now</button></a>
+</section>
+<div class="main">
+  <div class="step-box">
+    <div class="step-num">1</div>
+    <h3>Open GetInvoiceMaker</h3>
+    <p>Go to getinvoicemaker.com — no account or signup required. The invoice generator loads instantly in your browser.</p>
+  </div>
+  <div class="step-box">
+    <div class="step-num">2</div>
+    <h3>Fill in your details</h3>
+    <p>Enter your name or business name, your client's details, invoice number, and the issue and due dates. The live preview updates as you type.</p>
+  </div>
+  <div class="step-box">
+    <div class="step-num">3</div>
+    <h3>Add your line items</h3>
+    <p>Add each service or product with a description, quantity and rate. The total calculates automatically. Add tax if required.</p>
+  </div>
+  <div class="step-box">
+    <div class="step-num">4</div>
+    <h3>Download your PDF</h3>
+    <p>Click Download PDF and your professional invoice saves to your device instantly. Send it to your client by email.</p>
+  </div>
+  <div class="cta-box">
+    <h3>Ready to create your invoice?</h3>
+    <p>Free, no signup, instant PDF download. Professional invoices in 60 seconds.</p>
+    <a href="/"><button class="btn-blue" style="font-size:14px;padding:10px 24px">Create Free Invoice</button></a>
+  </div>
+  <div class="templates">
+    <h2>Free invoice templates</h2>
+    <div class="tgrid">
+      <% industries.slice(0,10).forEach(function(ind) { %>
+      <a href="/invoice-template-<%= ind.slug %>" class="tlink"><%= ind.label %></a>
+      <% }) %>
+    </div>
+  </div>
+</div>
+<footer>
+  <a href="/">Home</a><a href="/blog">Blog</a><a href="/#pricing">Pricing</a>
+  <p style="margin-top:12px">&#169; 2026 GetInvoiceMaker — Free Invoice Generator</p>
+</footer>
+</body>
+</html>

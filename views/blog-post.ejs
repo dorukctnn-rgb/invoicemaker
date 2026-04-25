@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title><%= post.title %> | GetInvoiceMaker</title>
+<meta name="description" content="<%= post.desc %>">
+<link rel="canonical" href="<%= siteUrl %>/blog/<%= post.slug %>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "<%= post.title %>",
+  "description": "<%= post.desc %>",
+  "datePublished": "<%= post.date %>",
+  "author": {"@type": "Organization", "name": "GetInvoiceMaker"},
+  "publisher": {"@type": "Organization", "name": "GetInvoiceMaker", "url": "<%= siteUrl %>"}
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#f8fafc;color:#0f172a}
+a{color:#2563eb;text-decoration:none}
+nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;justify-content:space-between;align-items:center;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-weight:700;font-size:18px}.logo span{color:#2563eb}
+.nav-r{display:flex;gap:8px;align-items:center}
+.nav-r a{color:#64748b;font-size:13px;padding:6px 12px;border-radius:6px}
+.nav-r a:hover{background:#f1f5f9}
+.btn-blue{background:#2563eb;color:#fff;border:none;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer}
+.breadcrumb{padding:12px 32px;font-size:12px;color:#94a3b8;background:#fff;border-bottom:1px solid #f1f5f9}
+.breadcrumb a{color:#2563eb}
+.main{max-width:720px;margin:0 auto;padding:40px 20px}
+.tag{font-size:11px;font-weight:600;color:#2563eb;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
+.main h1{font-size:clamp(22px,4vw,34px);font-weight:700;line-height:1.2;margin-bottom:12px}
+.meta{font-size:12px;color:#94a3b8;margin-bottom:32px;display:flex;gap:16px}
+.content{line-height:1.8;font-size:15px;color:#334155}
+.content h2{font-size:20px;font-weight:700;color:#0f172a;margin:32px 0 12px}
+.content p{margin-bottom:14px}
+.content ul{margin:0 0 14px 20px}
+.content ul li{margin-bottom:6px}
+.content strong{color:#0f172a}
+.cta-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:24px;margin:40px 0;text-align:center}
+.cta-box h3{font-size:16px;font-weight:700;margin-bottom:8px}
+.cta-box p{font-size:13px;color:#475569;margin-bottom:16px}
+.related{margin-top:48px;padding-top:32px;border-top:1px solid #e2e8f0}
+.related h2{font-size:18px;font-weight:700;margin-bottom:20px}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:600px){.related-grid{grid-template-columns:1fr}}
+.related-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:14px}
+.related-card .tag{margin-bottom:6px}
+.related-card h3{font-size:13px;font-weight:600;color:#0f172a;line-height:1.4}
+footer{background:#0f172a;color:#94a3b8;padding:28px 20px;text-align:center;font-size:12px;margin-top:48px}
+footer a{color:#64748b;margin:0 10px}
+footer a:hover{color:#fff}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/"><div class="logo">Invoice<span>Maker</span></div></a>
+  <div class="nav-r">
+    <a href="/">Tool</a>
+    <a href="/blog">Blog</a>
+    <a href="/#pricing"><button class="btn-blue">Get PRO</button></a>
+  </div>
+</nav>
+<div class="breadcrumb"><a href="/">Home</a> › <a href="/blog">Blog</a> › <%= post.title %></div>
+<div class="main">
+  <div class="tag"><%= post.category %></div>
+  <h1><%= post.title %></h1>
+  <div class="meta"><span><%= post.date %></span><span><%= post.readTime %></span></div>
+  <div class="content"><%- post.content %></div>
+  <div class="cta-box">
+    <h3>Create a professional invoice right now</h3>
+    <p>Free PDF invoice generator. No signup, no watermark on free plan. Ready in 60 seconds.</p>
+    <a href="/"><button class="btn-blue" style="font-size:14px;padding:10px 24px">Create Free Invoice</button></a>
+  </div>
+  <div class="related">
+    <h2>Related guides</h2>
+    <div class="related-grid">
+      <% relatedPosts.forEach(function(p) { %>
+      <a href="/blog/<%= p.slug %>" class="related-card" style="display:block">
+        <div class="tag"><%= p.category %></div>
+        <h3><%= p.title %></h3>
+      </a>
+      <% }) %>
+    </div>
+  </div>
+</div>
+<footer>
+  <a href="/">Home</a><a href="/blog">Blog</a><a href="/#pricing">Pricing</a>
+  <p style="margin-top:12px">&#169; 2026 GetInvoiceMaker — Free Invoice Generator</p>
+</footer>
+</body>
+</html>
