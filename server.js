@@ -15,26 +15,26 @@ const SITE_URL = process.env.SITE_URL || 'https://getinvoicemaker.com';
 const users = {};
 
 const INDUSTRIES = [
-  { slug: 'freelancer', label: 'Freelancers', desc: 'Create professional invoices for freelance work in seconds. Free PDF download, no signup required.', h1: 'Free Invoice Template for Freelancers', intro: 'The fastest free invoice generator for freelancers. Add your services, hourly rate or project fee, and download a professional PDF in seconds. No account needed.' },
-  { slug: 'contractor', label: 'Contractors', desc: 'Contractor invoice generator. Professional invoices with tax, materials and labour. Free PDF.', h1: 'Free Contractor Invoice Template', intro: 'Generate contractor invoices instantly. Include labour, materials, and tax. Download clean PDF invoices for any contracting job.' },
-  { slug: 'photographer', label: 'Photographers', desc: 'Photography invoice template. Bill clients for shoots, editing and licensing. Free PDF download.', h1: 'Free Photography Invoice Template', intro: 'Professional invoice template for photographers. Bill clients for shoot time, editing, travel and licensing fees.' },
-  { slug: 'consultant', label: 'Consultants', desc: 'Consulting invoice generator. Itemise your services and get paid faster. Free PDF.', h1: 'Free Consulting Invoice Template', intro: 'Create professional consulting invoices in seconds. Itemise your consulting services, daily rate or project fee.' },
-  { slug: 'designer', label: 'Graphic Designers', desc: 'Graphic design invoice maker. Send branded invoices for design projects. Free download.', h1: 'Free Graphic Design Invoice Template', intro: 'Invoice template built for graphic designers. Bill clients for logo design, branding, web design and other creative services.' },
-  { slug: 'developer', label: 'Web Developers', desc: 'Web developer invoice generator. Bill clients for development and maintenance. Free PDF.', h1: 'Free Web Developer Invoice Template', intro: 'Invoice generator for web developers and software engineers. Bill for development hours, retainers, hosting and maintenance.' },
-  { slug: 'plumber', label: 'Plumbers', desc: 'Plumbing invoice template. Include parts, labour and VAT automatically. Free PDF.', h1: 'Free Plumbing Invoice Template', intro: 'Professional invoice template for plumbers. Include call-out fee, parts and labour. VAT calculated automatically.' },
-  { slug: 'electrician', label: 'Electricians', desc: 'Electrical contractor invoice maker. Professional invoices with materials and labour. Free.', h1: 'Free Electrician Invoice Template', intro: 'Create electrical contractor invoices in seconds. Include materials, labour hours and VAT.' },
-  { slug: 'cleaner', label: 'Cleaning Services', desc: 'Cleaning service invoice generator. Recurring or one-off jobs, PDF ready. Free.', h1: 'Free Cleaning Service Invoice Template', intro: 'Invoice generator for cleaning businesses. Bill clients for regular or one-off cleaning jobs.' },
-  { slug: 'tutor', label: 'Tutors', desc: 'Tutoring invoice template. Bill students or parents for lessons easily. Free PDF.', h1: 'Free Tutoring Invoice Template', intro: 'Professional invoice template for tutors and teachers. Bill for individual lessons or packages.' },
-  { slug: 'accountant', label: 'Accountants', desc: 'Accounting invoice generator. Professional invoices for accounting services. Free PDF.', h1: 'Free Accounting Invoice Template', intro: 'Create professional invoices for accounting and bookkeeping services.' },
-  { slug: 'lawyer', label: 'Lawyers', desc: 'Legal invoice template. Hourly billing, retainers and disbursements. Free PDF.', h1: 'Free Legal Invoice Template for Lawyers', intro: 'Professional invoice template for lawyers and solicitors. Bill for consultation hours, retainer fees and disbursements.' },
-  { slug: 'real-estate', label: 'Real Estate Agents', desc: 'Real estate invoice maker. Commission and fee invoices for agents. Free PDF.', h1: 'Free Real Estate Invoice Template', intro: 'Invoice template for real estate agents. Bill for commission, management fees and other services.' },
-  { slug: 'marketing', label: 'Marketing Agencies', desc: 'Marketing agency invoice generator. Campaign fees, ad spend and retainers. Free PDF.', h1: 'Free Marketing Agency Invoice Template', intro: 'Create invoices for marketing and advertising services. Bill for campaign management, ad spend and monthly retainers.' },
-  { slug: 'restaurant', label: 'Restaurants', desc: 'Restaurant invoice template. Catering and event billing made simple. Free PDF.', h1: 'Free Restaurant & Catering Invoice Template', intro: 'Invoice template for restaurants and catering businesses.' },
-  { slug: 'mechanic', label: 'Auto Mechanics', desc: 'Auto repair invoice generator. Parts, labour and diagnostics on one invoice. Free PDF.', h1: 'Free Auto Repair Invoice Template', intro: 'Professional invoice template for mechanics and auto repair shops.' },
-  { slug: 'landscaper', label: 'Landscapers', desc: 'Landscaping invoice maker. Mowing, design and maintenance billing. Free PDF.', h1: 'Free Landscaping Invoice Template', intro: 'Invoice generator for landscapers and gardeners.' },
-  { slug: 'therapist', label: 'Therapists', desc: 'Therapy invoice template. Professional session billing for therapists. Free PDF.', h1: 'Free Therapy Invoice Template', intro: 'Professional invoice template for therapists and counsellors.' },
-  { slug: 'writer', label: 'Freelance Writers', desc: 'Freelance writing invoice generator. Per-word, per-article or project billing. Free PDF.', h1: 'Free Freelance Writer Invoice Template', intro: 'Invoice template for freelance writers and copywriters.' },
-  { slug: 'videographer', label: 'Videographers', desc: 'Video production invoice maker. Shoot days, editing and licensing. Free PDF.', h1: 'Free Videographer Invoice Template', intro: 'Professional invoice template for videographers.' }
+  { slug: 'freelancer', label: 'Freelancers', desc: 'Create professional invoices for freelance work in seconds.', h1: 'Free Invoice Template for Freelancers', intro: 'The fastest free invoice generator for freelancers.' },
+  { slug: 'contractor', label: 'Contractors', desc: 'Contractor invoice generator. Professional invoices with tax, materials and labour.', h1: 'Free Contractor Invoice Template', intro: 'Generate contractor invoices instantly.' },
+  { slug: 'photographer', label: 'Photographers', desc: 'Photography invoice template. Bill clients for shoots, editing and licensing.', h1: 'Free Photography Invoice Template', intro: 'Professional invoice template for photographers.' },
+  { slug: 'consultant', label: 'Consultants', desc: 'Consulting invoice generator. Itemise your services and get paid faster.', h1: 'Free Consulting Invoice Template', intro: 'Create professional consulting invoices in seconds.' },
+  { slug: 'designer', label: 'Graphic Designers', desc: 'Graphic design invoice maker. Send branded invoices for design projects.', h1: 'Free Graphic Design Invoice Template', intro: 'Invoice template built for graphic designers.' },
+  { slug: 'developer', label: 'Web Developers', desc: 'Web developer invoice generator. Bill clients for development and maintenance.', h1: 'Free Web Developer Invoice Template', intro: 'Invoice generator for web developers.' },
+  { slug: 'plumber', label: 'Plumbers', desc: 'Plumbing invoice template. Include parts, labour and VAT automatically.', h1: 'Free Plumbing Invoice Template', intro: 'Professional invoice template for plumbers.' },
+  { slug: 'electrician', label: 'Electricians', desc: 'Electrical contractor invoice maker. Professional invoices with materials and labour.', h1: 'Free Electrician Invoice Template', intro: 'Create electrical contractor invoices in seconds.' },
+  { slug: 'cleaner', label: 'Cleaning Services', desc: 'Cleaning service invoice generator. Recurring or one-off jobs.', h1: 'Free Cleaning Service Invoice Template', intro: 'Invoice generator for cleaning businesses.' },
+  { slug: 'tutor', label: 'Tutors', desc: 'Tutoring invoice template. Bill students or parents for lessons easily.', h1: 'Free Tutoring Invoice Template', intro: 'Professional invoice template for tutors.' },
+  { slug: 'accountant', label: 'Accountants', desc: 'Accounting invoice generator. Professional invoices for accounting services.', h1: 'Free Accounting Invoice Template', intro: 'Create professional invoices for accounting services.' },
+  { slug: 'lawyer', label: 'Lawyers', desc: 'Legal invoice template. Hourly billing, retainers and disbursements.', h1: 'Free Legal Invoice Template', intro: 'Professional invoice template for lawyers.' },
+  { slug: 'real-estate', label: 'Real Estate Agents', desc: 'Real estate invoice maker. Commission and fee invoices for agents.', h1: 'Free Real Estate Invoice Template', intro: 'Invoice template for real estate agents.' },
+  { slug: 'marketing', label: 'Marketing Agencies', desc: 'Marketing agency invoice generator. Campaign fees and retainers.', h1: 'Free Marketing Agency Invoice Template', intro: 'Create invoices for marketing services.' },
+  { slug: 'restaurant', label: 'Restaurants', desc: 'Restaurant invoice template. Catering and event billing.', h1: 'Free Restaurant Invoice Template', intro: 'Invoice template for restaurants.' },
+  { slug: 'mechanic', label: 'Auto Mechanics', desc: 'Auto repair invoice generator. Parts, labour and diagnostics.', h1: 'Free Auto Repair Invoice Template', intro: 'Professional invoice template for mechanics.' },
+  { slug: 'landscaper', label: 'Landscapers', desc: 'Landscaping invoice maker. Mowing, design and maintenance billing.', h1: 'Free Landscaping Invoice Template', intro: 'Invoice generator for landscapers.' },
+  { slug: 'therapist', label: 'Therapists', desc: 'Therapy invoice template. Professional session billing.', h1: 'Free Therapy Invoice Template', intro: 'Professional invoice template for therapists.' },
+  { slug: 'writer', label: 'Freelance Writers', desc: 'Freelance writing invoice generator. Per-word or project billing.', h1: 'Free Freelance Writer Invoice Template', intro: 'Invoice template for freelance writers.' },
+  { slug: 'videographer', label: 'Videographers', desc: 'Video production invoice maker. Shoot days, editing and licensing.', h1: 'Free Videographer Invoice Template', intro: 'Professional invoice template for videographers.' }
 ];
 
 const COUNTRIES = [
@@ -58,61 +58,16 @@ const BLOG_POSTS = [
     date: '2026-01-15',
     readTime: '8 min read',
     category: 'Guide',
-    content: `
-      <h2>What is an invoice?</h2>
-      <p>An invoice is a document sent from a business or freelancer to a client requesting payment for goods or services delivered. A professional invoice clearly states what was provided, the total amount due, and when payment is expected.</p>
-      <h2>What to include in an invoice</h2>
-      <p>Every professional invoice should contain these key elements:</p>
-      <ul>
-        <li><strong>Invoice number</strong> — a unique reference number for tracking</li>
-        <li><strong>Your business name and contact details</strong> — name, address, email, phone</li>
-        <li><strong>Client name and billing address</strong></li>
-        <li><strong>Invoice date</strong> — when the invoice was issued</li>
-        <li><strong>Payment due date</strong> — typically Net 14, Net 30, or a specific date</li>
-        <li><strong>Itemised list of services or products</strong> — description, quantity, rate, amount</li>
-        <li><strong>Subtotal, tax, and total amount due</strong></li>
-        <li><strong>Payment instructions</strong> — bank details, PayPal, or accepted payment methods</li>
-      </ul>
-      <h2>How to number your invoices</h2>
-      <p>Use a consistent numbering system from day one. Common formats include INV-001, INV-2026-001, or date-based systems like 20260115-001. Sequential numbering helps with accounting and tax reporting.</p>
-      <h2>Payment terms explained</h2>
-      <p>Payment terms tell your client when payment is due. The most common terms are:</p>
-      <ul>
-        <li><strong>Due on receipt</strong> — payment expected immediately</li>
-        <li><strong>Net 14</strong> — payment due within 14 days</li>
-        <li><strong>Net 30</strong> — payment due within 30 days</li>
-        <li><strong>Net 60</strong> — payment due within 60 days (common in larger businesses)</li>
-      </ul>
-      <h2>How to get paid faster</h2>
-      <p>Freelancers and small businesses consistently get paid faster when they: send invoices immediately after completing work, include clear payment instructions, follow up politely after the due date, and offer multiple payment methods.</p>
-      <h2>Create your invoice now</h2>
-      <p>Use our free invoice generator to create a professional PDF invoice in under 60 seconds. No signup required.</p>
-    `
+    content: '<h2>What is an invoice?</h2><p>An invoice is a document sent from a business or freelancer to a client requesting payment for goods or services delivered.</p><h2>What to include in an invoice</h2><ul><li><strong>Invoice number</strong> - a unique reference number</li><li><strong>Your business name and contact details</strong></li><li><strong>Client name and billing address</strong></li><li><strong>Invoice date and payment due date</strong></li><li><strong>Itemised list of services</strong></li><li><strong>Subtotal, tax, and total amount due</strong></li><li><strong>Payment instructions</strong></li></ul><h2>Payment terms explained</h2><ul><li><strong>Net 14</strong> - payment due within 14 days</li><li><strong>Net 30</strong> - payment due within 30 days</li><li><strong>Due on receipt</strong> - payment expected immediately</li></ul><h2>How to get paid faster</h2><p>Send invoices immediately after completing work, include clear payment instructions, and follow up politely after the due date.</p>'
   },
   {
     slug: 'invoice-payment-terms-guide',
     title: 'Invoice Payment Terms: Everything You Need to Know',
-    desc: 'Net 30, Net 14, due on receipt — a complete guide to invoice payment terms and how to choose the right ones for your business.',
+    desc: 'Net 30, Net 14, due on receipt - a complete guide to invoice payment terms and how to choose the right ones for your business.',
     date: '2026-01-22',
     readTime: '6 min read',
     category: 'Guide',
-    content: `
-      <h2>What are payment terms?</h2>
-      <p>Payment terms are the conditions under which a seller will complete a sale. They specify when payment is due, accepted payment methods, and any penalties for late payment.</p>
-      <h2>Common payment terms explained</h2>
-      <ul>
-        <li><strong>Due on receipt</strong> — the client should pay immediately upon receiving the invoice</li>
-        <li><strong>Net 7</strong> — payment due within 7 days</li>
-        <li><strong>Net 14</strong> — payment due within 14 days. Good for freelancers and small projects</li>
-        <li><strong>Net 30</strong> — payment due within 30 days. The most common business standard</li>
-        <li><strong>Net 60 / Net 90</strong> — common for large corporate clients</li>
-        <li><strong>2/10 Net 30</strong> — 2% discount if paid within 10 days, otherwise full amount due in 30</li>
-      </ul>
-      <h2>How to choose the right payment terms</h2>
-      <p>For freelancers and small businesses, shorter terms (Net 14 or Net 30) are generally better for cash flow. For larger corporate clients, Net 30 to Net 60 is standard and expected. Always agree on payment terms before starting work to avoid disputes.</p>
-      <h2>Late payment penalties</h2>
-      <p>You can add late payment clauses to your invoices. A common approach is 1.5% per month on overdue balances. Always state this clearly on your invoice and in your contract.</p>
-    `
+    content: '<h2>What are payment terms?</h2><p>Payment terms are the conditions under which a seller will complete a sale. They specify when payment is due and accepted payment methods.</p><h2>Common payment terms</h2><ul><li><strong>Net 7</strong> - payment due within 7 days</li><li><strong>Net 14</strong> - payment due within 14 days</li><li><strong>Net 30</strong> - the most common business standard</li><li><strong>Net 60</strong> - common for large corporate clients</li></ul><h2>How to choose</h2><p>For freelancers, shorter terms like Net 14 are better for cash flow. For larger corporate clients, Net 30 to Net 60 is standard.</p>'
   },
   {
     slug: 'what-is-vat-invoice',
@@ -121,239 +76,92 @@ const BLOG_POSTS = [
     date: '2026-01-29',
     readTime: '7 min read',
     category: 'Tax',
-    content: `
-      <h2>What is a VAT invoice?</h2>
-      <p>A VAT invoice is an invoice that includes Value Added Tax (VAT). It is required by law in most countries when the seller is VAT registered. VAT invoices must include specific information about the tax charged.</p>
-      <h2>When do you need a VAT invoice?</h2>
-      <p>You need to issue VAT invoices if you are VAT registered. In the UK, you must register for VAT when your taxable turnover exceeds £90,000. In EU countries, thresholds vary by country.</p>
-      <h2>What must a VAT invoice include?</h2>
-      <ul>
-        <li>A unique invoice number</li>
-        <li>Your VAT registration number</li>
-        <li>The invoice date and tax point date</li>
-        <li>Your business name and address</li>
-        <li>The client's name and address</li>
-        <li>A description of goods or services</li>
-        <li>The subtotal excluding VAT</li>
-        <li>The VAT rate applied</li>
-        <li>The VAT amount</li>
-        <li>The total amount including VAT</li>
-      </ul>
-      <h2>VAT rates by country</h2>
-      <ul>
-        <li><strong>UK</strong> — 20% standard rate, 5% reduced, 0% zero-rated</li>
-        <li><strong>Germany</strong> — 19% standard, 7% reduced</li>
-        <li><strong>France</strong> — 20% standard, 10% and 5.5% reduced</li>
-        <li><strong>Netherlands</strong> — 21% standard, 9% reduced</li>
-        <li><strong>Australia (GST)</strong> — 10% flat rate</li>
-        <li><strong>India (GST)</strong> — 5%, 12%, 18%, or 28% depending on goods/services</li>
-      </ul>
-    `
+    content: '<h2>What is a VAT invoice?</h2><p>A VAT invoice includes Value Added Tax and is required by law when the seller is VAT registered.</p><h2>What must a VAT invoice include?</h2><ul><li>Your VAT registration number</li><li>Invoice date and tax point date</li><li>Description of goods or services</li><li>Subtotal excluding VAT</li><li>VAT rate and amount</li><li>Total including VAT</li></ul><h2>VAT rates by country</h2><ul><li><strong>UK</strong> - 20% standard</li><li><strong>Germany</strong> - 19% standard</li><li><strong>France</strong> - 20% standard</li><li><strong>Netherlands</strong> - 21% standard</li></ul>'
   },
   {
     slug: 'freelancer-invoice-guide',
     title: 'How to Invoice as a Freelancer: Complete 2026 Guide',
-    desc: 'Everything freelancers need to know about invoicing clients professionally — what to include, when to send, how to follow up on late payments.',
+    desc: 'Everything freelancers need to know about invoicing clients professionally.',
     date: '2026-02-05',
     readTime: '9 min read',
     category: 'Freelance',
-    content: `
-      <h2>Why freelancers need professional invoices</h2>
-      <p>Professional invoices protect you legally, help you get paid faster, and make your business look credible. Clients take payment more seriously when they receive a proper invoice rather than an informal request.</p>
-      <h2>What to include in a freelance invoice</h2>
-      <ul>
-        <li>Your full name or business name</li>
-        <li>Your email and contact number</li>
-        <li>The client name and company</li>
-        <li>A unique invoice number</li>
-        <li>Invoice date and payment due date</li>
-        <li>Itemised list of services with hours or quantity and rate</li>
-        <li>Subtotal and any applicable tax</li>
-        <li>Total amount due</li>
-        <li>Your bank details or preferred payment method</li>
-      </ul>
-      <h2>When to send your invoice</h2>
-      <p>Send your invoice as soon as the work is complete or at the agreed billing milestone. Delaying invoicing delays payment. For ongoing retainer clients, send invoices on a fixed day each month — for example, the 1st or last day of the month.</p>
-      <h2>How to follow up on late payments</h2>
-      <p>First, send a polite reminder email referencing the invoice number and due date. If there is no response after 7 days, follow up by phone. For payments more than 30 days overdue, reference your late payment clause and consider charging the agreed penalty rate.</p>
-      <h2>Should freelancers charge VAT or sales tax?</h2>
-      <p>This depends on your location and your annual income. In the UK, you must register for VAT if your turnover exceeds £90,000. In the US, freelance services are generally not subject to sales tax, but rules vary by state. Always check with a local accountant.</p>
-    `
+    content: '<h2>Why freelancers need professional invoices</h2><p>Professional invoices protect you legally and help you get paid faster.</p><h2>What to include in a freelance invoice</h2><ul><li>Your full name or business name</li><li>Client name and company</li><li>Unique invoice number</li><li>Invoice date and payment due date</li><li>Itemised list of services with rates</li><li>Total amount due</li><li>Bank details or payment method</li></ul><h2>When to send your invoice</h2><p>Send your invoice as soon as the work is complete. Delaying invoicing delays payment.</p>'
   },
   {
     slug: 'invoice-vs-receipt',
     title: 'Invoice vs Receipt: What is the Difference?',
-    desc: 'Confused about the difference between an invoice and a receipt? This guide explains when to use each, with examples.',
+    desc: 'Confused about the difference between an invoice and a receipt? This guide explains when to use each.',
     date: '2026-02-12',
     readTime: '5 min read',
     category: 'Guide',
-    content: `
-      <h2>Invoice vs receipt — the key difference</h2>
-      <p>An invoice is sent before payment to request money. A receipt is issued after payment to confirm it was received. Both are important business documents but serve very different purposes.</p>
-      <h2>What is an invoice?</h2>
-      <p>An invoice is a request for payment. It is sent to a client after goods or services have been delivered, specifying the amount owed and the payment due date. Invoices are used to track accounts receivable.</p>
-      <h2>What is a receipt?</h2>
-      <p>A receipt is a confirmation of payment. It is issued after money has changed hands, confirming that the transaction is complete. Receipts are used by buyers for expense claims and record keeping.</p>
-      <h2>When to use each</h2>
-      <ul>
-        <li>Use an invoice to request payment from a client for work completed</li>
-        <li>Issue a receipt when a client pays you in cash or requests proof of payment</li>
-        <li>For online payments, the payment processor often generates a receipt automatically</li>
-      </ul>
-    `
+    content: '<h2>The key difference</h2><p>An invoice is sent before payment to request money. A receipt is issued after payment to confirm it was received.</p><h2>What is an invoice?</h2><p>An invoice is a request for payment sent after goods or services have been delivered.</p><h2>What is a receipt?</h2><p>A receipt is a confirmation of payment issued after money has changed hands.</p>'
   },
   {
     slug: 'how-to-write-invoice-email',
     title: 'How to Write an Invoice Email: Templates and Examples',
-    desc: 'Professional invoice email templates you can copy and use today. Includes first send, reminder, and overdue payment email examples.',
+    desc: 'Professional invoice email templates you can copy and use today.',
     date: '2026-02-19',
     readTime: '6 min read',
     category: 'Templates',
-    content: `
-      <h2>How to send an invoice by email</h2>
-      <p>Always attach your invoice as a PDF and include a brief, professional email. Keep it short — clients receive many emails and need to quickly understand what they owe and when.</p>
-      <h2>Initial invoice email template</h2>
-      <p>Subject: Invoice #INV-001 — [Your Name/Company] — Due [Date]</p>
-      <p>Hi [Client Name],</p>
-      <p>Please find attached invoice #INV-001 for [service/project name] totalling [amount]. Payment is due by [due date].</p>
-      <p>Payment details are included on the invoice. Please let me know if you have any questions.</p>
-      <p>Thank you for your business.</p>
-      <p>[Your Name]</p>
-      <h2>Polite payment reminder email template</h2>
-      <p>Subject: Reminder: Invoice #INV-001 Due [Date]</p>
-      <p>Hi [Client Name],</p>
-      <p>I wanted to send a quick reminder that invoice #INV-001 for [amount] is due on [date]. Please let me know if you need anything from my end to process payment.</p>
-      <p>Thank you,<br>[Your Name]</p>
-      <h2>Overdue payment email template</h2>
-      <p>Subject: Overdue Invoice #INV-001 — Action Required</p>
-      <p>Hi [Client Name],</p>
-      <p>Invoice #INV-001 for [amount] was due on [date] and is now [X] days overdue. Could you please confirm the payment status or let me know if there is an issue I can help resolve?</p>
-      <p>Please note that as per our agreement, a late payment fee of [X]% may apply to overdue balances.</p>
-      <p>[Your Name]</p>
-    `
+    content: '<h2>Initial invoice email template</h2><p>Subject: Invoice #INV-001 - Due [Date]</p><p>Hi [Client Name], please find attached invoice #INV-001 totalling [amount]. Payment is due by [due date]. Thank you for your business.</p><h2>Reminder email template</h2><p>Subject: Reminder: Invoice #INV-001 Due [Date]</p><p>Hi [Client Name], a quick reminder that invoice #INV-001 for [amount] is due on [date].</p><h2>Overdue payment template</h2><p>Subject: Overdue Invoice #INV-001 - Action Required</p><p>Hi [Client Name], invoice #INV-001 for [amount] is now overdue. Please confirm the payment status.</p>'
   },
   {
     slug: 'gst-invoice-guide',
     title: 'GST Invoice Guide: Australia, India, Canada, Singapore',
-    desc: 'A complete guide to GST invoices for Australia, India, Canada and Singapore. What to include, GST rates and how to calculate GST.',
+    desc: 'A complete guide to GST invoices for Australia, India, Canada and Singapore.',
     date: '2026-02-26',
     readTime: '7 min read',
     category: 'Tax',
-    content: `
-      <h2>What is GST?</h2>
-      <p>GST stands for Goods and Services Tax. It is a consumption tax applied to most goods and services. Countries that use GST include Australia, Canada, India, Singapore, and New Zealand.</p>
-      <h2>GST rates by country</h2>
-      <ul>
-        <li><strong>Australia</strong> — 10% flat GST on most goods and services</li>
-        <li><strong>Canada</strong> — 5% federal GST, with additional provincial tax (HST varies by province)</li>
-        <li><strong>India</strong> — 5%, 12%, 18%, or 28% depending on the category of goods or services</li>
-        <li><strong>Singapore</strong> — 9% GST (increased from 8% in 2024)</li>
-        <li><strong>New Zealand</strong> — 15% GST</li>
-      </ul>
-      <h2>What must a GST invoice include in Australia?</h2>
-      <ul>
-        <li>The words "Tax Invoice" clearly displayed</li>
-        <li>Your ABN (Australian Business Number)</li>
-        <li>Invoice date</li>
-        <li>Description of goods or services</li>
-        <li>GST amount — either as a separate line or a statement that the total includes GST</li>
-      </ul>
-      <h2>How to calculate GST</h2>
-      <p>To calculate 10% GST on a price: multiply the pre-tax amount by 0.10. For example, a service worth $500 plus 10% GST equals $550 total. To find the GST in a GST-inclusive price: divide the total by 11. So $550 divided by 11 equals $50 GST.</p>
-    `
+    content: '<h2>What is GST?</h2><p>GST stands for Goods and Services Tax. Countries using GST include Australia, Canada, India, Singapore, and New Zealand.</p><h2>GST rates by country</h2><ul><li><strong>Australia</strong> - 10%</li><li><strong>Canada</strong> - 5% federal GST</li><li><strong>India</strong> - 5%, 12%, 18%, or 28%</li><li><strong>Singapore</strong> - 9%</li><li><strong>New Zealand</strong> - 15%</li></ul><h2>How to calculate GST</h2><p>Multiply the pre-tax amount by the GST rate. For 10% GST: $500 x 0.10 = $50 GST. Total = $550.</p>'
   },
   {
-    slug: 'invoice-number-format',
-    title: 'Invoice Numbering: How to Number Your Invoices Correctly',
-    desc: 'The best invoice numbering systems explained. How to create unique invoice numbers that work for your business and satisfy tax requirements.',
-    date: '2026-03-05',
-    readTime: '5 min read',
-    category: 'Guide',
-    content: `
-      <h2>Why invoice numbering matters</h2>
-      <p>Invoice numbers are required for accounting, tax reporting, and dispute resolution. A consistent numbering system makes it easy to track which invoices have been paid and which are outstanding.</p>
-      <h2>Popular invoice numbering formats</h2>
-      <ul>
-        <li><strong>Sequential</strong> — INV-001, INV-002, INV-003. Simple and effective for small businesses</li>
-        <li><strong>Date-based</strong> — 20260115-001. Includes the date in YYYYMMDD format</li>
-        <li><strong>Client-based</strong> — ACME-001, ACME-002. Useful if you have repeat clients</li>
-        <li><strong>Year-based</strong> — 2026-001. Resets each year for cleaner accounting</li>
-        <li><strong>Project-based</strong> — PROJ-WEB-001. Good for agencies managing multiple projects</li>
-      </ul>
-      <h2>Rules for invoice numbers</h2>
-      <p>Invoice numbers must be unique — no two invoices should share the same number. They should be sequential with no gaps, as tax authorities may question missing numbers. Never reuse invoice numbers, even if an invoice was cancelled.</p>
-      <h2>What to do with cancelled invoices</h2>
-      <p>If you need to cancel an invoice, issue a credit note rather than deleting it. Keep the original invoice in your records with a note that it was cancelled. This maintains a clean audit trail.</p>
-    `
-  },
-  {
-    slug: 'how-to-invoice-international-clients',
-    title: 'How to Invoice International Clients: Currency, Tax and Tips',
-    desc: 'A practical guide to invoicing clients in other countries. Currency choice, international tax rules, exchange rates and getting paid.',
-    date: '2026-03-12',
-    readTime: '8 min read',
-    category: 'Guide',
-    content: `
-      <h2>Choosing the right currency</h2>
-      <p>When invoicing international clients, you can invoice in your local currency or the client's currency. Invoicing in your own currency protects you from exchange rate risk. Invoicing in the client's currency can make it easier for them to pay. Many freelancers invoice in USD or EUR as a neutral currency.</p>
-      <h2>Do you charge VAT to international clients?</h2>
-      <p>This depends on your country and the client's location. In the UK, services to business clients outside the UK are generally zero-rated for VAT — meaning you do not charge VAT but you still report the sale. In the EU, B2B services are generally taxed in the buyer's country under the reverse charge mechanism. Always verify the rules with a local accountant.</p>
-      <h2>How to handle exchange rates</h2>
-      <p>If you invoice in a foreign currency, state the exchange rate on the invoice for your own records. Use the rate on the invoice date. When the payment arrives, the amount you receive in your local currency may differ slightly due to exchange rate movements.</p>
-      <h2>Getting paid internationally</h2>
-      <p>The most common methods for receiving international payments are: bank wire transfer (SWIFT/IBAN), PayPal, Wise (formerly TransferWise), Stripe, and Payoneer. Wise typically offers the best exchange rates and lowest fees for freelancers receiving international payments.</p>
-    `
-  },
-  {
-    slug: 'small-business-invoicing{
     slug: 'gst-hst-pst-canada-invoice-guide',
     title: 'GST, HST and PST on Canadian Invoices: Complete 2026 Guide',
     desc: 'Everything Canadian freelancers need to know about GST, HST and PST. Rates by province and how to calculate.',
     date: '2026-04-01',
     readTime: '8 min read',
     category: 'Tax',
-    content: '<h2>Canadian sales tax</h2><p>Canada has three types of sales tax: GST, HST, and PST.</p><h2>GST rate</h2><p>Federal GST is 5% across all of Canada.</p><h2>HST by province</h2><ul><li>Ontario: 13%</li><li>Nova Scotia: 15%</li><li>New Brunswick: 15%</li><li>PEI: 15%</li><li>Newfoundland: 15%</li></ul><h2>PST by province</h2><ul><li>BC: 7% PST + 5% GST</li><li>Saskatchewan: 6% PST + 5% GST</li><li>Manitoba: 7% + 5% GST</li><li>Quebec: 9.975% QST + 5% GST</li></ul><h2>Alberta</h2><p>No provincial tax. Only 5% GST.</p><h2>How to calculate GST</h2><p>Multiply subtotal by 0.05. Example: CAD 1000 x 0.05 = CAD 50 GST. Total = CAD 1050.</p><h2>What to include</h2><ul><li>GST registration number</li><li>Invoice date</li><li>Amount before tax</li><li>GST rate and amount</li><li>Total including tax</li></ul>'
-  },-tips',
+    content: '<h2>Canadian sales tax overview</h2><p>Canada has three types of sales tax: GST, HST, and PST. Which tax you charge depends on your province.</p><h2>GST rate</h2><p>The federal GST rate is 5% across all of Canada.</p><h2>HST rates by province</h2><ul><li><strong>Ontario</strong> - 13% HST</li><li><strong>New Brunswick</strong> - 15% HST</li><li><strong>Nova Scotia</strong> - 15% HST</li><li><strong>PEI</strong> - 15% HST</li><li><strong>Newfoundland</strong> - 15% HST</li></ul><h2>PST rates by province</h2><ul><li><strong>BC</strong> - 7% PST + 5% GST = 12%</li><li><strong>Saskatchewan</strong> - 6% PST + 5% GST = 11%</li><li><strong>Manitoba</strong> - 7% RST + 5% GST = 12%</li><li><strong>Quebec</strong> - 9.975% QST + 5% GST = 14.975%</li></ul><h2>Alberta</h2><p>No provincial tax. Only 5% GST applies.</p><h2>How to calculate GST on a Canadian invoice</h2><p>Multiply subtotal by 0.05. Example: CAD 1000 x 0.05 = CAD 50 GST. Total = CAD 1050.</p><h2>What to include on a Canadian invoice</h2><ul><li>GST registration number</li><li>Invoice date</li><li>Description of services</li><li>Amount before tax</li><li>GST/HST rate and amount</li><li>Total including tax</li></ul>'
+  },
+  {
+    slug: 'invoice-number-format',
+    title: 'Invoice Numbering: How to Number Your Invoices Correctly',
+    desc: 'The best invoice numbering systems explained for small businesses and freelancers.',
+    date: '2026-03-05',
+    readTime: '5 min read',
+    category: 'Guide',
+    content: '<h2>Why invoice numbering matters</h2><p>Invoice numbers are required for accounting, tax reporting, and dispute resolution.</p><h2>Popular formats</h2><ul><li><strong>Sequential</strong> - INV-001, INV-002</li><li><strong>Date-based</strong> - 20260115-001</li><li><strong>Year-based</strong> - 2026-001</li><li><strong>Client-based</strong> - ACME-001</li></ul><h2>Rules</h2><p>Invoice numbers must be unique and sequential. Never reuse invoice numbers, even if cancelled.</p>'
+  },
+  {
+    slug: 'how-to-invoice-international-clients',
+    title: 'How to Invoice International Clients: Currency, Tax and Tips',
+    desc: 'A practical guide to invoicing clients in other countries.',
+    date: '2026-03-12',
+    readTime: '8 min read',
+    category: 'Guide',
+    content: '<h2>Choosing the right currency</h2><p>You can invoice in your local currency or the client currency. Many freelancers invoice in USD or EUR as a neutral currency.</p><h2>Do you charge VAT to international clients?</h2><p>In the UK, services to business clients outside the UK are generally zero-rated for VAT. Always verify with a local accountant.</p><h2>Getting paid internationally</h2><p>Common methods: bank wire transfer, PayPal, Wise, Stripe, and Payoneer. Wise typically offers the best exchange rates.</p>'
+  },
+  {
+    slug: 'small-business-invoicing-tips',
     title: '10 Invoicing Tips for Small Businesses to Get Paid Faster',
-    desc: 'Practical invoicing tips for small business owners. From payment terms to follow-up strategies, these tips will improve your cash flow.',
+    desc: 'Practical invoicing tips for small business owners to improve cash flow.',
     date: '2026-03-19',
     readTime: '7 min read',
     category: 'Tips',
-    content: `
-      <h2>1. Invoice immediately after completing work</h2>
-      <p>The sooner you invoice, the sooner you get paid. Make it a habit to send invoices on the day the work is delivered or the milestone is reached.</p>
-      <h2>2. Use clear, short payment terms</h2>
-      <p>Net 14 consistently outperforms Net 30 for small businesses in terms of average payment time. Shorter terms set a clear expectation.</p>
-      <h2>3. Make it easy to pay</h2>
-      <p>Include your bank details directly on the invoice. The fewer steps required to pay, the faster you will get paid. Offer multiple payment methods where possible.</p>
-      <h2>4. Include all required details</h2>
-      <p>Missing information — such as a purchase order number your client requires — can delay payment by weeks. Always ask clients what they need on the invoice before you start work.</p>
-      <h2>5. Set up automatic reminders</h2>
-      <p>Schedule email reminders for 3 days before the due date, on the due date, and 7 days after. A polite reminder dramatically improves on-time payment rates.</p>
-      <h2>6. Charge late payment fees</h2>
-      <p>Having a stated late payment policy, even if you rarely enforce it, makes clients take due dates more seriously. A standard rate is 1.5% per month on overdue balances.</p>
-      <h2>7. Use professional invoice design</h2>
-      <p>A clean, branded invoice signals professionalism. Clients are more likely to prioritise payment to businesses that look established and credible.</p>
-      <h2>8. Get a deposit upfront</h2>
-      <p>For larger projects, require a 25-50% deposit before starting work. This improves your cash flow and filters out clients who are not serious.</p>
-      <h2>9. Keep detailed records</h2>
-      <p>Maintain a log of all invoices sent, payment dates received, and any outstanding balances. This is essential for tax reporting and cash flow management.</p>
-      <h2>10. Use a free invoice generator</h2>
-      <p>Tools like GetInvoiceMaker.com let you create professional PDF invoices in under 60 seconds with no account required. Removing friction from your invoicing process means you invoice more consistently.</p>
-    `
+    content: '<h2>1. Invoice immediately</h2><p>Send invoices on the day work is delivered.</p><h2>2. Use short payment terms</h2><p>Net 14 consistently outperforms Net 30 for payment speed.</p><h2>3. Make it easy to pay</h2><p>Include bank details directly on the invoice.</p><h2>4. Set up automatic reminders</h2><p>Schedule reminders for 3 days before due date and on the due date.</p><h2>5. Charge late fees</h2><p>A stated late payment policy makes clients take due dates seriously.</p><h2>6. Get a deposit upfront</h2><p>For large projects, require 25-50% deposit before starting.</p><h2>7. Use professional invoice design</h2><p>A clean invoice signals professionalism and gets paid faster.</p>'
   }
 ];
 
 const HOW_TO_PAGES = [
-  { slug: 'how-to-invoice-as-a-freelancer', title: 'How to Invoice as a Freelancer', desc: 'Step-by-step guide to invoicing clients as a freelancer. What to include, when to send, and how to get paid faster.' },
-  { slug: 'how-to-make-an-invoice-in-word', title: 'How to Make an Invoice in Word (and a Better Alternative)', desc: 'Learn how to create invoices in Microsoft Word and why a free invoice generator is faster and more professional.' },
-  { slug: 'how-to-send-an-invoice', title: 'How to Send an Invoice: Email, PDF and Best Practices', desc: 'The right way to send invoices to clients. Email templates, PDF best practices and follow-up strategies.' },
-  { slug: 'how-to-calculate-vat-on-invoice', title: 'How to Calculate VAT on an Invoice', desc: 'Simple guide to calculating VAT on invoices. Includes formulas, examples and rates for UK, EU and global businesses.' },
-  { slug: 'how-to-write-invoice-for-cash-payment', title: 'How to Write an Invoice for Cash Payment', desc: 'Create a professional invoice for cash payments. What to include and how to keep clean records.' },
-  { slug: 'how-to-create-invoice-without-company', title: 'How to Create an Invoice Without a Registered Company', desc: 'Freelancers and sole traders can invoice without a registered company. Here is exactly what to include.' },
-  { slug: 'how-to-invoice-us-clients-from-uk', title: 'How to Invoice US Clients from the UK', desc: 'Currency, VAT, tax rules and payment methods for UK freelancers invoicing clients in the United States.' },
-  { slug: 'how-to-calculate-gst-on-canadian-invoices', title: 'How to Calculate GST on Canadian Invoices', desc: 'Step-by-step guide to calculating GST, HST and PST on Canadian invoices. Includes rates by province and free invoice template.' },
-  { slug: 'how-to-charge-late-payment-fee', title: 'How to Charge a Late Payment Fee on an Invoice', desc: 'Add late payment clauses to your invoices. Legal requirements, standard rates and how to enforce them.' }
+  { slug: 'how-to-invoice-as-a-freelancer', title: 'How to Invoice as a Freelancer', desc: 'Step-by-step guide to invoicing clients as a freelancer.' },
+  { slug: 'how-to-make-an-invoice-in-word', title: 'How to Make an Invoice in Word (and a Better Alternative)', desc: 'Learn how to create invoices in Microsoft Word and why a free invoice generator is faster.' },
+  { slug: 'how-to-send-an-invoice', title: 'How to Send an Invoice: Email, PDF and Best Practices', desc: 'The right way to send invoices to clients.' },
+  { slug: 'how-to-calculate-vat-on-invoice', title: 'How to Calculate VAT on an Invoice', desc: 'Simple guide to calculating VAT on invoices with formulas and examples.' },
+  { slug: 'how-to-write-invoice-for-cash-payment', title: 'How to Write an Invoice for Cash Payment', desc: 'Create a professional invoice for cash payments.' },
+  { slug: 'how-to-create-invoice-without-company', title: 'How to Create an Invoice Without a Registered Company', desc: 'Freelancers and sole traders can invoice without a registered company.' },
+  { slug: 'how-to-invoice-us-clients-from-uk', title: 'How to Invoice US Clients from the UK', desc: 'Currency, VAT, tax rules and payment methods for UK freelancers invoicing US clients.' },
+  { slug: 'how-to-charge-late-payment-fee', title: 'How to Charge a Late Payment Fee on an Invoice', desc: 'Add late payment clauses to your invoices.' },
+  { slug: 'how-to-calculate-gst-on-canadian-invoices', title: 'How to Calculate GST on Canadian Invoices', desc: 'Step-by-step guide to calculating GST, HST and PST on Canadian invoices. Rates by province and free invoice template.' }
 ];
 
 app.get('/', (req, res) => {
@@ -444,7 +252,7 @@ app.post('/activate-pro', (req, res) => {
     res.cookie('pro', 'true', { maxAge: 365*24*60*60*1000, httpOnly: true });
     res.json({ success: true });
   } else {
-    res.json({ success: false, message: 'No PRO purchase found. Please purchase at our Gumroad page.' });
+    res.json({ success: false, message: 'No PRO purchase found.' });
   }
 });
 
@@ -457,7 +265,11 @@ app.get('/googlefcff82c355800720.html', (req, res) => { res.type('text/html'); r
 app.get('/googleac988ee36fede317.html', (req, res) => { res.type('text/html'); res.send('google-site-verification: googleac988ee36fede317.html'); });
 
 app.get('/sitemap.xml', (req, res) => {
-  const urls = [{ loc: '', priority: '1.0', freq: 'daily' }, { loc: '/blog', priority: '0.9', freq: 'weekly' }, { loc: '/activate', priority: '0.3', freq: 'monthly' }];
+  const urls = [
+    { loc: '', priority: '1.0', freq: 'daily' },
+    { loc: '/blog', priority: '0.9', freq: 'weekly' },
+    { loc: '/activate', priority: '0.3', freq: 'monthly' }
+  ];
   INDUSTRIES.forEach(i => urls.push({ loc: '/invoice-template-' + i.slug, priority: '0.9', freq: 'weekly' }));
   COUNTRIES.forEach(c => urls.push({ loc: '/free-invoice-generator-' + c.slug, priority: '0.9', freq: 'weekly' }));
   BLOG_POSTS.forEach(p => urls.push({ loc: '/blog/' + p.slug, priority: '0.8', freq: 'monthly' }));
@@ -475,6 +287,3 @@ app.get('/robots.txt', (req, res) => {
 
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, '0.0.0.0', () => console.log('InvoiceMaker running on ' + PORT));
-
-
-
