@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Rent Receipt Generator — Instant PDF, No Signup | InvoiceMaker</title>
+<meta name="description" content="Generate professional rent receipts in 30 seconds. Free PDF download for landlords and tenants. No signup, supports 18+ currencies. Perfect for tax records and proof of payment.">
+<link rel="canonical" href="https://getinvoicemaker.com/rent-receipt-generator">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #111; background: #f9fafb; line-height: 1.5; }
+.nav { background: #fff; border-bottom: 1px solid #e5e7eb; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+.nav a { color: #2563eb; text-decoration: none; font-weight: 500; margin-left: 20px; }
+.logo { font-weight: 700; font-size: 18px; color: #111; }
+.hero { text-align: center; padding: 60px 24px 30px; background: #fff; }
+.hero h1 { font-size: 42px; max-width: 700px; margin: 0 auto 16px; }
+.hero p { font-size: 18px; color: #555; max-width: 600px; margin: 0 auto; }
+.container { max-width: 1200px; margin: 0 auto; padding: 30px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+@media (max-width: 900px) { .container { grid-template-columns: 1fr; } }
+.card { background: #fff; padding: 24px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+h2 { font-size: 16px; margin-bottom: 12px; color: #111; }
+h3 { font-size: 13px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin: 18px 0 8px; }
+label { display: block; font-size: 12px; color: #666; margin-bottom: 4px; margin-top: 10px; }
+input, select, textarea { width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; font-family: inherit; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+textarea { resize: vertical; min-height: 70px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.btn-primary { background: #2563eb; color: #fff; border: none; padding: 14px 24px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; width: 100%; margin-top: 16px; }
+.btn-primary:hover { background: #1d4ed8; }
+.btn-primary:disabled { opacity: 0.6; cursor: wait; }
+.preview { background: #fff; border-radius: 8px; padding: 30px; min-height: 600px; font-size: 13px; }
+.preview-header { display: flex; justify-content: space-between; margin-bottom: 30px; }
+.preview-title { font-size: 28px; font-weight: 700; }
+.preview-num { color: #666; font-size: 11px; margin-top: 4px; }
+.preview-section { margin-bottom: 22px; }
+.preview-label { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.amount-box { background: #f3f4f6; padding: 18px; border-radius: 8px; margin-top: 18px; display: flex; justify-content: space-between; align-items: center; }
+.amount-big { font-size: 24px; font-weight: 700; color: #111; }
+.signature-line { margin-top: 30px; padding-top: 30px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #666; }
+.faq-section { max-width: 800px; margin: 60px auto; padding: 0 24px; }
+.faq-item { background: #fff; border-radius: 8px; margin-bottom: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+.faq-q { padding: 16px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 500; }
+.faq-q:hover { background: #f9fafb; }
+.faq-icon { font-size: 20px; color: #666; transition: transform 0.2s; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: all 0.2s; color: #555; font-size: 14px; }
+.faq-item.open .faq-a { max-height: 400px; padding: 0 20px 20px; }
+.info-section { max-width: 800px; margin: 60px auto; padding: 0 24px; color: #444; font-size: 15px; }
+.info-section h2 { font-size: 28px; margin-bottom: 16px; color: #111; }
+.info-section h3 { font-size: 18px; margin: 24px 0 8px; color: #111; text-transform: none; letter-spacing: normal; }
+.info-section p { margin-bottom: 12px; }
+.info-section ul { margin: 12px 0 12px 24px; }
+.info-section li { margin-bottom: 6px; }
+.footer { background: #111; color: #999; padding: 40px 24px; text-align: center; margin-top: 60px; font-size: 13px; }
+.footer a { color: #ccc; margin: 0 12px; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="logo">📄 InvoiceMaker</div>
+  <div>
+    <a href="/">Invoice</a>
+    <a href="/rent-receipt-generator">Rent Receipt</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Free Rent Receipt Generator</h1>
+  <p>Create professional rent receipts in 30 seconds. Perfect for landlords, tenants, and tax records. No signup. Instant PDF download.</p>
+</section>
+
+<div class="container">
+
+  <div class="card">
+    <h2>Rent Receipt Details</h2>
+
+    <h3>Tenant (Paid By)</h3>
+    <label>Tenant Full Name</label>
+    <input type="text" id="tenantName" placeholder="John Smith">
+
+    <h3>Landlord (Received By)</h3>
+    <label>Landlord Name / Company</label>
+    <input type="text" id="landlordName" placeholder="ABC Properties">
+
+    <h3>Property</h3>
+    <label>Property Address</label>
+    <textarea id="propertyAddress" placeholder="123 Main Street, Apt 4B, City, State, ZIP"></textarea>
+
+    <h3>Receipt Info</h3>
+    <div class="row">
+      <div>
+        <label>Receipt Number</label>
+        <input type="text" id="receiptNumber" value="RCP-001">
+      </div>
+      <div>
+        <label>Receipt Date</label>
+        <input type="date" id="receiptDate">
+      </div>
+    </div>
+
+    <h3>Rental Period</h3>
+    <div class="row">
+      <div>
+        <label>Period From</label>
+        <input type="date" id="periodFrom">
+      </div>
+      <div>
+        <label>Period To</label>
+        <input type="date" id="periodTo">
+      </div>
+    </div>
+
+    <h3>Payment</h3>
+    <div class="row">
+      <div>
+        <label>Amount</label>
+        <input type="number" id="amount" min="0" step="0.01" value="0">
+      </div>
+      <div>
+        <label>Currency</label>
+        <select id="currency">
+          <option value="USD">USD — US Dollar</option>
+          <option value="GBP">GBP — British Pound</option>
+          <option value="EUR">EUR — Euro</option>
+          <option value="CAD">CAD — Canadian Dollar</option>
+          <option value="AUD">AUD — Australian Dollar</option>
+          <option value="INR">INR — Indian Rupee</option>
+          <option value="AED">AED — UAE Dirham</option>
+          <option value="SGD">SGD — Singapore Dollar</option>
+          <option value="TRY">TRY — Turkish Lira</option>
+          <option value="JPY">JPY — Japanese Yen</option>
+          <option value="CHF">CHF — Swiss Franc</option>
+          <option value="SEK">SEK — Swedish Krona</option>
+          <option value="NOK">NOK — Norwegian Krone</option>
+          <option value="DKK">DKK — Danish Krone</option>
+          <option value="NZD">NZD — New Zealand Dollar</option>
+          <option value="ZAR">ZAR — South African Rand</option>
+          <option value="BRL">BRL — Brazilian Real</option>
+          <option value="MXN">MXN — Mexican Peso</option>
+        </select>
+      </div>
+    </div>
+
+    <label>Payment Method</label>
+    <select id="paymentMethod">
+      <option>Cash</option>
+      <option>Bank Transfer</option>
+      <option>Check</option>
+      <option>Credit Card</option>
+      <option>Money Order</option>
+      <option>Online Payment</option>
+    </select>
+
+    <button type="button" class="btn-primary" id="downloadBtn">⬇ Download Free PDF Receipt</button>
+  </div>
+
+  <div class="card">
+    <h2>Live Preview</h2>
+    <div class="preview" id="preview">
+      <div class="preview-header">
+        <div>
+          <div class="preview-title">RENT RECEIPT</div>
+          <div class="preview-num" id="pvNum">Receipt #RCP-001</div>
+        </div>
+        <div style="text-align:right;font-size:11px;color:#666">
+          <div class="preview-label">Date</div>
+          <div id="pvDate"></div>
+        </div>
+      </div>
+
+      <div class="preview-section">
+        <div class="preview-label">Received From (Tenant)</div>
+        <div id="pvTenant" style="font-weight:600;font-size:15px"></div>
+      </div>
+
+      <div class="preview-section">
+        <div class="preview-label">Paid To (Landlord)</div>
+        <div id="pvLandlord" style="font-weight:600;font-size:15px"></div>
+      </div>
+
+      <div class="preview-section">
+        <div class="preview-label">Property Address</div>
+        <div id="pvAddress" style="font-size:13px"></div>
+      </div>
+
+      <div class="preview-section">
+        <div class="preview-label">Period Covered</div>
+        <div id="pvPeriod" style="font-size:13px"></div>
+      </div>
+
+      <div class="amount-box">
+        <div>
+          <div class="preview-label">Amount Received</div>
+          <div class="amount-big" id="pvAmount">$0.00</div>
+        </div>
+        <div style="text-align:right;font-size:11px;color:#666">
+          <div>Payment Method</div>
+          <div id="pvMethod" style="font-weight:600;color:#111;margin-top:4px"></div>
+        </div>
+      </div>
+
+      <div class="signature-line">
+        Signature (Landlord): ___________________________
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<section class="info-section">
+  <h2>What is a Rent Receipt?</h2>
+  <p>A rent receipt is a written record that proves a tenant has paid rent to their landlord for a specific rental period. It's a simple but important document used worldwide for legal protection, tax filings, and record-keeping.</p>
+
+  <h3>Why landlords need rent receipts</h3>
+  <ul>
+    <li>Legal proof of rental income for tax purposes</li>
+    <li>Protection in case of payment disputes</li>
+    <li>Required by law in many states and countries</li>
+    <li>Professional record-keeping for property management</li>
+  </ul>
+
+  <h3>Why tenants need rent receipts</h3>
+  <ul>
+    <li>Proof of payment if a landlord ever claims rent wasn't received</li>
+    <li>Supporting document for HRA tax deductions (India), Schedule E, or local rental tax credits</li>
+    <li>Required by some employers for housing allowance claims</li>
+    <li>Useful for visa applications, loan applications, and rental history verification</li>
+  </ul>
+
+  <h3>What to include on a rent receipt</h3>
+  <ul>
+    <li>Tenant's full name</li>
+    <li>Landlord's name or company</li>
+    <li>Property address</li>
+    <li>Rental period covered (start and end dates)</li>
+    <li>Amount paid and currency</li>
+    <li>Payment method (cash, bank transfer, check, etc.)</li>
+    <li>Receipt number and date issued</li>
+    <li>Landlord's signature</li>
+  </ul>
+</section>
+
+<section class="faq-section">
+  <h2 style="text-align:center;font-size:28px;margin-bottom:24px">Frequently Asked Questions</h2>
+  <div class="faq-item">
+    <div class="faq-q">Is this rent receipt generator really free?<span class="faq-icon">+</span></div>
+    <div class="faq-a">Yes. You can create and download unlimited rent receipts as PDF without signing up or paying anything. Free receipts include a small footer link to InvoiceMaker.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Are these rent receipts legally valid?<span class="faq-icon">+</span></div>
+    <div class="faq-a">Yes. As long as the receipt contains the tenant name, landlord name, property address, period, amount, payment method, and date — it serves as legal proof of payment in most jurisdictions. Some regions require additional fields like a revenue stamp; check your local rules.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Can I use this rent receipt for tax purposes?<span class="faq-icon">+</span></div>
+    <div class="faq-a">Yes. Tenants commonly use rent receipts for HRA exemptions (India), Schedule E (US), or local rental tax credits. Landlords use them as proof of rental income. Always keep copies for at least 6 years.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Do I need to create an account?<span class="faq-icon">+</span></div>
+    <div class="faq-a">No account, no email, no signup. Just fill in the form and download your PDF receipt instantly.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What currencies are supported?<span class="faq-icon">+</span></div>
+    <div class="faq-a">18 major currencies including USD, GBP, EUR, CAD, AUD, INR, AED, SGD, TRY, JPY, CHF, and more.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Is my data private?<span class="faq-icon">+</span></div>
+    <div class="faq-a">Yes. Your data is only used to generate the PDF and is never stored on our servers.</div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div>
+    <a href="/">Invoice Generator</a>
+    <a href="/rent-receipt-generator">Rent Receipt</a>
+    <a href="/blog">Blog</a>
+  </div>
+  <div style="margin-top:16px">© 2026 InvoiceMaker. Free rent receipt generator for landlords and tenants.</div>
+</footer>
+
+<script>
+const SYMBOLS = {
+  USD:'$', GBP:'£', EUR:'€', CAD:'CA$', AUD:'A$', INR:'₹',
+  AED:'د.إ', SGD:'S$', TRY:'₺', JPY:'¥', CHF:'CHF',
+  SEK:'kr', NOK:'kr', DKK:'kr', NZD:'NZ$', ZAR:'R',
+  BRL:'R$', MXN:'Mex$'
+};
+
+function $(id) { return document.getElementById(id); }
+function symbol() { return SYMBOLS[$('currency').value] || '$'; }
+function fmt(n) { return symbol() + (Number(n) || 0).toFixed(2); }
+
+function updatePreview() {
+  $('pvNum').textContent = 'Receipt #' + ($('receiptNumber').value || '');
+  $('pvDate').textContent = $('receiptDate').value || '';
+  $('pvTenant').textContent = $('tenantName').value || '—';
+  $('pvLandlord').textContent = $('landlordName').value || '—';
+  $('pvAddress').textContent = $('propertyAddress').value || '—';
+  const from = $('periodFrom').value;
+  const to = $('periodTo').value;
+  $('pvPeriod').textContent = (from && to) ? `${from} to ${to}` : '—';
+  $('pvAmount').textContent = fmt($('amount').value);
+  $('pvMethod').textContent = $('paymentMethod').value;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const today = new Date().toISOString().slice(0, 10);
+  const monthStart = today.slice(0, 8) + '01';
+  const next = new Date();
+  next.setMonth(next.getMonth() + 1);
+  const monthEnd = next.toISOString().slice(0, 8) + '01';
+
+  $('receiptDate').value = today;
+  $('periodFrom').value = monthStart;
+  $('periodTo').value = monthEnd;
+
+  document.querySelectorAll('input, select, textarea').forEach(el => {
+    el.addEventListener('input', updatePreview);
+  });
+
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+  });
+
+  $('downloadBtn').addEventListener('click', async () => {
+    const btn = $('downloadBtn');
+    btn.disabled = true;
+    btn.textContent = 'Generating PDF...';
+
+    const payload = {
+      tenantName: $('tenantName').value,
+      landlordName: $('landlordName').value,
+      propertyAddress: $('propertyAddress').value,
+      receiptNumber: $('receiptNumber').value,
+      receiptDate: $('receiptDate').value,
+      periodFrom: $('periodFrom').value,
+      periodTo: $('periodTo').value,
+      amount: parseFloat($('amount').value) || 0,
+      currency: $('currency').value,
+      paymentMethod: $('paymentMethod').value,
+      isPro: false
+    };
+
+    try {
+      const res = await fetch('/api/rent-receipt-pdf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error('PDF generation failed');
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `rent-receipt-${payload.receiptNumber || 'draft'}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      alert('Could not generate PDF: ' + err.message);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '⬇ Download Free PDF Receipt';
+    }
+  });
+
+  updatePreview();
+});
+</script>
+
+</body>
+</html>
