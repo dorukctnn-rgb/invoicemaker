@@ -344,6 +344,7 @@ const HOW_TO_PAGES = [
   { slug: 'how-to-write-invoice-for-cash-payment', title: 'How to Write an Invoice for Cash Payment', desc: 'Create a professional invoice for cash payments. What to include and how to keep clean records.' },
   { slug: 'how-to-create-invoice-without-company', title: 'How to Create an Invoice Without a Registered Company', desc: 'Freelancers and sole traders can invoice without a registered company. Here is exactly what to include.' },
   { slug: 'how-to-invoice-us-clients-from-uk', title: 'How to Invoice US Clients from the UK', desc: 'Currency, VAT, tax rules and payment methods for UK freelancers invoicing clients in the United States.' },
+  { slug: 'how-to-calculate-gst-on-canadian-invoices', title: 'How to Calculate GST on Canadian Invoices', desc: 'Step-by-step guide to calculating GST, HST and PST on Canadian invoices. Includes rates by province and free invoice template.' },
   { slug: 'how-to-charge-late-payment-fee', title: 'How to Charge a Late Payment Fee on an Invoice', desc: 'Add late payment clauses to your invoices. Legal requirements, standard rates and how to enforce them.' }
 ];
 
@@ -466,3 +467,4 @@ app.get('/robots.txt', (req, res) => {
 
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, '0.0.0.0', () => console.log('InvoiceMaker running on ' + PORT));
+
