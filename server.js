@@ -61,8 +61,8 @@ const BLOG_POSTS = [
   { slug: 'freelancer-invoice-guide', title: 'How to Invoice as a Freelancer: Complete 2026 Guide', desc: 'Everything freelancers need to know about invoicing clients professionally.', date: '2026-02-05', readTime: '9 min read', category: 'Freelance', content: '<h2>Why freelancers need professional invoices</h2><p>Professional invoices protect you legally and help you get paid faster.</p><h2>What to include in a freelance invoice</h2><ul><li>Your full name or business name</li><li>Client name and company</li><li>Unique invoice number</li><li>Invoice date and payment due date</li><li>Itemised list of services with rates</li><li>Total amount due</li><li>Bank details or payment method</li></ul><h2>When to send your invoice</h2><p>Send your invoice as soon as the work is complete. Delaying invoicing delays payment.</p>' },
   { slug: 'invoice-vs-receipt', title: 'Invoice vs Receipt: What is the Difference?', desc: 'Confused about the difference between an invoice and a receipt? This guide explains when to use each.', date: '2026-02-12', readTime: '5 min read', category: 'Guide', content: '<h2>The key difference</h2><p>An invoice is sent before payment to request money. A receipt is issued after payment to confirm it was received.</p><h2>What is an invoice?</h2><p>An invoice is a request for payment sent after goods or services have been delivered.</p><h2>What is a receipt?</h2><p>A receipt is a confirmation of payment issued after money has changed hands.</p>' },
   { slug: 'how-to-write-invoice-email', title: 'How to Write an Invoice Email: Templates and Examples', desc: 'Professional invoice email templates you can copy and use today.', date: '2026-02-19', readTime: '6 min read', category: 'Templates', content: '<h2>Initial invoice email template</h2><p>Subject: Invoice #INV-001 - Due [Date]</p><p>Hi [Client Name], please find attached invoice #INV-001 totalling [amount]. Payment is due by [due date]. Thank you for your business.</p><h2>Reminder email template</h2><p>Subject: Reminder: Invoice #INV-001 Due [Date]</p><p>Hi [Client Name], a quick reminder that invoice #INV-001 for [amount] is due on [date].</p><h2>Overdue payment template</h2><p>Subject: Overdue Invoice #INV-001 - Action Required</p><p>Hi [Client Name], invoice #INV-001 for [amount] is now overdue. Please confirm the payment status.</p>' },
-  { slug: 'gst-invoice-guide', title: 'GST Invoice Guide: Australia, India, Canada, Singapore', desc: 'A complete guide to GST invoices for Australia, India, Canada and Singapore.', date: '2026-02-26', readTime: '7 min read', category: 'Tax', content: '<h2>What is GST?</h2><p>GST stands for Goods and Services Tax. Countries using GST include Australia, Canada, India, Singapore, and New Zealand.</p><h2>GST rates by country</h2><ul><li><strong>Australia</strong> - 10%</li><li><strong>Canada</strong> - 5% federal GST</li><li><strong>India</strong> - 5%, 12%, 18%, or 28%</li><li><strong>Singapore</strong> - 9%</li><li><strong>New Zealand</strong> - 15%</li></ul><h2>How to calculate GST</h2><p>Multiply the pre-tax amount by the GST rate. For 10% GST: $500 x 0.10 = $50 GST. Total = $550.</p>' },
-  { slug: 'gst-hst-pst-canada-invoice-guide', title: 'GST, HST and PST on Canadian Invoices: Complete 2026 Guide', desc: 'Everything Canadian freelancers need to know about GST, HST and PST. Rates by province and how to calculate.', date: '2026-04-01', readTime: '8 min read', category: 'Tax', content: '<h2>Canadian sales tax overview</h2><p>Canada has three types of sales tax: GST, HST, and PST. Which tax you charge depends on your province.</p><h2>GST rate</h2><p>The federal GST rate is 5% across all of Canada.</p><h2>HST rates by province</h2><ul><li><strong>Ontario</strong> - 13% HST</li><li><strong>New Brunswick</strong> - 15% HST</li><li><strong>Nova Scotia</strong> - 15% HST</li><li><strong>PEI</strong> - 15% HST</li><li><strong>Newfoundland</strong> - 15% HST</li></ul><h2>PST rates by province</h2><ul><li><strong>BC</strong> - 7% PST + 5% GST = 12%</li><li><strong>Saskatchewan</strong> - 6% PST + 5% GST = 11%</li><li><strong>Manitoba</strong> - 7% RST + 5% GST = 12%</li><li><strong>Quebec</strong> - 9.975% QST + 5% GST = 14.975%</li></ul><h2>Alberta</h2><p>No provincial tax. Only 5% GST applies.</p><h2>How to calculate GST on a Canadian invoice</h2><p>Multiply subtotal by 0.05. Example: CAD 1000 x 0.05 = CAD 50 GST. Total = CAD 1050.</p><h2>What to include on a Canadian invoice</h2><ul><li>GST registration number</li><li>Invoice date</li><li>Description of services</li><li>Amount before tax</li><li>GST/HST rate and amount</li><li>Total including tax</li></ul>' },
+  { slug: 'gst-invoice-guide', title: 'GST Invoice Guide: Australia, India, Canada, Singapore', desc: 'A complete guide to GST invoices for Australia, India, Canada and Singapore.', date: '2026-02-26', readTime: '7 min read', category: 'Tax', content: '<h2>What is GST?</h2><p>GST stands for Goods and Services Tax. Countries using GST include Australia, Canada, India, Singapore, and New Zealand.</p><h2>GST rates by country</h2><ul><li><strong>Australia</strong> - 10%</li><li><strong>Canada</strong> - 5% federal GST</li><li><strong>India</strong> - 5%, 12%, 18%, or 28%</li><li><strong>Singapore</strong> - 9%</li><li><strong>New Zealand</strong> - 15%</li></ul><h2>How to calculate GST</h2><p>Multiply the pre-tax amount by the GST rate. For 10% GST: $500 x 0.10 = $50 GST. Total = $550.</p><p>For an interactive calculator with all Canadian provinces, visit our <a href="/how-to-calculate-gst-on-canadian-invoices">Canadian GST calculator and complete guide</a>.</p>' },
+  { slug: 'gst-hst-pst-canada-invoice-guide', title: 'GST, HST and PST on Canadian Invoices: Complete 2026 Guide', desc: 'Everything Canadian freelancers need to know about GST, HST and PST. Rates by province and how to calculate.', date: '2026-04-01', readTime: '8 min read', category: 'Tax', content: '<h2>Canadian sales tax overview</h2><p>Canada has three types of sales tax: GST, HST, and PST. Which tax you charge depends on your province.</p><h2>GST rate</h2><p>The federal GST rate is 5% across all of Canada.</p><h2>HST rates by province</h2><ul><li><strong>Ontario</strong> - 13% HST</li><li><strong>New Brunswick</strong> - 15% HST</li><li><strong>Nova Scotia</strong> - 15% HST</li><li><strong>PEI</strong> - 15% HST</li><li><strong>Newfoundland</strong> - 15% HST</li></ul><h2>PST rates by province</h2><ul><li><strong>BC</strong> - 7% PST + 5% GST = 12%</li><li><strong>Saskatchewan</strong> - 6% PST + 5% GST = 11%</li><li><strong>Manitoba</strong> - 7% RST + 5% GST = 12%</li><li><strong>Quebec</strong> - 9.975% QST + 5% GST = 14.975%</li></ul><h2>Alberta</h2><p>No provincial tax. Only 5% GST applies.</p><h2>How to calculate GST on a Canadian invoice</h2><p>Multiply subtotal by 0.05. Example: CAD 1000 x 0.05 = CAD 50 GST. Total = CAD 1050.</p><h2>What to include on a Canadian invoice</h2><ul><li>GST registration number</li><li>Invoice date</li><li>Description of services</li><li>Amount before tax</li><li>GST/HST rate and amount</li><li>Total including tax</li></ul><h2>Use Our Free GST Calculator</h2><p>For an interactive calculator that handles all 13 provinces and territories, plus a free invoice template, visit our <a href="/how-to-calculate-gst-on-canadian-invoices"><strong>complete GST calculator and step-by-step guide</strong></a>.</p>' },
   { slug: 'invoice-number-format', title: 'Invoice Numbering: How to Number Your Invoices Correctly', desc: 'The best invoice numbering systems explained for small businesses and freelancers.', date: '2026-03-05', readTime: '5 min read', category: 'Guide', content: '<h2>Why invoice numbering matters</h2><p>Invoice numbers are required for accounting, tax reporting, and dispute resolution.</p><h2>Popular formats</h2><ul><li><strong>Sequential</strong> - INV-001, INV-002</li><li><strong>Date-based</strong> - 20260115-001</li><li><strong>Year-based</strong> - 2026-001</li><li><strong>Client-based</strong> - ACME-001</li></ul><h2>Rules</h2><p>Invoice numbers must be unique and sequential. Never reuse invoice numbers, even if cancelled.</p>' },
   { slug: 'how-to-invoice-international-clients', title: 'How to Invoice International Clients: Currency, Tax and Tips', desc: 'A practical guide to invoicing clients in other countries.', date: '2026-03-12', readTime: '8 min read', category: 'Guide', content: '<h2>Choosing the right currency</h2><p>You can invoice in your local currency or the client currency. Many freelancers invoice in USD or EUR as a neutral currency.</p><h2>Do you charge VAT to international clients?</h2><p>In the UK, services to business clients outside the UK are generally zero-rated for VAT. Always verify with a local accountant.</p><h2>Getting paid internationally</h2><p>Common methods: bank wire transfer, PayPal, Wise, Stripe, and Payoneer. Wise typically offers the best exchange rates.</p>' },
   { slug: 'small-business-invoicing-tips', title: '10 Invoicing Tips for Small Businesses to Get Paid Faster', desc: 'Practical invoicing tips for small business owners to improve cash flow.', date: '2026-03-19', readTime: '7 min read', category: 'Tips', content: '<h2>1. Invoice immediately</h2><p>Send invoices on the day work is delivered.</p><h2>2. Use short payment terms</h2><p>Net 14 consistently outperforms Net 30 for payment speed.</p><h2>3. Make it easy to pay</h2><p>Include bank details directly on the invoice.</p><h2>4. Set up automatic reminders</h2><p>Schedule reminders for 3 days before due date and on the due date.</p><h2>5. Charge late fees</h2><p>A stated late payment policy makes clients take due dates seriously.</p><h2>6. Get a deposit upfront</h2><p>For large projects, require 25-50% deposit before starting.</p><h2>7. Use professional invoice design</h2><p>A clean invoice signals professionalism and gets paid faster.</p>' }
@@ -76,8 +76,7 @@ const HOW_TO_PAGES = [
   { slug: 'how-to-write-invoice-for-cash-payment', title: 'How to Write an Invoice for Cash Payment', desc: 'Create a professional invoice for cash payments.' },
   { slug: 'how-to-create-invoice-without-company', title: 'How to Create an Invoice Without a Registered Company', desc: 'Freelancers and sole traders can invoice without a registered company.' },
   { slug: 'how-to-invoice-us-clients-from-uk', title: 'How to Invoice US Clients from the UK', desc: 'Currency, VAT, tax rules and payment methods for UK freelancers invoicing US clients.' },
-  { slug: 'how-to-charge-late-payment-fee', title: 'How to Charge a Late Payment Fee on an Invoice', desc: 'Add late payment clauses to your invoices.' },
-  { slug: 'how-to-calculate-gst-on-canadian-invoices', title: 'How to Calculate GST on Canadian Invoices', desc: 'Step-by-step guide to calculating GST, HST and PST on Canadian invoices. Rates by province and free invoice template.' }
+  { slug: 'how-to-charge-late-payment-fee', title: 'How to Charge a Late Payment Fee on an Invoice', desc: 'Add late payment clauses to your invoices.' }
 ];
 
 // ============================================
@@ -90,6 +89,11 @@ app.get('/', (req, res) => {
 
 app.get('/rent-receipt-generator', (req, res) => {
   res.render('rent-receipt');
+});
+
+// SPECIAL: Custom rich content page for top-ranking GST keyword
+app.get('/how-to-calculate-gst-on-canadian-invoices', (req, res) => {
+  res.render('gst-canada-guide');
 });
 
 INDUSTRIES.forEach(ind => {
@@ -116,11 +120,6 @@ BLOG_POSTS.forEach(post => {
   });
 });
 
-// SPECIAL: Override for top-performing GST Canada page (custom rich content)
-app.get('/how-to-calculate-gst-on-canadian-invoices', (req, res) => {
-  res.render('gst-canada-guide');
-});
-
 HOW_TO_PAGES.forEach(page => {
   app.get('/' + page.slug, (req, res) => {
     res.render('how-to', { page, industries: INDUSTRIES, siteUrl: SITE_URL });
@@ -133,7 +132,7 @@ app.get('/activate', (req, res) => {
 });
 
 // ============================================
-// PDF GENERATION — INVOICE (PDFKit, fast, with watermark)
+// PDF GENERATION — INVOICE
 // ============================================
 function renderInvoicePDF(d, res) {
   const isPro = d.isPro === true || d.isPro === 'true';
@@ -235,7 +234,6 @@ app.post('/api/pdf', (req, res) => {
   catch (err) { console.error('PDF error:', err); res.status(500).json({ error: err.message }); }
 });
 
-// Backward compat for old /generate-pdf
 app.post('/generate-pdf', (req, res) => {
   try {
     let payload = req.body || {};
@@ -265,9 +263,6 @@ app.post('/generate-pdf', (req, res) => {
   } catch (err) { console.error('PDF error:', err); res.status(500).json({ error: err.message }); }
 });
 
-// ============================================
-// PDF — RENT RECEIPT
-// ============================================
 app.post('/api/rent-receipt-pdf', (req, res) => {
   try {
     const d = req.body || {};
@@ -361,6 +356,7 @@ app.get('/sitemap.xml', (req, res) => {
     { loc: '', priority: '1.0', freq: 'daily' },
     { loc: '/blog', priority: '0.9', freq: 'weekly' },
     { loc: '/rent-receipt-generator', priority: '0.9', freq: 'weekly' },
+    { loc: '/how-to-calculate-gst-on-canadian-invoices', priority: '0.95', freq: 'weekly' },
     { loc: '/activate', priority: '0.3', freq: 'monthly' }
   ];
   INDUSTRIES.forEach(i => urls.push({ loc: '/invoice-template-' + i.slug, priority: '0.9', freq: 'weekly' }));
