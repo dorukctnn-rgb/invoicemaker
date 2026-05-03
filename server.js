@@ -116,6 +116,11 @@ BLOG_POSTS.forEach(post => {
   });
 });
 
+// SPECIAL: Override for top-performing GST Canada page (custom rich content)
+app.get('/how-to-calculate-gst-on-canadian-invoices', (req, res) => {
+  res.render('gst-canada-guide');
+});
+
 HOW_TO_PAGES.forEach(page => {
   app.get('/' + page.slug, (req, res) => {
     res.render('how-to', { page, industries: INDUSTRIES, siteUrl: SITE_URL });
