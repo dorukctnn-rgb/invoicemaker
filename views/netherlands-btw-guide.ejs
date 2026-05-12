@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dutch Invoice Template: BTW Calculator & Free Generator (2026)</title>
+<meta name="description" content="Free Dutch invoice template with BTW calculator. Generate Netherlands-compliant invoices (factuur) in 60 seconds. KVK number, BTW 9%/21%, no signup. Trusted by Dutch freelancers (ZZP).">
+<meta name="keywords" content="dutch invoice template, invoice template netherlands, invoice generator netherlands, btw calculator, factuur generator, zzp invoice template, dutch vat calculator">
+<link rel="canonical" href="https://getinvoicemaker.com/free-invoice-generator-netherlands">
+<meta property="og:title" content="Free Dutch Invoice Template + BTW Calculator (2026)">
+<meta property="og:description" content="Netherlands-compliant invoice generator. BTW 9% / 21%. KVK number. No signup, instant PDF.">
+<meta property="og:url" content="https://getinvoicemaker.com/free-invoice-generator-netherlands">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Create a Dutch Invoice (Factuur)",
+  "description": "Step-by-step guide to creating a Netherlands-compliant invoice with BTW (VAT) for freelancers and small businesses.",
+  "totalTime": "PT2M",
+  "step": [
+    {"@type": "HowToStep", "name": "Include KVK number", "text": "Add your Chamber of Commerce (KVK) number to the invoice."},
+    {"@type": "HowToStep", "name": "Add BTW (VAT) number", "text": "Include your BTW-ID, which is mandatory for VAT-registered businesses."},
+    {"@type": "HowToStep", "name": "Calculate BTW", "text": "Apply 21% high rate or 9% low rate depending on goods or services."},
+    {"@type": "HowToStep", "name": "Sequential numbering", "text": "Use a unique sequential invoice number (e.g., 2026-001)."},
+    {"@type": "HowToStep", "name": "Generate PDF", "text": "Download the invoice as a PDF and send to your client."}
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What is BTW in the Netherlands?", "acceptedAnswer": {"@type": "Answer", "text": "BTW (Belasting Toegevoegde Waarde) is the Dutch VAT. The standard rate is 21%, with a reduced 9% rate for essentials like food, books, and some services."}},
+    {"@type": "Question", "name": "Do I need a KVK number on my invoice?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Dutch law requires the Chamber of Commerce (KVK) number on every invoice issued by a registered business."}},
+    {"@type": "Question", "name": "When do I charge 9% vs 21% BTW?", "acceptedAnswer": {"@type": "Answer", "text": "21% is the standard rate for most goods and services. 9% applies to food, water, books, medicine, hairdressing, and some cultural services. Some services (financial, medical, education) are BTW-exempt."}},
+    {"@type": "Question", "name": "How do I calculate BTW on a 1000 euro invoice?", "acceptedAnswer": {"@type": "Answer", "text": "For 21% BTW: 1000 x 0.21 = 210 euro BTW, total 1210 euro. For 9% BTW: 1000 x 0.09 = 90 euro BTW, total 1090 euro."}},
+    {"@type": "Question", "name": "What must a Dutch invoice contain?", "acceptedAnswer": {"@type": "Answer", "text": "Invoice number, date, your name and address, KVK number, BTW-ID, client details, description, amount before VAT, BTW rate and amount, total. Payment terms are recommended."}},
+    {"@type": "Question", "name": "Is this invoice generator suitable for ZZP?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The generator is designed for ZZP (freelancers), eenmanszaak (sole proprietors), and small businesses (MKB) in the Netherlands."}}
+  ]
+}
+</script>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#f8fafc;color:#0f172a;line-height:1.7}
+a{color:#2563eb;text-decoration:none}
+a:hover{text-decoration:underline}
+nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;justify-content:space-between;align-items:center;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-weight:700;font-size:18px}.logo span{color:#2563eb}
+.nav-r{display:flex;gap:8px;align-items:center}
+.nav-r a{color:#64748b;font-size:13px;font-weight:500;padding:6px 12px;border-radius:6px}
+.nav-r a:hover{background:#f1f5f9;color:#0f172a}
+.btn-blue{background:#2563eb;color:#fff;border:none;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;display:inline-block;text-decoration:none}
+.btn-blue:hover{background:#1d4ed8;text-decoration:none}
+.hero{background:linear-gradient(135deg,#fef3c7 0%,#fff 100%);padding:50px 24px 30px;text-align:center;border-bottom:1px solid #e2e8f0}
+.flag-badge{display:inline-block;font-size:14px;background:#fff;border:1px solid #f59e0b;color:#92400e;padding:5px 14px;border-radius:50px;margin-bottom:14px;font-weight:600}
+.hero h1{font-size:clamp(28px,4.5vw,42px);font-weight:700;line-height:1.15;margin-bottom:16px;max-width:800px;margin-left:auto;margin-right:auto}
+.hero h1 span{color:#dc2626}
+.hero p{color:#475569;font-size:17px;max-width:660px;margin:0 auto 24px}
+.breadcrumb{font-size:13px;color:#64748b;margin-bottom:14px}
+.breadcrumb a{color:#2563eb}
+.container{max-width:780px;margin:0 auto;padding:40px 24px}
+.calculator-card{background:#fff;border:2px solid #dc2626;border-radius:14px;padding:28px;box-shadow:0 4px 20px rgba(220,38,38,0.08);margin-bottom:36px}
+.calc-title{font-size:20px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.calc-sub{color:#64748b;font-size:13px;margin-bottom:20px}
+.calc-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:600px){.calc-row{grid-template-columns:1fr}}
+.calc-fg label{display:block;font-size:11px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
+.calc-fg input,.calc-fg select{width:100%;padding:11px 13px;border:1px solid #e2e8f0;border-radius:7px;font-size:15px;font-family:'Inter',sans-serif}
+.calc-fg input:focus,.calc-fg select:focus{outline:none;border-color:#dc2626;box-shadow:0 0 0 3px rgba(220,38,38,.1)}
+.calc-result{background:#fef2f2;border-radius:10px;padding:18px;margin-top:18px}
+.calc-line{display:flex;justify-content:space-between;padding:5px 0;font-size:14px;color:#334155}
+.calc-line.grand{font-size:20px;font-weight:700;color:#dc2626;border-top:2px solid #fecaca;padding-top:12px;margin-top:8px}
+.calc-cta{margin-top:18px;text-align:center}
+.calc-cta a{display:inline-block;background:#dc2626;color:#fff;padding:12px 24px;border-radius:8px;font-weight:600;font-size:14px}
+.calc-cta a:hover{background:#b91c1c;text-decoration:none}
+article h2{font-size:26px;font-weight:700;margin:36px 0 14px;color:#0f172a}
+article h3{font-size:19px;font-weight:600;margin:24px 0 10px;color:#0f172a}
+article p{margin-bottom:14px;color:#334155;font-size:15px}
+article ul,article ol{margin:12px 0 18px 22px;color:#334155}
+article li{margin-bottom:7px;font-size:15px}
+article strong{color:#0f172a;font-weight:600}
+.intro{background:#fffbeb;border-left:4px solid #f59e0b;padding:16px 20px;border-radius:0 8px 8px 0;margin-bottom:24px;font-size:14px;color:#78350f}
+.rate-table{width:100%;border-collapse:collapse;margin:16px 0 24px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;font-size:14px}
+.rate-table thead{background:#f8fafc}
+.rate-table th{padding:11px 14px;text-align:left;font-size:12px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid #e2e8f0}
+.rate-table td{padding:11px 14px;border-bottom:1px solid #f1f5f9}
+.rate-table tr:last-child td{border-bottom:none}
+.rate-table .rate{font-weight:600;color:#dc2626}
+.example-box{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:18px 22px;margin:18px 0}
+.example-box h4{font-size:14px;font-weight:700;color:#166534;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.example-box ol{margin:8px 0 0 22px}
+.example-box li{margin-bottom:6px;font-size:14px;color:#14532d}
+.formula{background:#1e293b;color:#e2e8f0;padding:14px 18px;border-radius:8px;font-family:'SF Mono',Menlo,monospace;font-size:14px;margin:14px 0;overflow-x:auto}
+.formula code{color:#fbbf24}
+.checklist{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:20px 24px;margin:18px 0}
+.checklist h4{font-size:15px;font-weight:700;margin-bottom:12px;color:#0f172a}
+.checklist ul{list-style:none;margin:0;padding:0}
+.checklist li{padding:6px 0 6px 26px;position:relative;font-size:14px}
+.checklist li::before{content:"✓";position:absolute;left:0;color:#16a34a;font-weight:700}
+.cta-block{background:linear-gradient(135deg,#dc2626,#991b1b);color:#fff;padding:32px;border-radius:14px;text-align:center;margin:40px 0}
+.cta-block h3{color:#fff;font-size:22px;margin-bottom:8px}
+.cta-block p{color:#fecaca;margin-bottom:18px;font-size:15px}
+.cta-block a{display:inline-block;background:#fff;color:#dc2626;padding:12px 28px;border-radius:8px;font-weight:700;font-size:15px}
+.cta-block a:hover{background:#fef2f2;text-decoration:none}
+.faq-item{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:18px 20px;margin-bottom:10px;cursor:pointer}
+.faq-item h4{font-size:15px;font-weight:600;color:#0f172a;display:flex;justify-content:space-between;align-items:center}
+.faq-item h4 span{color:#94a3b8;font-size:18px;font-weight:400}
+.faq-item p{display:none;margin-top:10px;color:#475569;font-size:14px}
+.faq-item.open p{display:block}
+.related{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:24px;margin-top:32px}
+.related h3{font-size:16px;font-weight:700;margin-bottom:14px}
+.related ul{list-style:none;margin:0;padding:0}
+.related li{padding:7px 0;border-bottom:1px solid #f1f5f9}
+.related li:last-child{border-bottom:none}
+.related a{font-size:14px;color:#2563eb}
+footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
+.footer-inner{max-width:960px;margin:0 auto;text-align:center}
+.footer-inner a{color:#cbd5e1;margin:0 12px;font-size:13px}
+.footer-bottom{margin-top:18px;font-size:12px;color:#475569}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Get<span>Invoice</span>Maker</div>
+  <div class="nav-r">
+    <a href="/">Invoice</a>
+    <a href="/blog">Blog</a>
+    <a href="/"><button class="btn-blue">Create Invoice</button></a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container" style="padding:0">
+    <div class="breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/blog">Guides</a> &rsaquo; Netherlands Invoice Template</div>
+    <div class="flag-badge">🇳🇱 Netherlands · EUR · BTW</div>
+    <h1>Dutch Invoice Template <span>+ BTW Calculator (2026)</span></h1>
+    <p>Create Netherlands-compliant invoices (factuur) in 60 seconds. Free BTW calculator, automatic 9% / 21% rate handling, KVK number support. Trusted by ZZP freelancers and small businesses.</p>
+  </div>
+</section>
+
+<div class="container">
+
+  <div class="calculator-card">
+    <div class="calc-title">🧮 Instant BTW (VAT) Calculator</div>
+    <div class="calc-sub">Enter an amount and select the BTW rate. Updates as you type.</div>
+    <div class="calc-row">
+      <div class="calc-fg">
+        <label>Amount before BTW (EUR)</label>
+        <input type="number" id="calcAmount" value="1000" min="0" step="0.01" oninput="calc()">
+      </div>
+      <div class="calc-fg">
+        <label>BTW Rate</label>
+        <select id="calcRate" onchange="calc()">
+          <option value="21">21% — Standard (most goods and services)</option>
+          <option value="9">9% — Low (food, books, hairdressing)</option>
+          <option value="0">0% — Zero-rated (exports, exempt)</option>
+        </select>
+      </div>
+    </div>
+    <div class="calc-result">
+      <div class="calc-line"><span>Subtotal</span><span id="resSub">€1,000.00</span></div>
+      <div class="calc-line"><span id="rateLabel">BTW (21%)</span><span id="resBtw">€210.00</span></div>
+      <div class="calc-line grand"><span>Total Due</span><span id="resTotal">€1,210.00</span></div>
+    </div>
+    <div class="calc-cta">
+      <a href="/">Generate a Free Dutch Invoice with This Amount &rarr;</a>
+    </div>
+  </div>
+
+  <article>
+    <div class="intro">
+      <strong>Quick answer:</strong> To create a Dutch invoice, include your KVK number and BTW-ID, calculate BTW at 21% (standard) or 9% (reduced), use sequential numbering, and add your client's details. Use the calculator above to verify amounts, then generate a free PDF invoice.
+    </div>
+
+    <h2>What is a Dutch Invoice (Factuur)?</h2>
+    <p>A <strong>factuur</strong> is the formal invoice document required by Dutch tax law for any business transaction. Whether you're a ZZP (zelfstandige zonder personeel — freelancer without employees), eenmanszaak (sole proprietor), or larger business, every invoice you send must comply with Belastingdienst (Dutch tax authority) rules.</p>
+    <p>Failing to include required fields like KVK number or BTW-ID can mean your client cannot deduct the BTW, which leads to disputes and delayed payments.</p>
+
+    <h2>Understanding BTW (Dutch VAT)</h2>
+    <p>BTW stands for <strong>Belasting Toegevoegde Waarde</strong> — Value Added Tax. The Netherlands has three BTW rates:</p>
+    <table class="rate-table">
+      <thead>
+        <tr><th>Rate</th><th>Type</th><th>Applies To</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="rate">21%</td><td>Standard (hoog tarief)</td><td>Most goods and services: consulting, software, design, electronics, clothing, restaurant meals</td></tr>
+        <tr><td class="rate">9%</td><td>Reduced (laag tarief)</td><td>Food, non-alcoholic drinks, books, magazines, medicine, hairdressing, bicycle repair, hotel stays</td></tr>
+        <tr><td class="rate">0%</td><td>Zero-rated (nultarief)</td><td>Exports outside EU, intra-community supplies, international transport</td></tr>
+      </tbody>
+    </table>
+    <p>Some services are <strong>BTW-exempt (vrijgesteld)</strong> rather than zero-rated: financial services, medical care, education, and certain cultural services. These don't appear on the invoice as BTW at all.</p>
+
+    <h2>Step-by-Step: How to Create a Dutch Invoice</h2>
+
+    <h3>Step 1 — Add your business identification</h3>
+    <p>At the top of the invoice, include:</p>
+    <ul>
+      <li><strong>Your business name</strong> (exactly as registered with KVK)</li>
+      <li><strong>Full business address</strong></li>
+      <li><strong>KVK number</strong> (Chamber of Commerce, 8 digits)</li>
+      <li><strong>BTW-ID</strong> (BTW identification number, format NL000000000B00)</li>
+      <li><strong>Bank account (IBAN)</strong> for payment</li>
+    </ul>
+
+    <h3>Step 2 — Add client details</h3>
+    <ul>
+      <li>Client business name (or full name if individual)</li>
+      <li>Client billing address</li>
+      <li>If client is VAT-registered in EU: their BTW-ID (required for 0% intra-community)</li>
+    </ul>
+
+    <h3>Step 3 — Invoice metadata</h3>
+    <ul>
+      <li><strong>Invoice number</strong> — sequential, never reuse (e.g., 2026-001, 2026-002)</li>
+      <li><strong>Invoice date</strong> — date of issue</li>
+      <li><strong>Due date</strong> — typically 14 or 30 days from issue</li>
+    </ul>
+
+    <h3>Step 4 — Itemize services and apply BTW</h3>
+    <p>List each service or product with description, quantity, unit price, and total. Then calculate BTW:</p>
+    <div class="formula">
+      BTW Amount = Subtotal × (BTW Rate ÷ 100)<br>
+      <code>Example: €1,000 × (21 ÷ 100) = €210 BTW</code>
+    </div>
+    <p>Show the subtotal, BTW amount, and total separately on the invoice. This is legally required.</p>
+
+    <h2>Real Examples</h2>
+
+    <div class="example-box">
+      <h4>Example 1 — Software Consulting (21% BTW)</h4>
+      <ol>
+        <li>Service: Web development consulting, 10 hours × €80 = <strong>€800.00</strong></li>
+        <li>BTW 21% = €800 × 0.21 = <strong>€168.00</strong></li>
+        <li>Total = €800 + €168 = <strong>€968.00</strong></li>
+      </ol>
+    </div>
+
+    <div class="example-box">
+      <h4>Example 2 — Book Publishing (9% BTW)</h4>
+      <ol>
+        <li>Service: Cookbook printing, 500 units × €5 = <strong>€2,500.00</strong></li>
+        <li>BTW 9% = €2,500 × 0.09 = <strong>€225.00</strong></li>
+        <li>Total = €2,500 + €225 = <strong>€2,725.00</strong></li>
+      </ol>
+    </div>
+
+    <div class="example-box">
+      <h4>Example 3 — Export to USA Client (0% BTW)</h4>
+      <ol>
+        <li>Service: Logo design, fixed fee = <strong>€1,500.00</strong></li>
+        <li>BTW 0% (export outside EU) = <strong>€0.00</strong></li>
+        <li>Total = <strong>€1,500.00</strong></li>
+        <li>Add note: "BTW verlegd / Reverse charge — export"</li>
+      </ol>
+    </div>
+
+    <h2>Dutch Invoice Compliance Checklist</h2>
+    <div class="checklist">
+      <h4>Every Dutch invoice (factuur) MUST contain:</h4>
+      <ul>
+        <li>Sequential invoice number</li>
+        <li>Invoice date</li>
+        <li>Your business name and address</li>
+        <li>Your KVK number</li>
+        <li>Your BTW-ID</li>
+        <li>Client name and address</li>
+        <li>Client BTW-ID (for EU B2B transactions)</li>
+        <li>Description of goods or services</li>
+        <li>Quantity and unit price</li>
+        <li>Subtotal excluding BTW</li>
+        <li>BTW rate applied (9% or 21%)</li>
+        <li>BTW amount in EUR</li>
+        <li>Total including BTW</li>
+        <li>Payment terms and IBAN</li>
+      </ul>
+    </div>
+
+    <h2>BTW Reverse Charge (BTW Verlegd)</h2>
+    <p>When you supply services to a VAT-registered business in another EU country, you typically <strong>don't charge Dutch BTW</strong>. Instead, the client accounts for VAT in their own country under the reverse charge mechanism. The invoice must include:</p>
+    <ul>
+      <li>0% BTW</li>
+      <li>The note "BTW verlegd" or "Reverse charge"</li>
+      <li>Both your BTW-ID and the client's BTW-ID</li>
+    </ul>
+    <p>For B2C sales to EU consumers, use the OSS (One-Stop Shop) scheme if you exceed €10,000 in cross-border sales annually.</p>
+
+    <h2>How to Calculate BTW in Reverse (Total Includes BTW)</h2>
+    <p>If a price already includes BTW and you need to extract the pre-BTW amount:</p>
+    <div class="formula">
+      Subtotal = Total ÷ (1 + Rate)<br>
+      BTW = Total - Subtotal<br>
+      <code>Example for 21%: €1,210 ÷ 1.21 = €1,000 subtotal, €210 BTW</code><br>
+      <code>Example for 9%: €1,090 ÷ 1.09 = €1,000 subtotal, €90 BTW</code>
+    </div>
+
+    <h2>Common Mistakes Dutch Freelancers Make</h2>
+    <ul>
+      <li><strong>Missing BTW-ID</strong> — Even one missing invoice can cause client refusal to pay until corrected.</li>
+      <li><strong>Wrong rate</strong> — Applying 21% to books or food (should be 9%) creates Belastingdienst headaches.</li>
+      <li><strong>Skipping invoice numbers</strong> — Sequential numbering is required; you can't have "2026-001" then "2026-005".</li>
+      <li><strong>Forgetting reverse charge note</strong> — For EU B2B sales, you MUST write "BTW verlegd" on the invoice.</li>
+      <li><strong>Storing fewer than 7 years</strong> — Belastingdienst requires invoices kept for at least 7 years.</li>
+    </ul>
+
+    <div class="cta-block">
+      <h3>Generate a Dutch Invoice in 60 Seconds</h3>
+      <p>Free, no signup. EUR currency, automatic BTW calculation, KVK and BTW-ID fields. Download as PDF instantly.</p>
+      <a href="/">Open the Invoice Generator &rarr;</a>
+    </div>
+
+    <h2>ZZP, Eenmanszaak, BV — Which Are You?</h2>
+    <p>The invoicing requirements are the same regardless of structure, but here's a quick guide:</p>
+    <ul>
+      <li><strong>ZZP (zelfstandige zonder personeel)</strong> — freelancer / sole trader without employees. Register at KVK. Most common for consultants, designers, developers.</li>
+      <li><strong>Eenmanszaak</strong> — sole proprietorship. Legally same as the owner. Personal liability for debts.</li>
+      <li><strong>BV (besloten vennootschap)</strong> — limited company. Separate legal entity. Required for businesses with significant revenue or multiple shareholders.</li>
+    </ul>
+    <p>All three need a KVK number and (if VAT-registered) a BTW-ID on every invoice.</p>
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>What is BTW in the Netherlands? <span>+</span></h4>
+      <p>BTW (Belasting Toegevoegde Waarde) is the Dutch VAT. The standard rate is 21%, with a reduced 9% rate for essentials like food, books, and some services.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>Do I need a KVK number on my invoice? <span>+</span></h4>
+      <p>Yes. Dutch law requires the Chamber of Commerce (KVK) number on every invoice issued by a registered business.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>When do I charge 9% vs 21% BTW? <span>+</span></h4>
+      <p>21% is the standard rate for most goods and services. 9% applies to food, water, books, medicine, hairdressing, and some cultural services. Some services (financial, medical, education) are BTW-exempt.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>How do I calculate BTW on a €1000 invoice? <span>+</span></h4>
+      <p>For 21% BTW: €1000 × 0.21 = €210 BTW, total €1210. For 9% BTW: €1000 × 0.09 = €90 BTW, total €1090.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>What must a Dutch invoice contain? <span>+</span></h4>
+      <p>Invoice number, date, your name and address, KVK number, BTW-ID, client details, description, amount before VAT, BTW rate and amount, total. Payment terms are recommended.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>Is this invoice generator suitable for ZZP? <span>+</span></h4>
+      <p>Yes. The generator is designed for ZZP (freelancers), eenmanszaak (sole proprietors), and small businesses (MKB) in the Netherlands.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>What is BTW verlegd (reverse charge)? <span>+</span></h4>
+      <p>BTW verlegd means the BTW liability transfers to the recipient. Used for B2B sales to other EU VAT-registered businesses. The invoice shows 0% BTW with the note "BTW verlegd" or "Reverse charge".</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>How long must I keep my invoices? <span>+</span></h4>
+      <p>The Belastingdienst requires you to keep all invoices and business records for at least 7 years.</p>
+    </div>
+
+    <div class="related">
+      <h3>Related Guides</h3>
+      <ul>
+        <li><a href="/blog/what-is-vat-invoice">What is a VAT Invoice? Complete Guide</a></li>
+        <li><a href="/blog/how-to-write-a-professional-invoice">How to Write a Professional Invoice</a></li>
+        <li><a href="/blog/how-to-invoice-international-clients">How to Invoice International Clients</a></li>
+        <li><a href="/blog/invoice-payment-terms-guide">Invoice Payment Terms Explained</a></li>
+        <li><a href="/">Free Invoice Generator (All Countries)</a></li>
+      </ul>
+    </div>
+
+  </article>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="/">Invoice Generator</a>
+      <a href="/free-invoice-generator-uk">UK</a>
+      <a href="/free-invoice-generator-canada">Canada</a>
+      <a href="/free-invoice-generator-germany">Germany</a>
+      <a href="/blog">Blog</a>
+    </div>
+    <div class="footer-bottom">© 2026 GetInvoiceMaker — Free invoice tools for businesses worldwide.</div>
+  </div>
+</footer>
+
+<script>
+function calc() {
+  const amount = parseFloat(document.getElementById('calcAmount').value) || 0;
+  const rate = parseFloat(document.getElementById('calcRate').value);
+  const btwAmount = amount * (rate / 100);
+  const total = amount + btwAmount;
+
+  const fmt = n => '€' + n.toLocaleString('nl-NL', {minimumFractionDigits:2, maximumFractionDigits:2});
+
+  document.getElementById('resSub').textContent = fmt(amount);
+  document.getElementById('resBtw').textContent = fmt(btwAmount);
+  document.getElementById('resTotal').textContent = fmt(total);
+  document.getElementById('rateLabel').textContent = rate === 0 ? 'BTW (0% — zero-rated)' : 'BTW (' + rate + '%)';
+}
+
+function toggleFaq(el) {
+  el.classList.toggle('open');
+  const span = el.querySelector('h4 span');
+  span.textContent = el.classList.contains('open') ? '−' : '+';
+}
+
+calc();
+</script>
+
+</body>
+</html>
