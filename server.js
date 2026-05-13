@@ -54,7 +54,7 @@ const COUNTRIES = [
 const BLOG_POSTS = [
   { slug: 'how-to-write-a-professional-invoice', title: 'How to Write a Professional Invoice: Complete Guide 2026', desc: 'Learn how to create professional invoices that get paid faster. Includes what to include, invoice numbering, payment terms and free templates.', date: '2026-01-15', readTime: '8 min read', category: 'Guide', content: '<h2>What is an invoice?</h2><p>An invoice is a document sent from a business or freelancer to a client requesting payment for goods or services delivered.</p><h2>What to include in an invoice</h2><ul><li><strong>Invoice number</strong> - a unique reference number</li><li><strong>Your business name and contact details</strong></li><li><strong>Client name and billing address</strong></li><li><strong>Invoice date and payment due date</strong></li><li><strong>Itemised list of services</strong></li><li><strong>Subtotal, tax, and total amount due</strong></li><li><strong>Payment instructions</strong></li></ul><h2>Payment terms explained</h2><ul><li><strong>Net 14</strong> - payment due within 14 days</li><li><strong>Net 30</strong> - payment due within 30 days</li><li><strong>Due on receipt</strong> - payment expected immediately</li></ul><h2>How to get paid faster</h2><p>Send invoices immediately after completing work, include clear payment instructions, and follow up politely after the due date.</p>' },
   { slug: 'invoice-payment-terms-guide', title: 'Invoice Payment Terms: Everything You Need to Know', desc: 'Net 30, Net 14, due on receipt - a complete guide to invoice payment terms and how to choose the right ones for your business.', date: '2026-01-22', readTime: '6 min read', category: 'Guide', content: '<h2>What are payment terms?</h2><p>Payment terms are the conditions under which a seller will complete a sale. They specify when payment is due and accepted payment methods.</p><h2>Common payment terms</h2><ul><li><strong>Net 7</strong> - payment due within 7 days</li><li><strong>Net 14</strong> - payment due within 14 days</li><li><strong>Net 30</strong> - the most common business standard</li><li><strong>Net 60</strong> - common for large corporate clients</li></ul><h2>How to choose</h2><p>For freelancers, shorter terms like Net 14 are better for cash flow. For larger corporate clients, Net 30 to Net 60 is standard.</p>' },
-  { slug: 'what-is-vat-invoice', title: 'What is a VAT Invoice? A Complete Guide for 2026', desc: 'Learn what a VAT invoice is, when you need one, what to include, and how VAT rates work in the UK, EU and worldwide.', date: '2026-01-29', readTime: '7 min read', category: 'Tax', content: '<h2>What is a VAT invoice?</h2><p>A VAT invoice includes Value Added Tax and is required by law when the seller is VAT registered.</p><h2>What must a VAT invoice include?</h2><ul><li>Your VAT registration number</li><li>Invoice date and tax point date</li><li>Description of goods or services</li><li>Subtotal excluding VAT</li><li>VAT rate and amount</li><li>Total including VAT</li></ul><h2>VAT rates by country</h2><ul><li><strong>UK</strong> - 20% standard</li><li><strong>Germany</strong> - 19% standard</li><li><strong>France</strong> - 20% standard</li><li><strong>Netherlands</strong> - 21% standard</li></ul><p>For Dutch businesses, see our complete <a href="/free-invoice-generator-netherlands">Dutch invoice template and BTW calculator</a>.</p>' },
+  { slug: 'what-is-vat-invoice', title: 'What is a VAT Invoice? A Complete Guide for 2026', desc: 'Learn what a VAT invoice is, when you need one, what to include, and how VAT rates work in the UK, EU and worldwide.', date: '2026-01-29', readTime: '7 min read', category: 'Tax', content: '<h2>What is a VAT invoice?</h2><p>A VAT invoice includes Value Added Tax and is required by law when the seller is VAT registered.</p><h2>What must a VAT invoice include?</h2><ul><li>Your VAT registration number</li><li>Invoice date and tax point date</li><li>Description of goods or services</li><li>Subtotal excluding VAT</li><li>VAT rate and amount</li><li>Total including VAT</li></ul><h2>VAT rates by country</h2><ul><li><strong>UK</strong> - 20% standard</li><li><strong>Germany</strong> - 19% standard</li><li><strong>France</strong> - 20% standard</li><li><strong>Netherlands</strong> - 21% standard</li></ul><p>For UK businesses, see our complete <a href="/free-invoice-generator-uk">UK VAT invoice generator and calculator</a>. For Dutch businesses, see our <a href="/free-invoice-generator-netherlands">Dutch BTW invoice template</a>.</p>' },
   { slug: 'freelancer-invoice-guide', title: 'How to Invoice as a Freelancer: Complete 2026 Guide', desc: 'Everything freelancers need to know about invoicing clients professionally.', date: '2026-02-05', readTime: '9 min read', category: 'Freelance', content: '<h2>Why freelancers need professional invoices</h2><p>Professional invoices protect you legally and help you get paid faster.</p><h2>What to include in a freelance invoice</h2><ul><li>Your full name or business name</li><li>Client name and company</li><li>Unique invoice number</li><li>Invoice date and payment due date</li><li>Itemised list of services with rates</li><li>Total amount due</li><li>Bank details or payment method</li></ul><h2>When to send your invoice</h2><p>Send your invoice as soon as the work is complete. Delaying invoicing delays payment.</p>' },
   { slug: 'invoice-vs-receipt', title: 'Invoice vs Receipt: What is the Difference?', desc: 'Confused about the difference between an invoice and a receipt? This guide explains when to use each.', date: '2026-02-12', readTime: '5 min read', category: 'Guide', content: '<h2>The key difference</h2><p>An invoice is sent before payment to request money. A receipt is issued after payment to confirm it was received.</p><h2>What is an invoice?</h2><p>An invoice is a request for payment sent after goods or services have been delivered.</p><h2>What is a receipt?</h2><p>A receipt is a confirmation of payment issued after money has changed hands.</p>' },
   { slug: 'how-to-write-invoice-email', title: 'How to Write an Invoice Email: Templates and Examples', desc: 'Professional invoice email templates you can copy and use today.', date: '2026-02-19', readTime: '6 min read', category: 'Templates', content: '<h2>Initial invoice email template</h2><p>Subject: Invoice #INV-001 - Due [Date]</p><p>Hi [Client Name], please find attached invoice #INV-001 totalling [amount]. Payment is due by [due date]. Thank you for your business.</p><h2>Reminder email template</h2><p>Subject: Reminder: Invoice #INV-001 Due [Date]</p><p>Hi [Client Name], a quick reminder that invoice #INV-001 for [amount] is due on [date].</p><h2>Overdue payment template</h2><p>Subject: Overdue Invoice #INV-001 - Action Required</p><p>Hi [Client Name], invoice #INV-001 for [amount] is now overdue. Please confirm the payment status.</p>' },
@@ -76,6 +76,11 @@ const HOW_TO_PAGES = [
   { slug: 'how-to-charge-late-payment-fee', title: 'How to Charge a Late Payment Fee on an Invoice', desc: 'Add late payment clauses to your invoices.' }
 ];
 
+app.get('/favicon.ico', (req, res) => res.redirect(301, '/favicon.svg'));
+app.get('/favicon.svg', (req, res) => res.sendFile(path.join(__dirname, 'public', 'favicon.svg')));
+app.get('/apple-touch-icon.png', (req, res) => res.redirect(301, '/apple-touch-icon.svg'));
+app.get('/apple-touch-icon.svg', (req, res) => res.sendFile(path.join(__dirname, 'public', 'apple-touch-icon.svg')));
+
 app.get('/', (req, res) => {
   const isPro = req.cookies.pro === 'true';
   res.render('index', { isPro, industries: INDUSTRIES, countries: COUNTRIES, page: null, industry: null, country: null, siteUrl: SITE_URL });
@@ -93,6 +98,10 @@ app.get('/free-invoice-generator-netherlands', (req, res) => {
   res.render('netherlands-btw-guide');
 });
 
+app.get('/free-invoice-generator-uk', (req, res) => {
+  res.render('uk-vat-guide');
+});
+
 INDUSTRIES.forEach(ind => {
   app.get('/invoice-template-' + ind.slug, (req, res) => {
     const isPro = req.cookies.pro === 'true';
@@ -101,7 +110,7 @@ INDUSTRIES.forEach(ind => {
 });
 
 COUNTRIES.forEach(c => {
-  if (c.slug === 'netherlands') return;
+  if (c.slug === 'netherlands' || c.slug === 'uk') return;
   app.get('/free-invoice-generator-' + c.slug, (req, res) => {
     const isPro = req.cookies.pro === 'true';
     res.render('country', { isPro, industries: INDUSTRIES, countries: COUNTRIES, country: c, siteUrl: SITE_URL });
@@ -344,7 +353,7 @@ app.get('/sitemap.xml', (req, res) => {
   ];
   INDUSTRIES.forEach(i => urls.push({ loc: '/invoice-template-' + i.slug, priority: '0.9', freq: 'weekly' }));
   COUNTRIES.forEach(c => {
-    const priority = c.slug === 'netherlands' ? '0.95' : '0.9';
+    const priority = (c.slug === 'netherlands' || c.slug === 'uk') ? '0.95' : '0.9';
     urls.push({ loc: '/free-invoice-generator-' + c.slug, priority, freq: 'weekly' });
   });
   BLOG_POSTS.forEach(p => urls.push({ loc: '/blog/' + p.slug, priority: '0.8', freq: 'monthly' }));

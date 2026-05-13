@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UK VAT Invoice Generator: Free VAT Calculator + Template (2026)</title>
+<meta name="description" content="Free UK VAT invoice generator. 20% standard, 5% reduced, 0% zero-rated. HMRC-compliant templates with VAT calculator. No signup. Trusted by UK freelancers and limited companies.">
+<meta name="keywords" content="uk vat invoice, vat invoice generator, free invoice generator uk, hmrc invoice template, vat calculator uk, uk invoice template, sole trader invoice uk">
+<link rel="canonical" href="https://getinvoicemaker.com/free-invoice-generator-uk">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.svg">
+<meta property="og:title" content="UK VAT Invoice Generator + Calculator (2026)">
+<meta property="og:description" content="HMRC-compliant invoice template. 20% / 5% / 0% VAT. Free PDF, no signup.">
+<meta property="og:url" content="https://getinvoicemaker.com/free-invoice-generator-uk">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Create a UK VAT Invoice",
+  "description": "Step-by-step guide to creating an HMRC-compliant UK invoice with VAT.",
+  "totalTime": "PT2M",
+  "step": [
+    {"@type": "HowToStep", "name": "Add VAT registration number", "text": "Include your VAT number if you are VAT-registered with HMRC."},
+    {"@type": "HowToStep", "name": "Apply correct VAT rate", "text": "Use 20% standard, 5% reduced, or 0% zero-rated depending on goods or services."},
+    {"@type": "HowToStep", "name": "Calculate VAT amount", "text": "Multiply the net amount by the VAT rate to get the tax amount."},
+    {"@type": "HowToStep", "name": "Show breakdown", "text": "Display net, VAT, and gross total separately on the invoice."},
+    {"@type": "HowToStep", "name": "Sequential numbering", "text": "Use unique sequential invoice numbers required by HMRC."}
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What is the VAT rate in the UK?", "acceptedAnswer": {"@type": "Answer", "text": "The standard UK VAT rate is 20%. The reduced rate is 5% for items like home energy and child car seats. Some goods like food, books, and children's clothes are zero-rated at 0%."}},
+    {"@type": "Question", "name": "Do I need to register for VAT in the UK?", "acceptedAnswer": {"@type": "Answer", "text": "VAT registration is mandatory if your taxable turnover exceeds GBP 90,000 in any 12-month period. Below that threshold, registration is voluntary."}},
+    {"@type": "Question", "name": "How do I calculate VAT on a 1000 pound invoice?", "acceptedAnswer": {"@type": "Answer", "text": "For 20% VAT: 1000 x 0.20 = 200 pounds VAT, total 1200. For 5% VAT: 1000 x 0.05 = 50 pounds VAT, total 1050."}},
+    {"@type": "Question", "name": "What must a UK VAT invoice include?", "acceptedAnswer": {"@type": "Answer", "text": "Your business name and address, VAT number, invoice number and date, customer name and address, description of goods or services, VAT rate, net amount, VAT amount, and gross total."}},
+    {"@type": "Question", "name": "Can a sole trader issue a VAT invoice?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but only if registered for VAT. Non-VAT-registered sole traders issue simple invoices without VAT lines."}},
+    {"@type": "Question", "name": "How long must I keep VAT invoices?", "acceptedAnswer": {"@type": "Answer", "text": "HMRC requires VAT records to be kept for at least 6 years."}}
+  ]
+}
+</script>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#f8fafc;color:#0f172a;line-height:1.7}
+a{color:#2563eb;text-decoration:none}
+a:hover{text-decoration:underline}
+nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;justify-content:space-between;align-items:center;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-weight:700;font-size:18px}.logo span{color:#2563eb}
+.nav-r{display:flex;gap:8px;align-items:center}
+.nav-r a{color:#64748b;font-size:13px;font-weight:500;padding:6px 12px;border-radius:6px}
+.nav-r a:hover{background:#f1f5f9;color:#0f172a}
+.btn-blue{background:#2563eb;color:#fff;border:none;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;display:inline-block;text-decoration:none}
+.btn-blue:hover{background:#1d4ed8;text-decoration:none}
+.hero{background:linear-gradient(135deg,#dbeafe 0%,#fff 100%);padding:50px 24px 30px;text-align:center;border-bottom:1px solid #e2e8f0}
+.flag-badge{display:inline-block;font-size:14px;background:#fff;border:1px solid #1e40af;color:#1e40af;padding:5px 14px;border-radius:50px;margin-bottom:14px;font-weight:600}
+.hero h1{font-size:clamp(28px,4.5vw,42px);font-weight:700;line-height:1.15;margin-bottom:16px;max-width:800px;margin-left:auto;margin-right:auto}
+.hero h1 span{color:#1e40af}
+.hero p{color:#475569;font-size:17px;max-width:660px;margin:0 auto 24px}
+.breadcrumb{font-size:13px;color:#64748b;margin-bottom:14px}
+.breadcrumb a{color:#2563eb}
+.container{max-width:780px;margin:0 auto;padding:40px 24px}
+.calculator-card{background:#fff;border:2px solid #1e40af;border-radius:14px;padding:28px;box-shadow:0 4px 20px rgba(30,64,175,0.08);margin-bottom:36px}
+.calc-title{font-size:20px;font-weight:700;margin-bottom:6px}
+.calc-sub{color:#64748b;font-size:13px;margin-bottom:20px}
+.calc-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:600px){.calc-row{grid-template-columns:1fr}}
+.calc-fg label{display:block;font-size:11px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
+.calc-fg input,.calc-fg select{width:100%;padding:11px 13px;border:1px solid #e2e8f0;border-radius:7px;font-size:15px;font-family:'Inter',sans-serif}
+.calc-fg input:focus,.calc-fg select:focus{outline:none;border-color:#1e40af;box-shadow:0 0 0 3px rgba(30,64,175,.1)}
+.calc-result{background:#eff6ff;border-radius:10px;padding:18px;margin-top:18px}
+.calc-line{display:flex;justify-content:space-between;padding:5px 0;font-size:14px;color:#334155}
+.calc-line.grand{font-size:20px;font-weight:700;color:#1e40af;border-top:2px solid #bfdbfe;padding-top:12px;margin-top:8px}
+.calc-cta{margin-top:18px;text-align:center}
+.calc-cta a{display:inline-block;background:#1e40af;color:#fff;padding:12px 24px;border-radius:8px;font-weight:600;font-size:14px}
+.calc-cta a:hover{background:#1e3a8a;text-decoration:none}
+article h2{font-size:26px;font-weight:700;margin:36px 0 14px;color:#0f172a}
+article h3{font-size:19px;font-weight:600;margin:24px 0 10px;color:#0f172a}
+article p{margin-bottom:14px;color:#334155;font-size:15px}
+article ul,article ol{margin:12px 0 18px 22px;color:#334155}
+article li{margin-bottom:7px;font-size:15px}
+article strong{color:#0f172a;font-weight:600}
+.intro{background:#fffbeb;border-left:4px solid #f59e0b;padding:16px 20px;border-radius:0 8px 8px 0;margin-bottom:24px;font-size:14px;color:#78350f}
+.rate-table{width:100%;border-collapse:collapse;margin:16px 0 24px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;font-size:14px}
+.rate-table thead{background:#f8fafc}
+.rate-table th{padding:11px 14px;text-align:left;font-size:12px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid #e2e8f0}
+.rate-table td{padding:11px 14px;border-bottom:1px solid #f1f5f9}
+.rate-table tr:last-child td{border-bottom:none}
+.rate-table .rate{font-weight:600;color:#1e40af}
+.example-box{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:18px 22px;margin:18px 0}
+.example-box h4{font-size:14px;font-weight:700;color:#166534;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.example-box ol{margin:8px 0 0 22px}
+.example-box li{margin-bottom:6px;font-size:14px;color:#14532d}
+.formula{background:#1e293b;color:#e2e8f0;padding:14px 18px;border-radius:8px;font-family:'SF Mono',Menlo,monospace;font-size:14px;margin:14px 0;overflow-x:auto}
+.formula code{color:#fbbf24}
+.checklist{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:20px 24px;margin:18px 0}
+.checklist h4{font-size:15px;font-weight:700;margin-bottom:12px;color:#0f172a}
+.checklist ul{list-style:none;margin:0;padding:0}
+.checklist li{padding:6px 0 6px 26px;position:relative;font-size:14px}
+.checklist li::before{content:"\2713";position:absolute;left:0;color:#16a34a;font-weight:700}
+.cta-block{background:linear-gradient(135deg,#1e40af,#1e3a8a);color:#fff;padding:32px;border-radius:14px;text-align:center;margin:40px 0}
+.cta-block h3{color:#fff;font-size:22px;margin-bottom:8px}
+.cta-block p{color:#dbeafe;margin-bottom:18px;font-size:15px}
+.cta-block a{display:inline-block;background:#fff;color:#1e40af;padding:12px 28px;border-radius:8px;font-weight:700;font-size:15px}
+.cta-block a:hover{background:#eff6ff;text-decoration:none}
+.faq-item{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:18px 20px;margin-bottom:10px;cursor:pointer}
+.faq-item h4{font-size:15px;font-weight:600;color:#0f172a;display:flex;justify-content:space-between;align-items:center}
+.faq-item h4 span{color:#94a3b8;font-size:18px;font-weight:400}
+.faq-item p{display:none;margin-top:10px;color:#475569;font-size:14px}
+.faq-item.open p{display:block}
+.related{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:24px;margin-top:32px}
+.related h3{font-size:16px;font-weight:700;margin-bottom:14px}
+.related ul{list-style:none;margin:0;padding:0}
+.related li{padding:7px 0;border-bottom:1px solid #f1f5f9}
+.related li:last-child{border-bottom:none}
+.related a{font-size:14px;color:#2563eb}
+footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
+.footer-inner{max-width:960px;margin:0 auto;text-align:center}
+.footer-inner a{color:#cbd5e1;margin:0 12px;font-size:13px}
+.footer-bottom{margin-top:18px;font-size:12px;color:#475569}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Get<span>Invoice</span>Maker</div>
+  <div class="nav-r">
+    <a href="/">Invoice</a>
+    <a href="/blog">Blog</a>
+    <a href="/"><button class="btn-blue">Create Invoice</button></a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container" style="padding:0">
+    <div class="breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/blog">Guides</a> &rsaquo; UK VAT Invoice</div>
+    <div class="flag-badge">UK · GBP · HMRC · VAT</div>
+    <h1>UK VAT Invoice Generator <span>+ Calculator (2026)</span></h1>
+    <p>HMRC-compliant UK invoices in 60 seconds. Free VAT calculator with 20%, 5%, and 0% rates. Built for UK sole traders, freelancers, and limited companies. No signup, instant PDF.</p>
+  </div>
+</section>
+
+<div class="container">
+
+  <div class="calculator-card">
+    <div class="calc-title">UK VAT Calculator</div>
+    <div class="calc-sub">Enter the net amount and select the VAT rate. Updates as you type.</div>
+    <div class="calc-row">
+      <div class="calc-fg">
+        <label>Net amount (GBP, before VAT)</label>
+        <input type="number" id="calcAmount" value="1000" min="0" step="0.01" oninput="calc()">
+      </div>
+      <div class="calc-fg">
+        <label>VAT Rate</label>
+        <select id="calcRate" onchange="calc()">
+          <option value="20">20% - Standard (most goods and services)</option>
+          <option value="5">5% - Reduced (energy, child car seats)</option>
+          <option value="0">0% - Zero-rated (food, books, kids clothes)</option>
+        </select>
+      </div>
+    </div>
+    <div class="calc-result">
+      <div class="calc-line"><span>Net amount</span><span id="resNet">GBP 1,000.00</span></div>
+      <div class="calc-line"><span id="rateLabel">VAT (20%)</span><span id="resVat">GBP 200.00</span></div>
+      <div class="calc-line grand"><span>Gross total</span><span id="resTotal">GBP 1,200.00</span></div>
+    </div>
+    <div class="calc-cta">
+      <a href="/">Generate a Free UK VAT Invoice &rarr;</a>
+    </div>
+  </div>
+
+  <article>
+    <div class="intro">
+      <strong>Quick answer:</strong> A UK VAT invoice must include your VAT registration number, the VAT rate applied (20%, 5%, or 0%), and a breakdown of net, VAT, and gross amounts. Use the calculator above to verify your numbers, then create a free PDF invoice instantly.
+    </div>
+
+    <h2>UK VAT Rates Explained</h2>
+    <p>The UK has three VAT rates, each applying to different categories of goods and services. Choosing the right rate is essential because applying the wrong one is one of the most common HMRC compliance failures for freelancers and small businesses.</p>
+    <table class="rate-table">
+      <thead>
+        <tr><th>Rate</th><th>Type</th><th>Applies To</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="rate">20%</td><td>Standard</td><td>Most goods and services: consulting, software, design, restaurant meals, clothing for adults, electronics, alcohol</td></tr>
+        <tr><td class="rate">5%</td><td>Reduced</td><td>Domestic fuel and power, children's car seats, mobility aids for elderly, smoking cessation products</td></tr>
+        <tr><td class="rate">0%</td><td>Zero-rated</td><td>Most food, books and newspapers, children's clothes, prescription medicines, public transport, exports</td></tr>
+      </tbody>
+    </table>
+    <p>Some goods and services are <strong>VAT-exempt</strong> (different from zero-rated): financial services, insurance, education, healthcare. Exempt items don't appear on a VAT invoice at all.</p>
+
+    <h2>Do You Need to Register for VAT?</h2>
+    <p>VAT registration is mandatory when your taxable turnover exceeds <strong>GBP 90,000</strong> in any rolling 12-month period (the 2025/26 threshold). Below this, you can register voluntarily, which lets you reclaim VAT on business expenses but means charging VAT to clients.</p>
+    <p>Most UK freelancers and sole traders earning under GBP 90,000 don't need to register. If you're VAT-registered, you must:</p>
+    <ul>
+      <li>Charge VAT on your invoices</li>
+      <li>Include your VAT number on every invoice</li>
+      <li>Submit VAT returns to HMRC (usually quarterly via Making Tax Digital)</li>
+      <li>Keep VAT records for at least 6 years</li>
+    </ul>
+
+    <h2>Step-by-Step: How to Create a UK VAT Invoice</h2>
+
+    <h3>Step 1 - Your business identification</h3>
+    <p>At the top of the invoice, include:</p>
+    <ul>
+      <li>Your business name (or trading name)</li>
+      <li>Full business address</li>
+      <li>VAT registration number (mandatory for VAT-registered businesses, format: GB followed by 9 digits)</li>
+      <li>Company registration number (for limited companies)</li>
+    </ul>
+
+    <h3>Step 2 - Customer details</h3>
+    <ul>
+      <li>Customer name (or business name)</li>
+      <li>Customer billing address</li>
+      <li>For EU B2B sales: customer VAT number</li>
+    </ul>
+
+    <h3>Step 3 - Invoice metadata</h3>
+    <ul>
+      <li>Unique sequential invoice number (required by HMRC)</li>
+      <li>Invoice date (tax point date)</li>
+      <li>Payment due date (Net 14 or Net 30 is standard)</li>
+    </ul>
+
+    <h3>Step 4 - Itemize and calculate VAT</h3>
+    <p>List each service or product with quantity, unit price, and net amount. Then calculate VAT:</p>
+    <div class="formula">
+      VAT amount = Net amount x (VAT rate / 100)<br>
+      <code>Example: GBP 1,000 x (20 / 100) = GBP 200 VAT</code>
+    </div>
+    <p>Show net, VAT, and gross totals separately. This three-line breakdown is legally required for VAT-registered businesses.</p>
+
+    <h2>Real Examples</h2>
+
+    <div class="example-box">
+      <h4>Example 1 - Standard 20% VAT on a Consulting Invoice</h4>
+      <ol>
+        <li>Net amount: 10 hours x GBP 75 = <strong>GBP 750.00</strong></li>
+        <li>VAT 20% = GBP 750 x 0.20 = <strong>GBP 150.00</strong></li>
+        <li>Gross total = GBP 750 + GBP 150 = <strong>GBP 900.00</strong></li>
+      </ol>
+    </div>
+
+    <div class="example-box">
+      <h4>Example 2 - 5% Reduced VAT on Domestic Energy</h4>
+      <ol>
+        <li>Net amount: <strong>GBP 500.00</strong></li>
+        <li>VAT 5% = GBP 500 x 0.05 = <strong>GBP 25.00</strong></li>
+        <li>Gross total = GBP 500 + GBP 25 = <strong>GBP 525.00</strong></li>
+      </ol>
+    </div>
+
+    <div class="example-box">
+      <h4>Example 3 - Zero-rated Book Export</h4>
+      <ol>
+        <li>Net amount: <strong>GBP 2,000.00</strong></li>
+        <li>VAT 0% (zero-rated, books) = <strong>GBP 0.00</strong></li>
+        <li>Gross total = <strong>GBP 2,000.00</strong></li>
+        <li>Show on invoice: "Zero-rated supply"</li>
+      </ol>
+    </div>
+
+    <h2>UK VAT Invoice Compliance Checklist</h2>
+    <div class="checklist">
+      <h4>Every UK VAT invoice MUST contain (HMRC rules):</h4>
+      <ul>
+        <li>Unique sequential invoice number</li>
+        <li>Invoice date (date of issue)</li>
+        <li>Tax point date (if different from invoice date)</li>
+        <li>Your name and address</li>
+        <li>Your VAT registration number</li>
+        <li>Customer name and address</li>
+        <li>Description of goods or services</li>
+        <li>Quantity and unit price</li>
+        <li>Net amount per line</li>
+        <li>VAT rate applied (20%, 5%, or 0%)</li>
+        <li>Total VAT amount</li>
+        <li>Gross total (including VAT)</li>
+        <li>For zero-rated/exempt: a note explaining the rate</li>
+      </ul>
+    </div>
+
+    <h2>Reverse Charge VAT for International Clients</h2>
+    <p>When selling B2B services to clients in the EU or rest of the world, you usually don't charge UK VAT. Instead, the customer accounts for VAT under the <strong>reverse charge mechanism</strong>. The invoice should include:</p>
+    <ul>
+      <li>0% VAT</li>
+      <li>The note "Reverse charge: customer to account for VAT"</li>
+      <li>Both your and the customer's VAT numbers (for EU)</li>
+    </ul>
+    <p>For B2C sales to consumers in other countries, different rules apply - typically you charge UK VAT unless you've registered for the One-Stop Shop scheme.</p>
+
+    <h2>How to Calculate VAT in Reverse (Gross Total Given)</h2>
+    <p>If a price already includes 20% VAT and you need the net amount:</p>
+    <div class="formula">
+      Net = Gross / 1.20<br>
+      VAT = Gross - Net<br>
+      <code>Example: GBP 1,200 / 1.20 = GBP 1,000 net, GBP 200 VAT</code>
+    </div>
+    <p>For 5% reduced rate, divide by 1.05.</p>
+
+    <h2>Common Mistakes UK Freelancers Make</h2>
+    <ul>
+      <li><strong>Missing VAT number</strong> - HMRC penalties up to GBP 500 per invoice. Always include format GB followed by 9 digits.</li>
+      <li><strong>Wrong VAT rate</strong> - Charging 20% on zero-rated items (books, kids clothes) means refunds to clients.</li>
+      <li><strong>Non-sequential numbers</strong> - Skipping numbers (INV-001 then INV-005) triggers HMRC red flags.</li>
+      <li><strong>No tax point date</strong> - Required if the invoice date differs from when supply was made.</li>
+      <li><strong>Forgetting reverse charge note</strong> - For EU/international B2B, missing this means clients can't reclaim VAT.</li>
+    </ul>
+
+    <div class="cta-block">
+      <h3>Generate a UK VAT Invoice in 60 Seconds</h3>
+      <p>Free, HMRC-compliant. GBP currency, automatic VAT calculation, VAT number field. Download as PDF instantly.</p>
+      <a href="/">Open the Invoice Generator &rarr;</a>
+    </div>
+
+    <h2>Sole Trader vs Limited Company Invoicing</h2>
+    <p>Both must follow the same VAT invoice rules, but there are differences:</p>
+    <ul>
+      <li><strong>Sole trader</strong> - Use your own name (or trading name) and home/business address. No company registration number needed.</li>
+      <li><strong>Limited company</strong> - Use registered company name, registered office address, and Companies House registration number. Director name on invoice is not legally required.</li>
+      <li><strong>Partnership</strong> - Use partnership name and address. List partner names if appropriate.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>What is the VAT rate in the UK? <span>+</span></h4>
+      <p>The standard UK VAT rate is 20%. The reduced rate is 5% for items like home energy and child car seats. Some goods like food, books, and children's clothes are zero-rated at 0%.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>Do I need to register for VAT in the UK? <span>+</span></h4>
+      <p>VAT registration is mandatory if your taxable turnover exceeds GBP 90,000 in any 12-month period. Below that threshold, registration is voluntary.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>How do I calculate VAT on a 1000 pound invoice? <span>+</span></h4>
+      <p>For 20% VAT: 1000 x 0.20 = 200 pounds VAT, total 1200. For 5% VAT: 1000 x 0.05 = 50 pounds VAT, total 1050.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>What must a UK VAT invoice include? <span>+</span></h4>
+      <p>Your business name and address, VAT number, invoice number and date, customer name and address, description of goods or services, VAT rate, net amount, VAT amount, and gross total.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>Can a sole trader issue a VAT invoice? <span>+</span></h4>
+      <p>Yes, but only if registered for VAT. Non-VAT-registered sole traders issue simple invoices without VAT lines.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>How long must I keep VAT invoices? <span>+</span></h4>
+      <p>HMRC requires VAT records to be kept for at least 6 years.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>What is reverse charge VAT? <span>+</span></h4>
+      <p>For B2B services to overseas VAT-registered businesses, the customer accounts for VAT in their country. The invoice shows 0% VAT with the note "Reverse charge: customer to account for VAT".</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>Do I charge VAT to US clients? <span>+</span></h4>
+      <p>Generally no. Services to US business clients are typically outside the scope of UK VAT (place of supply rules). Goods exported to the US are zero-rated.</p>
+    </div>
+
+    <div class="related">
+      <h3>Related Guides</h3>
+      <ul>
+        <li><a href="/blog/what-is-vat-invoice">What is a VAT Invoice? Complete Guide</a></li>
+        <li><a href="/how-to-calculate-vat-on-invoice">How to Calculate VAT on an Invoice</a></li>
+        <li><a href="/how-to-invoice-us-clients-from-uk">How to Invoice US Clients from the UK</a></li>
+        <li><a href="/blog/freelancer-invoice-guide">How to Invoice as a Freelancer</a></li>
+        <li><a href="/">Free Invoice Generator (All Countries)</a></li>
+      </ul>
+    </div>
+
+  </article>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="/">Invoice Generator</a>
+      <a href="/free-invoice-generator-netherlands">Netherlands</a>
+      <a href="/free-invoice-generator-canada">Canada</a>
+      <a href="/free-invoice-generator-australia">Australia</a>
+      <a href="/blog">Blog</a>
+    </div>
+    <div class="footer-bottom">© 2026 GetInvoiceMaker - Free invoice tools for businesses worldwide.</div>
+  </div>
+</footer>
+
+<script>
+function calc() {
+  const amount = parseFloat(document.getElementById('calcAmount').value) || 0;
+  const rate = parseFloat(document.getElementById('calcRate').value);
+  const vatAmount = amount * (rate / 100);
+  const total = amount + vatAmount;
+  const fmt = n => 'GBP ' + n.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2});
+  document.getElementById('resNet').textContent = fmt(amount);
+  document.getElementById('resVat').textContent = fmt(vatAmount);
+  document.getElementById('resTotal').textContent = fmt(total);
+  document.getElementById('rateLabel').textContent = rate === 0 ? 'VAT (0% - zero-rated)' : 'VAT (' + rate + '%)';
+}
+function toggleFaq(el) {
+  el.classList.toggle('open');
+  const span = el.querySelector('h4 span');
+  span.textContent = el.classList.contains('open') ? '\u2212' : '+';
+}
+calc();
+</script>
+
+</body>
+</html>
