@@ -59,6 +59,7 @@ const BLOG_POSTS = [
   { slug: 'invoice-vs-receipt', title: 'Invoice vs Receipt: What is the Difference?', desc: 'Confused about the difference between an invoice and a receipt? This guide explains when to use each.', date: '2026-02-12', readTime: '5 min read', category: 'Guide', content: '<h2>The key difference</h2><p>An invoice is sent before payment to request money. A receipt is issued after payment to confirm it was received.</p><h2>What is an invoice?</h2><p>An invoice is a request for payment sent after goods or services have been delivered.</p><h2>What is a receipt?</h2><p>A receipt is a confirmation of payment issued after money has changed hands.</p>' },
   { slug: 'how-to-write-invoice-email', title: 'How to Write an Invoice Email: Templates and Examples', desc: 'Professional invoice email templates you can copy and use today.', date: '2026-02-19', readTime: '6 min read', category: 'Templates', content: '<h2>Initial invoice email template</h2><p>Subject: Invoice #INV-001 - Due [Date]</p><p>Hi [Client Name], please find attached invoice #INV-001 totalling [amount]. Payment is due by [due date]. Thank you for your business.</p><h2>Reminder email template</h2><p>Subject: Reminder: Invoice #INV-001 Due [Date]</p><p>Hi [Client Name], a quick reminder that invoice #INV-001 for [amount] is due on [date].</p><h2>Overdue payment template</h2><p>Subject: Overdue Invoice #INV-001 - Action Required</p><p>Hi [Client Name], invoice #INV-001 for [amount] is now overdue. Please confirm the payment status.</p>' },
   { slug: 'gst-invoice-guide', title: 'GST Invoice Guide: Australia, India, Canada, Singapore', desc: 'A complete guide to GST invoices for Australia, India, Canada and Singapore.', date: '2026-02-26', readTime: '7 min read', category: 'Tax', content: '<h2>What is GST?</h2><p>GST stands for Goods and Services Tax. Countries using GST include Australia, Canada, India, Singapore, and New Zealand.</p><h2>GST rates by country</h2><ul><li><strong>Australia</strong> - 10%</li><li><strong>Canada</strong> - 5% federal GST</li><li><strong>India</strong> - 5%, 12%, 18%, or 28%</li><li><strong>Singapore</strong> - 9%</li><li><strong>New Zealand</strong> - 15%</li></ul><h2>How to calculate GST</h2><p>Multiply the pre-tax amount by the GST rate. For 10% GST: $500 x 0.10 = $50 GST. Total = $550.</p><p>For an interactive calculator with all Canadian provinces, visit our <a href="/how-to-calculate-gst-on-canadian-invoices">Canadian GST calculator and complete guide</a>.</p>' },
+  { slug: 'gst-hst-pst-canada-invoice-guide', title: 'GST HST PST Canada Calculator + Invoice Template (2026 - All Provinces)', desc: 'Free GST/HST/PST calculator for all 13 Canadian provinces. Ontario 13%, Quebec 14.975%, BC 12%. Step-by-step examples plus invoice template. No signup.', date: '2026-04-01', readTime: '8 min read', category: 'Tax', content: '<h2>Canadian sales tax overview</h2><p>Canada has three types of sales tax: GST, HST, and PST. Which tax you charge depends on your province.</p><h2>GST rate</h2><p>The federal GST rate is 5% across all of Canada.</p><h2>HST rates by province</h2><ul><li><strong>Ontario</strong> - 13% HST</li><li><strong>New Brunswick</strong> - 15% HST</li><li><strong>Nova Scotia</strong> - 15% HST</li><li><strong>PEI</strong> - 15% HST</li><li><strong>Newfoundland</strong> - 15% HST</li></ul><h2>PST rates by province</h2><ul><li><strong>BC</strong> - 7% PST + 5% GST = 12%</li><li><strong>Saskatchewan</strong> - 6% PST + 5% GST = 11%</li><li><strong>Manitoba</strong> - 7% RST + 5% GST = 12%</li><li><strong>Quebec</strong> - 9.975% QST + 5% GST = 14.975%</li></ul><h2>Alberta</h2><p>No provincial tax. Only 5% GST applies.</p><h2>How to calculate GST on a Canadian invoice</h2><p>Multiply subtotal by 0.05. Example: CAD 1000 x 0.05 = CAD 50 GST. Total = CAD 1050.</p><h2>What to include on a Canadian invoice</h2><ul><li>GST registration number</li><li>Invoice date</li><li>Description of services</li><li>Amount before tax</li><li>GST/HST rate and amount</li><li>Total including tax</li></ul><h2>Use Our Free GST Calculator</h2><p>For an interactive calculator that handles all 13 provinces and territories, plus a free invoice template, visit our <a href="/how-to-calculate-gst-on-canadian-invoices"><strong>complete GST calculator and step-by-step guide</strong></a>.</p>' },
   { slug: 'invoice-number-format', title: 'Invoice Numbering: How to Number Your Invoices Correctly', desc: 'The best invoice numbering systems explained for small businesses and freelancers.', date: '2026-03-05', readTime: '5 min read', category: 'Guide', content: '<h2>Why invoice numbering matters</h2><p>Invoice numbers are required for accounting, tax reporting, and dispute resolution.</p><h2>Popular formats</h2><ul><li><strong>Sequential</strong> - INV-001, INV-002</li><li><strong>Date-based</strong> - 20260115-001</li><li><strong>Year-based</strong> - 2026-001</li><li><strong>Client-based</strong> - ACME-001</li></ul><h2>Rules</h2><p>Invoice numbers must be unique and sequential. Never reuse invoice numbers, even if cancelled.</p>' },
   { slug: 'how-to-invoice-international-clients', title: 'How to Invoice International Clients: Currency, Tax and Tips', desc: 'A practical guide to invoicing clients in other countries.', date: '2026-03-12', readTime: '8 min read', category: 'Guide', content: '<h2>Choosing the right currency</h2><p>You can invoice in your local currency or the client currency. Many freelancers invoice in USD or EUR as a neutral currency.</p><h2>Do you charge VAT to international clients?</h2><p>In the UK, services to business clients outside the UK are generally zero-rated for VAT. Always verify with a local accountant.</p><h2>Getting paid internationally</h2><p>Common methods: bank wire transfer, PayPal, Wise, Stripe, and Payoneer. Wise typically offers the best exchange rates.</p>' },
   { slug: 'small-business-invoicing-tips', title: '10 Invoicing Tips for Small Businesses to Get Paid Faster', desc: 'Practical invoicing tips for small business owners to improve cash flow.', date: '2026-03-19', readTime: '7 min read', category: 'Tips', content: '<h2>1. Invoice immediately</h2><p>Send invoices on the day work is delivered.</p><h2>2. Use short payment terms</h2><p>Net 14 consistently outperforms Net 30 for payment speed.</p><h2>3. Make it easy to pay</h2><p>Include bank details directly on the invoice.</p><h2>4. Set up automatic reminders</h2><p>Schedule reminders for 3 days before due date and on the due date.</p><h2>5. Charge late fees</h2><p>A stated late payment policy makes clients take due dates seriously.</p><h2>6. Get a deposit upfront</h2><p>For large projects, require 25-50% deposit before starting.</p><h2>7. Use professional invoice design</h2><p>A clean invoice signals professionalism and gets paid faster.</p>' }
@@ -75,9 +76,6 @@ const HOW_TO_PAGES = [
   { slug: 'how-to-charge-late-payment-fee', title: 'How to Charge a Late Payment Fee on an Invoice', desc: 'Add late payment clauses to your invoices.' }
 ];
 
-// ============================================
-// PAGE ROUTES
-// ============================================
 app.get('/', (req, res) => {
   const isPro = req.cookies.pro === 'true';
   res.render('index', { isPro, industries: INDUSTRIES, countries: COUNTRIES, page: null, industry: null, country: null, siteUrl: SITE_URL });
@@ -87,19 +85,12 @@ app.get('/rent-receipt-generator', (req, res) => {
   res.render('rent-receipt');
 });
 
-// SPECIAL: Rich content page for top GST keyword
 app.get('/how-to-calculate-gst-on-canadian-invoices', (req, res) => {
   res.render('gst-canada-guide');
 });
 
-// SPECIAL: Rich content page for Netherlands (replaces generic country template)
 app.get('/free-invoice-generator-netherlands', (req, res) => {
   res.render('netherlands-btw-guide');
-});
-
-// CONTENT CONSOLIDATION: redirect old Canada GST blog post to richer guide
-app.get('/blog/gst-hst-pst-canada-invoice-guide', (req, res) => {
-  res.redirect(301, '/how-to-calculate-gst-on-canadian-invoices');
 });
 
 INDUSTRIES.forEach(ind => {
@@ -110,7 +101,7 @@ INDUSTRIES.forEach(ind => {
 });
 
 COUNTRIES.forEach(c => {
-  if (c.slug === 'netherlands') return; // handled above with rich content
+  if (c.slug === 'netherlands') return;
   app.get('/free-invoice-generator-' + c.slug, (req, res) => {
     const isPro = req.cookies.pro === 'true';
     res.render('country', { isPro, industries: INDUSTRIES, countries: COUNTRIES, country: c, siteUrl: SITE_URL });
@@ -138,9 +129,6 @@ app.get('/activate', (req, res) => {
   res.render('activate', { isPro });
 });
 
-// ============================================
-// PDF GENERATION
-// ============================================
 function renderInvoicePDF(d, res) {
   const isPro = d.isPro === true || d.isPro === 'true';
   const color = d.color || '#2563eb';
