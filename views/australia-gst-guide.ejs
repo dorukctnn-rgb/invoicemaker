@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Australia GST Calculator + Invoice Generator (2026 — ATO Compliant)</title>
+<meta name="description" content="Free Australia GST calculator and invoice generator. 10% GST, BAS-ready, ATO compliant. ABN field, $75,000 threshold guidance. No signup, instant PDF.">
+<meta name="keywords" content="australia gst calculator, gst calculator australia, australian invoice template, ato invoice, bas calculator, abn invoice generator, 10 percent gst calculator">
+<link rel="canonical" href="https://getinvoicemaker.com/free-invoice-generator-australia">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.svg">
+<meta property="og:title" content="Australia GST Calculator + Invoice Generator (2026)">
+<meta property="og:description" content="ATO-compliant Australian invoice with 10% GST. Free, no signup, instant PDF.">
+<meta property="og:url" content="https://getinvoicemaker.com/free-invoice-generator-australia">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Calculate GST on Australian Invoices",
+  "description": "Step-by-step guide to calculating 10% GST and creating ATO-compliant invoices in Australia.",
+  "totalTime": "PT2M",
+  "step": [
+    {"@type": "HowToStep", "name": "Check GST registration", "text": "Register for GST if your annual turnover exceeds AUD 75,000 (or AUD 150,000 for non-profits)."},
+    {"@type": "HowToStep", "name": "Add ABN to invoice", "text": "Include your Australian Business Number (ABN) on every tax invoice."},
+    {"@type": "HowToStep", "name": "Calculate 10% GST", "text": "Multiply the GST-exclusive amount by 0.1 to get the GST component."},
+    {"@type": "HowToStep", "name": "Show breakdown", "text": "Display subtotal, GST amount, and total separately on the tax invoice."},
+    {"@type": "HowToStep", "name": "Mark as Tax Invoice", "text": "Write the words 'Tax Invoice' clearly on the document if you are GST registered."}
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What is the GST rate in Australia?", "acceptedAnswer": {"@type": "Answer", "text": "The standard GST rate in Australia is 10%. It has been 10% since GST was introduced on 1 July 2000. Some goods and services are GST-free (0%) or input-taxed."}},
+    {"@type": "Question", "name": "Do I need to register for GST in Australia?", "acceptedAnswer": {"@type": "Answer", "text": "GST registration is mandatory if your annual turnover is AUD 75,000 or more (AUD 150,000 for non-profits). Taxi and ride-share drivers must register regardless of turnover."}},
+    {"@type": "Question", "name": "How do I calculate GST on a 1000 dollar invoice?", "acceptedAnswer": {"@type": "Answer", "text": "Multiply 1000 by 0.10 to get 100 dollars GST. The total invoice amount is 1100 dollars (1000 + 100 GST)."}},
+    {"@type": "Question", "name": "How do I remove GST from a GST-inclusive price?", "acceptedAnswer": {"@type": "Answer", "text": "Divide the GST-inclusive total by 11 to find the GST component. Example: 1100 / 11 = 100 GST. Subtract this from the total to get the pre-GST amount (1000)."}},
+    {"@type": "Question", "name": "What must an Australian tax invoice include?", "acceptedAnswer": {"@type": "Answer", "text": "ABN, the words 'Tax Invoice', seller name and address, buyer details (for invoices over AUD 1000), invoice date, description, quantity, GST-exclusive amount, GST amount, and total."}},
+    {"@type": "Question", "name": "What is BAS in Australia?", "acceptedAnswer": {"@type": "Answer", "text": "BAS stands for Business Activity Statement. It is a quarterly (or monthly) report submitted to the ATO showing GST collected, GST paid, and net GST payable or refundable."}}
+  ]
+}
+</script>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#f8fafc;color:#0f172a;line-height:1.7}
+a{color:#2563eb;text-decoration:none}
+a:hover{text-decoration:underline}
+nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;justify-content:space-between;align-items:center;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-weight:700;font-size:18px}.logo span{color:#2563eb}
+.nav-r{display:flex;gap:8px;align-items:center}
+.nav-r a{color:#64748b;font-size:13px;font-weight:500;padding:6px 12px;border-radius:6px}
+.nav-r a:hover{background:#f1f5f9;color:#0f172a}
+.btn-blue{background:#2563eb;color:#fff;border:none;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;display:inline-block;text-decoration:none}
+.btn-blue:hover{background:#1d4ed8;text-decoration:none}
+.hero{background:linear-gradient(135deg,#dcfce7 0%,#fff 100%);padding:50px 24px 30px;text-align:center;border-bottom:1px solid #e2e8f0}
+.flag-badge{display:inline-block;font-size:14px;background:#fff;border:1px solid #16a34a;color:#166534;padding:5px 14px;border-radius:50px;margin-bottom:14px;font-weight:600}
+.hero h1{font-size:clamp(28px,4.5vw,42px);font-weight:700;line-height:1.15;margin-bottom:16px;max-width:800px;margin-left:auto;margin-right:auto}
+.hero h1 span{color:#16a34a}
+.hero p{color:#475569;font-size:17px;max-width:660px;margin:0 auto 24px}
+.breadcrumb{font-size:13px;color:#64748b;margin-bottom:14px}
+.breadcrumb a{color:#2563eb}
+.container{max-width:780px;margin:0 auto;padding:40px 24px}
+.calculator-card{background:#fff;border:2px solid #16a34a;border-radius:14px;padding:28px;box-shadow:0 4px 20px rgba(22,163,74,0.08);margin-bottom:36px}
+.calc-title{font-size:20px;font-weight:700;margin-bottom:6px}
+.calc-sub{color:#64748b;font-size:13px;margin-bottom:20px}
+.calc-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:600px){.calc-row{grid-template-columns:1fr}}
+.calc-fg label{display:block;font-size:11px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
+.calc-fg input,.calc-fg select{width:100%;padding:11px 13px;border:1px solid #e2e8f0;border-radius:7px;font-size:15px;font-family:'Inter',sans-serif}
+.calc-fg input:focus,.calc-fg select:focus{outline:none;border-color:#16a34a;box-shadow:0 0 0 3px rgba(22,163,74,.1)}
+.calc-result{background:#f0fdf4;border-radius:10px;padding:18px;margin-top:18px}
+.calc-line{display:flex;justify-content:space-between;padding:5px 0;font-size:14px;color:#334155}
+.calc-line.grand{font-size:20px;font-weight:700;color:#16a34a;border-top:2px solid #bbf7d0;padding-top:12px;margin-top:8px}
+.calc-cta{margin-top:18px;text-align:center}
+.calc-cta a{display:inline-block;background:#16a34a;color:#fff;padding:12px 24px;border-radius:8px;font-weight:600;font-size:14px}
+.calc-cta a:hover{background:#15803d;text-decoration:none}
+article h2{font-size:26px;font-weight:700;margin:36px 0 14px;color:#0f172a}
+article h3{font-size:19px;font-weight:600;margin:24px 0 10px;color:#0f172a}
+article p{margin-bottom:14px;color:#334155;font-size:15px}
+article ul,article ol{margin:12px 0 18px 22px;color:#334155}
+article li{margin-bottom:7px;font-size:15px}
+article strong{color:#0f172a;font-weight:600}
+.intro{background:#fffbeb;border-left:4px solid #f59e0b;padding:16px 20px;border-radius:0 8px 8px 0;margin-bottom:24px;font-size:14px;color:#78350f}
+.rate-table{width:100%;border-collapse:collapse;margin:16px 0 24px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;font-size:14px}
+.rate-table thead{background:#f8fafc}
+.rate-table th{padding:11px 14px;text-align:left;font-size:12px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid #e2e8f0}
+.rate-table td{padding:11px 14px;border-bottom:1px solid #f1f5f9}
+.rate-table tr:last-child td{border-bottom:none}
+.rate-table .rate{font-weight:600;color:#16a34a}
+.example-box{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:18px 22px;margin:18px 0}
+.example-box h4{font-size:14px;font-weight:700;color:#166534;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.example-box ol{margin:8px 0 0 22px}
+.example-box li{margin-bottom:6px;font-size:14px;color:#14532d}
+.formula{background:#1e293b;color:#e2e8f0;padding:14px 18px;border-radius:8px;font-family:'SF Mono',Menlo,monospace;font-size:14px;margin:14px 0;overflow-x:auto}
+.formula code{color:#fbbf24}
+.checklist{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:20px 24px;margin:18px 0}
+.checklist h4{font-size:15px;font-weight:700;margin-bottom:12px;color:#0f172a}
+.checklist ul{list-style:none;margin:0;padding:0}
+.checklist li{padding:6px 0 6px 26px;position:relative;font-size:14px}
+.checklist li::before{content:"\2713";position:absolute;left:0;color:#16a34a;font-weight:700}
+.cta-block{background:linear-gradient(135deg,#16a34a,#15803d);color:#fff;padding:32px;border-radius:14px;text-align:center;margin:40px 0}
+.cta-block h3{color:#fff;font-size:22px;margin-bottom:8px}
+.cta-block p{color:#dcfce7;margin-bottom:18px;font-size:15px}
+.cta-block a{display:inline-block;background:#fff;color:#16a34a;padding:12px 28px;border-radius:8px;font-weight:700;font-size:15px}
+.cta-block a:hover{background:#f0fdf4;text-decoration:none}
+.faq-item{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:18px 20px;margin-bottom:10px;cursor:pointer}
+.faq-item h4{font-size:15px;font-weight:600;color:#0f172a;display:flex;justify-content:space-between;align-items:center}
+.faq-item h4 span{color:#94a3b8;font-size:18px;font-weight:400}
+.faq-item p{display:none;margin-top:10px;color:#475569;font-size:14px}
+.faq-item.open p{display:block}
+.related{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:24px;margin-top:32px}
+.related h3{font-size:16px;font-weight:700;margin-bottom:14px}
+.related ul{list-style:none;margin:0;padding:0}
+.related li{padding:7px 0;border-bottom:1px solid #f1f5f9}
+.related li:last-child{border-bottom:none}
+.related a{font-size:14px;color:#2563eb}
+footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
+.footer-inner{max-width:960px;margin:0 auto;text-align:center}
+.footer-inner a{color:#cbd5e1;margin:0 12px;font-size:13px}
+.footer-bottom{margin-top:18px;font-size:12px;color:#475569}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Get<span>Invoice</span>Maker</div>
+  <div class="nav-r">
+    <a href="/">Invoice</a>
+    <a href="/blog">Blog</a>
+    <a href="/"><button class="btn-blue">Create Invoice</button></a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container" style="padding:0">
+    <div class="breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/blog">Guides</a> &rsaquo; Australian GST Invoice</div>
+    <div class="flag-badge">Australia &middot; AUD &middot; ATO &middot; 10% GST</div>
+    <h1>Australia GST Calculator <span>+ Invoice Generator (2026)</span></h1>
+    <p>ATO-compliant Australian tax invoices in 60 seconds. Free 10% GST calculator with ABN field, $75K threshold guidance, and BAS-ready breakdown. No signup, instant PDF.</p>
+  </div>
+</section>
+
+<div class="container">
+
+  <div class="calculator-card">
+    <div class="calc-title">Australia GST Calculator (10%)</div>
+    <div class="calc-sub">Add GST or remove GST. ATO-approved formulas. Updates as you type.</div>
+    <div class="calc-row">
+      <div class="calc-fg">
+        <label>Amount (AUD)</label>
+        <input type="number" id="calcAmount" value="1000" min="0" step="0.01" oninput="calc()">
+      </div>
+      <div class="calc-fg">
+        <label>Calculation type</label>
+        <select id="calcMode" onchange="calc()">
+          <option value="add">Add GST (price is GST-exclusive)</option>
+          <option value="remove">Remove GST (price is GST-inclusive)</option>
+          <option value="gstfree">GST-free supply (0%)</option>
+        </select>
+      </div>
+    </div>
+    <div class="calc-result">
+      <div class="calc-line"><span id="line1Label">GST-exclusive amount</span><span id="resBase">A$1,000.00</span></div>
+      <div class="calc-line"><span id="line2Label">GST (10%)</span><span id="resGst">A$100.00</span></div>
+      <div class="calc-line grand"><span id="line3Label">Total (GST-inclusive)</span><span id="resTotal">A$1,100.00</span></div>
+    </div>
+    <div class="calc-cta">
+      <a href="/">Generate a Free Australian Tax Invoice &rarr;</a>
+    </div>
+  </div>
+
+  <article>
+    <div class="intro">
+      <strong>Quick answer:</strong> Australian GST is 10%. To add GST, multiply by 0.1. To remove GST from a GST-inclusive total, divide by 11. Every tax invoice must show the ABN, the words "Tax Invoice", and a clear breakdown of net, GST, and total amounts.
+    </div>
+
+    <h2>What is GST in Australia?</h2>
+    <p>The Goods and Services Tax (GST) is a 10% value-added tax applied to most goods, services, and other items sold or consumed in Australia. It was introduced on 1 July 2000 and has remained at 10% ever since. GST is collected by businesses on behalf of the Australian Taxation Office (ATO) and reported through a Business Activity Statement (BAS).</p>
+    <p>If you run a business in Australia and your annual turnover is AUD 75,000 or more, GST registration is mandatory. Below that threshold, registration is voluntary but may be useful if you want to claim GST credits on business purchases.</p>
+
+    <h2>Australian GST Rates (2026)</h2>
+    <table class="rate-table">
+      <thead>
+        <tr><th>Category</th><th>Rate</th><th>Examples</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Standard taxable supplies</td><td class="rate">10%</td><td>Most goods and services: consulting, retail, hospitality, professional services</td></tr>
+        <tr><td>GST-free supplies</td><td class="rate">0%</td><td>Basic food, education, healthcare, exports, water and sewerage services</td></tr>
+        <tr><td>Input-taxed supplies</td><td class="rate">N/A</td><td>Residential rent, financial services (no GST charged, no GST credits)</td></tr>
+      </tbody>
+    </table>
+    <p>The distinction between "GST-free" and "input-taxed" matters: with GST-free supplies, you charge 0% GST but can still claim input tax credits. With input-taxed, you charge no GST and cannot claim credits.</p>
+
+    <h2>Step-by-Step: How to Calculate GST</h2>
+
+    <h3>Step 1 — Adding GST to a GST-exclusive price</h3>
+    <div class="formula">
+      GST = Amount &times; 0.10<br>
+      Total = Amount + GST<br>
+      <code>Example: AUD 1,000 &times; 0.10 = AUD 100 GST. Total = AUD 1,100</code>
+    </div>
+
+    <h3>Step 2 — Removing GST from a GST-inclusive price</h3>
+    <p>The ATO-approved formula for reverse GST calculation:</p>
+    <div class="formula">
+      GST = Total &divide; 11<br>
+      Pre-GST amount = Total - GST<br>
+      <code>Example: AUD 1,100 &divide; 11 = AUD 100 GST. Pre-GST = AUD 1,000</code>
+    </div>
+    <p>The "divide by 11" rule works because the GST is one-eleventh of the GST-inclusive total when the rate is 10%. This is the standard method used by Australian accountants and is accepted by the ATO for BAS reporting.</p>
+
+    <h2>Real Examples</h2>
+
+    <div class="example-box">
+      <h4>Example 1 — Consulting fee (add GST)</h4>
+      <ol>
+        <li>Service: 20 hours &times; AUD 150 = <strong>AUD 3,000.00</strong></li>
+        <li>GST 10% = AUD 3,000 &times; 0.10 = <strong>AUD 300.00</strong></li>
+        <li>Total invoice = AUD 3,000 + AUD 300 = <strong>AUD 3,300.00</strong></li>
+      </ol>
+    </div>
+
+    <div class="example-box">
+      <h4>Example 2 — Retail price (remove GST)</h4>
+      <ol>
+        <li>Retail price (GST-inclusive): <strong>AUD 550.00</strong></li>
+        <li>GST = AUD 550 &divide; 11 = <strong>AUD 50.00</strong></li>
+        <li>Pre-GST amount = AUD 550 - AUD 50 = <strong>AUD 500.00</strong></li>
+      </ol>
+    </div>
+
+    <div class="example-box">
+      <h4>Example 3 — Export of services (GST-free)</h4>
+      <ol>
+        <li>Service to overseas client: <strong>AUD 2,500.00</strong></li>
+        <li>GST 0% (export, GST-free) = <strong>AUD 0.00</strong></li>
+        <li>Total = <strong>AUD 2,500.00</strong></li>
+        <li>Note on invoice: "GST-free export"</li>
+      </ol>
+    </div>
+
+    <h2>Australian Tax Invoice Requirements (ATO Rules)</h2>
+    <div class="checklist">
+      <h4>Every Australian tax invoice MUST include:</h4>
+      <ul>
+        <li>The words "Tax Invoice" clearly displayed</li>
+        <li>Your business identity (name, trading name, or business name)</li>
+        <li>Your Australian Business Number (ABN)</li>
+        <li>The date the invoice was issued</li>
+        <li>A brief description of items sold (quantity, description, price)</li>
+        <li>GST amount (or a statement that the total includes GST)</li>
+        <li>The extent to which the supply is taxable</li>
+        <li>For invoices over AUD 1,000: the buyer's name or ABN</li>
+      </ul>
+    </div>
+
+    <h2>Do You Need to Register for GST?</h2>
+    <p>Registration is <strong>mandatory</strong> if:</p>
+    <ul>
+      <li>Your annual GST turnover is AUD 75,000 or more</li>
+      <li>You operate a taxi, ride-share, or limousine service (any turnover)</li>
+      <li>Your non-profit organisation has turnover of AUD 150,000 or more</li>
+      <li>You want to claim fuel tax credits</li>
+    </ul>
+    <p>Registration is <strong>voluntary</strong> below these thresholds. Voluntary registration lets you claim GST credits on business purchases but obligates you to charge GST on all taxable sales.</p>
+
+    <h2>Business Activity Statement (BAS)</h2>
+    <p>Once registered, you must lodge a BAS — usually quarterly, sometimes monthly or annually depending on turnover. The BAS reports:</p>
+    <ul>
+      <li><strong>G1</strong> — Total sales (including GST)</li>
+      <li><strong>1A</strong> — GST collected on sales</li>
+      <li><strong>1B</strong> — GST credits on purchases</li>
+      <li><strong>Net GST</strong> = 1A minus 1B (payable to ATO or refundable)</li>
+    </ul>
+    <p>Most small businesses lodge quarterly. The due dates for 2026 are 28 October, 28 February, 28 April, and 28 July. Late lodgement penalties start at AUD 313 per BAS.</p>
+
+    <h2>Common Mistakes Australian Businesses Make</h2>
+    <ul>
+      <li><strong>Forgetting "Tax Invoice"</strong> — The label is legally required. Without it, your customer cannot claim GST credits.</li>
+      <li><strong>No ABN</strong> — If you don't quote an ABN, customers may withhold 47% (the "no ABN withholding" rate).</li>
+      <li><strong>Mixing GST-free and taxable</strong> — Each line item needs its GST status clearly shown.</li>
+      <li><strong>Wrong reverse calculation</strong> — Some businesses incorrectly divide by 10 instead of 11. Always divide a GST-inclusive total by 11.</li>
+      <li><strong>Missing BAS deadlines</strong> — ATO penalties accumulate quickly. Set calendar reminders.</li>
+    </ul>
+
+    <div class="cta-block">
+      <h3>Generate an Australian Tax Invoice in 60 Seconds</h3>
+      <p>Free, ATO-compliant. AUD currency, automatic 10% GST calculation, ABN field. Download as PDF instantly.</p>
+      <a href="/">Open the Invoice Generator &rarr;</a>
+    </div>
+
+    <h2>Sole Trader vs Pty Ltd Invoicing</h2>
+    <p>Both must follow the same tax invoice rules, but there are practical differences:</p>
+    <ul>
+      <li><strong>Sole trader</strong> — Use your own name (or registered business name). Your ABN is linked to your personal tax file number.</li>
+      <li><strong>Pty Ltd (company)</strong> — Use the registered company name and ACN (Australian Company Number) in addition to the ABN. Director name on invoice is not legally required but common.</li>
+      <li><strong>Partnership</strong> — Use the partnership name and partnership ABN. Each partner is jointly liable.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>What is the GST rate in Australia? <span>+</span></h4>
+      <p>The standard GST rate in Australia is 10%. It has been 10% since GST was introduced on 1 July 2000. Some goods and services are GST-free (0%) or input-taxed.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>Do I need to register for GST in Australia? <span>+</span></h4>
+      <p>GST registration is mandatory if your annual turnover is AUD 75,000 or more (AUD 150,000 for non-profits). Taxi and ride-share drivers must register regardless of turnover.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>How do I calculate GST on a 1000 dollar invoice? <span>+</span></h4>
+      <p>Multiply 1000 by 0.10 to get 100 dollars GST. The total invoice amount is 1100 dollars (1000 plus 100 GST).</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>How do I remove GST from a GST-inclusive price? <span>+</span></h4>
+      <p>Divide the GST-inclusive total by 11 to find the GST component. Example: 1100 divided by 11 equals 100 GST. Subtract this from the total to get the pre-GST amount (1000).</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>What must an Australian tax invoice include? <span>+</span></h4>
+      <p>ABN, the words "Tax Invoice", seller name and address, buyer details (for invoices over AUD 1000), invoice date, description, quantity, GST-exclusive amount, GST amount, and total.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>What is BAS in Australia? <span>+</span></h4>
+      <p>BAS stands for Business Activity Statement. It is a quarterly (or monthly) report submitted to the ATO showing GST collected, GST paid, and net GST payable or refundable.</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>What is the difference between GST-free and input-taxed? <span>+</span></h4>
+      <p>GST-free means you charge 0% GST but can still claim input tax credits on related purchases. Input-taxed means you charge no GST and cannot claim credits (e.g., residential rent).</p>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <h4>Do I charge GST to overseas clients? <span>+</span></h4>
+      <p>Generally no. Exports of goods and services to clients outside Australia are GST-free, meaning you charge 0% GST. You can still claim GST credits on related business purchases.</p>
+    </div>
+
+    <div class="related">
+      <h3>Related Guides</h3>
+      <ul>
+        <li><a href="/how-to-calculate-gst-on-canadian-invoices">Canadian GST Calculator (5% + HST + PST)</a></li>
+        <li><a href="/free-invoice-generator-uk">UK VAT Invoice Generator (20%)</a></li>
+        <li><a href="/free-invoice-generator-netherlands">Dutch BTW Invoice Generator (21%)</a></li>
+        <li><a href="/blog/gst-invoice-guide">GST Invoice Guide: Australia, India, Canada, Singapore</a></li>
+        <li><a href="/">Free Invoice Generator (All Countries)</a></li>
+      </ul>
+    </div>
+
+  </article>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="/">Invoice Generator</a>
+      <a href="/free-invoice-generator-uk">UK</a>
+      <a href="/free-invoice-generator-netherlands">Netherlands</a>
+      <a href="/free-invoice-generator-canada">Canada</a>
+      <a href="/blog">Blog</a>
+    </div>
+    <div class="footer-bottom">&copy; 2026 GetInvoiceMaker - Free invoice tools for businesses worldwide.</div>
+  </div>
+</footer>
+
+<script>
+function calc() {
+  const amount = parseFloat(document.getElementById('calcAmount').value) || 0;
+  const mode = document.getElementById('calcMode').value;
+  let base = 0, gst = 0, total = 0;
+  let l1 = 'GST-exclusive amount', l2 = 'GST (10%)', l3 = 'Total (GST-inclusive)';
+
+  if (mode === 'add') {
+    base = amount;
+    gst = amount * 0.10;
+    total = base + gst;
+  } else if (mode === 'remove') {
+    total = amount;
+    gst = amount / 11;
+    base = total - gst;
+    l1 = 'Pre-GST amount';
+    l2 = 'GST (10%, extracted)';
+    l3 = 'GST-inclusive total (entered)';
+  } else if (mode === 'gstfree') {
+    base = amount;
+    gst = 0;
+    total = amount;
+    l1 = 'Amount';
+    l2 = 'GST (0% - GST-free)';
+    l3 = 'Total';
+  }
+
+  const fmt = n => 'A$' + n.toLocaleString('en-AU', {minimumFractionDigits:2, maximumFractionDigits:2});
+  document.getElementById('line1Label').textContent = l1;
+  document.getElementById('line2Label').textContent = l2;
+  document.getElementById('line3Label').textContent = l3;
+  document.getElementById('resBase').textContent = fmt(base);
+  document.getElementById('resGst').textContent = fmt(gst);
+  document.getElementById('resTotal').textContent = fmt(total);
+}
+
+function toggleFaq(el) {
+  el.classList.toggle('open');
+  const span = el.querySelector('h4 span');
+  span.textContent = el.classList.contains('open') ? '\u2212' : '+';
+}
+
+calc();
+</script>
+
+</body>
+</html>
