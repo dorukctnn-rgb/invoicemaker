@@ -51,6 +51,85 @@ const COUNTRIES = [
   { slug: 'netherlands', label: 'Netherlands', fullName: 'Netherlands', currency: 'EUR', symbol: 'EUR', tax: 'BTW', taxRate: 21 }
 ];
 
+const PROVINCES = [
+  {
+    slug: 'british-columbia-gst-pst-calculator',
+    name: 'British Columbia', abbr: 'BC', system: 'GST + PST', isHST: false,
+    gst: 5, pst: 7, combined: 12, pstName: 'PST', pstFullName: 'Provincial Sales Tax',
+    authority: 'BC Ministry of Finance',
+    title: 'BC GST + PST Calculator 2026 — British Columbia Sales Tax (12%)',
+    desc: 'Free British Columbia sales tax calculator. 5% GST + 7% PST = 12%. Add or remove tax instantly with reverse calculation and an invoice-ready breakdown. No signup.',
+    heroSub: 'Instantly calculate British Columbia sales tax: 5% federal GST plus 7% provincial PST, combined 12%. Add tax, remove tax, and generate a free invoice.',
+    quickAnswer: 'British Columbia charges 5% GST plus 7% PST, for a combined 12% on most goods and services. The two taxes are listed separately on invoices. Use the calculator above to add or remove tax, then create a free invoice.',
+    aboutPara: 'British Columbia uses a dual sales tax system: the 5% federal Goods and Services Tax (GST) plus a separate 7% Provincial Sales Tax (PST), for a combined 12% on most taxable goods and services. Unlike HST provinces such as Ontario, BC keeps GST and PST as two distinct lines on an invoice rather than merging them into a single harmonized rate.',
+    exemptPara: 'In BC many essentials are PST-exempt, including most food for human consumption, children-sized clothing and footwear, books, newspapers, and bicycles. GST may still apply to some of these even when PST does not, so it is worth checking each item category against the BC Ministry of Finance bulletins.',
+    formula: 'GST = Amount &times; 0.05<br>PST = Amount &times; 0.07<br>Total = Amount + GST + PST<br><code>CA$1,000 &rarr; GST 50 + PST 70 = CA$1,120</code>',
+    exampleSteps: '<li>Amount before tax: <strong>CA$1,000.00</strong></li><li>GST 5% = <strong>CA$50.00</strong></li><li>PST 7% = <strong>CA$70.00</strong></li><li>Total = <strong>CA$1,120.00</strong></li>',
+    reverseFormula: 'Pre-tax = Total &divide; 1.12<br><code>CA$1,120 &divide; 1.12 = CA$1,000 before tax</code>',
+    invoicePara: 'A BC invoice should show your GST registration number, the amount before tax, the 5% GST and 7% PST as separate lines, and the total. If you sell taxable goods you may also need a PST registration number from the BC Ministry of Finance.',
+    faqRate: 'British Columbia charges 5% GST plus 7% PST, for a combined 12% on most goods and services.',
+    faqCalc: 'On CA$1,000: GST is 1000 x 0.05 = CA$50, PST is 1000 x 0.07 = CA$70, so the total is CA$1,120.',
+    faqReverse: 'Divide the tax-included total by 1.12. For example, CA$1,120 / 1.12 = CA$1,000 before tax.'
+  },
+  {
+    slug: 'saskatchewan-gst-pst-calculator',
+    name: 'Saskatchewan', abbr: 'SK', system: 'GST + PST', isHST: false,
+    gst: 5, pst: 6, combined: 11, pstName: 'PST', pstFullName: 'Provincial Sales Tax',
+    authority: 'Saskatchewan Ministry of Finance',
+    title: 'Saskatchewan GST + PST Calculator 2026 — Sales Tax (11%)',
+    desc: 'Free Saskatchewan sales tax calculator. 5% GST + 6% PST = 11%. Add or remove tax instantly with reverse calculation and an invoice-ready breakdown. No signup.',
+    heroSub: 'Instantly calculate Saskatchewan sales tax: 5% federal GST plus 6% provincial PST, combined 11%. Add tax, remove tax, and generate a free invoice.',
+    quickAnswer: 'Saskatchewan charges 5% GST plus 6% PST, for a combined 11% on most goods and services. The two taxes appear separately on invoices. Use the calculator above to add or remove tax, then create a free invoice.',
+    aboutPara: 'Saskatchewan applies the 5% federal GST plus a 6% Provincial Sales Tax (PST), giving a combined 11% on most taxable goods and many services. PST and GST are shown as separate lines on invoices; Saskatchewan is not a harmonized (HST) province.',
+    exemptPara: 'Saskatchewan PST applies more broadly than in some provinces and covers many services as well as goods. Common PST exemptions include basic groceries, prescription drugs, and certain agricultural and farm inputs. GST exemptions follow the federal rules and apply across the country.',
+    formula: 'GST = Amount &times; 0.05<br>PST = Amount &times; 0.06<br>Total = Amount + GST + PST<br><code>CA$1,000 &rarr; GST 50 + PST 60 = CA$1,110</code>',
+    exampleSteps: '<li>Amount before tax: <strong>CA$1,000.00</strong></li><li>GST 5% = <strong>CA$50.00</strong></li><li>PST 6% = <strong>CA$60.00</strong></li><li>Total = <strong>CA$1,110.00</strong></li>',
+    reverseFormula: 'Pre-tax = Total &divide; 1.11<br><code>CA$1,110 &divide; 1.11 = CA$1,000 before tax</code>',
+    invoicePara: 'A Saskatchewan invoice should show your GST number, the pre-tax amount, the 5% GST and 6% PST as separate lines, and the total. Businesses selling taxable goods or services generally need a PST vendor licence from the Saskatchewan Ministry of Finance.',
+    faqRate: 'Saskatchewan charges 5% GST plus 6% PST, for a combined 11% on most goods and services.',
+    faqCalc: 'On CA$1,000: GST is 1000 x 0.05 = CA$50, PST is 1000 x 0.06 = CA$60, so the total is CA$1,110.',
+    faqReverse: 'Divide the tax-included total by 1.11. For example, CA$1,110 / 1.11 = CA$1,000 before tax.'
+  },
+  {
+    slug: 'manitoba-gst-pst-calculator',
+    name: 'Manitoba', abbr: 'MB', system: 'GST + RST', isHST: false,
+    gst: 5, pst: 7, combined: 12, pstName: 'RST', pstFullName: 'Retail Sales Tax',
+    authority: 'Manitoba Finance',
+    title: 'Manitoba GST + RST Calculator 2026 — Sales Tax (12%)',
+    desc: 'Free Manitoba sales tax calculator. 5% GST + 7% RST = 12%. Add or remove tax instantly with reverse calculation and an invoice-ready breakdown. No signup.',
+    heroSub: 'Instantly calculate Manitoba sales tax: 5% federal GST plus 7% provincial RST, combined 12%. Add tax, remove tax, and generate a free invoice.',
+    quickAnswer: 'Manitoba charges 5% GST plus 7% RST (Retail Sales Tax), for a combined 12% on most goods and services. In Manitoba the provincial tax is called RST rather than PST. Use the calculator above, then create a free invoice.',
+    aboutPara: 'Manitoba applies the 5% federal GST plus a 7% Retail Sales Tax (RST), for a combined 12% on most taxable goods and services. Manitoba calls its provincial tax RST rather than PST, but it works the same way and appears as a separate line from GST on invoices.',
+    exemptPara: 'Manitoba RST exemptions include basic groceries, prescription drugs, most agricultural products, and certain childrens items. As elsewhere in Canada, GST exemptions follow the federal rules. Some services are taxable under RST, so check the Manitoba Finance bulletins for your category.',
+    formula: 'GST = Amount &times; 0.05<br>RST = Amount &times; 0.07<br>Total = Amount + GST + RST<br><code>CA$1,000 &rarr; GST 50 + RST 70 = CA$1,120</code>',
+    exampleSteps: '<li>Amount before tax: <strong>CA$1,000.00</strong></li><li>GST 5% = <strong>CA$50.00</strong></li><li>RST 7% = <strong>CA$70.00</strong></li><li>Total = <strong>CA$1,120.00</strong></li>',
+    reverseFormula: 'Pre-tax = Total &divide; 1.12<br><code>CA$1,120 &divide; 1.12 = CA$1,000 before tax</code>',
+    invoicePara: 'A Manitoba invoice should show your GST number, the pre-tax amount, the 5% GST and 7% RST as separate lines, and the total. Businesses making taxable sales generally need an RST number from Manitoba Finance.',
+    faqRate: 'Manitoba charges 5% GST plus 7% RST (Retail Sales Tax), for a combined 12% on most goods and services.',
+    faqCalc: 'On CA$1,000: GST is 1000 x 0.05 = CA$50, RST is 1000 x 0.07 = CA$70, so the total is CA$1,120.',
+    faqReverse: 'Divide the tax-included total by 1.12. For example, CA$1,120 / 1.12 = CA$1,000 before tax.'
+  },
+  {
+    slug: 'ontario-hst-calculator',
+    name: 'Ontario', abbr: 'ON', system: 'HST', isHST: true,
+    gst: 5, pst: 8, combined: 13, pstName: 'HST', pstFullName: 'Harmonized Sales Tax',
+    authority: 'Canada Revenue Agency',
+    title: 'Ontario HST Calculator 2026 — 13% Harmonized Sales Tax',
+    desc: 'Free Ontario HST calculator. 13% Harmonized Sales Tax (5% GST + 8% provincial). Add or remove HST instantly with reverse calculation and invoice-ready breakdown. No signup.',
+    heroSub: 'Instantly calculate Ontario HST: a single 13% Harmonized Sales Tax that combines the 5% federal GST with the 8% provincial portion. Add tax, remove tax, and generate a free invoice.',
+    quickAnswer: 'Ontario charges a single 13% Harmonized Sales Tax (HST), which combines the 5% federal GST and an 8% provincial portion into one rate. Unlike BC or Manitoba, Ontario shows one HST line on invoices. Use the calculator above, then create a free invoice.',
+    aboutPara: 'Ontario is a harmonized province: instead of charging GST and PST separately, it applies a single 13% Harmonized Sales Tax (HST). This 13% is made up of the 5% federal GST and an 8% provincial component, but on an invoice it appears as one combined HST line, which makes Ontario invoicing simpler than in PST provinces.',
+    exemptPara: 'Ontario HST follows federal GST exemption rules: basic groceries, prescription drugs, and most medical devices are exempt or zero-rated. Ontario also provides point-of-sale rebates of the provincial portion on certain items such as childrens clothing, books, and diapers, so the effective rate on those is 5%.',
+    formula: 'HST = Amount &times; 0.13<br>Total = Amount + HST<br><code>CA$1,000 &times; 0.13 = CA$130 HST. Total = CA$1,130</code>',
+    exampleSteps: '<li>Amount before tax: <strong>CA$1,000.00</strong></li><li>HST 13% = <strong>CA$130.00</strong></li><li>Total = <strong>CA$1,130.00</strong></li>',
+    reverseFormula: 'Pre-tax = Total &divide; 1.13<br><code>CA$1,130 &divide; 1.13 = CA$1,000 before tax</code>',
+    invoicePara: 'An Ontario invoice should show your HST registration number, the pre-tax amount, the 13% HST as a single line, and the total. Because Ontario is harmonized, you do not list GST and PST separately.',
+    faqRate: 'Ontario charges a single 13% HST, which combines the 5% federal GST and an 8% provincial portion.',
+    faqCalc: 'On CA$1,000: HST is 1000 x 0.13 = CA$130, so the total is CA$1,130.',
+    faqReverse: 'Divide the tax-included total by 1.13. For example, CA$1,130 / 1.13 = CA$1,000 before tax.'
+  }
+];
+
 const BLOG_POSTS = [
   { slug: 'how-to-write-a-professional-invoice', title: 'How to Write a Professional Invoice: Complete Guide 2026', desc: 'Learn how to create professional invoices that get paid faster.', date: '2026-01-15', readTime: '8 min read', category: 'Guide', content: '<h2>What is an invoice?</h2><p>An invoice is a document sent from a business or freelancer to a client requesting payment for goods or services delivered.</p><h2>What to include in an invoice</h2><ul><li><strong>Invoice number</strong> - a unique reference number</li><li><strong>Your business name and contact details</strong></li><li><strong>Client name and billing address</strong></li><li><strong>Invoice date and payment due date</strong></li><li><strong>Itemised list of services</strong></li><li><strong>Subtotal, tax, and total amount due</strong></li><li><strong>Payment instructions</strong></li></ul>' },
   { slug: 'invoice-payment-terms-guide', title: 'Invoice Payment Terms: Everything You Need to Know', desc: 'Net 30, Net 14, due on receipt - a complete guide to invoice payment terms.', date: '2026-01-22', readTime: '6 min read', category: 'Guide', content: '<h2>What are payment terms?</h2><p>Payment terms are the conditions under which a seller will complete a sale.</p>' },
@@ -59,7 +138,7 @@ const BLOG_POSTS = [
   { slug: 'invoice-vs-receipt', title: 'Invoice vs Receipt: What is the Difference?', desc: 'This guide explains when to use each.', date: '2026-02-12', readTime: '5 min read', category: 'Guide', content: '<h2>The key difference</h2><p>An invoice is sent before payment to request money. A receipt is issued after payment to confirm it was received.</p>' },
   { slug: 'how-to-write-invoice-email', title: 'How to Write an Invoice Email: Templates and Examples', desc: 'Professional invoice email templates you can copy and use today.', date: '2026-02-19', readTime: '6 min read', category: 'Templates', content: '<h2>Initial invoice email template</h2><p>Hi [Client Name], please find attached invoice #INV-001 totalling [amount].</p>' },
   { slug: 'gst-invoice-guide', title: 'GST Invoice Guide: Australia, India, Canada, Singapore', desc: 'A complete guide to GST invoices for Australia, India, Canada and Singapore.', date: '2026-02-26', readTime: '7 min read', category: 'Tax', content: '<h2>What is GST?</h2><p>GST stands for Goods and Services Tax.</p><p>For an interactive calculator with all Canadian provinces, visit our <a href="/how-to-calculate-gst-on-canadian-invoices">Canadian GST calculator</a>. For Australian businesses, see our <a href="/free-invoice-generator-australia">Australia GST calculator</a>.</p>' },
-  { slug: 'gst-hst-pst-canada-invoice-guide', title: 'GST HST PST Canada Calculator + Invoice Template (2026 - All Provinces)', desc: 'Free GST/HST/PST calculator for all 13 Canadian provinces.', date: '2026-04-01', readTime: '8 min read', category: 'Tax', content: '<h2>Canadian sales tax overview</h2><p>Canada has three types of sales tax: GST, HST, and PST.</p><h2>Use Our Free GST Calculator</h2><p>For an interactive calculator that handles all 13 provinces and territories, visit our <a href="/how-to-calculate-gst-on-canadian-invoices"><strong>complete GST calculator and step-by-step guide</strong></a>.</p>' },
+  { slug: 'gst-hst-pst-canada-invoice-guide', title: 'GST HST PST Canada Calculator + Invoice Template (2026 - All Provinces)', desc: 'Free GST/HST/PST calculator for all 13 Canadian provinces.', date: '2026-04-01', readTime: '8 min read', category: 'Tax', content: '<h2>Canadian sales tax overview</h2><p>Canada has three types of sales tax: GST, HST, and PST.</p><h2>Use Our Free GST Calculator</h2><p>For an interactive calculator that handles all 13 provinces and territories, visit our <a href="/how-to-calculate-gst-on-canadian-invoices"><strong>complete GST calculator and step-by-step guide</strong></a>. We also have province-specific calculators for <a href="/british-columbia-gst-pst-calculator">British Columbia</a>, <a href="/saskatchewan-gst-pst-calculator">Saskatchewan</a>, <a href="/manitoba-gst-pst-calculator">Manitoba</a>, and <a href="/ontario-hst-calculator">Ontario</a>.</p>' },
   { slug: 'invoice-number-format', title: 'Invoice Numbering: How to Number Your Invoices Correctly', desc: 'The best invoice numbering systems explained for small businesses and freelancers.', date: '2026-03-05', readTime: '5 min read', category: 'Guide', content: '<h2>Why invoice numbering matters</h2><p>Invoice numbers are required for accounting, tax reporting, and dispute resolution.</p>' },
   { slug: 'how-to-invoice-international-clients', title: 'How to Invoice International Clients: Currency, Tax and Tips', desc: 'A practical guide to invoicing clients in other countries.', date: '2026-03-12', readTime: '8 min read', category: 'Guide', content: '<h2>Choosing the right currency</h2><p>You can invoice in your local currency or the client currency.</p>' },
   { slug: 'small-business-invoicing-tips', title: '10 Invoicing Tips for Small Businesses to Get Paid Faster', desc: 'Practical invoicing tips for small business owners to improve cash flow.', date: '2026-03-19', readTime: '7 min read', category: 'Tips', content: '<h2>1. Invoice immediately</h2><p>Send invoices on the day work is delivered.</p>' }
@@ -106,6 +185,12 @@ app.get('/free-invoice-generator-uk', (req, res) => {
 
 app.get('/free-invoice-generator-australia', (req, res) => {
   res.render('australia-gst-guide');
+});
+
+PROVINCES.forEach(prov => {
+  app.get('/' + prov.slug, (req, res) => {
+    res.render('province-guide', { province: prov, provinces: PROVINCES, siteUrl: SITE_URL });
+  });
 });
 
 INDUSTRIES.forEach(ind => {
@@ -362,6 +447,7 @@ app.get('/sitemap.xml', (req, res) => {
     const priority = (c.slug === 'netherlands' || c.slug === 'uk' || c.slug === 'australia') ? '0.95' : '0.9';
     urls.push({ loc: '/free-invoice-generator-' + c.slug, priority, freq: 'weekly' });
   });
+  PROVINCES.forEach(p => urls.push({ loc: '/' + p.slug, priority: '0.95', freq: 'weekly' }));
   BLOG_POSTS.forEach(p => urls.push({ loc: '/blog/' + p.slug, priority: '0.8', freq: 'monthly' }));
   HOW_TO_PAGES.forEach(p => urls.push({ loc: '/' + p.slug, priority: '0.8', freq: 'monthly' }));
   const xml = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +

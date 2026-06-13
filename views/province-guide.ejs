@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title><%= province.title %></title>
+<meta name="description" content="<%= province.desc %>">
+<link rel="canonical" href="https://getinvoicemaker.com/<%= province.slug %>">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What is the sales tax rate in <%= province.name %>?", "acceptedAnswer": {"@type": "Answer", "text": "<%= province.faqRate %>"}},
+    {"@type": "Question", "name": "How do I calculate sales tax on a 1000 dollar amount in <%= province.name %>?", "acceptedAnswer": {"@type": "Answer", "text": "<%= province.faqCalc %>"}},
+    {"@type": "Question", "name": "How do I remove tax from a tax-included price in <%= province.name %>?", "acceptedAnswer": {"@type": "Answer", "text": "<%= province.faqReverse %>"}}
+  ]
+}
+</script>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#f8fafc;color:#0f172a;line-height:1.7}
+a{color:#dc2626;text-decoration:none}a:hover{text-decoration:underline}
+nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;justify-content:space-between;align-items:center;height:60px;position:sticky;top:0;z-index:100}
+.logo{font-weight:700;font-size:18px}.logo span{color:#dc2626}
+.nav-r{display:flex;gap:8px;align-items:center}
+.nav-r a{color:#64748b;font-size:13px;font-weight:500;padding:6px 12px;border-radius:6px}
+.btn{background:#dc2626;color:#fff;border:none;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;display:inline-block;text-decoration:none}
+.btn:hover{background:#b91c1c;text-decoration:none}
+.hero{background:linear-gradient(135deg,#fee2e2 0%,#fff 100%);padding:50px 24px 30px;text-align:center;border-bottom:1px solid #e2e8f0}
+.flag-badge{display:inline-block;font-size:14px;background:#fff;border:1px solid #dc2626;color:#991b1b;padding:5px 14px;border-radius:50px;margin-bottom:14px;font-weight:600}
+.hero h1{font-size:clamp(26px,4.5vw,40px);font-weight:700;line-height:1.15;margin-bottom:16px;max-width:800px;margin-left:auto;margin-right:auto}
+.hero h1 span{color:#dc2626}
+.hero p{color:#475569;font-size:17px;max-width:660px;margin:0 auto 24px}
+.breadcrumb{font-size:13px;color:#64748b;margin-bottom:14px}
+.container{max-width:780px;margin:0 auto;padding:40px 24px}
+.calc-card{background:#fff;border:2px solid #dc2626;border-radius:14px;padding:28px;box-shadow:0 4px 20px rgba(220,38,38,0.08);margin-bottom:36px}
+.calc-title{font-size:20px;font-weight:700;margin-bottom:6px}
+.calc-sub{color:#64748b;font-size:13px;margin-bottom:20px}
+.calc-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:600px){.calc-row{grid-template-columns:1fr}}
+.calc-fg label{display:block;font-size:11px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
+.calc-fg input,.calc-fg select{width:100%;padding:11px 13px;border:1px solid #e2e8f0;border-radius:7px;font-size:15px;font-family:'Inter',sans-serif}
+.calc-fg input:focus,.calc-fg select:focus{outline:none;border-color:#dc2626;box-shadow:0 0 0 3px rgba(220,38,38,.1)}
+.calc-result{background:#fef2f2;border-radius:10px;padding:18px;margin-top:18px}
+.calc-line{display:flex;justify-content:space-between;padding:5px 0;font-size:14px;color:#334155}
+.calc-line.grand{font-size:20px;font-weight:700;color:#dc2626;border-top:2px solid #fecaca;padding-top:12px;margin-top:8px}
+.calc-cta{margin-top:18px;text-align:center}
+.calc-cta a{display:inline-block;background:#dc2626;color:#fff;padding:12px 24px;border-radius:8px;font-weight:600;font-size:14px}
+.calc-cta a:hover{background:#b91c1c;text-decoration:none}
+article h2{font-size:25px;font-weight:700;margin:36px 0 14px}
+article h3{font-size:18px;font-weight:600;margin:22px 0 10px}
+article p{margin-bottom:14px;color:#334155;font-size:15px}
+article ul{margin:12px 0 18px 22px;color:#334155}
+article li{margin-bottom:7px;font-size:15px}
+article strong{color:#0f172a;font-weight:600}
+.intro{background:#fffbeb;border-left:4px solid #f59e0b;padding:16px 20px;border-radius:0 8px 8px 0;margin-bottom:24px;font-size:14px;color:#78350f}
+.rate-table{width:100%;border-collapse:collapse;margin:16px 0 24px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;font-size:14px}
+.rate-table th{padding:11px 14px;text-align:left;font-size:12px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid #e2e8f0;background:#f8fafc}
+.rate-table td{padding:11px 14px;border-bottom:1px solid #f1f5f9}
+.rate-table tr:last-child td{border-bottom:none}
+.rate-table .r{font-weight:600;color:#dc2626}
+.formula{background:#1e293b;color:#e2e8f0;padding:14px 18px;border-radius:8px;font-family:Menlo,monospace;font-size:14px;margin:14px 0;overflow-x:auto}
+.formula code{color:#fbbf24}
+.example-box{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:18px 22px;margin:18px 0}
+.example-box h4{font-size:14px;font-weight:700;color:#166534;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.example-box ol{margin:8px 0 0 22px}
+.example-box li{margin-bottom:6px;font-size:14px;color:#14532d}
+.faq-item{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:18px 20px;margin-bottom:10px;cursor:pointer}
+.faq-item h4{font-size:15px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.faq-item h4 span{color:#94a3b8;font-size:18px;font-weight:400}
+.faq-item p{display:none;margin-top:10px;color:#475569;font-size:14px}
+.faq-item.open p{display:block}
+.cta-block{background:linear-gradient(135deg,#dc2626,#991b1b);color:#fff;padding:32px;border-radius:14px;text-align:center;margin:40px 0}
+.cta-block h3{color:#fff;font-size:22px;margin-bottom:8px}
+.cta-block p{color:#fecaca;margin-bottom:18px;font-size:15px}
+.cta-block a{display:inline-block;background:#fff;color:#dc2626;padding:12px 28px;border-radius:8px;font-weight:700;font-size:15px}
+.related{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:24px;margin-top:32px}
+.related h3{font-size:16px;font-weight:700;margin-bottom:14px}
+.related ul{list-style:none;margin:0;padding:0}
+.related li{padding:7px 0;border-bottom:1px solid #f1f5f9}
+.related li:last-child{border-bottom:none}
+.related a{font-size:14px}
+footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
+.footer-inner{max-width:960px;margin:0 auto;text-align:center}
+.footer-inner a{color:#cbd5e1;margin:0 12px;font-size:13px}
+.footer-bottom{margin-top:18px;font-size:12px;color:#475569}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Get<span>Invoice</span>Maker</div>
+  <div class="nav-r">
+    <a href="/">Invoice</a>
+    <a href="/how-to-calculate-gst-on-canadian-invoices">Canada GST</a>
+    <a href="/"><button class="btn">Create Invoice</button></a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container" style="padding:0">
+    <div class="breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/how-to-calculate-gst-on-canadian-invoices">Canada Sales Tax</a> &rsaquo; <%= province.name %></div>
+    <div class="flag-badge">🍁 <%= province.name %> · <%= province.system %> · <%= province.combined %>%</div>
+    <h1><%= province.name %> Sales Tax Calculator <span>(<%= province.combined %>% — 2026)</span></h1>
+    <p><%= province.heroSub %></p>
+  </div>
+</section>
+
+<div class="container">
+
+  <div class="calc-card">
+    <div class="calc-title"><%= province.abbr %> Sales Tax Calculator</div>
+    <div class="calc-sub">Add tax or remove tax. <%= province.authority %> 2026 rates. Updates as you type.</div>
+    <div class="calc-row">
+      <div class="calc-fg">
+        <label>Amount (CAD)</label>
+        <input type="number" id="amt" value="1000" min="0" step="0.01" oninput="calc()">
+      </div>
+      <div class="calc-fg">
+        <label>Calculation</label>
+        <select id="mode" onchange="calc()">
+          <option value="add">Add tax (amount is before tax)</option>
+          <option value="remove">Remove tax (amount includes tax)</option>
+        </select>
+      </div>
+    </div>
+    <div class="calc-result">
+      <div class="calc-line"><span id="lBase">Amount before tax</span><span id="rBase">CA$1,000.00</span></div>
+      <% if (province.isHST) { %>
+      <div class="calc-line"><span>HST (<%= province.combined %>%)</span><span id="rHst">CA$130.00</span></div>
+      <% } else { %>
+      <div class="calc-line"><span>GST (<%= province.gst %>%)</span><span id="rGst">CA$50.00</span></div>
+      <div class="calc-line"><span><%= province.pstName %> (<%= province.pst %>%)</span><span id="rPst">CA$70.00</span></div>
+      <% } %>
+      <div class="calc-line grand"><span id="lTot">Total with tax</span><span id="rTot">CA$1,120.00</span></div>
+    </div>
+    <div class="calc-cta"><a href="/">Create a Free Canadian Invoice &rarr;</a></div>
+  </div>
+
+  <article>
+    <div class="intro"><strong>Quick answer:</strong> <%= province.quickAnswer %></div>
+
+    <h2>Sales Tax in <%= province.name %> (2026)</h2>
+    <p><%= province.aboutPara %></p>
+    <table class="rate-table">
+      <tr><th>Tax</th><th>Rate</th></tr>
+      <% if (province.isHST) { %>
+      <tr><td>HST (Harmonized Sales Tax)</td><td class="r"><%= province.combined %>%</td></tr>
+      <% } else { %>
+      <tr><td>GST (federal)</td><td class="r"><%= province.gst %>%</td></tr>
+      <tr><td><%= province.pstFullName %> (<%= province.pstName %>)</td><td class="r"><%= province.pst %>%</td></tr>
+      <tr><td><strong>Combined</strong></td><td class="r"><strong><%= province.combined %>%</strong></td></tr>
+      <% } %>
+    </table>
+
+    <h2>What's Taxed and What's Exempt</h2>
+    <p><%= province.exemptPara %></p>
+
+    <h2>How to Calculate <%= province.abbr %> Sales Tax</h2>
+    <div class="formula"><%- province.formula %></div>
+
+    <div class="example-box">
+      <h4>Example — <%= province.combined %>% on a CA$1,000 invoice</h4>
+      <ol><%- province.exampleSteps %></ol>
+    </div>
+
+    <h2>Reverse Calculation (Tax-Included Price)</h2>
+    <p>If a price already includes tax and you need the pre-tax amount:</p>
+    <div class="formula"><%- province.reverseFormula %></div>
+
+    <h2>Invoice Requirements in <%= province.name %></h2>
+    <p><%= province.invoicePara %></p>
+
+    <div class="cta-block">
+      <h3>Create a <%= province.name %> Invoice in 60 Seconds</h3>
+      <p>Free, no signup. CAD currency, automatic tax breakdown, instant PDF.</p>
+      <a href="/">Open the Invoice Generator &rarr;</a>
+    </div>
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item" onclick="this.classList.toggle('open');this.querySelector('span').textContent=this.classList.contains('open')?'−':'+'">
+      <h4>What is the sales tax rate in <%= province.name %>? <span>+</span></h4>
+      <p><%= province.faqRate %></p>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open');this.querySelector('span').textContent=this.classList.contains('open')?'−':'+'">
+      <h4>How do I calculate sales tax on CA$1,000 in <%= province.name %>? <span>+</span></h4>
+      <p><%= province.faqCalc %></p>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open');this.querySelector('span').textContent=this.classList.contains('open')?'−':'+'">
+      <h4>How do I remove tax from a tax-included price? <span>+</span></h4>
+      <p><%= province.faqReverse %></p>
+    </div>
+
+    <div class="related">
+      <h3>Other Canadian Provinces</h3>
+      <ul>
+        <li><a href="/how-to-calculate-gst-on-canadian-invoices"><strong>Canada GST/HST/PST Calculator (All Provinces)</strong></a></li>
+        <% provinces.forEach(function(p){ if(p.slug !== province.slug){ %>
+        <li><a href="/<%= p.slug %>"><%= p.name %> Sales Tax Calculator (<%= p.combined %>%)</a></li>
+        <% }}); %>
+        <li><a href="/free-invoice-generator-canada">Free Canadian Invoice Generator</a></li>
+      </ul>
+    </div>
+  </article>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="/">Invoice Generator</a>
+      <a href="/how-to-calculate-gst-on-canadian-invoices">Canada GST</a>
+      <a href="/free-invoice-generator-australia">Australia</a>
+      <a href="/blog">Blog</a>
+    </div>
+    <div class="footer-bottom">&copy; 2026 GetInvoiceMaker — Free invoice tools worldwide.</div>
+  </div>
+</footer>
+
+<script>
+var P = { gst: <%= province.gst %>, pst: <%= province.pst %>, combined: <%= province.combined %>, isHST: <%= province.isHST ? 'true' : 'false' %> };
+function calc(){
+  var amt = parseFloat(document.getElementById('amt').value) || 0;
+  var mode = document.getElementById('mode').value;
+  var base, gst, pst, total;
+  if(mode === 'add'){
+    base = amt;
+    gst = amt * P.gst/100;
+    pst = amt * P.pst/100;
+    total = amt + gst + pst;
+    document.getElementById('lBase').textContent = 'Amount before tax';
+    document.getElementById('lTot').textContent = 'Total with tax';
+  } else {
+    total = amt;
+    base = amt / (1 + P.combined/100);
+    gst = base * P.gst/100;
+    pst = base * P.pst/100;
+    document.getElementById('lBase').textContent = 'Amount before tax';
+    document.getElementById('lTot').textContent = 'Total with tax (entered)';
+  }
+  var f = function(n){ return 'CA$' + n.toLocaleString('en-CA',{minimumFractionDigits:2,maximumFractionDigits:2}); };
+  document.getElementById('rBase').textContent = f(base);
+  document.getElementById('rTot').textContent = f(total);
+  if(P.isHST){ document.getElementById('rHst').textContent = f(gst+pst); }
+  else { document.getElementById('rGst').textContent = f(gst); document.getElementById('rPst').textContent = f(pst); }
+}
+calc();
+</script>
+
+</body>
+</html>
