@@ -1,0 +1,305 @@
+{
+  "siteUrl": "https://getinvoicemaker.com/",
+  "keywords": [
+    {
+      "keyword": "invoice maker tool [ no signup ]",
+      "targetPath": "/",
+      "priority": "high",
+      "_seed": {
+        "rank": 2,
+        "impressions": 1,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "what type of document",
+      "targetPath": "/free-invoice-generator-netherlands",
+      "priority": "high",
+      "_seed": {
+        "rank": 4,
+        "impressions": 1,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "0 btw",
+      "targetPath": "/free-invoice-generator-netherlands",
+      "priority": "high",
+      "_seed": {
+        "rank": 6,
+        "impressions": 1,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "free btw",
+      "targetPath": "/free-invoice-generator-netherlands",
+      "priority": "high",
+      "_seed": {
+        "rank": 7,
+        "impressions": 2,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "invoice rate",
+      "targetPath": "/free-invoice-generator-netherlands",
+      "priority": "high",
+      "_seed": {
+        "rank": 8,
+        "impressions": 1,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "dutch invoice template",
+      "targetPath": "/free-invoice-generator-netherlands",
+      "priority": "high",
+      "_seed": {
+        "rank": 9.96,
+        "impressions": 47,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "intitle:\"free invoice template\"",
+      "targetPath": "/invoice-template-freelancer",
+      "priority": "high",
+      "_seed": {
+        "rank": 10,
+        "impressions": 2,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "dutch invoice",
+      "targetPath": "/free-invoice-generator-netherlands",
+      "priority": "medium",
+      "_seed": {
+        "rank": 10.67,
+        "impressions": 3,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "kvk nummer generator",
+      "targetPath": "/free-invoice-generator-netherlands",
+      "priority": "medium",
+      "_seed": {
+        "rank": 11,
+        "impressions": 2,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "invoice in nederlands",
+      "targetPath": "/free-invoice-generator-netherlands",
+      "priority": "low",
+      "_seed": {
+        "rank": 28,
+        "impressions": 1,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "invoicemaker pricingtranslate pdf",
+      "targetPath": "/",
+      "priority": "low",
+      "_seed": {
+        "rank": 28,
+        "impressions": 1,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "invoice template netherlands",
+      "targetPath": "/free-invoice-generator-netherlands",
+      "priority": "low",
+      "_seed": {
+        "rank": 28.22,
+        "impressions": 9,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "freeinvoicemaker",
+      "targetPath": "/",
+      "priority": "low",
+      "_seed": {
+        "rank": 30,
+        "impressions": 2,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "gst in sk",
+      "targetPath": "/saskatchewan-gst-pst-calculator",
+      "priority": "low",
+      "_seed": {
+        "rank": 30,
+        "impressions": 1,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "invoice in dutch",
+      "targetPath": "/free-invoice-generator-netherlands",
+      "priority": "low",
+      "_seed": {
+        "rank": 31,
+        "impressions": 2,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "invoicing tips for small business",
+      "targetPath": "/blog/small-business-invoicing-tips",
+      "priority": "low",
+      "_seed": {
+        "rank": 33,
+        "impressions": 1,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "invoice dutch",
+      "targetPath": "/free-invoice-generator-netherlands",
+      "priority": "low",
+      "_seed": {
+        "rank": 37,
+        "impressions": 5,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "how to calculate gst on canadian invoices?",
+      "targetPath": "/how-to-calculate-gst-on-canadian-invoices",
+      "priority": "low",
+      "_seed": {
+        "rank": 37.55,
+        "impressions": 556,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "btw calculator netherlands",
+      "targetPath": "/free-invoice-generator-netherlands",
+      "priority": "low",
+      "_seed": {
+        "rank": 38,
+        "impressions": 1,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "btw form",
+      "targetPath": "/free-invoice-generator-netherlands",
+      "priority": "low",
+      "_seed": {
+        "rank": 40,
+        "impressions": 1,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "invoice nederlands",
+      "targetPath": "/free-invoice-generator-netherlands",
+      "priority": "low",
+      "_seed": {
+        "rank": 44,
+        "impressions": 1,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "wc quote",
+      "targetPath": "/free-invoice-generator-netherlands",
+      "priority": "low",
+      "_seed": {
+        "rank": 44,
+        "impressions": 1,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "manitoba sales tax",
+      "targetPath": "/manitoba-gst-pst-calculator",
+      "priority": "low",
+      "_seed": {
+        "rank": 46,
+        "impressions": 1,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "invoice number netherlands",
+      "targetPath": "/free-invoice-generator-netherlands",
+      "priority": "low",
+      "_seed": {
+        "rank": 47,
+        "impressions": 2,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "sk pst rate",
+      "targetPath": "/saskatchewan-gst-pst-calculator",
+      "priority": "low",
+      "_seed": {
+        "rank": 48,
+        "impressions": 1,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "manitoba taxes gst pst",
+      "targetPath": "/manitoba-gst-pst-calculator",
+      "priority": "low",
+      "_seed": {
+        "rank": 49,
+        "impressions": 1,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "vat generator",
+      "targetPath": "/free-invoice-generator-netherlands",
+      "priority": "low",
+      "_seed": {
+        "rank": 50,
+        "impressions": 1,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "ontario sales tax calculator",
+      "targetPath": "/ontario-hst-calculator",
+      "priority": "low",
+      "_seed": {
+        "rank": 51,
+        "impressions": 3,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "saskatchewan sales tax calculator",
+      "targetPath": "/saskatchewan-gst-pst-calculator",
+      "priority": "low",
+      "_seed": {
+        "rank": 52.67,
+        "impressions": 3,
+        "clicks": 0
+      }
+    },
+    {
+      "keyword": "manitoba rst rate",
+      "targetPath": "/manitoba-gst-pst-calculator",
+      "priority": "low",
+      "_seed": {
+        "rank": 53,
+        "impressions": 2,
+        "clicks": 0
+      }
+    }
+  ]
+}

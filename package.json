@@ -18,5 +18,8 @@
     "express": "^5.2.1",
     "pdfkit": "^0.18.0",
     "puppeteer-core": "^24.41.0"
+  },
+  "devDependencies": {
+    "googleapis": "^178.0.0"
   }
 }
