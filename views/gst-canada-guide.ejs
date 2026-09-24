@@ -37,7 +37,7 @@
   "mainEntity": [
     {"@type": "Question", "name": "What is GST in Canada?", "acceptedAnswer": {"@type": "Answer", "text": "GST (Goods and Services Tax) is a 5% federal tax applied to most goods and services in Canada. It is collected by businesses registered with the Canada Revenue Agency."}},
     {"@type": "Question", "name": "Do I need to charge GST on my invoices?", "acceptedAnswer": {"@type": "Answer", "text": "If your business earns more than $30,000 in revenue over four consecutive quarters, you must register for GST/HST and charge it on your invoices."}},
-    {"@type": "Question", "name": "What is the difference between GST and HST?", "acceptedAnswer": {"@type": "Answer", "text": "GST is the federal 5% tax. HST (Harmonized Sales Tax) combines federal and provincial taxes into one rate, used in Ontario (13%), New Brunswick, Nova Scotia, PEI, and Newfoundland (15%)."}},
+    {"@type": "Question", "name": "What is the difference between GST and HST?", "acceptedAnswer": {"@type": "Answer", "text": "GST is the federal 5% tax. HST (Harmonized Sales Tax) combines federal and provincial taxes into one rate, used in Ontario (13%), Nova Scotia (14% since April 1, 2025), and New Brunswick, PEI, and Newfoundland and Labrador (15%)."}},
     {"@type": "Question", "name": "How do I calculate GST on a $1000 invoice?", "acceptedAnswer": {"@type": "Answer", "text": "Multiply $1000 by 0.05 (5%) to get $50 in GST. The final invoice total is $1050."}},
     {"@type": "Question", "name": "What province has the highest sales tax?", "acceptedAnswer": {"@type": "Answer", "text": "Quebec has the highest combined sales tax at 14.975% (5% GST + 9.975% QST)."}},
     {"@type": "Question", "name": "Does Alberta have PST?", "acceptedAnswer": {"@type": "Answer", "text": "No. Alberta only charges 5% GST. There is no provincial sales tax in Alberta, Northwest Territories, Nunavut, or Yukon."}}
@@ -119,6 +119,7 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
 .footer-inner a{color:#cbd5e1;margin:0 12px;font-size:13px}
 .footer-bottom{margin-top:18px;font-size:12px;color:#475569}
 </style>
+<%- include('partials/head') %>
 </head>
 <body>
 
@@ -136,7 +137,7 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
   <div class="container" style="padding:0">
     <div class="breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/blog">Guides</a> &rsaquo; GST on Canadian Invoices</div>
     <h1>How to Calculate GST on Canadian Invoices <span>— 2026 Guide</span></h1>
-    <p>Step-by-step calculation for GST, HST, and PST. Province-by-province rates, real examples, and a free interactive calculator. Updated January 2026.</p>
+    <p>Step-by-step calculation for GST, HST, and PST. Province-by-province rates, real examples, and a free interactive calculator. Updated September 2026: Nova Scotia HST is 14% since April 1, 2025.</p>
   </div>
 </section>
 
@@ -159,7 +160,7 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
           <option value="NB|HST|15">New Brunswick — 15% HST</option>
           <option value="NL|HST|15">Newfoundland and Labrador — 15% HST</option>
           <option value="NT|GST|5">Northwest Territories — 5% GST</option>
-          <option value="NS|HST|15">Nova Scotia — 15% HST</option>
+          <option value="NS|HST|14">Nova Scotia — 14% HST</option>
           <option value="NU|GST|5">Nunavut — 5% GST</option>
           <option value="ON|HST|13">Ontario — 13% HST</option>
           <option value="PE|HST|15">Prince Edward Island — 15% HST</option>
@@ -196,7 +197,7 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
       <li><strong>HST (Harmonized Sales Tax)</strong> — a combined federal-provincial tax used in five provinces (Ontario, New Brunswick, Nova Scotia, Newfoundland and Labrador, Prince Edward Island). HST replaces GST and PST with one rate.</li>
       <li><strong>PST (Provincial Sales Tax)</strong> — charged on top of GST in British Columbia, Saskatchewan, Manitoba (where it's called RST), and Quebec (called QST).</li>
     </ul>
-    <p>Three provinces and territories charge only the 5% GST with no provincial component: <strong>Alberta, Yukon, Northwest Territories, and Nunavut</strong>.</p>
+    <p>One province and three territories charge only the 5% GST with no provincial component: <strong>Alberta, Yukon, Northwest Territories, and Nunavut</strong>.</p>
 
     <h2>2026 Sales Tax Rates by Province</h2>
     <table class="tax-table">
@@ -205,17 +206,17 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
       </thead>
       <tbody>
         <tr><td class="province">Alberta</td><td>GST only</td><td class="rate">5%</td><td>5%</td></tr>
-        <tr><td class="province">British Columbia</td><td>GST + PST</td><td class="rate">5% + 7%</td><td>12%</td></tr>
-        <tr><td class="province">Manitoba</td><td>GST + RST</td><td class="rate">5% + 7%</td><td>12%</td></tr>
+        <tr><td class="province"><a href="/british-columbia-gst-pst-calculator">British Columbia</a></td><td>GST + PST</td><td class="rate">5% + 7%</td><td>12%</td></tr>
+        <tr><td class="province"><a href="/manitoba-gst-pst-calculator">Manitoba</a></td><td>GST + RST</td><td class="rate">5% + 7%</td><td>12%</td></tr>
         <tr><td class="province">New Brunswick</td><td>HST</td><td class="rate">15%</td><td>15%</td></tr>
         <tr><td class="province">Newfoundland and Labrador</td><td>HST</td><td class="rate">15%</td><td>15%</td></tr>
         <tr><td class="province">Northwest Territories</td><td>GST only</td><td class="rate">5%</td><td>5%</td></tr>
-        <tr><td class="province">Nova Scotia</td><td>HST</td><td class="rate">15%</td><td>15%</td></tr>
+        <tr><td class="province"><a href="/nova-scotia-hst-calculator">Nova Scotia</a></td><td>HST</td><td class="rate">14%</td><td>14%</td></tr>
         <tr><td class="province">Nunavut</td><td>GST only</td><td class="rate">5%</td><td>5%</td></tr>
-        <tr><td class="province">Ontario</td><td>HST</td><td class="rate">13%</td><td>13%</td></tr>
+        <tr><td class="province"><a href="/ontario-hst-calculator">Ontario</a></td><td>HST</td><td class="rate">13%</td><td>13%</td></tr>
         <tr><td class="province">Prince Edward Island</td><td>HST</td><td class="rate">15%</td><td>15%</td></tr>
-        <tr><td class="province">Quebec</td><td>GST + QST</td><td class="rate">5% + 9.975%</td><td>14.975%</td></tr>
-        <tr><td class="province">Saskatchewan</td><td>GST + PST</td><td class="rate">5% + 6%</td><td>11%</td></tr>
+        <tr><td class="province"><a href="/quebec-gst-qst-calculator">Quebec</a></td><td>GST + QST</td><td class="rate">5% + 9.975%</td><td>14.975%</td></tr>
+        <tr><td class="province"><a href="/saskatchewan-gst-pst-calculator">Saskatchewan</a></td><td>GST + PST</td><td class="rate">5% + 6%</td><td>11%</td></tr>
         <tr><td class="province">Yukon</td><td>GST only</td><td class="rate">5%</td><td>5%</td></tr>
       </tbody>
     </table>
@@ -273,18 +274,20 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
     </div>
 
     <h2>What Must Appear on a Canadian Invoice?</h2>
-    <p>The CRA requires all GST/HST registered businesses to include the following on every invoice:</p>
-    <ul>
-      <li>Your business name and address</li>
-      <li>Your <strong>GST/HST registration number</strong> (mandatory)</li>
-      <li>Invoice date</li>
-      <li>The buyer's name (or business name)</li>
-      <li>A description of the goods or services</li>
-      <li>The amount paid (subtotal before tax)</li>
-      <li>The tax rate applied and the tax amount</li>
-      <li>The total amount due</li>
-    </ul>
-    <p>Missing the GST/HST number is the most common compliance failure. Without it, your client cannot claim Input Tax Credits on their own return, and they may refuse to pay until you fix the invoice.</p>
+    <p>The CRA sets the information your client needs on an invoice to claim input tax credits (ITCs), and the list grows with the invoice total (including tax):</p>
+    <table class="tax-table">
+      <thead><tr><th>Invoice total</th><th>Information required</th></tr></thead>
+      <tbody>
+        <tr><td class="province">Under $100</td><td>Your business or trading name; the invoice date (or payment date); the total amount paid or payable; and, for taxable sales, either the GST/HST charged or a statement that the total includes it.</td></tr>
+        <tr><td class="province">$100 to $499.99</td><td>All of the above, plus your <strong>GST/HST registration number</strong> and the tax shown per rate (or the total tax, or a statement that the price includes tax at the stated rate).</td></tr>
+        <tr><td class="province">$500 or more</td><td>All of the above, plus the <strong>buyer's name</strong> (or trading name or authorized agent), the <strong>terms of payment</strong>, and a <strong>description</strong> sufficient to identify each supply.</td></tr>
+      </tbody>
+    </table>
+    <p>In practice, include all of these on every invoice: business name and address, GST/HST number, invoice number and date, the client's name, a clear description of each item, the subtotal, each tax on its own line with its rate, the total, and your payment terms. If you invoice in Quebec, add your QST registration number too.</p>
+    <p>A missing GST/HST number is the most common problem. Without it, a registered client cannot claim input tax credits and will usually ask you to reissue the invoice before paying.</p>
+
+    <h2>Do You Charge GST to Clients Outside Canada?</h2>
+    <p>Often not. Many exports of goods and many services supplied to non-residents are <strong>zero-rated</strong>: taxable at 0%, so you charge no GST/HST but can still claim input tax credits. The rules depend on what you supply and where the client uses it, so confirm your case with the CRA's guidance on exports before relying on it.</p>
 
     <h2>Calculating GST in Reverse (When the Total Includes Tax)</h2>
     <p>Sometimes you have an after-tax total and need to find the pre-tax amount and the tax. The formula is:</p>
@@ -321,7 +324,7 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
     </div>
     <div class="faq-item" onclick="toggleFaq(this)">
       <h4>What is the difference between GST and HST? <span>+</span></h4>
-      <p>GST is the federal 5% tax. HST (Harmonized Sales Tax) combines federal and provincial taxes into one rate, used in Ontario (13%), New Brunswick, Nova Scotia, PEI, and Newfoundland (15%).</p>
+      <p>GST is the federal 5% tax. HST (Harmonized Sales Tax) combines federal and provincial taxes into one rate, used in Ontario (13%), Nova Scotia (14% since April 1, 2025), and New Brunswick, PEI, and Newfoundland and Labrador (15%).</p>
     </div>
     <div class="faq-item" onclick="toggleFaq(this)">
       <h4>How do I calculate GST on a $1000 invoice? <span>+</span></h4>
@@ -329,7 +332,7 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
     </div>
     <div class="faq-item" onclick="toggleFaq(this)">
       <h4>What province has the highest sales tax? <span>+</span></h4>
-      <p>Quebec has the highest combined sales tax at 14.975% (5% GST + 9.975% QST). The HST provinces (NB, NS, PEI, NL) follow at 15%.</p>
+      <p>Quebec has the highest combined sales tax at 14.975% (5% GST + 9.975% QST). New Brunswick, PEI, and Newfoundland and Labrador follow at 15% HST, then Nova Scotia at 14%.</p>
     </div>
     <div class="faq-item" onclick="toggleFaq(this)">
       <h4>Does Alberta have PST? <span>+</span></h4>

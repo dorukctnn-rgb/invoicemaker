@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -6,16 +6,23 @@
 <title><%= post.title %> | GetInvoiceMaker</title>
 <meta name="description" content="<%= post.desc %>">
 <link rel="canonical" href="<%= siteUrl %>/blog/<%= post.slug %>">
+<meta property="og:type" content="article">
+<meta property="og:title" content="<%= post.title %>">
+<meta property="og:description" content="<%= post.desc %>">
+<meta property="og:url" content="<%= siteUrl %>/blog/<%= post.slug %>">
 <script type="application/ld+json">
-{
+<%- JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "<%= post.title %>",
-  "description": "<%= post.desc %>",
-  "datePublished": "<%= post.date %>",
-  "author": {"@type": "Organization", "name": "GetInvoiceMaker"},
-  "publisher": {"@type": "Organization", "name": "GetInvoiceMaker", "url": "<%= siteUrl %>"}
-}
+  "@graph": [
+    { "@type": "Article", "headline": post.title, "description": post.desc, "datePublished": post.date, "dateModified": post.updated || post.date,
+      "mainEntityOfPage": siteUrl + "/blog/" + post.slug,
+      "author": { "@type": "Organization", "name": "GetInvoiceMaker", "url": siteUrl }, "publisher": { "@type": "Organization", "name": "GetInvoiceMaker", "url": siteUrl } },
+    { "@type": "BreadcrumbList", "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl + "/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": siteUrl + "/blog" },
+      { "@type": "ListItem", "position": 3, "name": post.title, "item": siteUrl + "/blog/" + post.slug } ] }
+  ]
+}) %>
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -37,7 +44,12 @@ nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;
 .content{line-height:1.8;font-size:15px;color:#334155}
 .content h2{font-size:20px;font-weight:700;color:#0f172a;margin:32px 0 12px}
 .content p{margin-bottom:14px}
-.content ul{margin:0 0 14px 20px}
+.content ul,.content ol{margin:0 0 14px 20px}
+.content table{width:100%;border-collapse:collapse;margin:0 0 18px;font-size:14px;background:#fff}
+.content th,.content td{border:1px solid #e2e8f0;padding:8px 10px;text-align:left;vertical-align:top}
+.content th{background:#f8fafc;font-size:12px;text-transform:uppercase;letter-spacing:.3px;color:#475569}
+.content blockquote{border-left:3px solid #2563eb;background:#fff;padding:14px 16px;margin:0 0 16px;font-size:14px;color:#0f172a}
+.content code{background:#f1f5f9;padding:1px 6px;border-radius:4px;font-size:13px}
 .content ul li{margin-bottom:6px}
 .content strong{color:#0f172a}
 .cta-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:24px;margin:40px 0;text-align:center}
@@ -54,10 +66,11 @@ footer{background:#0f172a;color:#94a3b8;padding:28px 20px;text-align:center;font
 footer a{color:#64748b;margin:0 10px}
 footer a:hover{color:#fff}
 </style>
+<%- include('partials/head') %>
 </head>
 <body>
 <nav>
-  <a href="/"><div class="logo">Invoice<span>Maker</span></div></a>
+  <a href="/"><div class="logo">Get<span>Invoice</span>Maker</div></a>
   <div class="nav-r">
     <a href="/">Tool</a>
     <a href="/blog">Blog</a>
@@ -68,11 +81,11 @@ footer a:hover{color:#fff}
 <div class="main">
   <div class="tag"><%= post.category %></div>
   <h1><%= post.title %></h1>
-  <div class="meta"><span><%= post.date %></span><span><%= post.readTime %></span></div>
+  <div class="meta"><span>Updated <%= post.updated || post.date %></span><span><%= post.readTime %></span></div>
   <div class="content"><%- post.content %></div>
   <div class="cta-box">
     <h3>Create a professional invoice right now</h3>
-    <p>Free PDF invoice generator. No signup, no watermark on free plan. Ready in 60 seconds.</p>
+    <p>Free PDF invoice generator. No signup, 18 currencies, tax calculated for you.</p>
     <a href="/"><button class="btn-blue" style="font-size:14px;padding:10px 24px">Create Free Invoice</button></a>
   </div>
   <div class="related">
