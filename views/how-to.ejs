@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -6,6 +6,24 @@
 <title><%= page.title %> | GetInvoiceMaker</title>
 <meta name="description" content="<%= page.desc %>">
 <link rel="canonical" href="<%= siteUrl %>/<%= page.slug %>">
+<meta property="og:type" content="article">
+<meta property="og:title" content="<%= page.title %>">
+<meta property="og:description" content="<%= page.desc %>">
+<meta property="og:url" content="<%= siteUrl %>/<%= page.slug %>">
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "Article", "headline": page.title, "description": page.desc, "dateModified": page.updated, "mainEntityOfPage": siteUrl + "/" + page.slug,
+      "author": { "@type": "Organization", "name": "GetInvoiceMaker", "url": siteUrl }, "publisher": { "@type": "Organization", "name": "GetInvoiceMaker", "url": siteUrl } },
+    { "@type": "HowTo", "name": page.title, "step": (page.steps || []).map(function (t, i) { return { "@type": "HowToStep", "position": i + 1, "name": t, "text": t }; }) },
+    { "@type": "BreadcrumbList", "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl + "/" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": siteUrl + "/blog" },
+      { "@type": "ListItem", "position": 3, "name": page.title, "item": siteUrl + "/" + page.slug } ] }
+  ]
+}) %>
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -30,6 +48,25 @@ nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;
 .cta-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:24px;margin:32px 0;text-align:center}
 .cta-box h3{font-size:16px;font-weight:700;margin-bottom:8px}
 .cta-box p{font-size:13px;color:#475569;margin-bottom:16px}
+.article{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:28px 28px 12px;line-height:1.75;font-size:15px;color:#334155}
+.article h2{font-size:19px;font-weight:700;color:#0f172a;margin:26px 0 10px}
+.article h2:first-child{margin-top:0}
+.article p,.article ul,.article ol,.article table{margin-bottom:14px}
+.article ul,.article ol{padding-left:20px}
+.article li{margin-bottom:6px}
+.article strong{color:#0f172a}
+.article code{background:#f1f5f9;padding:1px 6px;border-radius:4px;font-size:13px}
+.article table{width:100%;border-collapse:collapse;font-size:14px}
+.article th,.article td{border:1px solid #e2e8f0;padding:8px 10px;text-align:left;vertical-align:top}
+.article th{background:#f8fafc;font-size:12px;text-transform:uppercase;letter-spacing:.3px;color:#475569}
+.summary{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 20px;margin-bottom:20px}
+.summary h2{font-size:13px;text-transform:uppercase;letter-spacing:.5px;color:#64748b;margin-bottom:10px}
+.summary ol{padding-left:18px;font-size:14px;color:#0f172a;line-height:1.7}
+.updated{font-size:12px;color:#94a3b8;margin-top:10px}
+.guides{margin-top:32px}
+.guides h2{font-size:18px;font-weight:700;margin-bottom:12px}
+.guides a{display:block;padding:10px 0;border-bottom:1px solid #e2e8f0;font-size:14px}
+@media(max-width:600px){.article{padding:20px 18px 6px}}
 .templates{margin-top:40px}
 .templates h2{font-size:18px;font-weight:700;margin-bottom:16px}
 .tgrid{display:flex;flex-wrap:wrap;gap:8px}
@@ -39,10 +76,11 @@ footer{background:#0f172a;color:#94a3b8;padding:28px 20px;text-align:center;font
 footer a{color:#64748b;margin:0 10px}
 footer a:hover{color:#fff}
 </style>
+<%- include('partials/head') %>
 </head>
 <body>
 <nav>
-  <a href="/"><div class="logo">Invoice<span>Maker</span></div></a>
+  <a href="/"><div class="logo">Get<span>Invoice</span>Maker</div></a>
   <div class="nav-r">
     <a href="/">Tool</a>
     <a href="/blog">Blog</a>
@@ -56,30 +94,25 @@ footer a:hover{color:#fff}
   <a href="/"><button class="btn-blue" style="font-size:14px;padding:10px 24px">Create Free Invoice Now</button></a>
 </section>
 <div class="main">
-  <div class="step-box">
-    <div class="step-num">1</div>
-    <h3>Open GetInvoiceMaker</h3>
-    <p>Go to getinvoicemaker.com — no account or signup required. The invoice generator loads instantly in your browser.</p>
+  <% if (page.steps && page.steps.length) { %>
+  <div class="summary">
+    <h2>In short</h2>
+    <ol><% page.steps.forEach(function (t) { %><li><%= t %></li><% }) %></ol>
   </div>
-  <div class="step-box">
-    <div class="step-num">2</div>
-    <h3>Fill in your details</h3>
-    <p>Enter your name or business name, your client's details, invoice number, and the issue and due dates. The live preview updates as you type.</p>
-  </div>
-  <div class="step-box">
-    <div class="step-num">3</div>
-    <h3>Add your line items</h3>
-    <p>Add each service or product with a description, quantity and rate. The total calculates automatically. Add tax if required.</p>
-  </div>
-  <div class="step-box">
-    <div class="step-num">4</div>
-    <h3>Download your PDF</h3>
-    <p>Click Download PDF and your professional invoice saves to your device instantly. Send it to your client by email.</p>
-  </div>
+  <% } %>
+  <article class="article"><%- page.body %></article>
+  <p class="updated">Last reviewed <%= page.updated %></p>
   <div class="cta-box">
     <h3>Ready to create your invoice?</h3>
     <p>Free, no signup, instant PDF download. Professional invoices in 60 seconds.</p>
     <a href="/"><button class="btn-blue" style="font-size:14px;padding:10px 24px">Create Free Invoice</button></a>
+  </div>
+  <div class="guides">
+    <h2>More invoicing guides</h2>
+    <% howTo.filter(function (h) { return h.slug !== page.slug; }).slice(0, 5).forEach(function (h) { %>
+    <a href="/<%= h.slug %>"><%= h.title %></a>
+    <% }) %>
+    <a href="/how-to-calculate-gst-on-canadian-invoices">How to calculate GST on Canadian invoices</a>
   </div>
   <div class="templates">
     <h2>Free invoice templates</h2>
@@ -94,19 +127,7 @@ footer a:hover{color:#fff}
   <a href="/">Home</a><a href="/blog">Blog</a><a href="/#pricing">Pricing</a>
   <p style="margin-top:12px">&#169; 2026 GetInvoiceMaker — Free Invoice Generator</p>
 </footer>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "How to Calculate GST on Canadian Invoices",
-  "step": [
-    {"@type": "HowToStep", "name": "Find the GST rate", "text": "Federal GST in Canada is 5%."},
-    {"@type": "HowToStep", "name": "Calculate GST amount", "text": "Multiply your subtotal by 0.05"},
-    {"@type": "HowToStep", "name": "Add provincial tax", "text": "Add HST or PST depending on province"},
-    {"@type": "HowToStep", "name": "Add to invoice", "text": "Show tax as separate line on invoice"}
-  ]
-}
-</script>
+
 </body>
 </html>
 

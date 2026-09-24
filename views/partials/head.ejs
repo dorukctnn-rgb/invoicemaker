@@ -1,0 +1,47 @@
+<meta property="og:site_name" content="GetInvoiceMaker">
+<meta property="og:image" content="https://getinvoicemaker.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://getinvoicemaker.com/og-image.png">
+<meta name="theme-color" content="#ffffff">
+<style>
+/* Shared mobile navigation: collapse secondary links behind a menu button. */
+.nav-toggle{display:none;background:none;border:1px solid #e2e8f0;border-radius:6px;padding:6px 10px;font:600 13px/1 inherit;color:#0f172a;cursor:pointer}
+@media (max-width:760px){
+  nav{padding:0 16px !important;position:sticky}
+  .nav-toggle{display:inline-flex;align-items:center;gap:6px;margin-left:auto;margin-right:8px}
+  .nav-r > a:not(:last-child){display:none}
+  nav.nav-open .nav-r{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:#fff;border-bottom:1px solid #e2e8f0;box-shadow:0 12px 24px rgba(15,23,42,.08);padding:8px 16px 16px}
+  nav.nav-open .nav-r > a{display:block !important;padding:12px 4px;font-size:15px;border-radius:0;border-bottom:1px solid #f1f5f9}
+  nav.nav-open .nav-r > a:last-child{border-bottom:0;padding-top:14px}
+  nav.nav-open .nav-r > a:last-child button{width:100%;padding:12px}
+  .nav-r > a:last-child button{white-space:nowrap;padding:8px 12px !important}
+  .logo{font-size:16px !important}
+  .hero{padding:36px 18px 32px !important}
+  .hero p{font-size:15px !important;margin-bottom:20px !important}
+  .trust{gap:8px 16px !important}
+}
+/* Tool layout on phones: stack fields and give line items a two-row layout. */
+@media (max-width:600px){
+  .main > *{min-width:0}
+  .main{padding-left:12px !important;padding-right:12px !important}
+  .card{padding:18px !important}
+  .frow{grid-template-columns:1fr !important}
+  input,select,textarea{font-size:16px !important;min-width:0;width:100%}
+  .ih{display:none !important}
+  .ir{grid-template-columns:1fr 1fr 1fr 28px !important;row-gap:6px;padding-bottom:8px;border-bottom:1px solid #f1f5f9}
+  .ir > input:first-child{grid-column:1/-1}
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var nav=document.querySelector('nav'),links=nav&&nav.querySelector('.nav-r');
+  if(!links||links.children.length<3)return;
+  var b=document.createElement('button');
+  b.className='nav-toggle';b.type='button';b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Open menu');
+  b.innerHTML='<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Menu';
+  b.addEventListener('click',function(){var o=nav.classList.toggle('nav-open');b.setAttribute('aria-expanded',o);});
+  nav.insertBefore(b,links);
+});
+</script>
