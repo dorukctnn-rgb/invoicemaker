@@ -33,6 +33,19 @@
   .ir{grid-template-columns:1fr 1fr 1fr 28px !important;row-gap:6px;padding-bottom:8px;border-bottom:1px solid #f1f5f9}
   .ir > input:first-child{grid-column:1/-1}
 }
+/* Content tables: on phones, scroll inside their own box instead of widening the page. */
+@media (max-width:600px){
+  table{display:block;width:100%;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  article th,article td,.tax-table th,.tax-table td,.rate-table th,.rate-table td{padding:8px 7px;font-size:13.5px}
+}
+@media (max-width:360px){
+  .nav-r > a:last-child button{padding:7px 9px !important;font-size:12.5px !important}
+  .nav-toggle{margin-right:4px;padding:6px 8px}
+  nav .logo{font-size:16px !important;letter-spacing:-.3px}
+  nav:not(.nav-open) .nav-r > a:last-child{display:none}
+  label{white-space:normal !important}
+  .card .row{grid-template-columns:1fr !important}
+}
 </style>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
