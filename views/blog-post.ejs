@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title><%= post.title %> | GetInvoiceMaker</title>
+<title><%= post.title.length > 46 ? post.title : post.title + ' | GetInvoiceMaker' %></title>
 <meta name="description" content="<%= post.desc %>">
 <link rel="canonical" href="<%= siteUrl %>/blog/<%= post.slug %>">
 <meta property="og:type" content="article">

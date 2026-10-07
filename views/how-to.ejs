@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title><%= page.title %> | GetInvoiceMaker</title>
+<title><%= page.title.length > 46 ? page.title : page.title + ' | GetInvoiceMaker' %></title>
 <meta name="description" content="<%= page.desc %>">
 <link rel="canonical" href="<%= siteUrl %>/<%= page.slug %>">
 <meta property="og:type" content="article">

@@ -1,0 +1,135 @@
+<style>
+.rec{max-width:1180px;margin:0 auto;padding:28px 20px 0}
+.rec .card{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.rec h2{font-size:22px;font-weight:700;margin-bottom:6px}
+.rec .sub{color:var(--muted);font-size:14px;margin-bottom:14px}
+.rec .row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.rec label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.rec input{width:100%;border:1px solid var(--line);border-radius:6px;padding:9px 11px;font-size:15px;font-family:inherit}
+.rec input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+.rec .res{background:var(--soft);border-radius:10px;padding:16px}
+.rec .line{display:flex;justify-content:space-between;gap:12px;padding:5px 0;font-size:15px;color:var(--ink2)}
+.rec .line.total{border-top:2px solid var(--line);margin-top:6px;padding-top:10px;font-weight:700;color:var(--ink);font-size:18px}
+.rec .btn{margin-top:12px;width:100%}
+.sample{background:#fff;border:1px solid #cbd5e1;border-radius:10px;padding:24px;font-size:13.5px;color:var(--ink);margin:14px 0 8px}
+.sample .top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;border-bottom:2px solid #0f766e;padding-bottom:14px;margin-bottom:14px}
+.sample .ttl{font-size:22px;font-weight:700;color:#0f766e;letter-spacing:.5px}
+.sample .k{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+.sample table{width:100%;border-collapse:collapse;margin:12px 0}
+.sample th{background:#f1f5f9;text-align:left;padding:8px;font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:#475569}
+.sample td{padding:8px;border-bottom:1px solid #f1f5f9;vertical-align:top}
+.sample .r{text-align:right;white-space:nowrap}
+.sample .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;margin-bottom:6px}
+@media(max-width:760px){.rec .card,.sample .grid{grid-template-columns:1fr}.rec .row{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.rec .row{grid-template-columns:1fr}.sample{padding:16px}}
+</style>
+
+<section class="rec" aria-labelledby="calcTitle">
+  <div class="card">
+    <div>
+      <h2 id="calcTitle">Commission calculator</h2>
+      <p class="sub">Work out the commission, then put it straight on the invoice below.</p>
+      <div class="row">
+        <div><label for="reSale">Sale price</label><input type="number" id="reSale" value="450000" min="0" step="any"></div>
+        <div><label for="reRate">Commission rate (%)</label><input type="number" id="reRate" value="3" min="0" max="100" step="any"></div>
+      </div>
+      <div class="row">
+        <div><label for="reShare">Your share (%)</label><input type="number" id="reShare" value="100" min="0" max="100" step="any"></div>
+        <div><label for="reTax">Tax on commission (%)</label><input type="number" id="reTax" value="" placeholder="e.g. 13 for Ontario HST" min="0" max="100" step="any"></div>
+      </div>
+      <div><label for="reAddr">Property address</label><input type="text" id="reAddr" value="24 Oak Street" maxlength="120"></div>
+    </div>
+    <div>
+      <div class="res" aria-live="polite">
+        <div class="line"><span>Gross commission</span><span id="reGross">13,500.00</span></div>
+        <div class="line"><span>Your share</span><span id="reNet">13,500.00</span></div>
+        <div class="line"><span>Tax</span><span id="reTaxAmt">0.00</span></div>
+        <div class="line total"><span>Invoice total</span><span id="reTotal">13,500.00</span></div>
+      </div>
+      <button type="button" class="btn" id="reApply">Put this commission on the invoice</button>
+      <p class="sub" style="margin-top:10px">Commission = sale price x rate. Your share = commission x your percentage (use it for splits and referral fees). Tax is worked out on your share.</p>
+    </div>
+  </div>
+</section>
+
+<%- include('generator') %>
+
+<div class="wrap prose">
+  <h2>Real estate commission invoice sample</h2>
+  <p>This is what a filled-in commission invoice looks like. A listing agent bills the seller's side for a closed sale; the same layout works for a buyer's agent or a broker-to-broker referral fee.</p>
+  <div class="sample" role="img" aria-label="Sample real estate commission invoice">
+    <div class="top">
+      <div><div class="ttl">COMMISSION INVOICE</div><div class="k">Invoice no. RE-2026-031 · Date 14 May 2026</div></div>
+      <div style="text-align:right;line-height:1.5"><strong>Jordan Lee, Realtor</strong><br>Harbour Realty Brokerage<br>Licence no. 1234567<br>accounts@harbourrealty.example</div>
+    </div>
+    <div class="grid">
+      <div><div class="k">Bill to</div><strong>Maple Title &amp; Escrow</strong><br>On behalf of seller: A. Patel<br>88 King Street, Suite 400</div>
+      <div><div class="k">Transaction</div>Property: 24 Oak Street<br>MLS no. W1234567 · Closing date 30 May 2026<br>Sale price: 450,000.00</div>
+    </div>
+    <table>
+      <thead><tr><th>Description</th><th class="r">Amount</th></tr></thead>
+      <tbody>
+        <tr><td>Listing commission: 3% of sale price (450,000.00 x 3%)</td><td class="r">13,500.00</td></tr>
+        <tr><td><strong>Subtotal</strong></td><td class="r"><strong>13,500.00</strong></td></tr>
+        <tr><td>HST 13% (Ontario example; leave out where no tax applies)</td><td class="r">1,755.00</td></tr>
+        <tr><td><strong>Total due at closing</strong></td><td class="r"><strong>15,255.00</strong></td></tr>
+      </tbody>
+    </table>
+    <div style="color:var(--muted);font-size:12.5px">Payment: due at closing, by wire to the brokerage trust account shown on the remittance slip, quoting RE-2026-031. GST/HST no. 123456789 RT0001.</div>
+  </div>
+  <p class="source">Names, numbers and the licence and registration numbers above are made up for the example.</p>
+
+  <h2>Fields to put on a real estate invoice</h2>
+  <table class="tbl">
+    <thead><tr><th>Field</th><th>What to write</th></tr></thead>
+    <tbody>
+      <tr><td class="strong">Agent and brokerage</td><td>Your name, brokerage name, licence number, address and contact for accounts.</td></tr>
+      <tr><td class="strong">Who pays</td><td>The party that disburses the commission: title or escrow company, lawyer, the other brokerage, the seller or the landlord.</td></tr>
+      <tr><td class="strong">Property</td><td>Full address, plus the MLS, listing or file number so the payer can match it to the deal.</td></tr>
+      <tr><td class="strong">Price and dates</td><td>Sale price (or monthly rent for a lease), agreement date and closing date.</td></tr>
+      <tr><td class="strong">Commission maths</td><td>Rate and the base it applies to, gross commission, then any split or referral share as a separate line.</td></tr>
+      <tr><td class="strong">Credits and fees</td><td>Retainers already paid, marketing or admin fees agreed in the listing contract.</td></tr>
+      <tr><td class="strong">Tax</td><td>Only where it applies to your service, with your registration number (in Canada, the GST/HST number).</td></tr>
+      <tr><td class="strong">Payment terms</td><td>"Due at closing" or a fixed date, and wire or trust-account instructions.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Other real estate invoices</h2>
+  <h3>Referral fee invoice (broker to broker)</h3>
+  <p>Bill the receiving brokerage for your share of their commission. Show their gross commission and your percentage: 13,500.00 x 25% = 3,375.00. Reference the referral agreement and the client's name.</p>
+  <h3>Lease or rental commission</h3>
+  <p>Commissions on leases are often a percentage of one month's rent or of the first year's rent. Put the lease start date, the monthly rent and the formula on the line, for example "Leasing fee: 100% of first month's rent (2,400.00)".</p>
+  <h3>Property management invoice</h3>
+  <p>For a property invoice to an owner, bill the monthly management fee (often a percentage of rent collected), any leasing or renewal fees, and maintenance costs passed through at cost with the contractor's receipt. One invoice per property per month keeps owners' records simple.</p>
+
+  <h2 id="download">Download the real estate invoice template</h2>
+  <p>Free files with the commission fields above. The Excel version works out the commission, split, tax and total for you.</p>
+  <div class="dl">
+    <a href="/templates/real-estate-commission-invoice-template.docx" download>Word (.docx) <small>edit in Word or Google Docs</small></a>
+    <a href="/templates/real-estate-commission-invoice-template.xlsx" download>Excel (.xlsx) <small>with formulas</small></a>
+    <a href="/templates/real-estate-commission-invoice-template.pdf" download>PDF <small>fillable form</small></a>
+  </div>
+  <p>Prefer not to edit a file? Use the commission calculator and the generator at the top of this page and download a finished PDF.</p>
+</div>
+
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i);};
+  function n(id){var v=parseFloat($(id).value);return isFinite(v)?v:0;}
+  function f(x){return x.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+  function calc(){
+    var gross=n('reSale')*n('reRate')/100, net=gross*n('reShare')/100, tax=Math.round(net*n('reTax'))/100;
+    $('reGross').textContent=f(gross);$('reNet').textContent=f(net);$('reTaxAmt').textContent=f(tax);$('reTotal').textContent=f(net+tax);
+    return {gross:gross,net:Math.round(net*100)/100};
+  }
+  ['reSale','reRate','reShare','reTax'].forEach(function(id){$(id).addEventListener('input',calc);});
+  $('reApply').addEventListener('click',function(){
+    var r=calc(), share=n('reShare'), addr=($('reAddr').value||'property').slice(0,120);
+    var desc='Commission: '+addr+' ('+n('reRate')+'% of '+f(n('reSale'))+(share<100?', '+share+'% share':'')+')';
+    if(!window.GIM)return;
+    window.GIM.setFirstItem(desc,1,r.net);
+    if(n('reTax')>0)window.GIM.setTaxes([{label:'Tax',rate:n('reTax')}]);
+  });
+  calc();
+})();
+</script>

@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "build:templates": "node scripts/build-templates.js"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,8 @@
     "puppeteer-core": "^24.41.0"
   },
   "devDependencies": {
+    "docx": "^9.9.0",
+    "exceljs": "^4.4.0",
     "googleapis": "^178.0.0"
   }
 }

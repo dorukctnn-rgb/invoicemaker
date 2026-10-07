@@ -2,595 +2,148 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="google-site-verification" content="W8M2af5ThlRk6fOBw5krMfdbtJOOWAbzd3bZox8PHro">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Free Invoice Generator — No Signup, Instant PDF | GetInvoiceMaker</title>
-<meta name="description" content="Create a professional invoice in 60 seconds. No signup, 18 currencies, automatic VAT/GST, instant PDF download. Free for freelancers and small businesses.">
-<meta name="keywords" content="free invoice generator, invoice maker, create invoice online, PDF invoice, invoice template">
-<meta property="og:title" content="Free Invoice Generator — No Signup Required | GetInvoiceMaker">
-<meta property="og:description" content="Create professional PDF invoices in 60 seconds. No signup. Free forever.">
+<meta name="google-site-verification" content="W8M2af5ThlRk6fOBw5krMfdbtJOOWAbzd3bZox8PHro">
+<title>Free Invoice Generator, No Signup: Instant PDF Invoice</title>
+<meta name="description" content="Make an invoice online without signing up: no account, no email. Live preview, VAT/GST/HST/BTW tax lines, 18 currencies and a free PDF download.">
+<link rel="canonical" href="https://getinvoicemaker.com/">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://getinvoicemaker.com">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="apple-touch-icon" href="/apple-touch-icon.svg">
-<link rel="canonical" href="https://getinvoicemaker.com">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta property="og:title" content="Free Invoice Generator, No Signup">
+<meta property="og:description" content="Fill in the form, check the live preview, download a PDF invoice. No account or email needed.">
+<meta property="og:url" content="https://getinvoicemaker.com/">
+<%- include('partials/site-head') %>
+<%
+  var faqs = [
+    ['Is there a free invoice generator with no signup?', 'Yes, this one. Open the page, fill in the form and download the PDF. There is no account, no email address and no limit on the number of invoices.'],
+    ['What is the catch?', 'Free PDFs carry one small line at the bottom: "Created with GetInvoiceMaker.com". Pro removes that line and adds your logo. Everything else, including unlimited invoices, tax lines and all currencies, is free.'],
+    ['Where is my invoice data stored?', 'The form runs in your browser. When you click Download, the invoice details are sent to our server only to build the PDF and are not saved. Your own sender details and last invoice number are remembered in your browser so the next invoice is quicker; clearing your browser data removes them.'],
+    ['Can I add two tax lines, like GST and PST?', 'Yes. Add a second tax line for provinces such as British Columbia (GST + PST) or Quebec (GST + QST). On the Canada generator you pick the province and both lines fill in at current rates.'],
+    ['Can I make an invoice in Dutch?', 'Yes. Set the invoice language to Nederlands, or Nederlands + English for a bilingual factuur. The Dutch invoice template page explains which fields the Belastingdienst requires.'],
+    ['How should I number my invoices?', 'Use one continuous sequence, such as INV-001, INV-002 or 2026-001. The generator remembers the last number you downloaded in this browser and suggests the next one.'],
+    ['Can I add my logo?', 'With Pro your logo is printed on every PDF. You can try it in the live preview first.']
+  ];
+%>
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "GetInvoiceMaker",
-  "url": "https://getinvoicemaker.com",
-  "description": "Free online invoice generator. Create professional PDF invoices in seconds. No signup required.",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web",
-  "offers": {"@type":"Offer","price":"0","priceCurrency":"USD"}
-}
+<%- JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebApplication', name: 'GetInvoiceMaker', url: 'https://getinvoicemaker.com/', applicationCategory: 'BusinessApplication', operatingSystem: 'Any (web browser)',
+      description: 'Free online invoice generator. Fill in a form, see a live preview and download a PDF invoice without signing up.',
+      offers: checkout.available
+        ? [ { '@type': 'Offer', name: 'Free', price: '0', priceCurrency: 'USD' }, { '@type': 'Offer', name: 'Pro', price: proPrice.amount, priceCurrency: proPrice.currency, url: checkout.url } ]
+        : { '@type': 'Offer', name: 'Free', price: '0', priceCurrency: 'USD' } },
+    { '@type': 'FAQPage', mainEntity: faqs.map(function (f) { return { '@type': 'Question', name: f[0], acceptedAnswer: { '@type': 'Answer', text: f[1] } }; }) }
+  ]
+}).replace(/</g, '\\u003c') %>
 </script>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:#f8fafc;color:#0f172a}
-a{color:#2563eb;text-decoration:none}
-nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;justify-content:space-between;align-items:center;height:60px;position:sticky;top:0;z-index:100}
-.logo{font-weight:700;font-size:18px}.logo span{color:#2563eb}
-.nav-r{display:flex;gap:8px;align-items:center}
-.nav-r a{color:#64748b;font-size:13px;font-weight:500;padding:6px 12px;border-radius:6px}
-.nav-r a:hover{background:#f1f5f9;color:#0f172a}
-.btn-blue{background:#2563eb;color:#fff;border:none;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer}
-.btn-blue:hover{background:#1d4ed8}
-.hero{background:#fff;border-bottom:1px solid #e2e8f0;padding:60px 24px 52px;text-align:center}
-.badge{display:inline-block;background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe;padding:4px 14px;border-radius:50px;font-size:12px;font-weight:600;margin-bottom:20px}
-.hero h1{font-size:clamp(28px,5vw,48px);font-weight:700;line-height:1.12;margin-bottom:18px;color:#0f172a}
-.hero h1 span{color:#2563eb}
-.hero p{color:#475569;font-size:17px;line-height:1.7;max-width:600px;margin:0 auto 32px}
-.trust{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-bottom:0}
-.trust-item{display:flex;align-items:center;gap:6px;font-size:13px;color:#64748b;font-weight:500}
-.tdot{width:7px;height:7px;border-radius:50%;background:#22c55e;flex-shrink:0}
-.vs-bar{background:#f1f5f9;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;padding:12px 20px;text-align:center}
-.vs-bar p{font-size:13px;color:#64748b}
-.vs-bar strong{color:#0f172a}
-.main{max-width:1180px;margin:0 auto;padding:36px 20px;display:grid;grid-template-columns:1fr 400px;gap:28px;align-items:start}
-@media(max-width:900px){.main{grid-template-columns:1fr}}
-.card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:26px}
-.stitle{font-size:11px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #f1f5f9}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
-.frow.one{grid-template-columns:1fr}
-.fg{display:flex;flex-direction:column;gap:4px}
-.fg label{font-size:11px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.4px}
-input,select,textarea{border:1px solid #e2e8f0;border-radius:6px;padding:9px 11px;font-size:13px;color:#0f172a;font-family:'Inter',sans-serif;outline:none;transition:border-color .15s;background:#fff;width:100%}
-input:focus,select:focus,textarea:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
-textarea{resize:vertical;min-height:68px}
-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
-.ih{display:grid;grid-template-columns:1fr 60px 88px 88px 30px;gap:6px;margin-bottom:5px}
-.ih span{font-size:10px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.4px}
-.ir{display:grid;grid-template-columns:1fr 60px 88px 88px 30px;gap:6px;margin-bottom:6px;align-items:center}
-.lt{font-size:13px;font-weight:600;text-align:right;padding:9px 0}
-.del{background:none;border:none;color:#cbd5e1;cursor:pointer;font-size:17px;padding:3px;border-radius:4px}
-.del:hover{color:#ef4444}
-.add-btn{background:none;border:1px dashed #cbd5e1;border-radius:6px;padding:8px;width:100%;color:#64748b;font-size:12px;font-weight:500;cursor:pointer;margin-bottom:14px}
-.add-btn:hover{border-color:#2563eb;color:#2563eb;background:#eff6ff}
-.totals{border-top:1px solid #f1f5f9;padding-top:10px}
-.trow{display:flex;justify-content:space-between;padding:4px 0;font-size:13px;color:#64748b}
-.trow.grand{font-size:17px;font-weight:700;color:#0f172a;padding-top:8px;border-top:2px solid #e2e8f0;margin-top:4px}
-.colors{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px}
-.cdot{width:24px;height:24px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:all .15s}
-.cdot.on{border-color:#0f172a}
-.pdf-btn{width:100%;padding:14px;background:#2563eb;border:none;border-radius:8px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;letter-spacing:.2px}
-.pdf-btn:hover{background:#1d4ed8}
-.pdf-btn:disabled{background:#93c5fd;cursor:default}
-.preview-panel{background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;position:sticky;top:78px}
-.ph{padding:12px 18px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center}
-.ph span{font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.4px}
-#pframe{width:100%;height:580px;border:none;background:#f8fafc}
-.pro-bar{padding:14px 18px;background:#fffbeb;border-top:1px solid #fde68a;display:flex;align-items:center;gap:12px}
-.pro-bar p{font-size:12px;color:#92400e;flex:1;line-height:1.5}
-.compare-sec{padding:60px 20px;background:#fff;border-top:1px solid #e2e8f0}
-.compare-sec h2{text-align:center;font-size:24px;font-weight:700;margin-bottom:8px}
-.compare-sub{text-align:center;color:#64748b;font-size:14px;margin-bottom:36px}
-.compare-table{max-width:760px;margin:0 auto;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden}
-.ct-head{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;background:#f8fafc;border-bottom:1px solid #e2e8f0}
-.ct-head div{padding:12px 16px;font-size:12px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.4px}
-.ct-head div:first-child{color:#2563eb}
-.ct{border:1px solid #e2e8f0;border-radius:12px;overflow:hidden}
-.ct-row{display:grid;grid-template-columns:1fr auto;border-bottom:1px solid #f1f5f9}
-.ct-row:last-child{border-bottom:none}
-.ct-row div{padding:11px 16px;font-size:13px;color:#334155;display:flex;align-items:center;gap:6px}
-.ct-row div:first-child{font-weight:500;color:#0f172a}
-.yes{color:#16a34a;font-weight:600}
-.no{color:#dc2626}
-.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:960px;margin:0 auto 0;padding:0 20px}
-@media(max-width:700px){.feats{grid-template-columns:1fr}}
-.feat{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:20px}
-.ficon{width:36px;height:36px;border-radius:8px;background:#eff6ff;display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:18px}
-.feat h3{font-size:14px;font-weight:600;margin-bottom:5px}
-.feat p{font-size:13px;color:#64748b;line-height:1.6}
-.testimonials{padding:60px 20px;background:#f8fafc;border-top:1px solid #e2e8f0}
-.testimonials h2{text-align:center;font-size:24px;font-weight:700;margin-bottom:36px}
-.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:960px;margin:0 auto}
-@media(max-width:700px){.tgrid{grid-template-columns:1fr}}
-.tcard{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:20px}
-.stars{color:#f59e0b;font-size:14px;margin-bottom:10px}
-.tcard p{font-size:13px;color:#334155;line-height:1.6;margin-bottom:12px}
-.tauthor{font-size:12px;font-weight:600;color:#64748b}
-.pricing{padding:60px 20px;background:#fff;border-top:1px solid #e2e8f0}
-.pricing h2{text-align:center;font-size:24px;font-weight:700;margin-bottom:8px}
-.psub{text-align:center;color:#64748b;font-size:14px;margin-bottom:36px}
-.plans{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:620px;margin:0 auto}
-.pro-chip{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:4px;background:#eff6ff;color:#2563eb;font-size:9px;font-weight:700;letter-spacing:.4px;vertical-align:1px}
-.fhint{display:block;margin-top:6px;font-size:11px;color:#94a3b8;line-height:1.4}
-input[type=file]{font-size:12px;padding:8px;background:#fff}
-@media(max-width:700px){.plans{grid-template-columns:1fr}}
-.plan{border:1px solid #e2e8f0;border-radius:12px;padding:24px;background:#fff;position:relative}
-.plan.pop{border:2px solid #2563eb}
-.ptag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#2563eb;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:50px;white-space:nowrap}
-.pname{font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
-.pprice{font-size:38px;font-weight:700;line-height:1}
-.pprice sup{font-size:18px;font-weight:500}
-.pper{font-size:11px;color:#64748b;margin:3px 0 20px}
-.pfeats{list-style:none;margin-bottom:20px;display:flex;flex-direction:column;gap:8px}
-.pfeats li{display:flex;align-items:center;gap:7px;font-size:13px;color:#334155}
-.ck{width:16px;height:16px;border-radius:50%;background:#dcfce7;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;font-weight:700;color:#16a34a}
-.pbtn{width:100%;padding:10px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid #e2e8f0;background:#f8fafc;color:#0f172a;transition:all .15s}
-.pbtn:hover{background:#f1f5f9}
-.plan.pop .pbtn{background:#2563eb;color:#fff;border-color:#2563eb}
-.plan.pop .pbtn:hover{background:#1d4ed8}
-.faq-sec{padding:60px 20px;background:#f8fafc;border-top:1px solid #e2e8f0}
-.faq-sec h2{text-align:center;font-size:24px;font-weight:700;margin-bottom:36px}
-.faqs{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
-.faq{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:18px 20px;cursor:pointer}
-.faq h3{font-size:14px;font-weight:600;color:#0f172a;margin-bottom:0;display:flex;justify-content:space-between;align-items:center}
-.faq p{font-size:13px;color:#475569;line-height:1.7;margin-top:10px;display:none}
-.faq.open p{display:block}
-.faq h3 span{font-size:18px;color:#94a3b8;font-weight:400}
-.seo{padding:40px 20px;border-top:1px solid #e2e8f0}
-.seo h2{text-align:center;font-size:15px;font-weight:500;color:#64748b;margin-bottom:16px}
-.sgrid{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;max-width:900px;margin:0 auto 18px}
-.sl{background:#f8fafc;border:1px solid #e2e8f0;padding:5px 13px;border-radius:50px;color:#475569;font-size:12px;transition:all .15s}
-.sl:hover{background:#eff6ff;border-color:#2563eb;color:#2563eb}
-.blog{padding:48px 20px;background:#fff;border-top:1px solid #e2e8f0}
-.blog h2{text-align:center;font-size:22px;font-weight:700;margin-bottom:28px}
-.bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:960px;margin:0 auto}
-@media(max-width:700px){.bgrid{grid-template-columns:1fr}}
-.bc{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:20px}
-.btag{font-size:10px;font-weight:600;color:#2563eb;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
-.bc h3{font-size:14px;font-weight:600;line-height:1.5;margin-bottom:6px;color:#0f172a}
-.bc p{font-size:12px;color:#64748b;line-height:1.6}
-footer{background:#0f172a;color:#94a3b8;padding:40px 20px 28px}
-.footer-inner{max-width:960px;margin:0 auto}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:32px}
-@media(max-width:700px){.footer-grid{grid-template-columns:1fr 1fr}}
-.footer-brand .logo{color:#fff;font-size:16px;margin-bottom:10px}
-.footer-brand p{font-size:12px;line-height:1.6;color:#64748b}
-.footer-col h4{font-size:12px;font-weight:600;color:#fff;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
-.footer-col a{display:block;font-size:12px;color:#64748b;margin-bottom:7px}
-.footer-col a:hover{color:#fff}
-.footer-bottom{border-top:1px solid #1e293b;padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-.footer-bottom p{font-size:12px;color:#475569}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.steps .card h3{font-size:15px;margin:6px 0}
+.steps .card p{font-size:14px;color:var(--ink2);margin:0}
+.steps .n{display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--blue-soft);color:var(--blue);font-weight:700;font-size:13px;align-items:center;justify-content:center}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px}
+.plan{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px}
+.plan.pro{border:2px solid var(--blue)}
+.plan .name{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.plan .price{font-size:34px;font-weight:700;margin:6px 0 2px}
+.plan .per{font-size:13px;color:var(--muted);margin-bottom:14px}
+.plan ul{list-style:none;margin:0 0 16px;padding:0}
+.plan li{font-size:14px;color:var(--ink2);padding:5px 0 5px 22px;position:relative}
+.plan li::before{content:"";position:absolute;left:2px;top:11px;width:10px;height:6px;border-left:2px solid #16a34a;border-bottom:2px solid #16a34a;transform:rotate(-45deg)}
+.plan li.minus{color:var(--muted)}
+.plan li.minus::before{border:0;height:2px;width:10px;background:#94a3b8;transform:none;top:13px}
+.plan .btn{width:100%;text-align:center}
+.plan .muted{font-size:13px;color:var(--muted);margin-top:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 22px}
+.chips a{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:13px;color:var(--ink2);text-decoration:none}
+.chips a:hover{border-color:var(--blue);color:var(--blue)}
+@media(max-width:760px){.steps,.plans{grid-template-columns:1fr}}
 </style>
-<%- include('partials/head') %>
 </head>
 <body>
+<%- include('partials/nav') %>
 
-<nav>
-  <div class="logo">Get<span>Invoice</span>Maker</div>
-  <div class="nav-r">
-    <a href="#features">Features</a>
-    <a href="/rent-receipt-generator">Rent Receipt</a>
-    <a href="/blog">Blog</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#templates">Templates</a>
-    <a href="/activate">Activate PRO</a>
-    <a href="#pricing"><button class="btn-blue">Get PRO — $9</button></a>
-  </div>
-</nav>
-
-<section class="hero">
-  <div class="badge">&#10003; No signup &nbsp;&nbsp; &#10003; Instant PDF &nbsp;&nbsp; &#10003; 18 currencies</div>
-  <h1>Free Invoice Generator<br><span>Professional PDF in 60 Seconds</span></h1>
-  <p>The fastest way to create and download a professional invoice. No account needed, no hidden fees. Just fill in and download.</p>
-  <div class="trust">
-    <span class="trust-item"><span class="tdot"></span>Works in your browser</span>
-    <span class="trust-item"><span class="tdot"></span>No signup required</span>
-    <span class="trust-item"><span class="tdot"></span>Free PDF download</span>
-    <span class="trust-item"><span class="tdot"></span>18 currencies</span>
-    <span class="trust-item"><span class="tdot"></span>Auto tax calculation</span>
+<section class="page-hero">
+  <div class="in">
+    <h1>Free Invoice Generator, No Signup</h1>
+    <p class="lede">Fill in the form, check the live preview and download a PDF invoice. No account, no email address, no limit on invoices.</p>
+    <div class="facts"><span>No signup or login</span><span>Unlimited PDF downloads</span><span>VAT, GST/HST and BTW lines</span><span>18 currencies</span></div>
   </div>
 </section>
 
-<div class="vs-bar">
-  <p><strong>No account, no ads, no invoice limit.</strong> Your invoice is built in your browser and downloaded as a PDF.</p>
-</div>
+<%- include('partials/generator') %>
 
-<div class="main">
-  <div>
-    <div class="card">
-      <div class="stitle">Your details (sender)</div>
-      <div class="frow">
-        <div class="fg"><label>Name / company</label><input type="text" id="fromName" placeholder="Acme Studio" oninput="up()"></div>
-        <div class="fg"><label>Email</label><input type="email" id="fromEmail" placeholder="hello@acme.com" oninput="up()"></div>
-      </div>
-      <div class="frow one"><div class="fg"><label>Address</label><textarea id="fromAddress" rows="2" placeholder="123 Main St, London, UK" oninput="up()"></textarea></div></div>
-      <div class="frow one"><div class="fg"><label for="logoFile">Logo <span class="pro-chip">PRO</span></label><input type="file" id="logoFile" accept="image/png,image/jpeg" onchange="loadLogo(this)"><small class="fhint" id="logoHint">PNG or JPG under 500 KB. Shown in the preview; added to the downloaded PDF on Pro.</small></div></div>
-
-      <div class="stitle" style="margin-top:20px">Bill to (client)</div>
-      <div class="frow">
-        <div class="fg"><label>Client name</label><input type="text" id="toName" placeholder="Client Corp" oninput="up()"></div>
-        <div class="fg"><label>Client email</label><input type="email" id="toEmail" placeholder="client@email.com" oninput="up()"></div>
-      </div>
-      <div class="frow one"><div class="fg"><label>Client address</label><textarea id="toAddress" rows="2" placeholder="456 Client Ave, New York" oninput="up()"></textarea></div></div>
-
-      <div class="stitle" style="margin-top:20px">Invoice details</div>
-      <div class="frow">
-        <div class="fg"><label>Invoice number</label><input type="text" id="invNum" value="INV-001" oninput="up()"></div>
-        <div class="fg"><label>Currency</label>
-          <select id="currency" onchange="up()">
-            <option value="USD|$">USD — US Dollar</option>
-            <option value="GBP|£">GBP — British Pound</option>
-            <option value="EUR|€">EUR — Euro</option>
-            <option value="CAD|CA$">CAD — Canadian Dollar</option>
-            <option value="AUD|AU$">AUD — Australian Dollar</option>
-            <option value="INR|₹">INR — Indian Rupee</option>
-            <option value="AED|AED">AED — UAE Dirham</option>
-            <option value="SGD|S$">SGD — Singapore Dollar</option>
-            <option value="TRY|₺">TRY — Turkish Lira</option>
-            <option value="JPY|¥">JPY — Japanese Yen</option>
-            <option value="CHF|CHF">CHF — Swiss Franc</option>
-            <option value="SEK|kr">SEK — Swedish Krona</option>
-            <option value="NOK|kr">NOK — Norwegian Krone</option>
-            <option value="DKK|kr">DKK — Danish Krone</option>
-            <option value="NZD|NZ$">NZD — New Zealand Dollar</option>
-            <option value="ZAR|R">ZAR — South African Rand</option>
-            <option value="BRL|R$">BRL — Brazilian Real</option>
-            <option value="MXN|MX$">MXN — Mexican Peso</option>
-          </select>
-        </div>
-      </div>
-      <div class="frow">
-        <div class="fg"><label>Issue date</label><input type="date" id="issueDate" oninput="up()"></div>
-        <div class="fg"><label>Due date</label><input type="date" id="dueDate" oninput="up()"></div>
-      </div>
-
-      <div class="stitle" style="margin-top:20px">Line items</div>
-      <div class="ih"><span>Description</span><span>Qty</span><span>Rate</span><span>Amount</span><span></span></div>
-      <div id="items">
-        <div class="ir">
-          <input type="text" placeholder="Service or product description" oninput="up()">
-          <input type="number" value="1" min="0" step="any" oninput="up()">
-          <input type="number" value="100" min="0" step="any" oninput="up()">
-          <div class="lt">$100.00</div>
-          <button class="del" onclick="delItem(this)" title="Remove">&#215;</button>
-        </div>
-      </div>
-      <button class="add-btn" onclick="addItem()">+ Add line item</button>
-
-      <div class="frow">
-        <div class="fg"><label>Tax / VAT rate (%)</label><input type="number" id="taxRate" placeholder="e.g. 20" min="0" max="100" step="any" oninput="up()"></div>
-        <div class="fg"><label>Tax label</label><input type="text" id="taxLabel" value="Tax" placeholder="VAT / GST / Tax" oninput="up()"></div>
-      </div>
-
-      <div class="totals">
-        <div class="trow"><span>Subtotal</span><span id="sub">$0.00</span></div>
-        <div class="trow" id="taxrow" style="display:none"><span id="tlabel">Tax</span><span id="taxamt">$0.00</span></div>
-        <div class="trow grand"><span>Total Due</span><span id="tot" style="color:#2563eb">$0.00</span></div>
-      </div>
-
-      <div class="stitle" style="margin-top:20px">Notes / Payment info</div>
-      <textarea id="notes" rows="3" placeholder="Bank account details, payment terms, thank you message..." oninput="up()"></textarea>
-
-      <div class="stitle" style="margin-top:20px">Accent color</div>
-      <div class="colors">
-        <div class="cdot on" style="background:#2563eb" data-c="#2563eb" onclick="setColor(this)" title="Blue"></div>
-        <div class="cdot" style="background:#7c3aed" data-c="#7c3aed" onclick="setColor(this)" title="Purple"></div>
-        <div class="cdot" style="background:#059669" data-c="#059669" onclick="setColor(this)" title="Green"></div>
-        <div class="cdot" style="background:#dc2626" data-c="#dc2626" onclick="setColor(this)" title="Red"></div>
-        <div class="cdot" style="background:#d97706" data-c="#d97706" onclick="setColor(this)" title="Amber"></div>
-        <div class="cdot" style="background:#0891b2" data-c="#0891b2" onclick="setColor(this)" title="Teal"></div>
-        <div class="cdot" style="background:#374151" data-c="#374151" onclick="setColor(this)" title="Dark"></div>
-      </div>
-
-      <button class="pdf-btn" id="pbtn" onclick="dlPDF()">
-        &#8595; Download Free PDF Invoice
-      </button>
-    </div>
+<div class="wrap prose">
+  <h2>How to make an invoice in a minute</h2>
+  <div class="steps">
+    <div class="card"><span class="n">1</span><h3>Fill in who and what</h3><p>Your details, your client, and one line per service or product with quantity and rate.</p></div>
+    <div class="card"><span class="n">2</span><h3>Add tax if you charge it</h3><p>Type the rate and name (VAT, GST, HST, BTW). Add a second line for GST + PST or QST.</p></div>
+    <div class="card"><span class="n">3</span><h3>Download the PDF</h3><p>Check the preview, click Download and send the PDF to your client by email.</p></div>
   </div>
 
-  <div class="preview-panel">
-    <div class="ph">
-      <span>Live Preview</span>
-      <span style="font-size:11px;color:#94a3b8">Updates as you type</span>
-    </div>
-    <iframe id="pframe" title="Invoice live preview"></iframe>
-    <div class="pro-bar">
-      <p>&#128274; PRO: No watermark &bull; Your logo on every PDF &bull; Watermark-free rent receipts</p>
-      <a href="#pricing"><button class="btn-blue" style="font-size:12px;padding:7px 13px;white-space:nowrap">Get PRO $9</button></a>
-    </div>
-  </div>
-</div>
-
-<section class="compare" style="padding:56px 20px;background:#fff;border-top:1px solid #e2e8f0">
-  <div style="max-width:760px;margin:0 auto">
-    <h2 style="text-align:center;font-size:24px;font-weight:700;margin-bottom:8px">What you get without paying</h2>
-    <p style="text-align:center;color:#64748b;font-size:14px;margin-bottom:28px">Everything below works on the free plan, with no account.</p>
-    <div class="ct">
-      <div class="ct-row"><div>No signup or email required</div><div class="yes">&#10003; Free</div></div>
-      <div class="ct-row"><div>Unlimited invoices and PDF downloads</div><div class="yes">&#10003; Free</div></div>
-      <div class="ct-row"><div>Live preview as you type</div><div class="yes">&#10003; Free</div></div>
-      <div class="ct-row"><div>18 currencies and automatic tax lines (VAT, GST/HST, BTW)</div><div class="yes">&#10003; Free</div></div>
-      <div class="ct-row"><div>Accent colour for your brand</div><div class="yes">&#10003; Free</div></div>
-      <div class="ct-row"><div>Your details remembered on this device</div><div class="yes">&#10003; Free</div></div>
-      <div class="ct-row"><div>No "Created with" footer, your logo on the PDF</div><div class="yes" style="color:#2563eb">Pro</div></div>
-    </div>
-  </div>
-</section>
-
-<section style="padding:60px 20px;background:#f8fafc;border-top:1px solid #e2e8f0" id="features">
-  <h2 style="text-align:center;font-size:24px;font-weight:700;margin-bottom:8px">Everything you need, nothing you don't</h2>
-  <p style="text-align:center;color:#64748b;font-size:14px;margin-bottom:32px">Built for freelancers, contractors and small businesses worldwide</p>
-  <div class="feats">
-    <div class="feat"><div class="ficon">&#9889;</div><h3>Instant PDF download</h3><p>Professional invoices generated in seconds. Download, email or print directly from your browser.</p></div>
-    <div class="feat"><div class="ficon">&#127758;</div><h3>18 currencies</h3><p>USD, GBP, EUR, CAD, AUD, INR and more. Switch currency with one click — rate updates instantly.</p></div>
-    <div class="feat"><div class="ficon">&#128203;</div><h3>Live preview</h3><p>See your invoice update in real-time as you type. No surprises when you download the PDF.</p></div>
-    <div class="feat"><div class="ficon">&#128176;</div><h3>Auto tax calculation</h3><p>Add VAT, GST, or sales tax by percentage. Subtotal and total update automatically.</p></div>
-    <div class="feat"><div class="ficon">&#127912;</div><h3>Custom branding</h3><p>Choose your accent color. PRO users can add a custom logo for fully branded invoices.</p></div>
-    <div class="feat"><div class="ficon">&#128274;</div><h3>No watermark on PRO</h3><p>Free plan invoices are clean. PRO removes all branding — 100% professional PDF output.</p></div>
-  </div>
-</section>
-
-<section class="testimonials">
-  <h2>Why people use it</h2>
-  <div class="tgrid">
-    <div class="tcard"><p><strong>No account.</strong> Open the page, fill in the invoice and download the PDF. Your sender details can be remembered in this browser so the next invoice is quicker.</p></div>
-    <div class="tcard"><p><strong>See it before you send it.</strong> The preview updates as you type, so you check the layout, totals and tax line before downloading.</p></div>
-    <div class="tcard"><p><strong>Tax lines built in.</strong> VAT, GST/HST/PST and BTW rates for the countries and Canadian provinces we cover, with guides that explain what each invoice needs.</p></div>
-  </div>
-</section>
-
-<section class="pricing" id="pricing">
-  <h2>Simple, transparent pricing</h2>
-  <p class="psub">The generator is free. Pro removes branding from your PDFs and adds your logo.</p>
+  <h2 id="pricing">What is free and what Pro adds</h2>
   <div class="plans">
     <div class="plan">
-      <div class="pname">Free</div>
-      <div class="pprice"><sup>$</sup>0</div>
-      <div class="pper">forever — no credit card</div>
-      <ul class="pfeats">
-        <li><span class="ck">&#10003;</span>Unlimited invoices</li>
-        <li><span class="ck">&#10003;</span>PDF download</li>
-        <li><span class="ck">&#10003;</span>All 18 currencies</li>
-        <li><span class="ck">&#10003;</span>Auto tax calculation</li>
-        <li><span class="ck">&#10003;</span>Live preview</li>
+      <div class="name">Free</div>
+      <div class="price">$0</div>
+      <div class="per">No account, no card</div>
+      <ul>
+        <li>Unlimited invoices and PDF downloads</li>
+        <li>Live preview as you type</li>
+        <li>Two tax lines, 18 currencies, English or Dutch labels</li>
+        <li>Sender details and invoice number remembered in your browser</li>
+        <li class="minus">A small "Created with GetInvoiceMaker.com" line at the bottom of each PDF</li>
       </ul>
-      <button class="pbtn" onclick="document.getElementById('fromName').focus()">Start free now</button>
+      <a class="btn ghost" href="#gen">Create a free invoice</a>
     </div>
-    <div class="plan pop">
-      <div class="ptag">Most popular</div>
-      <div class="pname">Pro</div>
-      <div class="pprice"><sup>$</sup>9</div>
-      <div class="pper">per month, cancel anytime</div>
-      <ul class="pfeats">
-        <li><span class="ck">&#10003;</span>Everything in Free</li>
-        <li><span class="ck">&#10003;</span>No "Created with" footer on PDFs</li>
-        <li><span class="ck">&#10003;</span>Your logo on every invoice PDF</li>
-        <li><span class="ck">&#10003;</span>Watermark-free rent receipts</li>
-        <li><span class="ck">&#10003;</span>Email support</li>
+    <div class="plan pro">
+      <div class="name">Pro</div>
+      <div class="price"><%= proPrice.label.split('/')[0] %></div>
+      <div class="per"><%= proPrice.period %></div>
+      <ul>
+        <li>Everything in Free</li>
+        <li>No "Created with" line on invoice PDFs and rent receipts</li>
+        <li>Your logo on every invoice PDF</li>
+        <li>Email support</li>
       </ul>
-      <a href="https://dorukctn.gumroad.com/l/prajxe" target="_blank"><button class="pbtn">Get Pro — $9/month</button></a>
+      <% if (isPro) { %>
+        <a class="btn" href="#gen">Pro is active in this browser</a>
+      <% } else if (checkout.available) { %>
+        <a class="btn" href="<%= checkout.url %>" rel="noopener">Get Pro: <%= proPrice.label %></a>
+        <p class="muted">Paid through Gumroad. After paying, paste the license key from your receipt on the <a href="/activate">activation page</a>.</p>
+      <% } else { %>
+        <p class="muted">Pro checkout is paused while we update it. The free generator is not affected. Already a customer? <a href="/activate">Activate with your license key</a>.</p>
+      <% } %>
     </div>
   </div>
-</section>
 
-<section class="faq-sec">
-  <h2>Frequently asked questions</h2>
-  <div class="faqs">
-    <div class="faq" onclick="toggleFaq(this)">
-      <h3>Is this invoice generator really free? <span>+</span></h3>
-      <p>Yes, completely free. No credit card, no signup, no hidden fees. Create and download as many invoices as you need on the free plan. The PRO plan ($9/month) adds extra features like no watermark and custom logo.</p>
-    </div>
-    <div class="faq" onclick="toggleFaq(this)">
-      <h3>Do I need to create an account? <span>+</span></h3>
-      <p>No account needed. Just open the page, fill in your details, and download your PDF. No email, no password, nothing.</p>
-    </div>
-    <div class="faq" onclick="toggleFaq(this)">
-      <h3>What currencies does it support? <span>+</span></h3>
-      <p>We support 18 currencies including USD, GBP, EUR, CAD, AUD, INR, AED, SGD, TRY, JPY, CHF, SEK, NOK, DKK, NZD, ZAR, BRL and MXN. More are added regularly.</p>
-    </div>
-    <div class="faq" onclick="toggleFaq(this)">
-      <h3>How do I add VAT or GST to my invoice? <span>+</span></h3>
-      <p>Enter your tax rate percentage in the "Tax / VAT rate" field and label it as VAT, GST, or whatever applies to your country. The tax amount and total are calculated automatically.</p>
-    </div>
-    <div class="faq" onclick="toggleFaq(this)">
-      <h3>Is my invoice data private and secure? <span>+</span></h3>
-      <p>Your invoice data is processed in your browser and on our secure server only to generate the PDF. We do not store, sell, or share your business or client information.</p>
-    </div>
-    <div class="faq" onclick="toggleFaq(this)">
-      <h3>Can I use this for my business? <span>+</span></h3>
-      <p>Absolutely. GetInvoiceMaker is used by freelancers, contractors, consultants, photographers, developers, and small businesses worldwide. It works for any profession or industry.</p>
-    </div>
+  <h2 id="templates">Invoice templates by profession</h2>
+  <p>Each template opens the same generator with sample lines for that kind of work, plus what that invoice usually needs.</p>
+  <div class="chips">
+    <% industries.forEach(function(i){ %><a href="/invoice-template-<%= i.slug %>"><%= i.label %></a><% }) %>
   </div>
-</section>
 
-<section class="seo" id="templates">
-  <h2>Free invoice templates by profession</h2>
-  <div class="sgrid">
-    <a href="/invoice-template-freelancer" class="sl">Freelancers</a>
-    <a href="/invoice-template-contractor" class="sl">Contractors</a>
-    <a href="/invoice-template-photographer" class="sl">Photographers</a>
-    <a href="/invoice-template-consultant" class="sl">Consultants</a>
-    <a href="/invoice-template-designer" class="sl">Graphic Designers</a>
-    <a href="/invoice-template-developer" class="sl">Web Developers</a>
-    <a href="/invoice-template-plumber" class="sl">Plumbers</a>
-    <a href="/invoice-template-electrician" class="sl">Electricians</a>
-    <a href="/invoice-template-cleaner" class="sl">Cleaning Services</a>
-    <a href="/invoice-template-tutor" class="sl">Tutors</a>
-    <a href="/invoice-template-accountant" class="sl">Accountants</a>
-    <a href="/invoice-template-lawyer" class="sl">Lawyers</a>
-    <a href="/invoice-template-real-estate" class="sl">Real Estate Agents</a>
-    <a href="/invoice-template-marketing" class="sl">Marketing Agencies</a>
-    <a href="/invoice-template-mechanic" class="sl">Auto Mechanics</a>
-    <a href="/invoice-template-writer" class="sl">Freelance Writers</a>
-    <a href="/invoice-template-videographer" class="sl">Videographers</a>
-    <a href="/invoice-template-landscaper" class="sl">Landscapers</a>
-    <a href="/invoice-template-therapist" class="sl">Therapists</a>
-    <a href="/invoice-template-restaurant" class="sl">Restaurants</a>
+  <h2>Invoice generators by country</h2>
+  <div class="chips">
+    <% countries.forEach(function(c){ %><a href="/free-invoice-generator-<%= c.slug %>"><%= c.fullName %> (<%= c.currency %>)</a><% }) %>
   </div>
-  <h2 style="margin-top:28px">Free invoice generators by country</h2>
-  <div class="sgrid">
-    <a href="/free-invoice-generator-uk" class="sl">United Kingdom (GBP)</a>
-    <a href="/free-invoice-generator-usa" class="sl">United States (USD)</a>
-    <a href="/free-invoice-generator-canada" class="sl">Canada (CAD)</a>
-    <a href="/free-invoice-generator-australia" class="sl">Australia (AUD)</a>
-    <a href="/free-invoice-generator-germany" class="sl">Germany (EUR)</a>
-    <a href="/free-invoice-generator-france" class="sl">France (EUR)</a>
-    <a href="/free-invoice-generator-india" class="sl">India (INR)</a>
-    <a href="/free-invoice-generator-uae" class="sl">UAE (AED)</a>
-    <a href="/free-invoice-generator-singapore" class="sl">Singapore (SGD)</a>
-    <a href="/free-invoice-generator-netherlands" class="sl">Netherlands (EUR)</a>
-  </div>
-  <h2 style="margin-top:28px">Other free tools</h2>
-  <div class="sgrid">
-    <a href="/rent-receipt-generator" class="sl">Rent Receipt Generator</a>
-  </div>
-</section>
 
-<section class="blog">
-  <h2>Invoicing guides and resources</h2>
-  <div class="bgrid">
-    <div class="bc"><div class="btag">Complete Guide</div><h3>How to write a professional invoice: the complete 2026 guide</h3><p>Everything you need to know — what to include, how to number invoices, payment terms, and how to get paid faster.</p></div>
-    <div class="bc"><div class="btag">Tax Guide</div><h3>VAT, GST and sales tax on invoices: country-by-country guide</h3><p>The correct tax rate for every major country. When to charge tax, how to display it, and what exemptions apply.</p></div>
-    <div class="bc"><div class="btag">Freelance Tips</div><h3>How to invoice as a freelancer: what to include and when to send</h3><p>Practical advice for freelancers to invoice clients professionally, chase late payments, and protect themselves legally.</p></div>
-  </div>
-</section>
+  <h2>Guides</h2>
+  <ul class="linklist">
+    <li><a href="/how-to-calculate-gst-on-canadian-invoices">How to calculate GST on Canadian invoices</a></li>
+    <li><a href="/free-invoice-generator-netherlands">Dutch invoice template and requirements</a></li>
+    <li><a href="/blog/how-to-write-a-professional-invoice">How to write a professional invoice</a></li>
+    <li><a href="/how-to-invoice-as-a-freelancer">How to invoice as a freelancer</a></li>
+    <li><a href="/blog/invoice-number-format">How to number invoices</a></li>
+    <li><a href="/blog/invoice-payment-terms-guide">Invoice payment terms</a></li>
+  </ul>
 
-<footer>
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo">Get<span>Invoice</span>Maker</div>
-        <p style="margin-top:8px">Free online invoice generator. Create professional PDF invoices in seconds. No signup required.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Product</h4>
-        <a href="/">Invoice Generator</a>
-        <a href="/rent-receipt-generator">Rent Receipt</a>
-        <a href="https://www.mileagelogmaker.com" target="_blank" rel="noopener">Mileage Log Maker</a>
-        <a href="#pricing">Pricing</a>
-        <a href="/activate">Activate PRO</a>
-      </div>
-      <div class="footer-col">
-        <h4>Templates</h4>
-        <a href="/invoice-template-freelancer">Freelancer</a>
-        <a href="/invoice-template-contractor">Contractor</a>
-        <a href="/invoice-template-designer">Designer</a>
-        <a href="/invoice-template-developer">Developer</a>
-      </div>
-      <div class="footer-col">
-        <h4>Countries</h4>
-        <a href="/free-invoice-generator-uk">UK Invoice</a>
-        <a href="/free-invoice-generator-usa">US Invoice</a>
-        <a href="/free-invoice-generator-canada">Canada Invoice</a>
-        <a href="/free-invoice-generator-australia">Australia Invoice</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&#169; 2026 GetInvoiceMaker — Free Invoice Generator. Professional PDF invoices online.</p>
-      <p>No spam. No ads. No nonsense.</p>
-    </div>
+  <h2>Questions</h2>
+  <div class="faq">
+    <% faqs.forEach(function(f){ %><details><summary><%= f[0] %></summary><p><%= f[1] %></p></details><% }) %>
   </div>
-</footer>
+</div>
 
-<script>
-let color='#2563eb';
-function setColor(el){document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('on'));el.classList.add('on');color=el.dataset.c;up();}
-function sym(){return document.getElementById('currency').value.split('|')[1]||'$';}
-function items(){
-  const rows=document.querySelectorAll('.ir');const r=[];
-  rows.forEach(row=>{const ins=row.querySelectorAll('input');if(ins.length>=3){const d=ins[0].value,q=parseFloat(ins[1].value)||0,ra=parseFloat(ins[2].value)||0,t=q*ra;row.querySelector('.lt').textContent=sym()+t.toFixed(2);r.push({desc:d,qty:q,rate:ra});}});
-  return r;
-}
-function calcs(its){
-  const s=sym();const sub=its.reduce((a,i)=>a+i.qty*i.rate,0);
-  const tr=parseFloat(document.getElementById('taxRate').value)||0;
-  const tl=document.getElementById('taxLabel').value||'Tax';
-  const ta=sub*tr/100;const tot=sub+ta;
-  document.getElementById('sub').textContent=s+sub.toFixed(2);
-  document.getElementById('tot').textContent=s+tot.toFixed(2);
-  const trow=document.getElementById('taxrow');
-  if(tr>0){trow.style.display='flex';document.getElementById('tlabel').textContent=tl+' ('+tr+'%)';document.getElementById('taxamt').textContent=s+ta.toFixed(2);}
-  else trow.style.display='none';
-  return{sub,ta,tot,tr,tl};
-}
-function buildHTML(d){
-  const wm = d.isPro ? '' : '<div style="position:fixed;bottom:20px;right:20px;background:rgba(37,99,235,0.08);border:1px solid rgba(37,99,235,0.2);padding:6px 14px;border-radius:50px;font-size:11px;color:#2563eb;font-weight:600">Created with GetInvoiceMaker.com</div>';
-  const s=d.symbol||'$';
-  const rows=(d.items||[]).map(i=>'<tr><td style="padding:8px 0;border-bottom:1px solid #f1f5f9;font-size:13px">'+(i.desc||'&nbsp;')+'</td><td style="padding:8px;border-bottom:1px solid #f1f5f9;text-align:center;font-size:13px">'+i.qty+'</td><td style="padding:8px;border-bottom:1px solid #f1f5f9;text-align:right;font-size:13px">'+s+parseFloat(i.rate).toFixed(2)+'</td><td style="padding:8px 0 8px 8px;border-bottom:1px solid #f1f5f9;text-align:right;font-size:13px;font-weight:600">'+s+(i.qty*i.rate).toFixed(2)+'</td></tr>').join('');
-  const tl=d.tr>0?'<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:12px;color:#64748b"><span>'+(d.tl||'Tax')+' ('+d.tr+'%)</span><span>'+s+(d.ta||0).toFixed(2)+'</span></div>':'';
-  const logo = d.logo ? '<img src="'+d.logo+'" alt="" style="display:block;max-height:44px;max-width:140px;margin-bottom:10px">' : '';
-  return '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:Arial,sans-serif;color:#0f172a;margin:0;padding:22px;font-size:13px}*{box-sizing:border-box}</style></head><body><div style="display:flex;justify-content:space-between;margin-bottom:26px"><div>'+logo+'<div style="font-size:26px;font-weight:700;color:'+d.color+'">INVOICE</div><div style="color:#94a3b8;font-size:11px;margin-top:2px">#'+(d.invNum||'001')+'</div></div><div style="text-align:right"><div style="font-weight:700;font-size:15px">'+(d.fromName||'Your Company')+'</div><div style="color:#64748b;font-size:11px">'+(d.fromEmail||'')+'</div><div style="color:#64748b;font-size:11px;white-space:pre-line">'+(d.fromAddress||'').replace(/\n/g,"<br>")+'</div></div></div><div style="display:flex;justify-content:space-between;margin-bottom:22px;padding-bottom:16px;border-bottom:2px solid '+d.color+'"><div><div style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Bill To</div><div style="font-weight:600;font-size:14px">'+(d.toName||'Client Name')+'</div><div style="color:#64748b;font-size:11px">'+(d.toEmail||'')+'</div><div style="color:#64748b;font-size:11px;white-space:pre-line">'+(d.toAddress||'').replace(/\n/g,"<br>")+'</div></div><div style="text-align:right"><div style="margin-bottom:8px"><div style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px">Issue Date</div><div style="font-weight:600;font-size:12px">'+(d.issueDate||'')+'</div></div><div><div style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px">Due Date</div><div style="font-weight:600;font-size:12px">'+(d.dueDate||'')+'</div></div></div></div><table style="width:100%;border-collapse:collapse;margin-bottom:16px"><thead><tr style="background:'+d.color+';color:#fff"><th style="padding:9px 0;text-align:left;font-size:10px;letter-spacing:.5px;font-weight:700">DESCRIPTION</th><th style="padding:9px 8px;text-align:center;font-size:10px;font-weight:700">QTY</th><th style="padding:9px 8px;text-align:right;font-size:10px;font-weight:700">RATE</th><th style="padding:9px 0 9px 8px;text-align:right;font-size:10px;font-weight:700">AMOUNT</th></tr></thead><tbody>'+rows+'</tbody></table><div style="display:flex;justify-content:flex-end;margin-bottom:20px"><div style="min-width:200px"><div style="display:flex;justify-content:space-between;padding:4px 0;font-size:12px;color:#64748b"><span>Subtotal</span><span>'+s+(d.sub||0).toFixed(2)+'</span></div>'+tl+'<div style="display:flex;justify-content:space-between;padding:8px 0 4px;font-size:16px;font-weight:700;border-top:2px solid '+d.color+';margin-top:4px"><span>Total Due</span><span style="color:'+d.color+'">'+s+(d.tot||0).toFixed(2)+'</span></div></div></div>'+(d.notes?'<div style="background:#f8fafc;border-left:4px solid '+d.color+';padding:10px 14px;border-radius:0 6px 6px 0"><div style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Notes &amp; Payment Info</div><div style="font-size:12px;color:#475569;line-height:1.6">'+d.notes+'</div></div>':'')+wm+'</body></html>';
-}
-const IS_PRO=<%= isPro ? 'true' : 'false' %>;
-let logoData='';
-function loadLogo(inp){
-  const f=inp.files&&inp.files[0];if(!f)return;
-  if(f.size>500000){alert('Please choose an image under 500 KB.');inp.value='';return;}
-  const r=new FileReader();r.onload=e=>{logoData=e.target.result;up();};r.readAsDataURL(f);
-}
-// Remember sender details on this device so repeat invoices are faster.
-const SAVED=['fromName','fromEmail','fromAddress'];
-function saveSender(){try{SAVED.forEach(id=>localStorage.setItem('gim_'+id,document.getElementById(id).value));}catch(e){}}
-function restoreSender(){try{SAVED.forEach(id=>{const v=localStorage.getItem('gim_'+id);if(v)document.getElementById(id).value=v;});}catch(e){}}
-function up(){
-  saveSender();
-  const its=items();const{sub,ta,tot,tr,tl}=calcs(its);const s=sym();
-  const d={fromName:document.getElementById('fromName').value,fromEmail:document.getElementById('fromEmail').value,fromAddress:document.getElementById('fromAddress').value,toName:document.getElementById('toName').value,toEmail:document.getElementById('toEmail').value,toAddress:document.getElementById('toAddress').value,invNum:document.getElementById('invNum').value,issueDate:document.getElementById('issueDate').value,dueDate:document.getElementById('dueDate').value,notes:document.getElementById('notes').value,tr,tl,ta,sub,tot,items:its,color,symbol:s,logo:logoData,isPro:IS_PRO};
-  document.getElementById('pframe').srcdoc=buildHTML(d);
-}
-function addItem(){
-  const c=document.getElementById('items');
-  const d=document.createElement('div');d.className='ir';
-  d.innerHTML='<input type="text" placeholder="Service or product" oninput="up()"><input type="number" value="1" min="0" step="any" oninput="up()"><input type="number" value="0" min="0" step="any" oninput="up()"><div class="lt">$0.00</div><button class="del" onclick="delItem(this)" title="Remove">&#215;</button>';
-  c.appendChild(d);up();
-}
-function delItem(btn){if(document.querySelectorAll('.ir').length>1){btn.parentElement.remove();up();}}
-function toggleFaq(el){el.classList.toggle('open');const span=el.querySelector('h3 span');span.textContent=el.classList.contains('open')?'−':'+';}
-async function dlPDF(){
-  const btn=document.getElementById('pbtn');
-  btn.textContent='Generating your PDF...';btn.disabled=true;
-  const its=items();const{sub,ta,tot,tr,tl}=calcs(its);const s=sym();
-  const payload={
-    senderName:document.getElementById('fromName').value,
-    senderEmail:document.getElementById('fromEmail').value,
-    senderAddress:document.getElementById('fromAddress').value,
-    clientName:document.getElementById('toName').value,
-    clientEmail:document.getElementById('toEmail').value,
-    clientAddress:document.getElementById('toAddress').value,
-    invoiceNumber:document.getElementById('invNum').value,
-    issueDate:document.getElementById('issueDate').value,
-    dueDate:document.getElementById('dueDate').value,
-    notes:document.getElementById('notes').value,
-    taxRate:tr,
-    taxLabel:tl,
-    items:its.map(i=>({description:i.desc,qty:i.qty,rate:i.rate})),
-    currency:document.getElementById('currency').value.split('|')[0],
-    color:color,
-    logo:logoData
-  };
-  try{
-    const res=await fetch('/api/pdf',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-    if(!res.ok)throw new Error();
-    const blob=await res.blob();const url=URL.createObjectURL(blob);
-    const a=document.createElement('a');a.href=url;a.download='invoice-'+(payload.invoiceNumber||'001')+'.pdf';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
-    btn.innerHTML='&#8595; Download Free PDF Invoice';btn.disabled=false;
-  }catch(e){btn.textContent='Error — please try again';btn.disabled=false;}
-}
-const t=new Date().toISOString().split('T')[0];
-const d2=new Date(Date.now()+14*864e5).toISOString().split('T')[0];
-document.getElementById('issueDate').value=t;
-document.getElementById('dueDate').value=d2;
-restoreSender();
-if(IS_PRO){const h=document.getElementById('logoHint');if(h)h.textContent='PNG or JPG under 500 KB. Added to your downloaded PDF.';}
-up();
-</script>
+<%- include('partials/footer') %>
 </body>
 </html>

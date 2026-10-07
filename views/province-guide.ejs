@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title><%= province.title %></title>
 <meta name="description" content="<%= province.desc %>">
+<meta property="og:type" content="website">
+<meta property="og:title" content="<%= province.title %>">
+<meta property="og:description" content="<%= province.desc %>">
+<meta property="og:url" content="https://getinvoicemaker.com/<%= province.slug %>">
 <link rel="canonical" href="https://getinvoicemaker.com/<%= province.slug %>">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -102,14 +106,14 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
   <div class="nav-r">
     <a href="/">Invoice</a>
     <a href="/how-to-calculate-gst-on-canadian-invoices">Canada GST</a>
-    <a href="/"><button class="btn">Create Invoice</button></a>
+    <a href="/free-invoice-generator-canada?province=<%= province.code %>"><button class="btn">Create Invoice</button></a>
   </div>
 </nav>
 
 <section class="hero">
   <div class="container" style="padding:0">
     <div class="breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/how-to-calculate-gst-on-canadian-invoices">Canada Sales Tax</a> &rsaquo; <%= province.name %></div>
-    <div class="flag-badge">🍁 <%= province.name %> · <%= province.system %> · <%= province.combined %>%</div>
+    <div class="flag-badge"><%= province.name %> · <%= province.system %> · <%= province.combined %>%</div>
     <h1><%= province.name %> Sales Tax Calculator <span>(<%= province.combined %>% — 2026)</span></h1>
     <p><%= province.heroSub %></p>
   </div>
@@ -143,7 +147,7 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
       <% } %>
       <div class="calc-line grand"><span id="lTot">Total with tax</span><span id="rTot">CA$1,120.00</span></div>
     </div>
-    <div class="calc-cta"><a href="/">Create a Free Canadian Invoice &rarr;</a></div>
+    <div class="calc-cta"><a id="calcGo" href="/free-invoice-generator-canada?province=<%= province.code %>">Create a <%= province.abbr %> invoice with these tax lines &rarr;</a></div>
   </div>
 
   <article>
@@ -161,6 +165,9 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
       <tr><td><strong>Combined</strong></td><td class="r"><strong><%= province.combined %>%</strong></td></tr>
       <% } %>
     </table>
+
+    <p class="source" style="font-size:13px;color:#64748b;margin:-8px 0 20px">Rates last checked <%= canada.RATES_CHECKED %> against the <a href="<%= canada.SOURCES.cra.url %>" rel="noopener">CRA GST/HST rates table</a><% if (province.rates.source) { %> and <a href="<%= canada.SOURCES[province.rates.source].url %>" rel="noopener"><%= canada.SOURCES[province.rates.source].name %></a><% } %>.</p>
+    <% if (province.note2026) { %><div class="intro"><%- province.note2026 %></div><% } %>
 
     <h2>What's Taxed and What's Exempt</h2>
     <p><%= province.exemptPara %></p>
@@ -183,7 +190,7 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
     <div class="cta-block">
       <h3>Create a <%= province.name %> Invoice in 60 Seconds</h3>
       <p>Free, no signup. CAD currency, automatic tax breakdown, instant PDF.</p>
-      <a href="/">Open the Invoice Generator &rarr;</a>
+      <a href="/free-invoice-generator-canada?province=<%= province.code %>">Open the Canadian invoice generator &rarr;</a>
     </div>
 
     <h2>Frequently Asked Questions</h2>
@@ -249,6 +256,7 @@ function calc(){
   var f = function(n){ return 'CA$' + n.toLocaleString('en-CA',{minimumFractionDigits:2,maximumFractionDigits:2}); };
   document.getElementById('rBase').textContent = f(base);
   document.getElementById('rTot').textContent = f(total);
+  var go=document.getElementById('calcGo'); if(go) go.href='/free-invoice-generator-canada?province=<%= province.code %>&amount='+base.toFixed(2);
   if(P.isHST){ document.getElementById('rHst').textContent = f(gst+pst); }
   else { document.getElementById('rGst').textContent = f(gst); document.getElementById('rPst').textContent = f(pst); }
 }

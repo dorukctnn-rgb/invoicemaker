@@ -3,8 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Rent Receipt Generator — Instant PDF, No Signup | InvoiceMaker</title>
-<meta name="description" content="Generate professional rent receipts in 30 seconds. Free PDF download for landlords and tenants. No signup, supports 18+ currencies. Perfect for tax records and proof of payment.">
+<title>Free Rent Receipt Generator: Instant PDF, No Signup</title>
+<meta name="description" content="Make a rent receipt in a minute: tenant, landlord, property, period and amount, then download a PDF. Free, no signup, 18 currencies.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Rent Receipt Generator">
+<meta property="og:description" content="Fill in the tenant, landlord, property, period and amount, then download a PDF rent receipt. Free, no signup.">
+<meta property="og:url" content="https://getinvoicemaker.com/rent-receipt-generator">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Rent Receipt Generator","url":"https://getinvoicemaker.com/rent-receipt-generator","applicationCategory":"BusinessApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 <link rel="canonical" href="https://getinvoicemaker.com/rent-receipt-generator">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -60,7 +65,7 @@ textarea { resize: vertical; min-height: 70px; }
 <body>
 
 <nav class="nav">
-  <div class="logo">📄 InvoiceMaker</div>
+  <a class="logo" href="/" style="text-decoration:none;color:#111">Get<span style="color:#2563eb">Invoice</span>Maker</a>
   <div>
     <a href="/">Invoice</a>
     <a href="/rent-receipt-generator">Rent Receipt</a>
@@ -155,7 +160,7 @@ textarea { resize: vertical; min-height: 70px; }
       <option>Online Payment</option>
     </select>
 
-    <button type="button" class="btn-primary" id="downloadBtn">⬇ Download Free PDF Receipt</button>
+    <button type="button" class="btn-primary" id="downloadBtn">Download Free PDF Receipt</button>
   </div>
 
   <div class="card">
@@ -364,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Could not generate PDF: ' + err.message);
     } finally {
       btn.disabled = false;
-      btn.textContent = '⬇ Download Free PDF Receipt';
+      btn.textContent = 'Download Free PDF Receipt';
     }
   });
 
