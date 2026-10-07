@@ -44,7 +44,7 @@ const BLOG_CONTENT = {
 <p>Match the terms to your cash flow and to the client. A freelancer with one or two clients rarely benefits from Net 60. Short terms such as Net 14 are reasonable for small jobs. For large projects, split the fee into milestones so you are never owed more than you can afford to lose.</p>
 <p>Always write the actual due date on the invoice next to the term, for example "Net 14 (due 8 October 2026)". Many people do not count days, but they do read dates.</p>
 <h2>Late payment</h2>
-<p>If you plan to charge late fees, say so in your contract and on the invoice before the work starts. Some countries set statutory rights: in the UK, businesses can claim interest at 8% above the Bank of England base rate on late commercial payments, and EU rules set a default 60-day limit for business-to-business payments. See our guide on <a href="/how-to-charge-late-payment-fee">how to charge a late payment fee</a>.</p>`,
+<p>If you plan to charge late fees, say so in your contract and on the invoice before the work starts. Some countries set statutory rights: in the UK, businesses can claim interest at 8% above the Bank of England base rate on late commercial payments, and EU rules (Directive 2011/7/EU) set a 30-day default payment period for business-to-business invoices when the contract is silent, with contract terms beyond 60 days allowed only if expressly agreed and not grossly unfair. See our guide on <a href="/how-to-charge-late-payment-fee">how to charge a late payment fee</a>.</p>`,
 
   'what-is-vat-invoice': `
 <p>A VAT invoice is an invoice issued by a business registered for Value Added Tax. It carries the details a VAT-registered customer needs to reclaim the VAT they paid. If you are not VAT registered, you must not show VAT on your invoices.</p>
@@ -221,12 +221,12 @@ const HOWTO_CONTENT = {
 <p>Microsoft Word can produce a perfectly good invoice. The catch is that Word does not calculate totals or keep your numbering, so small mistakes creep in. Here is how to do it properly, and when an online generator is faster.</p>
 <h2>Step by step in Word</h2>
 <ol>
-<li><strong>Start from a template.</strong> Go to File &rarr; New and search "invoice". Pick a simple layout with space for a logo, your details and a line-item table.</li>
+<li><strong>Start from a template.</strong> Open the File menu, choose New and search "invoice". Pick a simple layout with space for a logo, your details and a line-item table.</li>
 <li><strong>Fill in the header:</strong> your business name, address, email, tax number if registered, and the word "Invoice".</li>
 <li><strong>Add invoice details:</strong> invoice number, issue date, due date, and the client's name and address.</li>
-<li><strong>Complete the table:</strong> description, quantity, rate and amount. Word tables can sum a column with Layout &rarr; Formula &rarr; <code>=SUM(ABOVE)</code>, but the formula does not update automatically. Press F9 after every change.</li>
+<li><strong>Complete the table:</strong> description, quantity, rate and amount. Word tables can sum a column with the Formula command on the Layout tab (<code>=SUM(ABOVE)</code>), but the formula does not update automatically. Press F9 after every change.</li>
 <li><strong>Add tax and total</strong> as separate rows. Double-check the arithmetic.</li>
-<li><strong>Export to PDF</strong> via File &rarr; Save As &rarr; PDF. Never send an editable .docx invoice.</li>
+<li><strong>Export to PDF</strong> with File, Save As, and choose PDF as the type. Never send an editable .docx invoice.</li>
 </ol>
 <h2>Where Word invoices go wrong</h2>
 <ul>
@@ -330,7 +330,7 @@ const HOWTO_CONTENT = {
 <h2>VAT</h2>
 <p>If you are VAT registered, services supplied to a business customer outside the UK are generally outside the scope of UK VAT under the general place-of-supply rule. You charge no VAT and add a note such as "Outside the scope of UK VAT". Some services have special rules, so confirm with your accountant for your service type.</p>
 <h2>US tax forms</h2>
-<p>US clients often ask foreign contractors for a <strong>Form W-8BEN</strong> (individuals) or <strong>W-8BEN-E</strong> (companies). It confirms you are not a US person, and with the UK&ndash;US tax treaty it usually means no US tax is withheld from your payment. Do not fill in a W-9, which is for US persons.</p>
+<p>US clients often ask foreign contractors for a <strong>Form W-8BEN</strong> (individuals) or <strong>W-8BEN-E</strong> (companies). It confirms you are not a US person, and with the UK-US tax treaty it usually means no US tax is withheld from your payment. Do not fill in a W-9, which is for US persons.</p>
 <h2>Getting paid</h2>
 <p>Give ACH or wire details for a USD account, or IBAN/SWIFT for your UK account. State that transfer fees are paid by the sender if that is agreed.</p>
 <h2>Dates and terms</h2>

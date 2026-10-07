@@ -1,1 +1,72 @@
-[]
+[
+  {
+    "keyword": "how to calculate gst on canadian invoices?",
+    "targetPath": "/how-to-calculate-gst-on-canadian-invoices",
+    "status": "observing",
+    "nextReviewDate": "2026-10-21",
+    "actions": [
+      {
+        "date": "2026-10-07",
+        "rankAtAction": 37.5,
+        "needs": "Formula + province table + worked examples + CRA invoice rules + calculator + link to generator preset",
+        "done": "Rewrote page: answer box, calculator with add/remove tax and preset link, 13-province table checked against canada.ca and provincial sites (7 Oct 2026, NS 14%), 5 worked examples, place-of-supply, CRA ITC tiers, HST/QST display rules, sample invoice, fixed wrong \"highest tax\" FAQ"
+      }
+    ]
+  },
+  {
+    "keyword": "dutch invoice template",
+    "targetPath": "/free-invoice-generator-netherlands",
+    "status": "observing",
+    "nextReviewDate": "2026-10-21",
+    "actions": [
+      {
+        "date": "2026-10-07",
+        "rankAtAction": 8.1,
+        "needs": "A Dutch/bilingual factuur template to fill in or download, with the required fields",
+        "done": "Title/H1 now Dutch Invoice Template; embedded generator (NL/EN labels, BTW 21%, KVK/btw-id fields); annotated example; Belastingdienst factuureisen table with sources; BTW 2026 (logies 21%); KVK/btw-id/ob-nummer; btw verlegd/KOR/simplified invoice; glossary; DOCX/XLSX/PDF downloads"
+      }
+    ]
+  },
+  {
+    "keyword": "real estate invoice sample",
+    "targetPath": "/invoice-template-real-estate",
+    "status": "observing",
+    "nextReviewDate": "2026-10-21",
+    "actions": [
+      {
+        "date": "2026-10-07",
+        "rankAtAction": 68.1,
+        "needs": "Commission invoice sample with fields and downloadable template",
+        "done": "New page content: commission calculator that fills the invoice, filled commission invoice sample, field table, referral/lease/property-management variants, DOCX/XLSX/PDF downloads, FAQ"
+      }
+    ]
+  },
+  {
+    "keyword": "freelance invoice template pdf",
+    "targetPath": "/invoice-template-freelancer",
+    "status": "observing",
+    "nextReviewDate": "2026-10-21",
+    "actions": [
+      {
+        "date": "2026-10-07",
+        "rankAtAction": 78.6,
+        "needs": "Downloadable freelance template (PDF/Word/Excel) and a fillable generator",
+        "done": "Added fillable PDF, DOCX and XLSX downloads, field table, hourly/project/retainer examples, payment terms, FAQ"
+      }
+    ]
+  },
+  {
+    "keyword": "free invoice generator no signup",
+    "targetPath": "/",
+    "status": "observing",
+    "nextReviewDate": "2026-10-21",
+    "actions": [
+      {
+        "date": "2026-10-07",
+        "rankAtAction": 60.1,
+        "needs": "A generator that works without account, stated plainly",
+        "done": "Title/H1 \"Free Invoice Generator, No Signup\"; shared generator with two tax lines, languages, remembered sender and invoice numbering; honest free vs Pro; FAQ"
+      }
+    ]
+  }
+]

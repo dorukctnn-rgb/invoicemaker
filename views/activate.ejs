@@ -2,51 +2,69 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex, follow">
-<title>Activate PRO — InvoiceMaker</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Activate Pro | GetInvoiceMaker</title>
+<%- include('partials/site-head') %>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:#f8fafc;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
-.card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:40px;max-width:420px;width:100%;text-align:center}
-.logo{font-weight:700;font-size:20px;margin-bottom:28px}.logo span{color:#2563eb}
-h1{font-size:22px;font-weight:700;margin-bottom:8px}
-p{color:#64748b;font-size:14px;line-height:1.6;margin-bottom:22px}
-label{font-size:11px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.4px;display:block;text-align:left;margin-bottom:5px}
-input{width:100%;border:1px solid #e2e8f0;border-radius:8px;padding:11px 14px;font-size:14px;font-family:'Inter',sans-serif;outline:none;margin-bottom:14px}
-input:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
-button{width:100%;padding:12px;background:#2563eb;border:none;border-radius:8px;color:#fff;font-size:15px;font-weight:600;cursor:pointer}
-button:hover{background:#1d4ed8}
-.msg{margin-top:14px;padding:11px 14px;border-radius:8px;font-size:13px;font-weight:500;display:none}
-.ok{background:#dcfce7;color:#15803d}
-.err{background:#fee2e2;color:#dc2626}
-.back{display:inline-block;margin-top:18px;color:#64748b;font-size:13px}
+.act{max-width:460px;margin:40px auto;padding:0 16px}
+.act .card{padding:28px}
+.act h1{font-size:24px;margin-bottom:8px}
+.act p{color:var(--ink2);font-size:15px;margin-bottom:16px}
+.act label{display:block;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
+.act input{width:100%;border:1px solid var(--line);border-radius:8px;padding:11px 13px;font-size:16px;font-family:ui-monospace,Menlo,Consolas,monospace;margin-bottom:12px}
+.act input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+.act .btn{width:100%}
+.msg{margin-top:14px;padding:11px 14px;border-radius:8px;font-size:14px;display:none}
+.msg.ok{display:block;background:#dcfce7;color:#166534}
+.msg.err{display:block;background:#fee2e2;color:#991b1b}
+.act .small{font-size:13px;color:var(--muted);margin-top:16px}
+.linkbtn{background:none;border:0;color:var(--blue);cursor:pointer;font:inherit;padding:0;text-decoration:underline}
 </style>
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="apple-touch-icon" href="/apple-touch-icon.svg">
-<%- include('partials/head') %>
 </head>
 <body>
-<div class="card">
-  <div class="logo">Invoice<span>Maker</span></div>
-  <h1>Activate PRO</h1>
-  <p>Enter the email you used to purchase on Gumroad. PRO access activates instantly.</p>
-  <label>Purchase email</label>
-  <input type="email" id="em" placeholder="you@email.com">
-  <button onclick="act()">Activate PRO</button>
-  <div class="msg" id="msg"></div>
-  <a href="/" class="back">Back to invoice generator</a>
+<%- include('partials/nav') %>
+<div class="act">
+  <div class="card">
+    <% if (isPro) { %>
+      <h1>Pro is active</h1>
+      <p>Your PDFs are created without the "Created with GetInvoiceMaker" line, and your logo is added when you upload one.</p>
+      <a class="btn" href="/#gen">Create an invoice</a>
+      <p class="small">On a shared computer? <button type="button" class="linkbtn" id="deact">Remove Pro from this browser</button></p>
+    <% } else { %>
+      <h1>Activate Pro</h1>
+      <p>Paste the license key from your Gumroad receipt email. Pro is then active in this browser; repeat on any other device you use.</p>
+      <label for="key">License key</label>
+      <input type="text" id="key" autocomplete="off" spellcheck="false" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX">
+      <button type="button" class="btn" id="go">Activate Pro</button>
+      <div class="msg" id="msg" role="status"></div>
+      <p class="small">Bought Pro before October 2026 and activated with your email? Activation now uses the license key, which you can find in your Gumroad receipt or library. <% if (checkout.available) { %>No key yet? <a href="/#pricing">See Pro</a>.<% } %></p>
+    <% } %>
+  </div>
 </div>
+<%- include('partials/footer') %>
 <script>
-async function act(){
-  const em=document.getElementById('em').value.trim();
-  const msg=document.getElementById('msg');
-  if(!em){msg.className='msg err';msg.style.display='block';msg.textContent='Please enter your email.';return;}
-  const r=await fetch('/activate-pro',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em})});
-  const data=await r.json();
-  if(data.success){msg.className='msg ok';msg.style.display='block';msg.textContent='PRO activated! Redirecting...';setTimeout(()=>window.location.href='/',1500);}
-  else{msg.className='msg err';msg.style.display='block';msg.textContent=data.message||'Email not found.';}
-}
+(function(){
+  var go=document.getElementById('go');
+  if(go){
+    var msg=document.getElementById('msg');
+    function show(ok,t){msg.className='msg '+(ok?'ok':'err');msg.textContent=t;}
+    go.addEventListener('click',function(){
+      var k=document.getElementById('key').value.trim();
+      if(!k){show(false,'Paste your license key first.');return;}
+      go.disabled=true;go.textContent='Checking with Gumroad...';
+      fetch('/activate-pro',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({license_key:k})})
+        .then(function(r){return r.json();})
+        .then(function(d){
+          if(d.success){try{localStorage.setItem('gim_license',k);}catch(e){}show(true,'Pro is active. Taking you to the generator...');setTimeout(function(){location.href='/#gen';},1200);}
+          else{show(false,d.message||'That key did not work.');go.disabled=false;go.textContent='Activate Pro';}
+        })
+        .catch(function(){show(false,'Network error. Please try again.');go.disabled=false;go.textContent='Activate Pro';});
+    });
+  }
+  var de=document.getElementById('deact');
+  if(de){de.addEventListener('click',function(){try{localStorage.removeItem('gim_license');}catch(e){}fetch('/deactivate-pro',{method:'POST'}).then(function(){location.reload();});});}
+})();
 </script>
 </body>
 </html>

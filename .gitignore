@@ -2,3 +2,5 @@
 .env
 
 .gsc-credentials.json
+.vercel
+.env*

@@ -1,0 +1,104 @@
+<%
+  // Shared invoice generator. Expects `gen` (see genConfig in server.js), `isPro` and `checkout`.
+  var g = gen;
+  var currencies = [['USD','US Dollar'],['EUR','Euro'],['GBP','British Pound'],['CAD','Canadian Dollar'],['AUD','Australian Dollar'],['INR','Indian Rupee'],['AED','UAE Dirham'],['SGD','Singapore Dollar'],['NZD','New Zealand Dollar'],['CHF','Swiss Franc'],['SEK','Swedish Krona'],['NOK','Norwegian Krone'],['DKK','Danish Krone'],['JPY','Japanese Yen'],['ZAR','South African Rand'],['BRL','Brazilian Real'],['MXN','Mexican Peso'],['TRY','Turkish Lira']];
+%>
+<link rel="stylesheet" href="/css/generator.css?v=4">
+<div class="gen" id="gen">
+  <div class="g-card">
+    <div class="g-st">Your details</div>
+    <div class="g-row">
+      <div class="g-f"><label for="fromName">Name / company</label><input type="text" id="fromName" autocomplete="organization" placeholder="<%= g.senderPlaceholder || 'Acme Studio' %>"></div>
+      <div class="g-f"><label for="fromEmail">Email</label><input type="email" id="fromEmail" autocomplete="email" placeholder="hello@acme.com"></div>
+    </div>
+    <div class="g-row one"><div class="g-f"><label for="fromAddress">Address</label><textarea id="fromAddress" rows="2" placeholder="<%= g.addressPlaceholder || '123 Main St, City' %>"></textarea></div></div>
+    <div class="g-row one"><div class="g-f"><label for="senderTaxId"><%= g.senderIdLabel %> <span class="opt">(optional)</span></label><input type="text" id="senderTaxId" placeholder="<%= g.senderIdPlaceholder %>"></div></div>
+    <div class="g-row one"><div class="g-f"><label for="logoFile">Logo <span class="g-chip">PRO</span></label><input type="file" id="logoFile" accept="image/png,image/jpeg"><small class="g-small" id="logoHint"><%= isPro ? 'PNG or JPG under 500 KB. Added to your downloaded PDF.' : 'PNG or JPG under 500 KB. Shown in the preview; added to the PDF with Pro.' %></small></div></div>
+
+    <div class="g-st">Bill to</div>
+    <div class="g-row">
+      <div class="g-f"><label for="toName">Client name</label><input type="text" id="toName" placeholder="<%= g.clientPlaceholder || 'Client Ltd' %>"></div>
+      <div class="g-f"><label for="toEmail">Client email</label><input type="email" id="toEmail" placeholder="billing@client.com"></div>
+    </div>
+    <div class="g-row one"><div class="g-f"><label for="toAddress">Client address</label><textarea id="toAddress" rows="2" placeholder="456 Client Ave, City"></textarea></div></div>
+    <div class="g-row one"><div class="g-f"><label for="clientTaxId"><%= g.clientIdLabel %> <span class="opt">(optional)</span></label><input type="text" id="clientTaxId" placeholder="<%= g.clientIdPlaceholder %>"></div></div>
+
+    <div class="g-st">Invoice details</div>
+    <div class="g-row">
+      <div class="g-f"><label for="invNum">Invoice number</label><input type="text" id="invNum" value="<%= g.invoicePrefix %>001"></div>
+      <div class="g-f"><label for="currency">Currency</label>
+        <select id="currency">
+          <% currencies.forEach(function(c){ %><option value="<%= c[0] %>"<%= c[0] === g.currency ? ' selected' : '' %>><%= c[0] %>, <%= c[1] %></option><% }) %>
+        </select>
+      </div>
+    </div>
+    <div class="g-row">
+      <div class="g-f"><label for="issueDate">Issue date</label><input type="date" id="issueDate"></div>
+      <div class="g-f"><label for="dueDate">Due date</label><input type="date" id="dueDate"></div>
+    </div>
+    <div class="g-row">
+      <div class="g-f"><label for="supplyDate">Service / supply date <span class="opt">(optional)</span></label><input type="text" id="supplyDate" placeholder="e.g. 1–31 March 2026"></div>
+      <div class="g-f"><label for="lang">Invoice language</label>
+        <select id="lang">
+          <option value="en"<%= g.lang === 'en' ? ' selected' : '' %>>English</option>
+          <option value="nl"<%= g.lang === 'nl' ? ' selected' : '' %>>Nederlands</option>
+          <option value="nl-en"<%= g.lang === 'nl-en' ? ' selected' : '' %>>Nederlands + English</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="g-st">Line items</div>
+    <div class="g-ih"><span>Description</span><span>Qty</span><span>Rate</span><span>Amount</span><span></span></div>
+    <div id="items"></div>
+    <button type="button" class="g-add" id="addItem">+ Add line item</button>
+
+    <div class="g-st">Tax</div>
+    <% if (g.provinces) { %>
+    <div class="g-row one"><div class="g-f"><label for="province">Province or territory of the client</label>
+      <select id="province">
+        <option value="">Choose a province to fill in the tax lines</option>
+        <% g.provinces.forEach(function(p){ %><option value="<%= p.code %>"<%= p.code === g.province ? ' selected' : '' %>><%= p.name %>: <%= p.summary %></option><% }) %>
+      </select>
+      <small class="g-small">Rates last checked <%= g.ratesChecked %> against canada.ca and the provincial tax sites.</small>
+    </div></div>
+    <% } %>
+    <div class="g-row">
+      <div class="g-f"><label for="tax1Rate">Tax rate (%)</label><input type="number" id="tax1Rate" min="0" max="100" step="any" placeholder="e.g. 20" value="<%= g.taxes[0] ? g.taxes[0].rate : '' %>"></div>
+      <div class="g-f"><label for="tax1Label">Tax name</label><input type="text" id="tax1Label" maxlength="30" placeholder="VAT / GST / Sales tax" value="<%= g.taxes[0] ? g.taxes[0].label : 'Tax' %>"></div>
+    </div>
+    <div class="g-row" id="tax2Row"<%= g.taxes[1] ? '' : ' hidden' %>>
+      <div class="g-f"><label for="tax2Rate">Second tax rate (%)</label><input type="number" id="tax2Rate" min="0" max="100" step="any" placeholder="e.g. 7" value="<%= g.taxes[1] ? g.taxes[1].rate : '' %>"></div>
+      <div class="g-f"><label for="tax2Label">Second tax name</label><input type="text" id="tax2Label" maxlength="30" placeholder="PST / QST" value="<%= g.taxes[1] ? g.taxes[1].label : '' %>"></div>
+    </div>
+    <button type="button" class="g-link" id="tax2Toggle"><%= g.taxes[1] ? 'Remove second tax line' : '+ Add a second tax line (e.g. PST or QST)' %></button>
+
+    <div class="g-totals">
+      <div class="g-trow"><span>Subtotal</span><span id="sub">0.00</span></div>
+      <div id="taxLines"></div>
+      <div class="g-trow grand"><span>Total due</span><span id="tot" style="color:#2563eb">0.00</span></div>
+    </div>
+
+    <div class="g-st">Notes and payment details</div>
+    <textarea id="notes" rows="3" placeholder="<%= g.notesPlaceholder %>"></textarea>
+
+    <div class="g-st">Accent colour</div>
+    <div class="g-colors" role="radiogroup" aria-label="Accent colour">
+      <% [['#2563eb','Blue'],['#7c3aed','Purple'],['#059669','Green'],['#dc2626','Red'],['#d97706','Amber'],['#0891b2','Teal'],['#374151','Charcoal']].forEach(function(c, i){ %><button type="button" class="g-dot<%= i === 0 ? ' on' : '' %>" style="background:<%= c[0] %>" data-c="<%= c[0] %>" title="<%= c[1] %>" aria-label="<%= c[1] %>"></button><% }) %>
+    </div>
+
+    <button type="button" class="g-pdf" id="pbtn">Download PDF invoice</button>
+    <small class="g-small" style="text-align:center">Free, no account. Your sender details and last invoice number are remembered in this browser only.</small>
+  </div>
+
+  <div class="g-preview">
+    <div class="g-ph"><span>Live preview</span><span>Updates as you type</span></div>
+    <iframe id="pframe" title="Invoice preview"></iframe>
+    <% if (isPro) { %>
+    <div class="g-pro active"><p>Pro is active in this browser: no footer, logo on your PDFs.</p></div>
+    <% } else if (checkout.available) { %>
+    <div class="g-pro"><p>Pro removes the "Created with GetInvoiceMaker" footer and adds your logo to every PDF.</p><a href="/#pricing">See Pro</a></div>
+    <% } %>
+  </div>
+</div>
+<script>window.GEN_CONFIG=<%- JSON.stringify({ items: g.items, isPro: !!isPro, provinces: g.provinces ? g.provinces.map(function(p){ return { code: p.code, taxes: p.taxes }; }) : null, itemPlaceholder: g.itemPlaceholder, invoicePrefix: g.invoicePrefix, key: g.key }).replace(/</g, '\\u003c') %>;</script>
+<script src="/js/generator.js?v=3" defer></script>

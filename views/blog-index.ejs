@@ -5,11 +5,15 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Invoicing Guides & Resources | GetInvoiceMaker Blog</title>
 <meta name="description" content="Free invoicing guides, templates and tips for freelancers and small businesses. Learn how to invoice professionally, handle VAT, and get paid faster.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Invoicing Guides & Resources">
+<meta property="og:description" content="Guides on writing invoices, payment terms, VAT and GST, and getting paid faster.">
+<meta property="og:url" content="<%= siteUrl %>/blog">
+<script type="application/ld+json"><%- JSON.stringify({ '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Invoicing Guides & Resources', url: siteUrl + '/blog', hasPart: posts.map(function (p) { return { '@type': 'Article', headline: p.title, url: siteUrl + '/blog/' + p.slug }; }) }).replace(/</g, '\\u003c') %></script>
 <link rel="canonical" href="<%= siteUrl %>/blog">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:#f8fafc;color:#0f172a}
+body{font-family:'Public Sans',system-ui,sans-serif;background:#f8fafc;color:#0f172a}
 a{color:#2563eb;text-decoration:none}
 nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;justify-content:space-between;align-items:center;height:60px;position:sticky;top:0;z-index:100}
 .logo{font-weight:700;font-size:18px}.logo span{color:#2563eb}
@@ -72,7 +76,7 @@ footer a:hover{color:#fff}
   <div class="howto-grid">
     <% howTo.forEach(function(page) { %>
     <a href="/<%= page.slug %>" class="howto-card" style="display:block">
-      <div class="howto-icon">&#128196;</div>
+      <div class="howto-icon"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.5h5.5L12.5 4.5v10h-8.5z M9.5 1.5v3h3 M6 8h5M6 10.5h5" fill="none" stroke="#2563eb" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
       <div>
         <h3><%= page.title %></h3>
         <p><%= page.desc.substring(0,80) %>...</p>
@@ -83,7 +87,7 @@ footer a:hover{color:#fff}
 </div>
 <footer>
   <a href="/">Home</a><a href="/blog">Blog</a><a href="/#pricing">Pricing</a>
-  <p style="margin-top:12px">&#169; 2026 GetInvoiceMaker — Free Invoice Generator</p>
+  <p style="margin-top:12px">&#169; 2026 GetInvoiceMaker. Free invoice generator.</p>
 </footer>
 </body>
 </html>
