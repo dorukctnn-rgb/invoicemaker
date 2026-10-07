@@ -47,7 +47,7 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Hanken Grotesk',system-ui,sans-serif;background:#f8fafc;color:#0f172a;line-height:1.7}
+body{font-family:'Public Sans',system-ui,sans-serif;background:#f8fafc;color:#0f172a;line-height:1.7}
 a{color:#2563eb;text-decoration:none}
 a:hover{text-decoration:underline}
 nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;justify-content:space-between;align-items:center;height:60px;position:sticky;top:0;z-index:100}
@@ -71,7 +71,7 @@ nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;
 .calc-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 @media(max-width:600px){.calc-row{grid-template-columns:1fr}}
 .calc-fg label{display:block;font-size:11px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
-.calc-fg input,.calc-fg select{width:100%;padding:11px 13px;border:1px solid #e2e8f0;border-radius:7px;font-size:15px;font-family:'Hanken Grotesk',system-ui,sans-serif}
+.calc-fg input,.calc-fg select{width:100%;padding:11px 13px;border:1px solid #e2e8f0;border-radius:7px;font-size:15px;font-family:'Public Sans',system-ui,sans-serif}
 .calc-fg input:focus,.calc-fg select:focus{outline:none;border-color:#16a34a;box-shadow:0 0 0 3px rgba(22,163,74,.1)}
 .calc-result{background:#f0fdf4;border-radius:10px;padding:18px;margin-top:18px}
 .calc-line{display:flex;justify-content:space-between;padding:5px 0;font-size:14px;color:#334155}
@@ -210,7 +210,7 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
     <p>The ATO-approved formula for reverse GST calculation:</p>
     <div class="formula">
       GST = Total &divide; 11<br>
-      Pre-GST amount = Total - GST<br>
+      Pre-GST amount = Total minus GST<br>
       <code>Example: AUD 1,100 &divide; 11 = AUD 100 GST. Pre-GST = AUD 1,000</code>
     </div>
     <p>The "divide by 11" rule works because the GST is one-eleventh of the GST-inclusive total when the rate is 10%. This is the standard method used by Australian accountants and is accepted by the ATO for BAS reporting.</p>
@@ -231,7 +231,7 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
       <ol>
         <li>Retail price (GST-inclusive): <strong>AUD 550.00</strong></li>
         <li>GST = AUD 550 &divide; 11 = <strong>AUD 50.00</strong></li>
-        <li>Pre-GST amount = AUD 550 - AUD 50 = <strong>AUD 500.00</strong></li>
+        <li>Pre-GST amount = AUD 550 minus AUD 50 = <strong>AUD 500.00</strong></li>
       </ol>
     </div>
 
@@ -387,7 +387,7 @@ function calc() {
     gst = 0;
     total = amount;
     l1 = 'Amount';
-    l2 = 'GST (0% - GST-free)';
+    l2 = 'GST (0%, GST-free)';
     l3 = 'Total';
   }
 

@@ -47,7 +47,7 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Hanken Grotesk',system-ui,sans-serif;background:#f8fafc;color:#0f172a;line-height:1.7}
+body{font-family:'Public Sans',system-ui,sans-serif;background:#f8fafc;color:#0f172a;line-height:1.7}
 a{color:#2563eb;text-decoration:none}
 a:hover{text-decoration:underline}
 nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;justify-content:space-between;align-items:center;height:60px;position:sticky;top:0;z-index:100}
@@ -71,7 +71,7 @@ nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;
 .calc-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 @media(max-width:600px){.calc-row{grid-template-columns:1fr}}
 .calc-fg label{display:block;font-size:11px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
-.calc-fg input,.calc-fg select{width:100%;padding:11px 13px;border:1px solid #e2e8f0;border-radius:7px;font-size:15px;font-family:'Hanken Grotesk',system-ui,sans-serif}
+.calc-fg input,.calc-fg select{width:100%;padding:11px 13px;border:1px solid #e2e8f0;border-radius:7px;font-size:15px;font-family:'Public Sans',system-ui,sans-serif}
 .calc-fg input:focus,.calc-fg select:focus{outline:none;border-color:#1e40af;box-shadow:0 0 0 3px rgba(30,64,175,.1)}
 .calc-result{background:#eff6ff;border-radius:10px;padding:18px;margin-top:18px}
 .calc-line{display:flex;justify-content:space-between;padding:5px 0;font-size:14px;color:#334155}
@@ -159,9 +159,9 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
       <div class="calc-fg">
         <label>VAT Rate</label>
         <select id="calcRate" onchange="calc()">
-          <option value="20">20% - Standard (most goods and services)</option>
-          <option value="5">5% - Reduced (energy, child car seats)</option>
-          <option value="0">0% - Zero-rated (food, books, kids clothes)</option>
+          <option value="20">20% standard (most goods and services)</option>
+          <option value="5">5% reduced (energy, child car seats)</option>
+          <option value="0">0% zero-rated (food, books, kids clothes)</option>
         </select>
       </div>
     </div>
@@ -206,7 +206,7 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
 
     <h2>Step-by-Step: How to Create a UK VAT Invoice</h2>
 
-    <h3>Step 1 - Your business identification</h3>
+    <h3>Step 1: Your business identification</h3>
     <p>At the top of the invoice, include:</p>
     <ul>
       <li>Your business name (or trading name)</li>
@@ -215,21 +215,21 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
       <li>Company registration number (for limited companies)</li>
     </ul>
 
-    <h3>Step 2 - Customer details</h3>
+    <h3>Step 2: Customer details</h3>
     <ul>
       <li>Customer name (or business name)</li>
       <li>Customer billing address</li>
       <li>For EU B2B sales: customer VAT number</li>
     </ul>
 
-    <h3>Step 3 - Invoice metadata</h3>
+    <h3>Step 3: Invoice metadata</h3>
     <ul>
       <li>Unique sequential invoice number (required by HMRC)</li>
       <li>Invoice date (tax point date)</li>
       <li>Payment due date (Net 14 or Net 30 is standard)</li>
     </ul>
 
-    <h3>Step 4 - Itemize and calculate VAT</h3>
+    <h3>Step 4: Itemize and calculate VAT</h3>
     <p>List each service or product with quantity, unit price, and net amount. Then calculate VAT:</p>
     <div class="formula">
       VAT amount = Net amount x (VAT rate / 100)<br>
@@ -240,7 +240,7 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
     <h2>Real Examples</h2>
 
     <div class="example-box">
-      <h4>Example 1 - Standard 20% VAT on a Consulting Invoice</h4>
+      <h4>Example 1: Standard 20% VAT on a Consulting Invoice</h4>
       <ol>
         <li>Net amount: 10 hours x GBP 75 = <strong>GBP 750.00</strong></li>
         <li>VAT 20% = GBP 750 x 0.20 = <strong>GBP 150.00</strong></li>
@@ -249,7 +249,7 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
     </div>
 
     <div class="example-box">
-      <h4>Example 2 - 5% Reduced VAT on Domestic Energy</h4>
+      <h4>Example 2: 5% Reduced VAT on Domestic Energy</h4>
       <ol>
         <li>Net amount: <strong>GBP 500.00</strong></li>
         <li>VAT 5% = GBP 500 x 0.05 = <strong>GBP 25.00</strong></li>
@@ -258,7 +258,7 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
     </div>
 
     <div class="example-box">
-      <h4>Example 3 - Zero-rated Book Export</h4>
+      <h4>Example 3: Zero-rated Book Export</h4>
       <ol>
         <li>Net amount: <strong>GBP 2,000.00</strong></li>
         <li>VAT 0% (zero-rated, books) = <strong>GBP 0.00</strong></li>
@@ -294,24 +294,24 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
       <li>The note "Reverse charge: customer to account for VAT"</li>
       <li>Both your and the customer's VAT numbers (for EU)</li>
     </ul>
-    <p>For B2C sales to consumers in other countries, different rules apply - typically you charge UK VAT unless you've registered for the One-Stop Shop scheme.</p>
+    <p>For B2C sales to consumers in other countries, different rules apply: typically you charge UK VAT unless you've registered for the EU One Stop Shop (OSS) scheme.</p>
 
     <h2>How to Calculate VAT in Reverse (Gross Total Given)</h2>
     <p>If a price already includes 20% VAT and you need the net amount:</p>
     <div class="formula">
       Net = Gross / 1.20<br>
-      VAT = Gross - Net<br>
+      VAT = Gross minus Net<br>
       <code>Example: GBP 1,200 / 1.20 = GBP 1,000 net, GBP 200 VAT</code>
     </div>
     <p>For 5% reduced rate, divide by 1.05.</p>
 
     <h2>Common Mistakes UK Freelancers Make</h2>
     <ul>
-      <li><strong>Missing VAT number</strong> - HMRC penalties up to GBP 500 per invoice. Always include format GB followed by 9 digits.</li>
-      <li><strong>Wrong VAT rate</strong> - Charging 20% on zero-rated items (books, kids clothes) means refunds to clients.</li>
-      <li><strong>Non-sequential numbers</strong> - Skipping numbers (INV-001 then INV-005) triggers HMRC red flags.</li>
-      <li><strong>No tax point date</strong> - Required if the invoice date differs from when supply was made.</li>
-      <li><strong>Forgetting reverse charge note</strong> - For EU/international B2B, missing this means clients can't reclaim VAT.</li>
+      <li><strong>Missing VAT number.</strong> HMRC penalties up to GBP 500 per invoice. Always include format GB followed by 9 digits.</li>
+      <li><strong>Wrong VAT rate.</strong> Charging 20% on zero-rated items (books, kids clothes) means refunds to clients.</li>
+      <li><strong>Non-sequential numbers.</strong> Skipping numbers (INV-001 then INV-005) triggers HMRC red flags.</li>
+      <li><strong>No tax point date.</strong> Required if the invoice date differs from when supply was made.</li>
+      <li><strong>Forgetting reverse charge note.</strong> For EU/international B2B, missing this means clients can't reclaim VAT.</li>
     </ul>
 
     <div class="cta-block">
@@ -323,9 +323,9 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
     <h2>Sole Trader vs Limited Company Invoicing</h2>
     <p>Both must follow the same VAT invoice rules, but there are differences:</p>
     <ul>
-      <li><strong>Sole trader</strong> - Use your own name (or trading name) and home/business address. No company registration number needed.</li>
-      <li><strong>Limited company</strong> - Use registered company name, registered office address, and Companies House registration number. Director name on invoice is not legally required.</li>
-      <li><strong>Partnership</strong> - Use partnership name and address. List partner names if appropriate.</li>
+      <li><strong>Sole trader:</strong> Use your own name (or trading name) and home/business address. No company registration number needed.</li>
+      <li><strong>Limited company:</strong> Use registered company name, registered office address, and Companies House registration number. Director name on invoice is not legally required.</li>
+      <li><strong>Partnership:</strong> Use partnership name and address. List partner names if appropriate.</li>
     </ul>
 
     <h2>Frequently Asked Questions</h2>
@@ -399,7 +399,7 @@ function calc() {
   document.getElementById('resNet').textContent = fmt(amount);
   document.getElementById('resVat').textContent = fmt(vatAmount);
   document.getElementById('resTotal').textContent = fmt(total);
-  document.getElementById('rateLabel').textContent = rate === 0 ? 'VAT (0% - zero-rated)' : 'VAT (' + rate + '%)';
+  document.getElementById('rateLabel').textContent = rate === 0 ? 'VAT (0%, zero-rated)' : 'VAT (' + rate + '%)';
 }
 function toggleFaq(el) {
   el.classList.toggle('open');
