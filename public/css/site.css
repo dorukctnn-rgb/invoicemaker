@@ -2,7 +2,7 @@
 :root{--ink:#0f172a;--ink2:#334155;--muted:#64748b;--line:#e2e8f0;--soft:#f8fafc;--blue:#2563eb;--blue2:#1d4ed8;--blue-soft:#eff6ff}
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
-body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--soft);color:var(--ink);line-height:1.6}
+body{font-family:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--soft);color:var(--ink);line-height:1.6}
 a{color:var(--blue)}
 img{max-width:100%}
 .site-nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100}

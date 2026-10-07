@@ -44,7 +44,7 @@ const COUNTRIES = [
     desc: 'Free invoice generator for Germany in EUR with a 19% or 7% MwSt line. Download a PDF invoice (Rechnung) in a minute. No signup.',
     intro: 'Create an invoice (Rechnung) in euros with a MwSt line at 19% or 7% and download it as a PDF.',
     about: 'Germany charges VAT (Umsatzsteuer, often shown as MwSt) at 19% as the standard rate and 7% for reduced-rate items. Put your Steuernummer or USt-IdNr. in the business ID field. Small businesses using the Kleinunternehmerregelung charge no VAT and say so on the invoice; ask your Steuerberater which applies to you.' },
-  { slug: 'france', label: 'France', fullName: 'France', currency: 'EUR', tax: 'TVA', taxRate: 20, idLabel: 'SIRET and TVA number', idPlaceholder: 'SIRET 123 456 789 00012 · FR12345678901',
+  { slug: 'france', label: 'France', fullName: 'France', currency: 'EUR', tax: 'TVA', taxRate: 20, idLabel: 'SIRET and TVA number', idPlaceholder: 'SIRET 123 456 789 00012, FR12345678901',
     desc: 'Free invoice generator for France in EUR with a TVA line at 20%, 10% or 5.5%. Download a PDF invoice (facture) in a minute. No signup.',
     intro: 'Create a facture in euros with a TVA line at the standard 20% or a reduced rate, and download it as a PDF.',
     about: 'France charges TVA at 20% as the standard rate, with reduced rates for some goods and services. Show your SIRET and, if you have one, your intra-EU TVA number. Micro-entrepreneurs under the franchise en base de TVA charge no TVA and add the mention required for that scheme; check with your accountant or the impots.gouv.fr guidance.' },
@@ -98,7 +98,7 @@ const NL_GEN = genConfig({
   key: 'netherlands', currency: 'EUR', lang: 'nl-en', taxes: [{ label: 'BTW', rate: 21 }], invoicePrefix: '2026-',
   items: [{ desc: 'Webdesign: homepage en productpagina (uren)', qty: 20, rate: 85 }, { desc: 'Hosting setup', qty: 1, rate: 150 }],
   itemPlaceholder: 'Omschrijving / description',
-  senderIdLabel: 'KVK-nummer and btw-id', senderIdPlaceholder: 'KVK 12345678 · btw-id NL123456789B01',
+  senderIdLabel: 'KVK-nummer and btw-id', senderIdPlaceholder: 'KVK 12345678, btw-id NL123456789B01',
   clientIdLabel: 'Client btw-id (required for btw verlegd)', clientIdPlaceholder: 'e.g. NL987654321B01 or DE123456789',
   senderPlaceholder: 'De Vries Design', addressPlaceholder: 'Keizersgracht 112, 1015 CV Amsterdam', clientPlaceholder: 'Bloem & Co B.V.',
   notesPlaceholder: 'Betaling binnen 30 dagen op IBAN NL00 BANK 0123 4567 89 o.v.v. het factuurnummer.'

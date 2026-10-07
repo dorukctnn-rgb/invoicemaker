@@ -13,7 +13,7 @@
 <link rel="canonical" href="https://getinvoicemaker.com/rent-receipt-generator">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #111; background: #f9fafb; line-height: 1.5; }
+body { font-family: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif; color: #111; background: #f9fafb; line-height: 1.5; }
 .nav { background: #fff; border-bottom: 1px solid #e5e7eb; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
 .nav a { color: #2563eb; text-decoration: none; font-weight: 500; margin-left: 20px; }
 .logo { font-weight: 700; font-size: 18px; color: #111; }
@@ -25,6 +25,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 @media (max-width: 600px) { .container { padding: 20px 12px; } .container > * { min-width: 0; } .row { grid-template-columns: 1fr; } }
 .card { background: #fff; padding: 24px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
 h2 { font-size: 16px; margin-bottom: 12px; color: #111; }
+.card h2 { font-family: 'Hanken Grotesk', system-ui, sans-serif; }
 h3 { font-size: 13px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin: 18px 0 8px; }
 label { display: block; font-size: 12px; color: #666; margin-bottom: 4px; margin-top: 10px; }
 input, select, textarea { width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; font-family: inherit; }
@@ -52,7 +53,7 @@ textarea { resize: vertical; min-height: 70px; }
 .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: all 0.2s; color: #555; font-size: 14px; }
 .faq-item.open .faq-a { max-height: 400px; padding: 0 20px 20px; }
 .info-section { max-width: 800px; margin: 60px auto; padding: 0 24px; color: #444; font-size: 15px; }
-.info-section h2 { font-size: 28px; margin-bottom: 16px; color: #111; }
+.info-section h2 { font-family: 'Newsreader', Georgia, serif; font-size: 28px; margin-bottom: 16px; color: #111; }
 .info-section h3 { font-size: 18px; margin: 24px 0 8px; color: #111; text-transform: none; letter-spacing: normal; }
 .info-section p { margin-bottom: 12px; }
 .info-section ul { margin: 12px 0 12px 24px; }
@@ -128,24 +129,24 @@ textarea { resize: vertical; min-height: 70px; }
       <div>
         <label>Currency</label>
         <select id="currency">
-          <option value="USD">USD — US Dollar</option>
-          <option value="GBP">GBP — British Pound</option>
-          <option value="EUR">EUR — Euro</option>
-          <option value="CAD">CAD — Canadian Dollar</option>
-          <option value="AUD">AUD — Australian Dollar</option>
-          <option value="INR">INR — Indian Rupee</option>
-          <option value="AED">AED — UAE Dirham</option>
-          <option value="SGD">SGD — Singapore Dollar</option>
-          <option value="TRY">TRY — Turkish Lira</option>
-          <option value="JPY">JPY — Japanese Yen</option>
-          <option value="CHF">CHF — Swiss Franc</option>
-          <option value="SEK">SEK — Swedish Krona</option>
-          <option value="NOK">NOK — Norwegian Krone</option>
-          <option value="DKK">DKK — Danish Krone</option>
-          <option value="NZD">NZD — New Zealand Dollar</option>
-          <option value="ZAR">ZAR — South African Rand</option>
-          <option value="BRL">BRL — Brazilian Real</option>
-          <option value="MXN">MXN — Mexican Peso</option>
+          <option value="USD">USD, US Dollar</option>
+          <option value="GBP">GBP, British Pound</option>
+          <option value="EUR">EUR, Euro</option>
+          <option value="CAD">CAD, Canadian Dollar</option>
+          <option value="AUD">AUD, Australian Dollar</option>
+          <option value="INR">INR, Indian Rupee</option>
+          <option value="AED">AED, UAE Dirham</option>
+          <option value="SGD">SGD, Singapore Dollar</option>
+          <option value="TRY">TRY, Turkish Lira</option>
+          <option value="JPY">JPY, Japanese Yen</option>
+          <option value="CHF">CHF, Swiss Franc</option>
+          <option value="SEK">SEK, Swedish Krona</option>
+          <option value="NOK">NOK, Norwegian Krone</option>
+          <option value="DKK">DKK, Danish Krone</option>
+          <option value="NZD">NZD, New Zealand Dollar</option>
+          <option value="ZAR">ZAR, South African Rand</option>
+          <option value="BRL">BRL, Brazilian Real</option>
+          <option value="MXN">MXN, Mexican Peso</option>
         </select>
       </div>
     </div>
@@ -257,7 +258,7 @@ textarea { resize: vertical; min-height: 70px; }
   </div>
   <div class="faq-item">
     <div class="faq-q">Are these rent receipts legally valid?<span class="faq-icon">+</span></div>
-    <div class="faq-a">Yes. As long as the receipt contains the tenant name, landlord name, property address, period, amount, payment method, and date — it serves as legal proof of payment in most jurisdictions. Some regions require additional fields like a revenue stamp; check your local rules.</div>
+    <div class="faq-a">Yes, as long as the receipt contains the tenant name, landlord name, property address, period, amount, payment method, and date. It then serves as legal proof of payment in most jurisdictions. Some regions require additional fields like a revenue stamp; check your local rules.</div>
   </div>
   <div class="faq-item">
     <div class="faq-q">Can I use this rent receipt for tax purposes?<span class="faq-icon">+</span></div>
@@ -283,7 +284,7 @@ textarea { resize: vertical; min-height: 70px; }
     <a href="/rent-receipt-generator">Rent Receipt</a>
     <a href="/blog">Blog</a>
   </div>
-  <div style="margin-top:16px">© 2026 InvoiceMaker. Free rent receipt generator for landlords and tenants.</div>
+  <div style="margin-top:16px">&copy; 2026 InvoiceMaker. Free rent receipt generator for landlords and tenants.</div>
 </footer>
 
 <script>
@@ -301,12 +302,12 @@ function fmt(n) { return symbol() + (Number(n) || 0).toFixed(2); }
 function updatePreview() {
   $('pvNum').textContent = 'Receipt #' + ($('receiptNumber').value || '');
   $('pvDate').textContent = $('receiptDate').value || '';
-  $('pvTenant').textContent = $('tenantName').value || '—';
-  $('pvLandlord').textContent = $('landlordName').value || '—';
-  $('pvAddress').textContent = $('propertyAddress').value || '—';
+  $('pvTenant').textContent = $('tenantName').value || '';
+  $('pvLandlord').textContent = $('landlordName').value || '';
+  $('pvAddress').textContent = $('propertyAddress').value || '';
   const from = $('periodFrom').value;
   const to = $('periodTo').value;
-  $('pvPeriod').textContent = (from && to) ? `${from} to ${to}` : '—';
+  $('pvPeriod').textContent = (from && to) ? `${from} to ${to}` : '';
   $('pvAmount').textContent = fmt($('amount').value);
   $('pvMethod').textContent = $('paymentMethod').value;
 }

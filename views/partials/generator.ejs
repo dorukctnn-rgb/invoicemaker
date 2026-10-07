@@ -3,7 +3,7 @@
   var g = gen;
   var currencies = [['USD','US Dollar'],['EUR','Euro'],['GBP','British Pound'],['CAD','Canadian Dollar'],['AUD','Australian Dollar'],['INR','Indian Rupee'],['AED','UAE Dirham'],['SGD','Singapore Dollar'],['NZD','New Zealand Dollar'],['CHF','Swiss Franc'],['SEK','Swedish Krona'],['NOK','Norwegian Krone'],['DKK','Danish Krone'],['JPY','Japanese Yen'],['ZAR','South African Rand'],['BRL','Brazilian Real'],['MXN','Mexican Peso'],['TRY','Turkish Lira']];
 %>
-<link rel="stylesheet" href="/css/generator.css?v=3">
+<link rel="stylesheet" href="/css/generator.css?v=4">
 <div class="gen" id="gen">
   <div class="g-card">
     <div class="g-st">Your details</div>
@@ -28,7 +28,7 @@
       <div class="g-f"><label for="invNum">Invoice number</label><input type="text" id="invNum" value="<%= g.invoicePrefix %>001"></div>
       <div class="g-f"><label for="currency">Currency</label>
         <select id="currency">
-          <% currencies.forEach(function(c){ %><option value="<%= c[0] %>"<%= c[0] === g.currency ? ' selected' : '' %>><%= c[0] %> — <%= c[1] %></option><% }) %>
+          <% currencies.forEach(function(c){ %><option value="<%= c[0] %>"<%= c[0] === g.currency ? ' selected' : '' %>><%= c[0] %>, <%= c[1] %></option><% }) %>
         </select>
       </div>
     </div>
@@ -57,7 +57,7 @@
     <div class="g-row one"><div class="g-f"><label for="province">Province or territory of the client</label>
       <select id="province">
         <option value="">Choose a province to fill in the tax lines</option>
-        <% g.provinces.forEach(function(p){ %><option value="<%= p.code %>"<%= p.code === g.province ? ' selected' : '' %>><%= p.name %> — <%= p.summary %></option><% }) %>
+        <% g.provinces.forEach(function(p){ %><option value="<%= p.code %>"<%= p.code === g.province ? ' selected' : '' %>><%= p.name %>: <%= p.summary %></option><% }) %>
       </select>
       <small class="g-small">Rates last checked <%= g.ratesChecked %> against canada.ca and the provincial tax sites.</small>
     </div></div>

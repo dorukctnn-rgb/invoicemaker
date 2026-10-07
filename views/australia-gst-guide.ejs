@@ -12,8 +12,6 @@
 <meta property="og:title" content="Australia GST Calculator + Invoice Generator (2026)">
 <meta property="og:description" content="ATO-compliant Australian invoice with 10% GST. Free, no signup, instant PDF.">
 <meta property="og:url" content="https://getinvoicemaker.com/free-invoice-generator-australia">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
 {
@@ -49,7 +47,7 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:#f8fafc;color:#0f172a;line-height:1.7}
+body{font-family:'Hanken Grotesk',system-ui,sans-serif;background:#f8fafc;color:#0f172a;line-height:1.7}
 a{color:#2563eb;text-decoration:none}
 a:hover{text-decoration:underline}
 nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;justify-content:space-between;align-items:center;height:60px;position:sticky;top:0;z-index:100}
@@ -73,7 +71,7 @@ nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;
 .calc-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 @media(max-width:600px){.calc-row{grid-template-columns:1fr}}
 .calc-fg label{display:block;font-size:11px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
-.calc-fg input,.calc-fg select{width:100%;padding:11px 13px;border:1px solid #e2e8f0;border-radius:7px;font-size:15px;font-family:'Inter',sans-serif}
+.calc-fg input,.calc-fg select{width:100%;padding:11px 13px;border:1px solid #e2e8f0;border-radius:7px;font-size:15px;font-family:'Hanken Grotesk',system-ui,sans-serif}
 .calc-fg input:focus,.calc-fg select:focus{outline:none;border-color:#16a34a;box-shadow:0 0 0 3px rgba(22,163,74,.1)}
 .calc-result{background:#f0fdf4;border-radius:10px;padding:18px;margin-top:18px}
 .calc-line{display:flex;justify-content:space-between;padding:5px 0;font-size:14px;color:#334155}
@@ -142,7 +140,7 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
 <section class="hero">
   <div class="container" style="padding:0">
     <div class="breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/blog">Guides</a> &rsaquo; Australian GST Invoice</div>
-    <div class="flag-badge">Australia &middot; AUD &middot; ATO &middot; 10% GST</div>
+    <div class="flag-badge">Australia: AUD, 10% GST, ATO rules</div>
     <h1>Australia GST Calculator <span>+ Invoice Generator (2026)</span></h1>
     <p>ATO-compliant Australian tax invoices in 60 seconds. Free 10% GST calculator with ABN field, $75K threshold guidance, and BAS-ready breakdown. No signup, instant PDF.</p>
   </div>
@@ -173,7 +171,7 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
       <div class="calc-line grand"><span id="line3Label">Total (GST-inclusive)</span><span id="resTotal">A$1,100.00</span></div>
     </div>
     <div class="calc-cta">
-      <a href="/">Generate a Free Australian Tax Invoice &rarr;</a>
+      <a href="/">Generate a Free Australian Tax Invoice</a>
     </div>
   </div>
 
@@ -201,14 +199,14 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
 
     <h2>Step-by-Step: How to Calculate GST</h2>
 
-    <h3>Step 1 — Adding GST to a GST-exclusive price</h3>
+    <h3>Step 1: Adding GST to a GST-exclusive price</h3>
     <div class="formula">
       GST = Amount &times; 0.10<br>
       Total = Amount + GST<br>
       <code>Example: AUD 1,000 &times; 0.10 = AUD 100 GST. Total = AUD 1,100</code>
     </div>
 
-    <h3>Step 2 — Removing GST from a GST-inclusive price</h3>
+    <h3>Step 2: Removing GST from a GST-inclusive price</h3>
     <p>The ATO-approved formula for reverse GST calculation:</p>
     <div class="formula">
       GST = Total &divide; 11<br>
@@ -220,7 +218,7 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
     <h2>Real Examples</h2>
 
     <div class="example-box">
-      <h4>Example 1 — Consulting fee (add GST)</h4>
+      <h4>Example 1: Consulting fee (add GST)</h4>
       <ol>
         <li>Service: 20 hours &times; AUD 150 = <strong>AUD 3,000.00</strong></li>
         <li>GST 10% = AUD 3,000 &times; 0.10 = <strong>AUD 300.00</strong></li>
@@ -229,7 +227,7 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
     </div>
 
     <div class="example-box">
-      <h4>Example 2 — Retail price (remove GST)</h4>
+      <h4>Example 2: Retail price (remove GST)</h4>
       <ol>
         <li>Retail price (GST-inclusive): <strong>AUD 550.00</strong></li>
         <li>GST = AUD 550 &divide; 11 = <strong>AUD 50.00</strong></li>
@@ -238,7 +236,7 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
     </div>
 
     <div class="example-box">
-      <h4>Example 3 — Export of services (GST-free)</h4>
+      <h4>Example 3: Export of services (GST-free)</h4>
       <ol>
         <li>Service to overseas client: <strong>AUD 2,500.00</strong></li>
         <li>GST 0% (export, GST-free) = <strong>AUD 0.00</strong></li>
@@ -273,36 +271,36 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
     <p>Registration is <strong>voluntary</strong> below these thresholds. Voluntary registration lets you claim GST credits on business purchases but obligates you to charge GST on all taxable sales.</p>
 
     <h2>Business Activity Statement (BAS)</h2>
-    <p>Once registered, you must lodge a BAS — usually quarterly, sometimes monthly or annually depending on turnover. The BAS reports:</p>
+    <p>Once registered, you must lodge a BAS, usually quarterly, sometimes monthly or annually depending on turnover. The BAS reports:</p>
     <ul>
-      <li><strong>G1</strong> — Total sales (including GST)</li>
-      <li><strong>1A</strong> — GST collected on sales</li>
-      <li><strong>1B</strong> — GST credits on purchases</li>
+      <li><strong>G1:</strong> Total sales (including GST)</li>
+      <li><strong>1A:</strong> GST collected on sales</li>
+      <li><strong>1B:</strong> GST credits on purchases</li>
       <li><strong>Net GST</strong> = 1A minus 1B (payable to ATO or refundable)</li>
     </ul>
     <p>Most small businesses lodge quarterly. The due dates for 2026 are 28 October, 28 February, 28 April, and 28 July. Late lodgement penalties start at AUD 313 per BAS.</p>
 
     <h2>Common Mistakes Australian Businesses Make</h2>
     <ul>
-      <li><strong>Forgetting "Tax Invoice"</strong> — The label is legally required. Without it, your customer cannot claim GST credits.</li>
-      <li><strong>No ABN</strong> — If you don't quote an ABN, customers may withhold 47% (the "no ABN withholding" rate).</li>
-      <li><strong>Mixing GST-free and taxable</strong> — Each line item needs its GST status clearly shown.</li>
-      <li><strong>Wrong reverse calculation</strong> — Some businesses incorrectly divide by 10 instead of 11. Always divide a GST-inclusive total by 11.</li>
-      <li><strong>Missing BAS deadlines</strong> — ATO penalties accumulate quickly. Set calendar reminders.</li>
+      <li><strong>Forgetting "Tax Invoice".</strong> The label is legally required. Without it, your customer cannot claim GST credits.</li>
+      <li><strong>No ABN.</strong> If you don't quote an ABN, customers may withhold 47% (the "no ABN withholding" rate).</li>
+      <li><strong>Mixing GST-free and taxable.</strong> Each line item needs its GST status clearly shown.</li>
+      <li><strong>Wrong reverse calculation.</strong> Some businesses incorrectly divide by 10 instead of 11. Always divide a GST-inclusive total by 11.</li>
+      <li><strong>Missing BAS deadlines.</strong> ATO penalties accumulate quickly. Set calendar reminders.</li>
     </ul>
 
     <div class="cta-block">
       <h3>Generate an Australian Tax Invoice in 60 Seconds</h3>
       <p>Free, ATO-compliant. AUD currency, automatic 10% GST calculation, ABN field. Download as PDF instantly.</p>
-      <a href="/">Open the Invoice Generator &rarr;</a>
+      <a href="/">Open the Invoice Generator</a>
     </div>
 
     <h2>Sole Trader vs Pty Ltd Invoicing</h2>
     <p>Both must follow the same tax invoice rules, but there are practical differences:</p>
     <ul>
-      <li><strong>Sole trader</strong> — Use your own name (or registered business name). Your ABN is linked to your personal tax file number.</li>
-      <li><strong>Pty Ltd (company)</strong> — Use the registered company name and ACN (Australian Company Number) in addition to the ABN. Director name on invoice is not legally required but common.</li>
-      <li><strong>Partnership</strong> — Use the partnership name and partnership ABN. Each partner is jointly liable.</li>
+      <li><strong>Sole trader:</strong> Use your own name (or registered business name). Your ABN is linked to your personal tax file number.</li>
+      <li><strong>Pty Ltd (company):</strong> Use the registered company name and ACN (Australian Company Number) in addition to the ABN. Director name on invoice is not legally required but common.</li>
+      <li><strong>Partnership:</strong> Use the partnership name and partnership ABN. Each partner is jointly liable.</li>
     </ul>
 
     <h2>Frequently Asked Questions</h2>
@@ -362,7 +360,7 @@ footer{background:#0f172a;color:#94a3b8;padding:36px 20px 24px;margin-top:48px}
       <a href="/free-invoice-generator-canada">Canada</a>
       <a href="/blog">Blog</a>
     </div>
-    <div class="footer-bottom">&copy; 2026 GetInvoiceMaker - Free invoice tools for businesses worldwide.</div>
+    <div class="footer-bottom">&copy; 2026 GetInvoiceMaker. Free invoice tools for businesses worldwide.</div>
   </div>
 </footer>
 

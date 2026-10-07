@@ -221,12 +221,12 @@ const HOWTO_CONTENT = {
 <p>Microsoft Word can produce a perfectly good invoice. The catch is that Word does not calculate totals or keep your numbering, so small mistakes creep in. Here is how to do it properly, and when an online generator is faster.</p>
 <h2>Step by step in Word</h2>
 <ol>
-<li><strong>Start from a template.</strong> Go to File &rarr; New and search "invoice". Pick a simple layout with space for a logo, your details and a line-item table.</li>
+<li><strong>Start from a template.</strong> Open the File menu, choose New and search "invoice". Pick a simple layout with space for a logo, your details and a line-item table.</li>
 <li><strong>Fill in the header:</strong> your business name, address, email, tax number if registered, and the word "Invoice".</li>
 <li><strong>Add invoice details:</strong> invoice number, issue date, due date, and the client's name and address.</li>
-<li><strong>Complete the table:</strong> description, quantity, rate and amount. Word tables can sum a column with Layout &rarr; Formula &rarr; <code>=SUM(ABOVE)</code>, but the formula does not update automatically. Press F9 after every change.</li>
+<li><strong>Complete the table:</strong> description, quantity, rate and amount. Word tables can sum a column with the Formula command on the Layout tab (<code>=SUM(ABOVE)</code>), but the formula does not update automatically. Press F9 after every change.</li>
 <li><strong>Add tax and total</strong> as separate rows. Double-check the arithmetic.</li>
-<li><strong>Export to PDF</strong> via File &rarr; Save As &rarr; PDF. Never send an editable .docx invoice.</li>
+<li><strong>Export to PDF</strong> with File, Save As, and choose PDF as the type. Never send an editable .docx invoice.</li>
 </ol>
 <h2>Where Word invoices go wrong</h2>
 <ul>
@@ -330,7 +330,7 @@ const HOWTO_CONTENT = {
 <h2>VAT</h2>
 <p>If you are VAT registered, services supplied to a business customer outside the UK are generally outside the scope of UK VAT under the general place-of-supply rule. You charge no VAT and add a note such as "Outside the scope of UK VAT". Some services have special rules, so confirm with your accountant for your service type.</p>
 <h2>US tax forms</h2>
-<p>US clients often ask foreign contractors for a <strong>Form W-8BEN</strong> (individuals) or <strong>W-8BEN-E</strong> (companies). It confirms you are not a US person, and with the UK&ndash;US tax treaty it usually means no US tax is withheld from your payment. Do not fill in a W-9, which is for US persons.</p>
+<p>US clients often ask foreign contractors for a <strong>Form W-8BEN</strong> (individuals) or <strong>W-8BEN-E</strong> (companies). It confirms you are not a US person, and with the UK-US tax treaty it usually means no US tax is withheld from your payment. Do not fill in a W-9, which is for US persons.</p>
 <h2>Getting paid</h2>
 <p>Give ACH or wire details for a USD account, or IBAN/SWIFT for your UK account. State that transfer fees are paid by the sender if that is agreed.</p>
 <h2>Dates and terms</h2>

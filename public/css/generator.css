@@ -1,5 +1,5 @@
 /* Shared invoice generator (home, templates, country pages). */
-.gen{max-width:1180px;margin:0 auto;padding:32px 20px;display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:28px;align-items:start;font-family:'Inter',system-ui,sans-serif;color:#0f172a}
+.gen{max-width:1180px;margin:0 auto;padding:32px 20px;display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:28px;align-items:start;font-family:'Hanken Grotesk',system-ui,sans-serif;color:#0f172a}
 @media(max-width:920px){.gen{grid-template-columns:minmax(0,1fr)}}
 .gen *{box-sizing:border-box}
 .gen [hidden]{display:none!important}
