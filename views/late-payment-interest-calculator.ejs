@@ -1,0 +1,342 @@
+<%
+  var pageUrl = siteUrl + '/late-payment-interest-calculator';
+  var C = L.CHECKED;
+  var checkedLong = L.longDate(C);
+  var Y = +C.slice(0, 4);
+  // The newest periods whose rates are published; later ones are provisional in the calculator.
+  var ukRows = L.ukTable(2020, Y + 1), ieRows = L.ieTable(2013, Y + 1);
+  var ukNow = ukRows[0], ieNow = ieRows[0], iePrev = ieRows[1];
+  var ukNext = L.addDays(ukNow.to, 1);
+  var ieRecent = ieRows.filter(function (r) { return r.from >= '2022-01-01'; });
+  var ieOlder = ieRows.filter(function (r) { return r.from < '2022-01-01'; });
+  var lastBoe = L.BOE[L.BOE.length - 1];
+  var ukEx = L.calculate({ country: 'uk', amount: 2400, dueDate: '2026-08-15', until: '2026-10-08' });
+  var ieEx = L.calculate({ country: 'ie', amount: 5000, dueDate: '2026-05-31', until: '2026-08-31' });
+  var ieExSplit = L.calculate({ country: 'ie', amount: 5000, dueDate: '2026-05-31', until: '2026-08-31', method: 'split' });
+  var gb = function (n) { return L.money('uk', n); }, eu = function (n) { return L.money('ie', n); };
+  var S = {
+    act: { name: 'Late Payment of Commercial Debts (Interest) Act 1998', url: 'https://www.legislation.gov.uk/ukpga/1998/20' },
+    order: { name: 'Late Payment of Commercial Debts (Rate of Interest) (No. 3) Order 2002, article 4', url: 'https://www.legislation.gov.uk/uksi/2002/1675/article/4/made' },
+    scot: { name: 'Late Payment of Commercial Debts (Rate of Interest) (Scotland) Order 2002', url: 'https://www.legislation.gov.uk/ssi/2002/336/made' },
+    govuk: { name: 'GOV.UK: Late commercial payments, charging interest and debt recovery', url: 'https://www.gov.uk/late-commercial-payments-interest-debt-recovery' },
+    boe: { name: 'Bank of England: Official Bank Rate history', url: 'https://www.bankofengland.co.uk/boeapps/database/Bank-Rate.asp' },
+    si: { name: 'S.I. No. 580 of 2012, European Communities (Late Payment in Commercial Transactions) Regulations 2012', url: 'https://www.irishstatutebook.ie/eli/2012/si/580/made/en/print' },
+    si2014: { name: 'S.I. No. 196 of 2014 (amendment)', url: 'https://www.irishstatutebook.ie/eli/2014/si/196/made/en/print' },
+    si2016: { name: 'S.I. No. 281 of 2016 (amendment)', url: 'https://www.irishstatutebook.ie/eli/2016/si/281/made/en/print' },
+    dete: { name: 'Department of Enterprise, Tourism and Employment: Late payment interest rate', url: 'https://enterprise.gov.ie/en/what-we-do/supports-for-smes/late-payments/late-payment-interest-rate-/' },
+    deteFaq: { name: 'Department of Enterprise, Tourism and Employment: How do I calculate late payment interest?', url: 'https://enterprise.gov.ie/en/faqs/how-do-i-calculate-late-payment-interest-1.html' },
+    ecb: { name: 'European Central Bank: Key ECB interest rates', url: 'https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html' },
+    sbc: { name: 'Small Business Commissioner: Interest calculator', url: 'https://www.smallbusinesscommissioner.gov.uk/help-and-guidance/interest-calculator/' }
+  };
+  var faqs = [
+    ['How do you calculate late payment interest?', 'Multiply the unpaid amount by the yearly rate and divide by 365 to get the interest for one day, then multiply by the number of days late. ' + gb(2400) + ' at 11.75% is ' + gb(282) + ' a year, or ' + gb(0.77) + ' a day; 54 days late comes to ' + gb(ukEx.interest) + '. Count from the day after the due date up to the day you are paid. It is simple interest, so you never charge interest on interest.'],
+    ['What is the statutory interest rate for late payment in the UK?', L.rateText(ukNow.rate) + ' a year for a debt that becomes late between ' + L.longDate(ukNow.from) + ' and ' + L.longDate(ukNow.to) + ': 8% plus the Bank of England base rate of ' + L.rateText(ukNow.base) + ' in force on ' + L.longDate(ukNow.referenceDate) + '. The base rate has been ' + L.rateText(lastBoe[1]) + ' since ' + L.longDate(lastBoe[0]) + '. The rate stays the same until the debt is paid.'],
+    ['What is the late payment interest rate in Ireland?', L.rateText(ieNow.rate) + ' a year for payments that become overdue between ' + L.longDate(ieNow.from) + ' and ' + L.longDate(ieNow.to) + ': the ECB main refinancing rate of ' + L.rateText(ieNow.ecb) + ' plus 8 percentage points. From ' + L.longDate(iePrev.from) + ' to ' + L.longDate(iePrev.to) + ' it was ' + L.rateText(iePrev.rate) + '. The Department of Enterprise, Tourism and Employment publishes the rate for each half-year.'],
+    ['Can I charge interest on a late invoice if my contract does not mention it?', 'Yes, on a debt between businesses. In the UK section 1 of the 1998 Act writes the right to statutory interest into the contract, and in Ireland Regulation 4 gives it without the need for a reminder. If your contract sets its own late payment interest, that applies instead: in the UK only if it is a substantial remedy, and in Ireland only if it is not grossly unfair to you.'],
+    ['Is the £40, £70 or £100 compensation charged per invoice?', 'Yes. GOV.UK says you can charge the fixed sum once for each payment, so every late invoice carries its own amount, set by the size of that invoice. The Irish department bands the compensation by invoice value in the same way. Both laws also let you claim reasonable recovery costs above the fixed sum, such as a debt collection agency fee.'],
+    ['Does the rate change if the base rate changes while the invoice is unpaid?', 'Not in the UK. Section 4(2) of the Act fixes the rate at the end of the due date, using the base rate on the 30 June or 31 December before interest starts. A debt that became late in June 2025 carries 12.75% (the 4.75% base rate on 31 December 2024, plus 8%) until it is paid, although the base rate was already 4.25% by then and fell twice more that year. In Ireland the department applies the rate in force on the day the payment became overdue; the calculator also shows what the half-year reading of Regulation 5 would give.'],
+    ['Does late payment interest apply to consumers?', 'No. The UK Act and the Irish Regulations cover payments between businesses, including public bodies buying from businesses. Debts owed by private individuals follow different rules, so do not add statutory interest or this compensation to an invoice for a consumer.'],
+    ['When is an invoice late if no payment date was agreed?', 'In the UK the payment is late 30 days after the later of the day your customer received the invoice and the day you delivered the goods or services. In Ireland payment is due 30 calendar days after the later of those days and interest runs from the next day. Choose "No date agreed" in the calculator and it works out the date for you.'],
+    ['How do I add the interest to an invoice?', 'GOV.UK advises sending a new invoice when you decide to add interest to the money you are owed. The button under the result opens the free invoice maker with three lines filled in (the unpaid invoice, the interest and the compensation), ready to download as a PDF.']
+  ];
+%><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Late Payment Interest Calculator: UK and Ireland 2026</title>
+<meta name="description" content="Work out statutory interest and compensation on a late business invoice. UK: 8% plus base rate (<%= L.rateText(ukNow.rate) %>). Ireland: ECB rate plus 8% (<%= L.rateText(ieNow.rate) %>). Free, no signup.">
+<link rel="canonical" href="<%= pageUrl %>">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Late payment interest calculator (UK and Ireland)">
+<meta property="og:description" content="Statutory interest, fixed compensation, the working and reminder wording for a late B2B invoice. Rates checked <%= checkedLong %>.">
+<meta property="og:url" content="<%= pageUrl %>">
+<%- include('partials/site-head') %>
+<script type="application/ld+json">
+<%- JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebApplication', name: 'Late payment interest calculator', url: pageUrl, applicationCategory: 'FinanceApplication', operatingSystem: 'Any (web browser)', isAccessibleForFree: true,
+      description: 'Works out statutory interest and fixed compensation on a late business-to-business invoice under UK and Irish law, with the working and reminder wording.',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'GBP' },
+      provider: { '@type': 'Organization', name: 'GetInvoiceMaker', url: siteUrl + '/' },
+      dateModified: C },
+    { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl + '/' },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: siteUrl + '/blog' },
+      { '@type': 'ListItem', position: 3, name: 'Late payment interest calculator', item: pageUrl } ] },
+    { '@type': 'FAQPage', mainEntity: faqs.map(function (f) { return { '@type': 'Question', name: f[0], acceptedAnswer: { '@type': 'Answer', text: f[1] } }; }) }
+  ]
+}).replace(/</g, '\\u003c') %>
+</script>
+<style>
+.lpc{max-width:1120px;margin:0 auto;padding:26px 20px 6px}
+.lpc-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:20px;align-items:start}
+.lpc-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px}
+.lpc-card h2{font-size:19px;line-height:1.3;margin:0 0 4px}
+.lpc-card .sub{font-size:14px;color:var(--muted);margin:0 0 16px}
+.fld{margin:0 0 16px;border:0;padding:0;min-width:0}
+.fld > label,.fld > legend{display:block;font-size:14px;font-weight:600;color:var(--ink);margin:0 0 6px;padding:0}
+.fld .hint{display:block;font-size:13px;color:var(--muted);margin-top:6px;line-height:1.45}
+.fld input[type=text],.fld input[type=date],.fld input[type=number]{width:100%;border:1px solid #cbd5e1;border-radius:8px;padding:10px 12px;font:inherit;font-size:16px;color:var(--ink);background:#fff;min-height:44px}
+.fld input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.15)}
+.fld input[aria-invalid=true]{border-color:#b91c1c}
+.seg{display:flex;gap:4px;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:4px}
+.seg label{flex:1;position:relative;margin:0;cursor:pointer}
+.seg input{position:absolute;opacity:0;width:1px;height:1px}
+.seg span{display:block;text-align:center;padding:9px 8px;border-radius:7px;font-size:14px;font-weight:600;color:var(--ink2);line-height:1.25}
+.seg input:checked + span{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(15,23,42,.12),0 0 0 1px var(--line)}
+.seg input:focus-visible + span{outline:2px solid var(--blue);outline-offset:1px}
+.money{position:relative}
+.money .cur{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:600;pointer-events:none}
+.money input{padding-left:30px !important}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.derived{font-size:13.5px;color:var(--ink2);background:var(--soft);border-radius:8px;padding:8px 10px;margin-top:8px}
+.lpc-out{border:2px solid var(--blue)}
+.lpc-out .eyebrow{font-size:13px;font-weight:600;color:var(--muted);margin:0}
+.lpc-out .big{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(34px,5vw,44px);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin:4px 0 2px;font-variant-numeric:tabular-nums}
+.lpc-out .big-sub{font-size:14.5px;color:var(--ink2);margin:0 0 14px}
+.rows{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);margin:0;border-top:1px solid var(--line)}
+.rows dt,.rows dd{padding:7px 0;border-bottom:1px solid #f1f5f9;font-size:14.5px;margin:0}
+.rows dt{color:var(--ink2);padding-right:14px}
+.rows dd{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+.rows dd small{display:block;font-weight:400;color:var(--muted);font-size:12.5px}
+.rows .tot{font-size:16px;color:var(--ink);font-weight:700}
+.work{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:14px 0 0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.7;color:var(--ink2);overflow-wrap:anywhere}
+.work b{color:var(--ink);font-weight:600}
+.lpc .flag{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:9px 12px;margin:12px 0 0;color:#78350f;font-size:13.5px;line-height:1.5}
+.lpc .alt{font-size:13.5px;color:var(--ink2);margin:12px 0 0;line-height:1.5}
+.lpc .wait{font-size:15px;color:var(--ink2);margin:6px 0 0}
+.copyrow{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:18px 0 6px}
+.copyrow label{font-size:14px;font-weight:600}
+.copy{background:#fff;border:1px solid #cbd5e1;border-radius:7px;padding:7px 12px;font:600 13px/1 inherit;color:var(--ink);cursor:pointer;min-height:36px}
+.copy:hover{border-color:var(--blue);color:var(--blue)}
+.wording{width:100%;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font:inherit;font-size:13.5px;line-height:1.55;color:var(--ink2);background:#fff;resize:vertical;min-height:210px}
+.lpc-cta{display:block;width:100%;text-align:center;margin-top:16px;font-size:16px;padding:14px 18px}
+.page-hero.tight{padding:28px 20px 24px}
+.page-hero.tight h1{margin-bottom:10px}
+.lpc-cta[aria-disabled=true]{background:#94a3b8;pointer-events:none}
+.cta-note{font-size:13px;color:var(--muted);margin:8px 0 0;text-align:center;line-height:1.45}
+.rate-note{font-size:13px;color:var(--muted);margin:14px 0 0;line-height:1.5}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}
+.cols .card{padding:16px 18px}
+.cols h3{margin:0 0 6px;font-size:16px}
+.cols p{font-size:15px;margin:0}
+.prose details.more{background:#fff;border:1px solid var(--line);border-radius:10px;padding:0 14px;margin:8px 0 6px}
+.prose details.more summary{cursor:pointer;padding:12px 0;font-weight:600;font-size:15px}
+.ex-work{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px}
+.srcs li{font-size:14.5px}
+@media(max-width:900px){.lpc-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.lpc{padding:18px 16px 4px}.lpc-card{padding:18px 16px}.two,.cols{grid-template-columns:1fr}.rows dt,.rows dd{font-size:14px}}
+</style>
+</head>
+<body>
+<%- include('partials/nav') %>
+<div class="crumbs"><a href="/">Home</a> › <a href="/blog">Guides</a> › Late payment interest calculator</div>
+
+<section class="page-hero tight">
+  <div class="in">
+    <h1>Late payment interest calculator</h1>
+    <p class="lede">Late payment interest on a business invoice is the unpaid amount × the yearly statutory rate × the days late ÷ 365. The UK rate is 8% plus the Bank of England base rate; Ireland's is the ECB rate plus 8 points. For debts that become late from <%= L.shortRange(ukNow.from, ukNow.to) %> that is <%= L.rateText(ukNow.rate) %> in the UK and <%= L.rateText(ieNow.rate) %> in Ireland. Each late invoice also earns a fixed £40 to £100, or €40 to €100.</p>
+  </div>
+</section>
+
+<section class="lpc" id="calculator" aria-label="Late payment interest calculator">
+  <div class="lpc-grid">
+    <form class="lpc-card" id="lpForm" novalidate>
+      <h2>Your late invoice</h2>
+      <p class="sub">The example figures are there to show how it works. Replace them with yours; the result updates as you type.</p>
+
+      <fieldset class="fld">
+        <legend>Where the debt is</legend>
+        <div class="seg">
+          <label><input type="radio" name="country" value="uk" checked><span>United Kingdom</span></label>
+          <label><input type="radio" name="country" value="ie"><span>Ireland</span></label>
+        </div>
+        <span class="hint" id="countryHint">England, Wales, Scotland and Northern Ireland use the same rate.</span>
+      </fieldset>
+
+      <div class="fld">
+        <label for="amount">Unpaid amount, including any VAT</label>
+        <div class="money"><span class="cur" id="cur" aria-hidden="true">£</span><input type="number" id="amount" inputmode="decimal" min="0" step="0.01" value="2400"></div>
+      </div>
+
+      <fieldset class="fld">
+        <legend>Was a payment date agreed?</legend>
+        <div class="seg">
+          <label><input type="radio" name="agreed" value="yes" checked><span>Yes</span></label>
+          <label><input type="radio" name="agreed" value="no"><span>No date agreed</span></label>
+        </div>
+      </fieldset>
+
+      <div class="fld" id="dueWrap">
+        <label for="dueDate">Payment was due on</label>
+        <input type="date" id="dueDate" value="<%= exampleDue %>">
+      </div>
+      <div class="fld" id="startWrap" hidden>
+        <label for="startDate">Customer received the invoice on</label>
+        <input type="date" id="startDate" value="<%= exampleStart %>">
+        <span class="hint">If you delivered the goods or services later than that, enter the delivery date instead.</span>
+        <div class="derived" id="derived" aria-live="polite"></div>
+      </div>
+
+      <div class="two">
+        <div class="fld">
+          <label for="until">Work out interest up to</label>
+          <input type="date" id="until" value="<%= today %>">
+          <span class="hint">The day you were paid, or today.</span>
+        </div>
+        <div class="fld">
+          <label for="ref">Invoice number <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
+          <input type="text" id="ref" maxlength="40" autocomplete="off" placeholder="e.g. INV-104">
+        </div>
+      </div>
+
+      <fieldset class="fld" id="methodWrap" hidden>
+        <legend>How to apply the Irish rate</legend>
+        <div class="seg">
+          <label><input type="radio" name="method" value="single" checked><span>Rate on the day it became overdue</span></label>
+          <label><input type="radio" name="method" value="split"><span>Each half-year's own rate</span></label>
+        </div>
+        <span class="hint">The first is the method the Department of Enterprise, Tourism and Employment gives. The two only differ when the debt runs past 1 January or 1 July.</span>
+      </fieldset>
+    </form>
+
+    <div class="lpc-card lpc-out">
+      <div id="lpResult" aria-live="polite"><%- L.resultHTML(example) %></div>
+      <a class="btn lpc-cta" id="cta" href="<%= exampleHref %>">Add this to a reminder invoice</a>
+      <p class="cta-note">Opens the free invoice maker with three lines filled in: the unpaid invoice, the interest and the compensation. The figures travel inside the link and are not stored.</p>
+      <div id="lpWork"><%- L.workingHTML(example) %></div>
+      <div id="lpAfter"<%= example.late ? '' : ' hidden' %>>
+        <div class="copyrow"><label for="wording">Reminder wording to send</label><button type="button" class="copy" id="copyBtn">Copy the wording</button></div>
+        <textarea class="wording" id="wording" readonly rows="10"><%= L.reminder(example, '') %></textarea>
+      </div>
+      <p class="rate-note">Rates checked <%= checkedLong %> against legislation.gov.uk, GOV.UK, the Bank of England, irishstatutebook.ie, the Irish Department of Enterprise and the ECB. For business-to-business debts only; <a href="#who">consumer debts and public-body rules differ</a>.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap prose">
+  <h2>How late payment interest is worked out</h2>
+  <div class="formula">Daily interest = unpaid amount × yearly rate ÷ 365<br>Interest = daily interest × days late<br><b><%= gb(2400) %> × 11.75% ÷ 365 = <%= gb(0.7726) %> a day; × 54 days = <%= gb(ukEx.interest) %></b></div>
+  <p>Count the days from the day after the due date up to and including the day you are paid. Both laws give simple interest, so the interest itself never earns interest. The calculator keeps the daily figure unrounded and rounds only the result; GOV.UK's own example rounds the daily amount to the penny first, which can make its total a few pence lower.</p>
+  <div class="cols">
+    <div class="card">
+      <h3>UK rate</h3>
+      <p>8% a year plus the Bank of England base rate in force on 31 December (for interest that starts running from 1 January to 30 June) or on 30 June (from 1 July to 31 December). That rate then applies for as long as the invoice stays unpaid.</p>
+    </div>
+    <div class="card">
+      <h3>Ireland rate</h3>
+      <p>The ECB main refinancing rate before 1 January or 1 July, plus 8 percentage points. The department tells you to use the daily rate in operation on the date the payment became overdue.</p>
+    </div>
+  </div>
+  <p class="source">Sources: <a href="<%= S.act.url %>" rel="noopener">1998 Act</a> sections 1 and 4(2); <a href="<%= S.order.url %>" rel="noopener">2002 Order, article 4</a> (the <a href="<%= S.scot.url %>" rel="noopener">Scottish order</a> sets the same rate); <a href="<%= S.govuk.url %>/charging-interest-commercial-debt" rel="noopener">GOV.UK</a>; <a href="<%= S.si.url %>" rel="noopener">S.I. No. 580 of 2012</a>, regulations 4 and 5; <a href="<%= S.deteFaq.url %>" rel="noopener">Irish department FAQ</a>. Last checked <%= checkedLong %>.</p>
+
+  <h2 id="uk-rates">UK statutory interest rates by period</h2>
+  <p>Find the half-year in which interest started running (the day after the due date). The rate in that row applies to the whole debt.</p>
+  <table class="tbl">
+    <thead><tr><th>Interest starts running</th><th>Base rate on</th><th class="num">Base rate</th><th class="num">Statutory rate</th></tr></thead>
+    <tbody>
+      <% ukRows.forEach(function (r) { %><tr><td><%= L.shortRange(r.from, r.to) %></td><td><%= L.longDate(r.referenceDate) %></td><td class="num"><%= L.rateText(r.base) %></td><td class="num strong"><%= L.rateText(r.rate) %></td></tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <p class="source">Base rates from the <a href="<%= S.boe.url %>" rel="noopener">Bank of England's Official Bank Rate history</a>: <%= L.rateText(lastBoe[1]) %> since <%= L.longDate(lastBoe[0]) %>, held on 17 September 2026 with the next decision due on 5 November 2026. Last checked <%= checkedLong %>. The rate for interest starting from <%= L.longDate(ukNext) %> depends on the base rate on <%= L.longDate(L.ukReferenceDate(ukNext)) %>; until that is known the calculator uses <%= L.rateText(lastBoe[1]) %> and says so.</p>
+
+  <h2 id="ie-rates">Ireland late payment interest rates</h2>
+  <table class="tbl">
+    <thead><tr><th>Half-year</th><th class="num">ECB rate</th><th class="num">Late payment interest</th></tr></thead>
+    <tbody>
+      <% ieRecent.forEach(function (r) { %><tr><td><%= L.shortRange(r.from, r.to) %></td><td class="num"><%= L.rateText(r.ecb) %></td><td class="num strong"><%= L.rateText(r.rate) %></td></tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <details class="more"><summary>Rates from 16 March 2013 to 31 December 2021</summary>
+    <table class="tbl">
+      <thead><tr><th>Half-year</th><th class="num">ECB rate</th><th class="num">Late payment interest</th></tr></thead>
+      <tbody>
+        <% ieOlder.forEach(function (r) { %><tr><td><%= L.shortRange(r.from, r.to) %></td><td class="num"><%= L.rateText(r.ecb) %></td><td class="num strong"><%= L.rateText(r.rate) %></td></tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </details>
+  <p class="source">Worked out from the <a href="<%= S.ecb.url %>" rel="noopener">ECB main refinancing rate history</a> and identical to the table the <a href="<%= S.dete.url %>" rel="noopener">Irish Department of Enterprise, Tourism and Employment</a> publishes (10.40% from 1 July 2026). The ECB raised its rate to 2.65% from 16 September 2026, which will set the rate from 1 January 2027 unless it changes again before then. Last checked <%= checkedLong %>.</p>
+
+  <h2 id="compensation">Fixed compensation per invoice</h2>
+  <table class="tbl">
+    <thead><tr><th>UK (section 5A of the Act)</th><th>Ireland (Schedule to S.I. 580/2012)</th></tr></thead>
+    <tbody>
+      <tr><td><strong>£40</strong> if the debt is under £1,000</td><td><strong>€40</strong> if it does not exceed €1,000</td></tr>
+      <tr><td><strong>£70</strong> from £1,000 to under £10,000</td><td><strong>€70</strong> above €1,000, up to €10,000</td></tr>
+      <tr><td><strong>£100</strong> for £10,000 or more</td><td><strong>€100</strong> above €10,000</td></tr>
+    </tbody>
+  </table>
+  <p>Watch the edges: an invoice of exactly 1,000 earns £70 in the UK but €40 in Ireland, and one of exactly 10,000 earns £100 but €70. The fixed sum applies once interest starts running, once per invoice. Where your real costs of chasing the debt are higher, both laws let you claim the reasonable difference as well (section 5A(2A) of the Act; regulation 9(3) in Ireland).</p>
+  <p class="source">Sources: <a href="<%= S.act.url %>/section/5A" rel="noopener">section 5A</a>; <a href="<%= S.govuk.url %>/claim-debt-recovery-costs" rel="noopener">GOV.UK, claim debt recovery costs</a>; <a href="<%= S.si.url %>" rel="noopener">S.I. No. 580 of 2012</a>, regulation 9 and Schedule. Last checked <%= checkedLong %>.</p>
+
+  <h2 id="example">Worked examples</h2>
+  <div class="example">
+    <h3>UK: <%= gb(2400) %> invoice, due 15 August 2026, still unpaid on 8 October 2026</h3>
+    <ol>
+      <li>Interest starts on 16 August 2026, so the reference date is 30 June 2026. The base rate that day was 3.75%, giving 11.75%.</li>
+      <li>Days late: 16 August to 8 October = <%= ukEx.days %> days.</li>
+      <li class="ex-work"><%= gb(2400) %> × 11.75% × <%= ukEx.days %> ÷ 365 = <%= gb(ukEx.interest) %></li>
+      <li>Compensation for a debt between £1,000 and £9,999.99: <%= gb(ukEx.compensation) %>.</li>
+      <li>Claim <%= gb(ukEx.claim) %> on top of the invoice: <%= gb(ukEx.totalDue) %> in total, plus <%= gb(0.77) %> for each further day.</li>
+    </ol>
+  </div>
+  <div class="example">
+    <h3>Ireland: <%= eu(5000) %> invoice, due 31 May 2026, paid 31 August 2026</h3>
+    <ol>
+      <li>The payment became overdue on 1 June 2026, when the rate was 10.15%. Days late: <%= ieEx.days %>.</li>
+      <li class="ex-work"><%= eu(5000) %> × 10.15% × <%= ieEx.days %> ÷ 365 = <%= eu(ieEx.interest) %></li>
+      <li>Compensation for an invoice above €1,000 and up to €10,000: <%= eu(ieEx.compensation) %>. Total claim <%= eu(ieEx.claim) %>.</li>
+      <li>Applying each half-year's rate instead: 30 days at 10.15% = <%= eu(ieExSplit.periods[0].interest) %>, plus 62 days at 10.40% = <%= eu(ieExSplit.periods[1].interest) %>, so <%= eu(ieExSplit.interest) %> of interest.</li>
+    </ol>
+  </div>
+
+  <h2 id="late">When a payment counts as late</h2>
+  <ul>
+    <li><strong>A payment date was agreed:</strong> interest runs from the day after it. In the UK an agreed period over 60 days between businesses only stands if it is not grossly unfair to you, and a public authority's period is capped at 30 days. In Ireland a period over 60 days must be expressly agreed and not grossly unfair, and a public authority must pay within 30 days.</li>
+    <li><strong>No date was agreed, UK:</strong> the payment is late 30 days after the later of the day your customer received the invoice and the day you delivered (the Act counts a 30-day period that begins on that day).</li>
+    <li><strong>No date was agreed, Ireland:</strong> payment is due 30 calendar days after the later of those two days, and interest runs from the day after that.</li>
+  </ul>
+  <p class="source">Sources: <a href="<%= S.act.url %>/section/4" rel="noopener">section 4 of the Act</a>; <a href="<%= S.govuk.url %>" rel="noopener">GOV.UK, when a payment becomes late</a>; <a href="<%= S.si.url %>" rel="noopener">S.I. No. 580 of 2012</a>, regulation 2, as amended by <a href="<%= S.si2014.url %>" rel="noopener">S.I. No. 196 of 2014</a> and <a href="<%= S.si2016.url %>" rel="noopener">S.I. No. 281 of 2016</a>. Last checked <%= checkedLong %>.</p>
+
+  <h2 id="fixed-rate">Does the rate change while the invoice stays unpaid?</h2>
+  <p><strong>UK: no.</strong> Section 4(2) of the Act says interest starts on the day after the due date "at the rate prevailing under section 6 at the end of the relevant day", and article 4 of the 2002 Order takes the base rate on the 30 June or 31 December immediately before interest starts. So one rate covers the whole debt. Some calculators switch to a new rate each time the Bank of England moves; the legislation does not.</p>
+  <p><strong>Ireland: the department uses one rate.</strong> Its FAQ multiplies the debt by the days late and by the daily rate in operation on the date the payment became overdue. Regulation 5(2) also says each half-year's reference rate applies "for the period" from 1 January or 1 July, which some read as changing the rate for the days in each half-year. When a debt runs past one of those dates, the calculator shows both figures and lets you pick.</p>
+
+  <h2 id="who">Who can claim, and when the rules differ</h2>
+  <p>Statutory interest and the fixed compensation are for debts between businesses: in the UK both sides must be acting in the course of a business (which includes government departments and public authorities), and the Irish Regulations cover transactions between undertakings and between undertakings and public authorities. They do not apply to consumers. Public bodies have their own payment limits (30 days in both countries), so check the contract or the body's terms. If your contract sets its own late payment interest, that rate replaces the statutory one: in the UK when it is a substantial remedy (sections 8 and 9 of the Act), in Ireland when it is not grossly unfair to you (regulation 5(3)).</p>
+  <p class="source">This page explains the law as published; it is not legal advice. For a disputed or large debt, speak to a solicitor or, in the UK, the <a href="<%= S.sbc.url %>" rel="noopener">Office of the Small Business Commissioner</a>.</p>
+
+  <h2>Questions</h2>
+  <div class="faq">
+    <% faqs.forEach(function (f) { %><details><summary><%= f[0] %></summary><p><%= f[1] %></p></details>
+    <% }) %>
+  </div>
+
+  <h2>Related guides</h2>
+  <ul class="linklist">
+    <li><a href="/how-to-charge-late-payment-fee">How to charge a late payment fee</a></li>
+    <li><a href="/blog/invoice-payment-terms-guide">Invoice payment terms explained</a></li>
+    <li><a href="/blog/how-to-write-invoice-email">Overdue invoice email templates</a></li>
+    <li><a href="/free-invoice-generator-uk">UK VAT invoice generator</a></li>
+    <li><a href="/">Free invoice generator</a></li>
+  </ul>
+
+  <h2 id="sources">Sources</h2>
+  <ul class="srcs">
+    <% Object.keys(S).forEach(function (k) { %><li><a href="<%= S[k].url %>" rel="noopener"><%= S[k].name %></a></li>
+    <% }) %>
+  </ul>
+  <p class="source">Every rate and rule on this page was last checked on <%= checkedLong %>. The rates move when the Bank of England or the ECB changes its rate; the tables above show the date each one took effect.</p>
+</div>
+
+<%- include('partials/footer') %>
+<script src="/js/late-payment.js?v=1" defer></script>
+<script src="/js/prefill.js?v=1" defer></script>
+<script src="/js/late-payment-page.js?v=1" defer></script>
+</body>
+</html>

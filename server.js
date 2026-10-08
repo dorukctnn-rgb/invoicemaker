@@ -7,6 +7,8 @@ const PROVINCES = require('./data/province-pages');
 const CANADA = require('./data/canada-rates');
 const pro = require('./lib/pro');
 const { renderInvoicePDF, currencySymbol, applyFonts } = require('./lib/pdf');
+const LatePay = require('./public/js/late-payment');
+const Prefill = require('./public/js/prefill');
 
 const app = express();
 app.disable('x-powered-by');
@@ -176,6 +178,17 @@ app.get('/', withPro, (req, res) => {
 
 app.get('/rent-receipt-generator', (req, res) => res.render('rent-receipt'));
 
+// Late payment interest calculator (UK and Ireland). The example starts one month late, worked to today.
+app.get('/late-payment-interest-calculator', (req, res) => {
+  const today = new Date().toISOString().slice(0, 10);
+  const exampleDue = LatePay.addDays(today, -30);
+  const example = LatePay.calculate({ country: 'uk', amount: 2400, dueDate: exampleDue, until: today });
+  const exampleHref = example.late && !example.error
+    ? '/#prefill=' + Prefill.encode({ currency: example.currency, items: LatePay.invoiceLines(example, ''), notes: LatePay.invoiceNotes(example, '') })
+    : '#calculator';
+  res.render('late-payment-interest-calculator', { L: LatePay, today, exampleDue, exampleStart: LatePay.addDays(today, -60), example, exampleHref });
+});
+
 app.get('/how-to-calculate-gst-on-canadian-invoices', (req, res) => {
   res.render('gst-canada-guide', { provinces: PROVINCES });
 });
@@ -311,6 +324,7 @@ function sitemapEntries() {
     { loc: '/how-to-calculate-gst-on-canadian-invoices', lastmod: PAGES_UPDATED },
     { loc: '/free-invoice-generator-netherlands', lastmod: PAGES_UPDATED },
     { loc: '/blog', lastmod: CONTENT_UPDATED },
+    { loc: '/late-payment-interest-calculator', lastmod: LatePay.CHECKED },
     { loc: '/rent-receipt-generator', lastmod: CONTENT_UPDATED },
     { loc: '/free-invoice-generator-uk', lastmod: CONTENT_UPDATED },
     { loc: '/free-invoice-generator-australia', lastmod: CONTENT_UPDATED }

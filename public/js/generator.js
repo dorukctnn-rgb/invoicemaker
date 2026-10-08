@@ -145,17 +145,26 @@
     return m[1] + n + m[3];
   }
 
+  // Lines handed over by a tool on this site (e.g. the late payment interest calculator), in #prefill=...
+  function readPrefill() {
+    var h = location.hash || '';
+    if (h.indexOf('#prefill=') !== 0 || !window.GIMPrefill) return null;
+    return window.GIMPrefill.decode(h.slice(9));
+  }
+
   function init() {
-    (C.items && C.items.length ? C.items : [{ qty: 1, rate: 100 }]).forEach(addRow);
+    var pre = readPrefill();
+    var start = pre ? pre.items.map(function (i) { return { desc: i.d, qty: i.q, rate: i.r }; }) : (C.items && C.items.length ? C.items : [{ qty: 1, rate: 100 }]);
+    start.forEach(addRow);
     var q = new URLSearchParams(location.search);
     var amount = num(q.get('amount'));
-    if (amount > 0 && amount < 1e9) {
+    if (!pre && amount > 0 && amount < 1e9) {
       var first = document.querySelector('#items .g-ir');
       var ins = first.querySelectorAll('input');
       ins[1].value = 1; ins[2].value = Math.round(amount * 100) / 100;
     }
-    var qc = (q.get('currency') || '').toUpperCase();
-    if (qc && $('currency').querySelector('option[value="' + qc.replace(/[^A-Z]/g, '') + '"]')) $('currency').value = qc;
+    var qc = (pre && pre.currency ? pre.currency : (q.get('currency') || '')).toUpperCase().replace(/[^A-Z]/g, '');
+    if (qc && $('currency').querySelector('option[value="' + qc + '"]')) $('currency').value = qc;
     var ql = q.get('lang');
     if (ql && L[ql]) $('lang').value = ql;
     if (C.provinces) {
@@ -200,8 +209,14 @@
       r.readAsDataURL(f);
     });
     $('pbtn').addEventListener('click', download);
+    if (pre && pre.notes) $('notes').value = pre.notes;
     update();
     restorePro();
+    if (pre) {
+      // Keep the address bar clean so a reload does not overwrite edits, then show the filled-in form.
+      try { history.replaceState(null, '', location.pathname + location.search + '#gen'); } catch (e) {}
+      $('gen').scrollIntoView({ block: 'start' });
+    }
   }
 
   function download() {

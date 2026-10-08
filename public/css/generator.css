@@ -56,3 +56,4 @@
   .gen .g-ir > input:first-child{grid-column:1/-1}
   .gen iframe{height:460px}
 }
+.gen{scroll-margin-top:72px}

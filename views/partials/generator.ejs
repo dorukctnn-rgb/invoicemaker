@@ -3,7 +3,7 @@
   var g = gen;
   var currencies = [['USD','US Dollar'],['EUR','Euro'],['GBP','British Pound'],['CAD','Canadian Dollar'],['AUD','Australian Dollar'],['INR','Indian Rupee'],['AED','UAE Dirham'],['SGD','Singapore Dollar'],['NZD','New Zealand Dollar'],['CHF','Swiss Franc'],['SEK','Swedish Krona'],['NOK','Norwegian Krone'],['DKK','Danish Krone'],['JPY','Japanese Yen'],['ZAR','South African Rand'],['BRL','Brazilian Real'],['MXN','Mexican Peso'],['TRY','Turkish Lira']];
 %>
-<link rel="stylesheet" href="/css/generator.css?v=4">
+<link rel="stylesheet" href="/css/generator.css?v=5">
 <div class="gen" id="gen">
   <div class="g-card">
     <div class="g-st">Your details</div>
@@ -101,4 +101,5 @@
   </div>
 </div>
 <script>window.GEN_CONFIG=<%- JSON.stringify({ items: g.items, isPro: !!isPro, provinces: g.provinces ? g.provinces.map(function(p){ return { code: p.code, taxes: p.taxes }; }) : null, itemPlaceholder: g.itemPlaceholder, invoicePrefix: g.invoicePrefix, key: g.key }).replace(/</g, '\\u003c') %>;</script>
-<script src="/js/generator.js?v=3" defer></script>
+<script src="/js/prefill.js?v=1" defer></script>
+<script src="/js/generator.js?v=4" defer></script>
