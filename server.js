@@ -32,43 +32,14 @@ PROVINCES.forEach(p => {
 const COUNTRIES = [
   { slug: 'uk', label: 'UK', fullName: 'United Kingdom', currency: 'GBP', tax: 'VAT', taxRate: 20, idLabel: 'VAT registration number', idPlaceholder: 'GB123456789',
     desc: 'Free UK invoice generator in GBP with a 20% VAT line. Download a PDF invoice in a minute. No signup.' },
-  { slug: 'usa', label: 'USA', fullName: 'United States', currency: 'USD', tax: 'Sales tax', taxRate: 0, idLabel: 'EIN or business ID', idPlaceholder: 'e.g. EIN 12-3456789',
-    desc: 'Free US invoice generator in USD. Add a sales tax line only if you collect it and download a PDF invoice in a minute. No signup.',
-    intro: 'Create a US invoice in dollars. There is no federal sales tax; add a sales tax line only if your state and product require you to collect it.',
-    about: 'The United States has no national VAT or GST. Sales tax is set by states and local governments and usually applies to goods and some services, so many freelancers and service businesses invoice without any tax line. If you do collect sales tax, enter your combined rate in the tax field and name it, for example "Sales tax (CA)".' },
   { slug: 'canada', label: 'Canada', fullName: 'Canada', currency: 'CAD', tax: 'GST/HST', taxRate: 5, idLabel: 'GST/HST registration number', idPlaceholder: '123456789 RT0001',
     desc: 'Free Canadian invoice generator in CAD. Pick the province and the GST, HST, PST or QST lines fill in at current rates. Download a PDF. No signup.',
     intro: 'Choose your client\'s province and the invoice gets the right tax lines: one HST line, GST only, or GST plus PST/RST/QST on separate lines.' },
   { slug: 'australia', label: 'Australia', fullName: 'Australia', currency: 'AUD', tax: 'GST', taxRate: 10 },
-  { slug: 'germany', label: 'Germany', fullName: 'Germany', currency: 'EUR', tax: 'MwSt', taxRate: 19, idLabel: 'USt-IdNr. or Steuernummer', idPlaceholder: 'DE123456789',
-    desc: 'Free invoice generator for Germany in EUR with a 19% or 7% MwSt line. Download a PDF invoice (Rechnung) in a minute. No signup.',
-    intro: 'Create an invoice (Rechnung) in euros with a MwSt line at 19% or 7% and download it as a PDF.',
-    about: 'Germany charges VAT (Umsatzsteuer, often shown as MwSt) at 19% as the standard rate and 7% for reduced-rate items. Put your Steuernummer or USt-IdNr. in the business ID field. Small businesses using the Kleinunternehmerregelung charge no VAT and say so on the invoice; ask your Steuerberater which applies to you.' },
-  { slug: 'france', label: 'France', fullName: 'France', currency: 'EUR', tax: 'TVA', taxRate: 20, idLabel: 'SIRET and TVA number', idPlaceholder: 'SIRET 123 456 789 00012, FR12345678901',
-    desc: 'Free invoice generator for France in EUR with a TVA line at 20%, 10% or 5.5%. Download a PDF invoice (facture) in a minute. No signup.',
-    intro: 'Create a facture in euros with a TVA line at the standard 20% or a reduced rate, and download it as a PDF.',
-    about: 'France charges TVA at 20% as the standard rate, with reduced rates for some goods and services. Show your SIRET and, if you have one, your intra-EU TVA number. Micro-entrepreneurs under the franchise en base de TVA charge no TVA and add the mention required for that scheme; check with your accountant or the impots.gouv.fr guidance.' },
-  { slug: 'india', label: 'India', fullName: 'India', currency: 'INR', tax: 'GST', taxRate: 18, idLabel: 'GSTIN', idPlaceholder: '22AAAAA0000A1Z5',
-    desc: 'Free invoice generator for India in INR with a GST line. Download a PDF invoice in a minute. No signup.',
-    intro: 'Create an invoice in rupees with a GST line and your GSTIN, then download it as a PDF.',
-    about: 'Enter the GST rate that applies to your goods or services in the tax field (18% is pre-filled because it covers many services). For intra-state supplies you can use the two tax lines for CGST and SGST (half the rate each); for inter-state supplies use one IGST line. Add your GSTIN in the business ID field.' },
-  { slug: 'uae', label: 'UAE', fullName: 'United Arab Emirates', currency: 'AED', tax: 'VAT', taxRate: 5, idLabel: 'TRN (tax registration number)', idPlaceholder: '100123456700003',
-    desc: 'Free invoice generator for the UAE in AED with a 5% VAT line. Download a PDF invoice in a minute. No signup.',
-    intro: 'Create an invoice in dirhams with a 5% VAT line and your TRN, then download it as a PDF.',
-    about: 'The UAE standard VAT rate is 5%. If you are VAT-registered, put your TRN in the business ID field and title the document as a tax invoice where the rules require it.' },
-  { slug: 'singapore', label: 'Singapore', fullName: 'Singapore', currency: 'SGD', tax: 'GST', taxRate: 9, idLabel: 'GST registration number / UEN', idPlaceholder: 'M2-1234567-8',
-    desc: 'Free invoice generator for Singapore in SGD with a 9% GST line. Download a PDF invoice in a minute. No signup.',
-    intro: 'Create an invoice in Singapore dollars with a 9% GST line, then download it as a PDF.',
-    about: 'Singapore GST is 9%. Only GST-registered businesses may charge it; if you are not registered, leave the tax field empty. Registered businesses should show their GST registration number.' },
   { slug: 'netherlands', label: 'Netherlands', fullName: 'Netherlands', currency: 'EUR', tax: 'BTW', taxRate: 21 }
 ];
 const COUNTRY_SOURCES = {
-  uk: { name: 'GOV.UK: VAT rates', url: 'https://www.gov.uk/vat-rates' },
-  germany: { name: 'UStG § 12 (Steuersätze), gesetze-im-internet.de', url: 'https://www.gesetze-im-internet.de/ustg_1980/__12.html' },
-  france: { name: 'Service-Public Entreprendre: taux de TVA', url: 'https://entreprendre.service-public.gouv.fr/vosdroits/F22399' },
-  india: { name: 'CBIC: GST rates for goods and services', url: 'https://cbic-gst.gov.in/gst-goods-services-rates.html' },
-  uae: { name: 'UAE Federal Tax Authority: VAT', url: 'https://tax.gov.ae/en/taxes/vat.aspx' },
-  singapore: { name: 'IRAS: Current GST rates', url: 'https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/basics-of-gst/current-gst-rates' }
+  uk: { name: 'GOV.UK: VAT rates', url: 'https://www.gov.uk/vat-rates' }
 };
 COUNTRIES.forEach(c => { c.source = COUNTRY_SOURCES[c.slug] || null; });
 const COUNTRY_RATES_CHECKED = '7 October 2026';
@@ -87,8 +58,6 @@ function countryGen(c) {
   const g = { key: 'country-' + c.slug, currency: c.currency, senderIdLabel: c.idLabel || GEN_DEFAULT.senderIdLabel, senderIdPlaceholder: c.idPlaceholder || GEN_DEFAULT.senderIdPlaceholder };
   if (c.slug === 'canada') {
     Object.assign(g, { provinces: CANADA.PROVINCES, taxes: [], clientIdLabel: 'Client business number', clientIdPlaceholder: 'Optional' });
-  } else if (c.slug === 'india') {
-    g.taxes = [{ label: 'GST', rate: 18 }];
   } else if (c.taxRate) {
     g.taxes = [{ label: c.tax, rate: c.taxRate }];
   }
@@ -132,6 +101,41 @@ const BLOG_POSTS = [
   { slug: 'how-to-invoice-international-clients', title: 'How to Invoice International Clients: Currency, Tax and Tips', desc: 'A practical guide to invoicing clients in other countries.', date: '2026-03-12', readTime: '8 min read', category: 'Guide', content: '<h2>Choosing the right currency</h2><p>You can invoice in your local currency or the client currency.</p>' },
   { slug: 'small-business-invoicing-tips', title: '10 Invoicing Tips for Small Businesses to Get Paid Faster', desc: 'Practical invoicing tips for small business owners to improve cash flow.', date: '2026-03-19', readTime: '7 min read', category: 'Tips', content: '<h2>1. Invoice immediately</h2><p>Send invoices on the day work is delivered.</p>' }
 ];
+
+// Templated pages retired on 8 Oct 2026. Each repeated one layout with a different job title or
+// currency (5-gram Jaccard 0.45-0.62 with its siblings), earned 0 impressions in 16 months of Search
+// Console data and was "Discovered - currently not indexed" or unknown to Google. Each now points to the
+// page that does the same job: freelancer billing for time and project work, the main generator
+// (with the currency preset) for everything else. Do not bring back per-title copies of one page.
+const RETIRED_PAGES = {
+  '/invoice-template-consultant': '/invoice-template-freelancer',
+  '/invoice-template-designer': '/invoice-template-freelancer',
+  '/invoice-template-developer': '/invoice-template-freelancer',
+  '/invoice-template-writer': '/invoice-template-freelancer',
+  '/invoice-template-marketing': '/invoice-template-freelancer',
+  '/invoice-template-photographer': '/invoice-template-freelancer',
+  '/invoice-template-videographer': '/invoice-template-freelancer',
+  '/invoice-template-tutor': '/invoice-template-freelancer',
+  '/invoice-template-therapist': '/invoice-template-freelancer',
+  '/invoice-template-accountant': '/invoice-template-freelancer',
+  '/invoice-template-lawyer': '/invoice-template-freelancer',
+  '/invoice-template-cleaner': '/invoice-template-freelancer',
+  '/invoice-template-contractor': '/',
+  '/invoice-template-plumber': '/',
+  '/invoice-template-electrician': '/',
+  '/invoice-template-mechanic': '/',
+  '/invoice-template-landscaper': '/',
+  '/invoice-template-restaurant': '/',
+  '/free-invoice-generator-usa': '/',
+  '/free-invoice-generator-germany': '/?currency=EUR',
+  '/free-invoice-generator-france': '/?currency=EUR',
+  '/free-invoice-generator-india': '/?currency=INR',
+  '/free-invoice-generator-uae': '/?currency=AED',
+  '/free-invoice-generator-singapore': '/?currency=SGD'
+};
+Object.entries(RETIRED_PAGES).forEach(([from, to]) => {
+  app.get(from, (req, res) => res.redirect(301, to));
+});
 
 // Old URLs consolidated into stronger pages (avoids two pages competing for one query).
 const BLOG_REDIRECTS = {
