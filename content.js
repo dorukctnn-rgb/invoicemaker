@@ -44,7 +44,7 @@ const BLOG_CONTENT = {
 <p>Match the terms to your cash flow and to the client. A freelancer with one or two clients rarely benefits from Net 60. Short terms such as Net 14 are reasonable for small jobs. For large projects, split the fee into milestones so you are never owed more than you can afford to lose.</p>
 <p>Always write the actual due date on the invoice next to the term, for example "Net 14 (due 8 October 2026)". Many people do not count days, but they do read dates.</p>
 <h2>Late payment</h2>
-<p>If you plan to charge late fees, say so in your contract and on the invoice before the work starts. Some countries set statutory rights: in the UK, businesses can claim interest at 8% above the Bank of England base rate on late commercial payments, and EU rules (Directive 2011/7/EU) set a 30-day default payment period for business-to-business invoices when the contract is silent, with contract terms beyond 60 days allowed only if expressly agreed and not grossly unfair. See our guide on <a href="/how-to-charge-late-payment-fee">how to charge a late payment fee</a>.</p>`,
+<p>If you plan to charge late fees, say so in your contract and on the invoice before the work starts. Some countries set statutory rights: in the UK, businesses can claim interest at 8% above the Bank of England base rate on late commercial payments (work out the exact figure with the <a href="/late-payment-interest-calculator">late payment interest calculator</a>), and EU rules (Directive 2011/7/EU) set a 30-day default payment period for business-to-business invoices when the contract is silent, with contract terms beyond 60 days allowed only if expressly agreed and not grossly unfair. See our guide on <a href="/how-to-charge-late-payment-fee">how to charge a late payment fee</a>.</p>`,
 
   'what-is-vat-invoice': `
 <p>A VAT invoice is an invoice issued by a business registered for Value Added Tax. It carries the details a VAT-registered customer needs to reclaim the VAT they paid. If you are not VAT registered, you must not show VAT on your invoices.</p>
@@ -97,6 +97,7 @@ const BLOG_CONTENT = {
 <blockquote>Hi Sam,<br><br>A quick reminder that invoice INV-2026-042 ($2,400) is due on Friday 14 October. I've attached it again for convenience.<br><br>Thanks,<br>Alex</blockquote>
 <h2>Template: overdue invoice</h2>
 <blockquote>Hi Sam,<br><br>Invoice INV-2026-042 for $2,400 was due on 14 October and is now 7 days overdue. Could you let me know when payment is scheduled? If it's already been sent, please ignore this note.<br><br>Thanks,<br>Alex</blockquote>
+<p>Selling to another business in the UK or Ireland? The law lets you add statutory interest and a fixed compensation sum to a late invoice. The <a href="/late-payment-interest-calculator">late payment interest calculator</a> works out both and writes the paragraph to paste into this email.</p>
 <h2>Tips</h2>
 <ul>
 <li>Attach a PDF rather than a Word or image file.</li>
@@ -348,9 +349,9 @@ const HOWTO_CONTENT = {
 <p>Add a line to the payment terms, for example "Payment due within 14 days. Late payments incur interest at 1.5% per month."</p>
 <h2>3. Know your legal limits</h2>
 <ul>
-<li><strong>UK:</strong> under the Late Payment of Commercial Debts (Interest) Act, businesses can charge statutory interest of 8% above the Bank of England base rate, plus fixed compensation of &pound;40, &pound;70 or &pound;100 depending on the debt size.</li>
+<li><strong>UK:</strong> under the Late Payment of Commercial Debts (Interest) Act, businesses can charge statutory interest of 8% above the Bank of England base rate, plus fixed compensation of &pound;40, &pound;70 or &pound;100 depending on the debt size. The <a href="/late-payment-interest-calculator">late payment interest calculator</a> picks the right base rate from the due date and shows the working.</li>
 <li><strong>US:</strong> maximum late fees and interest rates are set by state law. Keep to modest, clearly disclosed rates.</li>
-<li><strong>EU:</strong> the Late Payment Directive sets statutory interest of at least 8 points above the ECB reference rate for B2B debts.</li>
+<li><strong>EU:</strong> the Late Payment Directive sets statutory interest of at least 8 points above the ECB reference rate for B2B debts. In Ireland that is 10.40% a year from 1 July 2026, plus compensation of &euro;40, &euro;70 or &euro;100.</li>
 </ul>
 <h2>4. Calculate the fee</h2>
 <p>Monthly interest example: $2,000 overdue at 1.5% per month for two months = $2,000 &times; 0.015 &times; 2 = <strong>$60</strong>. A flat fee (for example $25) is simpler but must still be agreed in advance.</p>
