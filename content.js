@@ -319,6 +319,7 @@ const HOWTO_CONTENT = {
 <p>You only need a tax number on the invoice if you are registered for sales tax (VAT, GST/HST, BTW) or your country requires one for self-employed invoices. In the Netherlands, for example, freelancers normally register with the KVK and show their KVK and BTW numbers. US clients may ask for a Form W-9, which uses your SSN or EIN. Consider getting a free EIN from the IRS so you do not have to share your SSN.</p>
 <h2>Report the income</h2>
 <p>Invoiced income is taxable. In the UK you report it through Self Assessment, in the US on Schedule C, in Canada on form T2125. Keep copies of every invoice.</p>
+<p>If you also sell on a marketplace, that income is reported the same way, but the figures arrive differently: Etsy, for example, gives you twelve monthly CSV statements instead of one total. The free <a href="https://peakappsstudio.com/etsy-tax-summary/" rel="noopener">Etsy tax summary</a> reads those statements in your browser and returns the year's sales, refunds and every fee Etsy charged, which is what your tax return and your accountant need.</p>
 <p>Our <a href="/">invoice generator</a> works without an account, so you can create your first invoice now.</p>`
   },
   'how-to-invoice-us-clients-from-uk': {
