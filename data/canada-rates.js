@@ -2,6 +2,8 @@
 // Update RATES_CHECKED whenever the figures are re-verified against the sources below.
 const RATES_CHECKED = '7 October 2026';
 const RATES_CHECKED_ISO = '2026-10-07';
+// The CRA rate table alone was read again on this date (the BC and Revenu Quebec sites did not answer that day).
+const CRA_TABLE_RECHECKED = '8 October 2026';
 
 const SOURCES = {
   cra: { name: 'CRA: GST/HST calculator (and rates)', url: 'https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate/calculator.html' },
@@ -11,6 +13,7 @@ const SOURCES = {
   craPlace: { name: 'CRA: Place of supply', url: 'https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-place-supply.html' },
   craExports: { name: 'CRA: Imports and exports', url: 'https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-imports-exports.html' },
   rc4022: { name: 'CRA: RC4022 General Information for GST/HST Registrants', url: 'https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/rc4022/general-information-gst-hst-registrants.html' },
+  eta: { name: 'Excise Tax Act, s. 165.2: tax on the invoice total and rounding', url: 'https://laws-lois.justice.gc.ca/eng/acts/E-15/section-165.2.html' },
   bc: { name: 'Government of British Columbia: PST', url: 'https://www2.gov.bc.ca/gov/content/taxes/sales-taxes/pst' },
   sk: { name: 'Government of Saskatchewan: Provincial Sales Tax', url: 'https://www.saskatchewan.ca/business/taxes-licensing-and-reporting/provincial-taxes-policies-and-bulletins/provincial-sales-tax' },
   mb: { name: 'Manitoba Finance: Retail Sales Tax', url: 'https://www.gov.mb.ca/finance/taxation/taxes/retail.html' },
@@ -42,4 +45,4 @@ PROVINCES.forEach(p => {
   p.summary = p.type === 'HST' ? `${p.hst}% HST` : p.type === 'GST' ? '5% GST' : `5% GST + ${p.pst}% ${p.pstName}`;
 });
 
-module.exports = { RATES_CHECKED, RATES_CHECKED_ISO, SOURCES, PROVINCES };
+module.exports = { RATES_CHECKED, RATES_CHECKED_ISO, CRA_TABLE_RECHECKED, SOURCES, PROVINCES };

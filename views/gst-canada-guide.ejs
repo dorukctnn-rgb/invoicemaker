@@ -4,9 +4,11 @@
   var faqs = [
     ['How do I calculate GST on a $1,000 invoice?', 'Multiply the amount before tax by the rate. At 5% GST: 1,000 x 0.05 = $50, total $1,050. In Ontario (13% HST): $130 tax, total $1,130. In British Columbia: $50 GST plus $70 PST, total $1,120.'],
     ['Which province has the highest sales tax?', 'New Brunswick, Newfoundland and Labrador and Prince Edward Island have the highest rate: 15% HST. Quebec follows at 14.975% combined (5% GST + 9.975% QST), then Nova Scotia at 14% HST. Alberta and the three territories charge only the 5% GST.'],
-    ['What is the HST rate in Nova Scotia in 2026?', '14%. Nova Scotia lowered its HST from 15% to 14% on 1 April 2025, and the CRA rate table still shows 14% as of ' + canada.RATES_CHECKED + '. Update any invoice template that still uses 15%.'],
+    ['What is the HST rate in Nova Scotia in 2026?', '14%. Nova Scotia lowered its HST from 15% to 14% on 1 April 2025, and the CRA rate table still shows 14% as of ' + canada.CRA_TABLE_RECHECKED + '. Update any invoice template that still uses 15%.'],
     ['Is PST or QST charged on top of the GST?', 'No. GST and the provincial tax are each calculated on the price before tax. On $100 in Quebec you charge $5.00 GST and $9.98 QST (9.975%), not QST on $105.'],
     ['Do I show the federal and provincial parts of HST separately?', 'No. The CRA says that where HST applies you show the total HST rate as one line and do not split it into federal and provincial parts.'],
+    ['How do I work out the GST from a total that already includes it?', 'Divide the total by 1 plus the rate. With 5% GST: 1,050 / 1.05 = $1,000 before tax, so the GST is $50. In Ontario: 1,130 / 1.13 = $1,000 and the HST is $130. In Quebec divide by 1.14975, then work out the GST and QST separately on the result.'],
+    ['Do I round the GST on each line or on the invoice total?', 'Either is allowed. When every line is taxed at the same rate, the Excise Tax Act lets you calculate the tax once on the total of those lines. A fraction under half a cent is dropped and half a cent or more counts as a full cent. Pick one method and use it on every invoice.'],
     ['Do I have to charge GST/HST if my business is small?', 'Not if you are a small supplier: worldwide taxable sales of $30,000 or less over four consecutive calendar quarters. Once you pass that amount you must register and charge GST/HST. If you are not registered, do not charge GST/HST on your invoices.'],
     ['What does a GST/HST registration number look like?', 'Your 9-digit business number followed by RT and a 4-digit account number, for example 123456789 RT0001. A Quebec QST number looks like 1234567890 TQ0001.']
   ];
@@ -27,9 +29,9 @@
 <%- JSON.stringify({
   '@context': 'https://schema.org',
   '@graph': [
-    { '@type': 'Article', headline: 'How to Calculate GST on Canadian Invoices', description: 'Formula, 2026 GST/HST/PST rates by province, worked examples and CRA invoice requirements.', datePublished: '2026-05-03', dateModified: canada.RATES_CHECKED_ISO, mainEntityOfPage: pageUrl,
+    { '@type': 'Article', headline: 'How to Calculate GST on Canadian Invoices', description: 'Formula, 2026 GST/HST/PST rates by province, worked examples and CRA invoice requirements.', datePublished: '2026-05-03', dateModified: '2026-10-08', mainEntityOfPage: pageUrl,
       author: { '@type': 'Organization', name: 'GetInvoiceMaker', url: siteUrl + '/' }, publisher: { '@type': 'Organization', name: 'GetInvoiceMaker', url: siteUrl + '/' },
-      citation: [S.cra.url, S.craItc.url, S.craRegister.url, S.craPlace.url, S.bc.url, S.sk.url, S.mb.url, S.qc.url] },
+      citation: [S.cra.url, S.craItc.url, S.craRegister.url, S.craPlace.url, S.eta.url, S.bc.url, S.sk.url, S.mb.url, S.qc.url] },
     { '@type': 'BreadcrumbList', itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl + '/' },
       { '@type': 'ListItem', position: 2, name: 'Canada', item: siteUrl + '/free-invoice-generator-canada' },
@@ -59,6 +61,10 @@
 .inv td{padding:7px 8px;border-bottom:1px solid #f1f5f9}
 .inv .r{text-align:right;white-space:nowrap}
 .mark{background:#fef9c3;border-radius:3px;padding:0 3px}
+.answer ol{margin:6px 0 10px 20px;padding:0;color:var(--ink2);font-size:16px}
+.answer li{margin:0 0 6px;padding-left:2px}
+.lines td{font-variant-numeric:tabular-nums}
+.lines .eq{color:var(--muted);font-size:13px;display:block;font-family:ui-monospace,Menlo,Consolas,monospace}
 @media(max-width:700px){.calc .row{grid-template-columns:1fr 1fr}.calc .row > div:first-child{grid-column:1/-1}}
 </style>
 </head>
@@ -69,14 +75,21 @@
 <section class="page-hero">
   <div class="in">
     <h1>How to Calculate GST on Canadian Invoices</h1>
-    <p class="lede">Multiply the amount before tax by the rate for your client's province, put each tax on its own line, and add it to the subtotal. Rates below were last checked on <%= canada.RATES_CHECKED %>.</p>
+    <p class="lede">Multiply the amount before tax by the rate for your client's province, put each tax on its own line, and add it to the subtotal. Rates below were last checked against the CRA table on <%= canada.CRA_TABLE_RECHECKED %>.</p>
   </div>
 </section>
 
 <div class="wrap prose">
   <div class="answer">
     <p><strong>The short answer:</strong> GST = amount before tax x 5%. In Ontario, Nova Scotia, New Brunswick, Newfoundland and Labrador and PEI you charge one HST line instead (13%, 14% or 15%). In British Columbia, Saskatchewan, Manitoba and Quebec you charge 5% GST plus the provincial tax (PST, RST or QST), each worked out on the price before tax and shown on its own line.</p>
+    <ol>
+      <li><strong>Find the province of the sale.</strong> For services this is usually your client's address; for goods, where you deliver them.</li>
+      <li><strong>Look up the rate</strong> for that province in the <a href="#rates">table below</a>.</li>
+      <li><strong>Multiply the subtotal before tax</strong> by each rate and round to the cent.</li>
+      <li><strong>Show each tax on its own line</strong> with its rate and your GST/HST number, then add the tax to the subtotal.</li>
+    </ol>
     <p><strong>Example:</strong> $1,000 of work for an Ontario client: 1,000 x 13% = $130 HST, invoice total $1,130.</p>
+    <p>Not registered for GST/HST because your taxable sales are $30,000 or less? Then you charge none at all (<a href="#small-supplier">small supplier rule</a>).</p>
   </div>
 
   <section class="calc" aria-labelledby="calcH">
@@ -112,22 +125,26 @@
   <h3>Working backwards from a tax-included total</h3>
   <div class="formula">Amount before tax = total / (1 + total rate)<br>Tax = total minus amount before tax<br><b>Ontario: $1,130 / 1.13 = $1,000, so HST = $130</b></div>
 
-  <h2 id="rates">GST, HST and PST rates by province (2026)</h2>
-  <table class="tbl">
-    <thead><tr><th>Province or territory</th><th>Lines on the invoice</th><th class="num">GST / HST</th><th class="num">Provincial tax</th><th class="num">Total</th></tr></thead>
+  <h2 id="rates">GST, HST and PST rates by province (2026), with the tax on a $1,000 invoice</h2>
+  <p>Each row shows the tax lines the invoice gets and what they come to on $1,000 before tax.</p>
+  <% var money = function (n) { return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }; %>
+  <table class="tbl lines">
+    <thead><tr><th>Province or territory</th><th>Tax lines on the invoice</th><th class="num">Total rate</th><th class="num">Tax on $1,000</th><th class="num">Invoice total</th></tr></thead>
     <tbody>
-      <% canada.PROVINCES.forEach(function(p){ var pp = provinces.filter(function(x){ return x.code === p.code; })[0]; %>
+      <% canada.PROVINCES.forEach(function(p){ var pp = provinces.filter(function(x){ return x.code === p.code; })[0];
+           var parts = p.taxes.map(function (t) { return { label: t.label, rate: t.rate, amt: Math.round(1000 * t.rate) / 100 }; });
+           var tax = parts.reduce(function (a, t) { return a + t.amt; }, 0); %>
       <tr>
         <td class="strong"><% if (pp) { %><a href="/<%= pp.slug %>"><%= p.name %></a><% } else { %><%= p.name %><% } %></td>
-        <td><%= p.type === 'HST' ? 'HST (one line)' : p.type === 'GST' ? 'GST' : 'GST + ' + p.pstName %></td>
-        <td class="num"><%= p.type === 'HST' ? p.hst + '% HST' : '5% GST' %></td>
-        <td class="num"><%= p.type === 'GST+PST' ? p.pst + '% ' + p.pstName : '-' %></td>
-        <td class="num strong"><%= p.total %>%<%= p.note ? '*' : '' %></td>
+        <td><%= parts.map(function (t) { return t.label + ' ' + t.rate + '%'; }).join(' + ') %><%= p.type === 'HST' ? ' (one line)' : '' %><% if (parts.length > 1) { %><span class="eq"><%= parts.map(function (t) { return money(t.amt) + ' ' + t.label; }).join(' + ') %></span><% } %></td>
+        <td class="num"><%= p.total %>%<%= p.note ? '*' : '' %></td>
+        <td class="num"><%= money(tax) %></td>
+        <td class="num strong"><%= money(1000 + tax) %></td>
       </tr>
       <% }) %>
     </tbody>
   </table>
-  <p class="source">* Nova Scotia's HST fell from 15% to 14% on 1 April 2025. Last checked <%= canada.RATES_CHECKED %> against the <a href="<%= S.cra.url %>" rel="noopener">CRA GST/HST rates table</a> and <a href="<%= S.craCharge.url %>" rel="noopener">which rate to charge</a>, <a href="<%= S.bc.url %>" rel="noopener">BC PST</a>, <a href="<%= S.sk.url %>" rel="noopener">Saskatchewan PST</a>, <a href="<%= S.mb.url %>" rel="noopener">Manitoba RST</a> and <a href="<%= S.qc.url %>" rel="noopener">Revenu Québec (QST)</a>. On that date the CRA table showed no other rate change since the Nova Scotia cut.</p>
+  <p class="source">* Nova Scotia's HST fell from 15% to 14% on 1 April 2025. Checked on <%= canada.CRA_TABLE_RECHECKED %> against the <a href="<%= S.cra.url %>" rel="noopener">CRA GST/HST rates table</a>, which also lists each province's PST and QST rate, and showed no rate change since the Nova Scotia cut. The provincial sites were last read on <%= canada.RATES_CHECKED %>: <a href="<%= S.bc.url %>" rel="noopener">BC PST</a>, <a href="<%= S.sk.url %>" rel="noopener">Saskatchewan PST</a>, <a href="<%= S.mb.url %>" rel="noopener">Manitoba RST</a> and <a href="<%= S.qc.url %>" rel="noopener">Revenu Québec (QST)</a>. See also the CRA page on <a href="<%= S.craCharge.url %>" rel="noopener">which rate to charge</a>.</p>
 
   <h2>Worked examples</h2>
   <div class="example"><h3>Ontario: $2,500 web design project</h3><ol><li>Amount before tax: $2,500.00</li><li>HST 13%: 2,500 x 0.13 = $325.00</li><li>Total: $2,825.00, with one line "HST (13%)"</li></ol></div>
@@ -135,6 +152,19 @@
   <div class="example"><h3>British Columbia: $1,500 of taxable goods</h3><ol><li>Amount before tax: $1,500.00</li><li>GST 5%: $75.00</li><li>PST 7% on the $1,500 (not on the GST): $105.00</li><li>Total: $1,680.00, with GST and PST on separate lines</li></ol></div>
   <div class="example"><h3>Quebec: $4,000 of services</h3><ol><li>Amount before tax: $4,000.00</li><li>GST 5%: $200.00</li><li>QST 9.975% on the $4,000: $399.00</li><li>Total: $4,599.00. Show GST and QST separately with both registration numbers.</li></ol></div>
   <div class="example"><h3>Alberta: $800 repair job</h3><ol><li>Amount before tax: $800.00</li><li>GST 5%: $40.00</li><li>Total: $840.00. No provincial sales tax in Alberta.</li></ol></div>
+
+  <h2 id="lines">Invoices with several lines: rounding and lines without tax</h2>
+  <p>When every taxable line is taxed at the same rate, you may add the lines up and calculate the tax once on that total. When the tax comes to a fraction of a cent, a fraction under half a cent is dropped and half a cent or more counts as a full cent. Both rules are in section 165.2 of the <a href="<%= S.eta.url %>" rel="noopener">Excise Tax Act</a> (read on <%= canada.CRA_TABLE_RECHECKED %>).</p>
+  <p>The two methods can differ by a cent. Three lines of $33.33 for an Ontario client:</p>
+  <table class="tbl lines">
+    <thead><tr><th>Method</th><th>Working</th><th class="num">HST</th></tr></thead>
+    <tbody>
+      <tr><td class="strong">Tax on each line</td><td>33.33 x 0.13 = 4.3329, rounded to $4.33, three times</td><td class="num">$12.99</td></tr>
+      <tr><td class="strong">Tax once on the total</td><td>99.99 x 0.13 = 12.9987, rounded to $13.00</td><td class="num">$13.00</td></tr>
+    </tbody>
+  </table>
+  <p>Either is correct. Pick one and use it on every invoice. The generator on this site calculates each tax once on the subtotal, so it suits invoices where every line is taxed at the same rate.</p>
+  <p>If one invoice mixes taxable lines with exempt or zero-rated ones, charge the tax only on the taxable lines and mark which lines are taxable. On an invoice of $100 or more the CRA expects that distinction to be visible (see <a href="#invoice">what the CRA requires on the invoice</a>). Example for an Ontario client: a taxable line of $800 and an exempt line of $200 give HST of 800 x 0.13 = $104.00 and a total of $1,104.00.</p>
 
   <h2>Which province's rate do you charge?</h2>
   <p>The rate depends on the <strong>place of supply</strong>, not on where your business is based. The CRA's general rules:</p>
@@ -184,7 +214,7 @@
   </div>
   <p class="source">Highlighted: the items the CRA lists for a sale of $500 or more. Names and numbers are made up.</p>
 
-  <h2>Do you have to charge GST/HST at all?</h2>
+  <h2 id="small-supplier">Do you have to charge GST/HST at all?</h2>
   <p>You must register for and charge GST/HST once your worldwide taxable sales go over <strong>$30,000</strong> in a single calendar quarter or over the last four consecutive calendar quarters. Below that you are a <strong>small supplier</strong> and registration is optional. If you are not registered, do not put GST/HST on your invoices. Source: <a href="<%= S.craRegister.url %>" rel="noopener">CRA, when to register and start charging the GST/HST</a>.</p>
 
   <h2>Clients outside Canada</h2>
