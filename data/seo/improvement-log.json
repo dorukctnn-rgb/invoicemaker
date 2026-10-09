@@ -10,6 +10,12 @@
         "rankAtAction": 37.5,
         "needs": "Formula + province table + worked examples + CRA invoice rules + calculator + link to generator preset",
         "done": "Rewrote page: answer box, calculator with add/remove tax and preset link, 13-province table checked against canada.ca and provincial sites (7 Oct 2026, NS 14%), 5 worked examples, place-of-supply, CRA ITC tiers, HST/QST display rules, sample invoice, fixed wrong \"highest tax\" FAQ"
+      },
+      {
+        "date": "2026-10-09",
+        "rankAtAction": null,
+        "needs": "A second URL competed for this query: /blog/gst-invoice-guide (Crawled - currently not indexed) took 34 of its 51 impressions in 16 months from this query at position 89",
+        "done": "301 /blog/gst-invoice-guide to this page, removed it from the sitemap and replaced its two internal links (this page and the Australia guide). No content change here, so the 2026-10-21 review stands"
       }
     ]
   },
@@ -66,6 +72,34 @@
         "rankAtAction": 60.1,
         "needs": "A generator that works without account, stated plainly",
         "done": "Title/H1 \"Free Invoice Generator, No Signup\"; shared generator with two tax lines, languages, remembered sender and invoice numbering; honest free vs Pro; FAQ"
+      }
+    ]
+  },
+  {
+    "keyword": "how to invoice international clients",
+    "targetPath": "/blog/how-to-invoice-international-clients",
+    "status": "observing",
+    "nextReviewDate": "2026-10-23",
+    "actions": [
+      {
+        "date": "2026-10-09",
+        "rankAtAction": null,
+        "needs": "URL Inspection: Crawled - currently not indexed (crawled 2026-04-25); 0 impressions in 16 months. Wise, OFX, Bookipi, Flywire and Eximpe rank with currency and payment advice and no tax wording, sample invoice or official source",
+        "done": "Rewrote around the tax line: table by country of registration (UK B2B and B2C per Notice 741A, EU reverse charge per European Commission, Canada zero-rating per CRA, Australia GST-free per ATO), currency and sterling VAT (Notice 700 16.4, 7.6), OUR/SHA/BEN bank charges, details clients abroad expect (W-8BEN per IRS), sample UK to Netherlands invoice that opens prefilled in the generator, mistakes; sources dated"
+      }
+    ]
+  },
+  {
+    "keyword": "invoicing tips for small business",
+    "targetPath": "/blog/how-to-write-a-professional-invoice",
+    "status": "observing",
+    "nextReviewDate": "2026-10-23",
+    "actions": [
+      {
+        "date": "2026-10-09",
+        "rankAtAction": 30.5,
+        "needs": "The old target /blog/small-business-invoicing-tips was Crawled - currently not indexed (15 impressions in 16 months, this query at position 30.5). Its ten tips each summarised an existing guide (numbering, terms, sending, reminders, late fees)",
+        "done": "Merged into /blog/how-to-write-a-professional-invoice (301): new section with the five habits the guide lacked (invoice on delivery, terms and deposit up front, reminder schedule, one-line-per-invoice record, late-payment rights), new title and description"
       }
     ]
   }

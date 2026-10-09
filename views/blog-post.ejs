@@ -61,6 +61,23 @@ nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;
 .related-card{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:14px}
 .related-card .tag{margin-bottom:6px}
 .related-card h3{font-size:13px;font-weight:600;color:#0f172a;line-height:1.4}
+.content .answer{background:#fff;border:1px solid #bfdbfe;border-left:4px solid #2563eb;border-radius:10px;padding:16px 18px;margin:0 0 26px}
+.content .answer p:last-child{margin-bottom:0}
+.content th.num,.content td.num{text-align:right;white-space:nowrap}
+.content .src{font-size:12.5px;color:#64748b;line-height:1.6}
+.content a.btn-blue{display:inline-block;color:#fff;text-decoration:none;padding:10px 20px;font-size:14px}
+.content a.btn-blue:hover{background:#1d4ed8}
+.sample{background:#fff;border:1px solid #cbd5e1;border-radius:10px;margin:14px 0 18px;overflow:hidden;font-size:14px;line-height:1.55}
+.sample-h{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 14px;padding:12px 16px;border-bottom:2px solid #2563eb;color:#64748b;font-size:13px}
+.sample-h b{color:#2563eb;font-size:16px;letter-spacing:.4px;margin-right:6px}
+.sample-p{display:grid;grid-template-columns:1fr 1fr;gap:4px 18px;padding:12px 16px 4px;font-size:13.5px}
+.content .sample-p p,.content .sample-f p{margin:0 0 8px}
+.content .sample table{margin:0;border:0;font-variant-numeric:tabular-nums}
+.content .sample th,.content .sample td{border-width:0 0 1px 0;border-color:#eef2f6}
+.content .sample tr.tot td{font-weight:700;color:#0f172a;background:#f8fafc;border-bottom:0}
+.sample-f{padding:10px 16px 4px;font-size:13px;color:#475569;background:#fbfcfe;border-top:1px solid #eef2f6}
+@media(max-width:600px){.sample-p{grid-template-columns:1fr}.content .sample table{display:table}}
+@media(max-width:600px){.content table.stack{border:0;background:none}.content table.stack thead{display:none}.content table.stack tbody,.content table.stack tr,.content table.stack td{display:block}.content table.stack tr{background:#fff;border:1px solid #e2e8f0;border-radius:10px;margin:0 0 12px;padding:6px 0}.content table.stack td{border:0;padding:6px 14px}.content table.stack td::before{content:attr(data-label);display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:#64748b;margin-bottom:2px}}
 footer{background:#0f172a;color:#94a3b8;padding:28px 20px;text-align:center;font-size:12px;margin-top:48px}
 footer a{color:#64748b;margin:0 10px}
 footer a:hover{color:#fff}

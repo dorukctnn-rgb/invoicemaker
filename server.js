@@ -93,15 +93,13 @@ async function withPro(req, res, next) {
 }
 
 const BLOG_POSTS = [
-  { slug: 'how-to-write-a-professional-invoice', title: 'How to Write a Professional Invoice: Complete Guide 2026', desc: 'Learn how to create professional invoices that get paid faster.', date: '2026-01-15', readTime: '8 min read', category: 'Guide', content: '<h2>What is an invoice?</h2><p>An invoice is a document sent from a business or freelancer to a client requesting payment for goods or services delivered.</p><h2>What to include in an invoice</h2><ul><li><strong>Invoice number</strong>: a unique reference number</li><li><strong>Your business name and contact details</strong></li><li><strong>Client name and billing address</strong></li><li><strong>Invoice date and payment due date</strong></li><li><strong>Itemised list of services</strong></li><li><strong>Subtotal, tax, and total amount due</strong></li><li><strong>Payment instructions</strong></li></ul>' },
+  { slug: 'how-to-write-a-professional-invoice', title: 'How to Write a Professional Invoice: Checklist, Example and Tips', desc: 'The ten things every invoice needs, a worked example, the mistakes that delay payment and five habits that get invoices paid on time.', date: '2026-01-15', updated: '2026-10-09', readTime: '6 min read', category: 'Guide', content: '' },
   { slug: 'invoice-payment-terms-guide', title: 'Invoice Payment Terms: Everything You Need to Know', desc: 'Net 30, Net 14, due on receipt: a complete guide to invoice payment terms.', date: '2026-01-22', readTime: '6 min read', category: 'Guide', content: '<h2>What are payment terms?</h2><p>Payment terms are the conditions under which a seller will complete a sale.</p>' },
   { slug: 'what-is-vat-invoice', title: 'What is a VAT Invoice? A Complete Guide for 2026', desc: 'Learn what a VAT invoice is, when you need one, what to include, and how VAT rates work.', date: '2026-01-29', readTime: '7 min read', category: 'Tax', content: '<h2>What is a VAT invoice?</h2><p>A VAT invoice includes Value Added Tax and is required by law when the seller is VAT registered.</p><p>For UK businesses, see our <a href="/free-invoice-generator-uk">UK VAT invoice generator</a>. For Dutch businesses, see our <a href="/free-invoice-generator-netherlands">Dutch BTW invoice template</a>.</p>' },
   { slug: 'invoice-vs-receipt', title: 'Invoice vs Receipt: What is the Difference?', desc: 'This guide explains when to use each.', date: '2026-02-12', readTime: '5 min read', category: 'Guide', content: '<h2>The key difference</h2><p>An invoice is sent before payment to request money. A receipt is issued after payment to confirm it was received.</p>' },
   { slug: 'how-to-write-invoice-email', title: 'How to Write an Invoice Email: Templates and Examples', desc: 'Professional invoice email templates you can copy and use today.', date: '2026-02-19', readTime: '6 min read', category: 'Templates', content: '<h2>Initial invoice email template</h2><p>Hi [Client Name], please find attached invoice #INV-001 totalling [amount].</p>' },
-  { slug: 'gst-invoice-guide', title: 'GST Invoice Guide: Australia, India, Canada, Singapore', desc: 'A complete guide to GST invoices for Australia, India, Canada and Singapore.', date: '2026-02-26', readTime: '7 min read', category: 'Tax', content: '<h2>What is GST?</h2><p>GST stands for Goods and Services Tax.</p><p>For an interactive calculator with all Canadian provinces, visit our <a href="/how-to-calculate-gst-on-canadian-invoices">Canadian GST calculator</a>. For Australian businesses, see our <a href="/free-invoice-generator-australia">Australia GST calculator</a>.</p>' },
   { slug: 'invoice-number-format', title: 'Invoice Numbering: How to Number Your Invoices Correctly', desc: 'The best invoice numbering systems explained for small businesses and freelancers.', date: '2026-03-05', readTime: '5 min read', category: 'Guide', content: '<h2>Why invoice numbering matters</h2><p>Invoice numbers are required for accounting, tax reporting, and dispute resolution.</p>' },
-  { slug: 'how-to-invoice-international-clients', title: 'How to Invoice International Clients: Currency, Tax and Tips', desc: 'A practical guide to invoicing clients in other countries.', date: '2026-03-12', readTime: '8 min read', category: 'Guide', content: '<h2>Choosing the right currency</h2><p>You can invoice in your local currency or the client currency.</p>' },
-  { slug: 'small-business-invoicing-tips', title: '10 Invoicing Tips for Small Businesses to Get Paid Faster', desc: 'Practical invoicing tips for small business owners to improve cash flow.', date: '2026-03-19', readTime: '7 min read', category: 'Tips', content: '<h2>1. Invoice immediately</h2><p>Send invoices on the day work is delivered.</p>' }
+  { slug: 'how-to-invoice-international-clients', title: 'How to Invoice International Clients (Tax Wording by Country)', desc: 'What to write in the tax line when your client is abroad (UK, EU, Canada, Australia), with official sources, plus currency, bank charges and a sample invoice.', date: '2026-03-12', updated: '2026-10-09', readTime: '8 min read', category: 'Guide', content: '' },
 ];
 
 // Templated pages retired on 8 Oct 2026. Each repeated one layout with a different job title or
@@ -142,7 +140,13 @@ Object.entries(RETIRED_PAGES).forEach(([from, to]) => {
 // Old URLs consolidated into stronger pages (avoids two pages competing for one query).
 const BLOG_REDIRECTS = {
   'freelancer-invoice-guide': '/how-to-invoice-as-a-freelancer',
-  'gst-hst-pst-canada-invoice-guide': '/how-to-calculate-gst-on-canadian-invoices'
+  'gst-hst-pst-canada-invoice-guide': '/how-to-calculate-gst-on-canadian-invoices',
+  // 9 Oct 2026, both "Crawled - currently not indexed". 34 of the GST post's 51 impressions in 16 months came
+  // from the Canadian guide's own query ("how to calculate gst on canadian invoices?", pos 89 vs 39); its Canada and
+  // Australia sections repeated those guides and its India and Singapore notes covered markets retired on 8 Oct.
+  'gst-invoice-guide': '/how-to-calculate-gst-on-canadian-invoices',
+  // Each of the ten tips summarised a guide that already exists; the ones that did not are now a section of this guide.
+  'small-business-invoicing-tips': '/blog/how-to-write-a-professional-invoice'
 };
 
 const HOW_TO_PAGES = [
