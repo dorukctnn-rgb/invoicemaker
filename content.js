@@ -1,6 +1,9 @@
 // Long-form article bodies for /blog/* and the /how-to-* guides.
 // Kept out of server.js so route definitions stay readable.
 
+const Prefill = require('./public/js/prefill');
+const PREFILL = Prefill.encode({"currency":"EUR","items":[{"d":"Brand identity: logo, colour palette and type system (fixed fee)","q":1,"r":2400},{"d":"Brand guidelines document, 24 pages","q":1,"r":800}],"notes":"Outside the scope of UK VAT: the customer belongs outside the UK. Customer to account for any VAT due in its own country.\nCustomer VAT number: NL000000000B00\nPayment in EUR within 30 days by bank transfer to IBAN GB00 BANK 0000 0000 0000 00, BIC BANKGB00.\nBank charges: shared (SHA). Each side pays its own bank."});
+
 const BLOG_CONTENT = {
   'how-to-write-a-professional-invoice': `
 <p>A professional invoice does two jobs: it tells your client exactly what they owe and when, and it gives both of you a record that stands up to an accountant or a tax office. Most late payments trace back to an invoice that was missing something, such as a due date, a purchase-order number or bank details.</p>
@@ -26,6 +29,15 @@ const BLOG_CONTENT = {
 <li>Vague line items that invite questions.</li>
 <li>Charging tax when you are not registered, or leaving your tax number off when you are.</li>
 </ul>
+<h2 id="habits">Habits that get invoices paid on time</h2>
+<p>The invoice itself is half the job. These five habits cover the rest, and each links to the detail.</p>
+<ol>
+<li><strong>Invoice on the day you deliver.</strong> Every day between finishing and invoicing is added to the time it takes to get paid. Make the invoice part of handing over the work, not a job for the end of the month.</li>
+<li><strong>Agree the terms before you start.</strong> Put the payment terms, any deposit and your late-payment policy in the quote or contract, then repeat them on the invoice. On larger jobs a deposit, for example 30% to 50%, means you are never owed more than you can afford to lose (<a href="/blog/invoice-payment-terms-guide">payment terms explained</a>).</li>
+<li><strong>Remind on a schedule.</strong> A short note a few days before the due date, another on the day, and a firmer one about a week after. Send the same way every time so nothing depends on memory (<a href="/blog/how-to-write-invoice-email">invoice and reminder emails to copy</a>).</li>
+<li><strong>Keep one line per invoice.</strong> A spreadsheet with the invoice number, client, amount, issue date, due date and paid date is enough. Sort by due date once a week and the slow payers show up long before they become a cash-flow problem.</li>
+<li><strong>Know your late-payment rights.</strong> When a business customer in the UK or Ireland pays late, the law lets you add interest and a fixed compensation sum. Work out both with the <a href="/late-payment-interest-calculator">late payment interest calculator</a>, and read <a href="/how-to-charge-late-payment-fee">how to charge a late payment fee</a> for the wording.</li>
+</ol>
 <p>You can build an invoice with all of these fields in our <a href="/">free invoice generator</a>. The live preview shows exactly what the PDF will look like before you download it.</p>`,
 
   'invoice-payment-terms-guide': `
@@ -107,24 +119,6 @@ const BLOG_CONTENT = {
 </ul>
 <p>Create the PDF in the <a href="/">invoice generator</a>, then use the templates above.</p>`,
 
-  'gst-invoice-guide': `
-<p>Goods and Services Tax (GST) is the name several countries use for a value-added tax. The principle is the same everywhere: registered businesses add GST to their sales and reclaim the GST they pay on purchases. The invoice rules differ by country.</p>
-<h2>Rates at a glance (2026)</h2>
-<table><thead><tr><th>Country</th><th>Standard GST rate</th><th>Invoice name</th></tr></thead><tbody>
-<tr><td>Canada</td><td>5% federal GST, or 13&ndash;15% HST, plus PST/QST in some provinces</td><td>Invoice showing GST/HST number</td></tr>
-<tr><td>Australia</td><td>10%</td><td>Tax invoice</td></tr>
-<tr><td>Singapore</td><td>9%</td><td>Tax invoice</td></tr>
-<tr><td>India</td><td>Multiple slabs (5%, 18% and others) split into CGST/SGST or IGST</td><td>Tax invoice</td></tr>
-</tbody></table>
-<h2>Canada</h2>
-<p>Canada charges a 5% federal GST. Five provinces use a combined Harmonized Sales Tax instead: Ontario 13%, Nova Scotia 14%, and New Brunswick, Newfoundland and Labrador and Prince Edward Island 15%. BC, Saskatchewan, Manitoba and Quebec add a separate provincial tax. The details an invoice must show depend on the amount. See the full guide: <a href="/how-to-calculate-gst-on-canadian-invoices">how to calculate GST on Canadian invoices</a>.</p>
-<h2>Australia</h2>
-<p>If you are registered for GST, sales of more than A$82.50 (including GST) need a tax invoice. It must show the words "Tax invoice", your ABN, the date, a description of what was sold, and the GST amount or a statement that the price includes GST. Sales of A$1,000 or more must also show the buyer's identity or ABN. More in the <a href="/free-invoice-generator-australia">Australia GST invoice guide</a>.</p>
-<h2>Singapore</h2>
-<p>GST-registered businesses issue tax invoices showing their GST registration number, the date, the customer's details, a description, the amount before GST, the GST rate and amount, and the total.</p>
-<h2>India</h2>
-<p>Indian GST invoices carry the supplier's GSTIN, a consecutive serial number, HSN or SAC codes for the goods or services, and the tax split. Intra-state supplies split tax into CGST and SGST. Inter-state supplies charge IGST.</p>`,
-
   'invoice-number-format': `
 <p>An invoice number is a unique reference that you, your client and any tax authority can use to find a specific invoice. Most tax systems require invoice numbers to be unique and to follow a sequence you can explain.</p>
 <h2>Four formats that work</h2>
@@ -145,50 +139,69 @@ const BLOG_CONTENT = {
 <p>You do not have to start at 1. Many businesses start at 100 or 1001 so a first client does not see "Invoice #1". That is fine as long as you continue sequentially from there.</p>
 <p>Our <a href="/">invoice generator</a> lets you set any number format and shows it in the live preview.</p>`,
 
+  // Rewritten 9 Oct 2026 (was "Crawled - currently not indexed"): tax wording by country with official sources.
   'how-to-invoice-international-clients': `
-<p>Invoicing a client in another country adds three questions: which currency to use, whether to charge tax, and how the money will reach you. Answer them before you start the work and the invoice becomes routine.</p>
-<h2>1. Choose the currency</h2>
-<p>If you invoice in your own currency, the exchange risk sits with the client, and some clients refuse to take it. Invoicing in the client's currency makes payment easy for them but means your income moves with exchange rates. Agree on the currency in the contract and put it on every line of the invoice, for example "USD 1,200.00" rather than "$1,200".</p>
-<h2>2. Work out the tax treatment</h2>
-<p>Cross-border services are often outside the scope of your local sales tax or zero-rated, but the rules depend on your country, the client's country and whether the client is a business.</p>
-<ul>
-<li><strong>EU and UK B2B services:</strong> usually taxed where the customer is, via the reverse charge. You show 0% VAT, the note "Reverse charge" and both VAT numbers.</li>
-<li><strong>Canada:</strong> many services supplied to non-residents are zero-rated, but conditions apply.</li>
-<li><strong>US:</strong> there is no federal sales tax on most services. State rules vary.</li>
-</ul>
-<p>When in doubt, ask an accountant once and reuse the answer for every similar client.</p>
-<h2>3. Make payment easy</h2>
-<p>Include full bank details (IBAN and SWIFT/BIC for international transfers) or a payment link, and say who pays transfer fees ("All bank charges to be paid by the sender"). Services such as Wise can reduce conversion costs for both sides.</p>
-<h2>4. Add the details foreign clients expect</h2>
-<ul>
-<li>The client's full legal name and registered address</li>
-<li>Their VAT or company number if they are a business</li>
-<li>Dates written unambiguously, for example 14 October 2026 rather than 10/14/26</li>
-</ul>
-<p>Our <a href="/">invoice generator</a> supports 18 currencies. You can also read <a href="/how-to-invoice-us-clients-from-uk">how to invoice US clients from the UK</a>.</p>`,
+<div class="answer"><p><strong>The short answer:</strong> invoice a client abroad the way you invoice at home, then settle four things before you send it. The <strong>currency</strong>, written as a code (EUR 3,200.00). The <strong>tax line</strong>: for a business client in another country you usually charge no VAT or GST, and you add a short note saying why. The <strong>client details</strong> their country needs, such as an EU business&rsquo;s VAT number. And <strong>how the money reaches you</strong>: IBAN and BIC or local bank details, and who pays the bank charges.</p></div>
+<h2 id="tax">The tax line, by where you are registered</h2>
+<p>Most VAT and GST systems tax a service sold to a business in another country where the customer is, so you charge nothing and the customer deals with any tax at home. Each country words it differently and each has exceptions (work on land or buildings, events, services used in your own country), so check the source for your case.</p>
+<table class="stack"><thead><tr><th>You are registered in</th><th>Your client</th><th>What you charge</th><th>What the invoice says</th></tr></thead><tbody>
+<tr><td data-label="You are registered in">UK (VAT)</td><td data-label="Your client">A business outside the UK</td><td data-label="What you charge">No UK VAT for most services: the supply is made where the customer belongs, which puts it outside the scope of UK VAT (<a href="https://www.gov.uk/guidance/vat-place-of-supply-of-services-notice-741a#b2b-supplies" rel="noopener">VAT Notice 741A, 6.3</a>)</td><td data-label="What the invoice says">No VAT line, a note such as &ldquo;Outside the scope of UK VAT&rdquo;, and the client&rsquo;s VAT number if it has one. HMRC calls an EU customer&rsquo;s VAT number the best evidence that it is in business.</td></tr>
+<tr><td data-label="You are registered in">UK (VAT)</td><td data-label="Your client">A private person outside the UK</td><td data-label="What you charge">Depends on the service. Consultancy, legal, accounting, advertising, data processing and similar services are outside the scope (<a href="https://www.gov.uk/guidance/vat-place-of-supply-of-services-notice-741a" rel="noopener">Notice 741A, section 12</a>); most other services to consumers carry UK VAT (6.2)</td><td data-label="What the invoice says">UK VAT where it applies. If the invoice is in another currency, the VAT total must also be shown in sterling (<a href="https://www.gov.uk/guidance/vat-guide-notice-700#invoicing-in-a-foreign-currency" rel="noopener">Notice 700, 16.4</a>)</td></tr>
+<tr><td data-label="You are registered in">An EU country (VAT)</td><td data-label="Your client">A VAT-registered business in another EU country</td><td data-label="What you charge">No VAT from you: the customer accounts for it under the reverse charge</td><td data-label="What the invoice says">The words &ldquo;reverse charge&rdquo; and the customer&rsquo;s VAT number, both required on the invoice (<a href="https://taxation-customs.ec.europa.eu/taxation/vat/vat-businesses/vat-invoicing_en" rel="noopener">European Commission</a>). Dutch wording and the rules for clients outside the EU: <a href="/free-invoice-generator-netherlands">Dutch invoice guide</a></td></tr>
+<tr><td data-label="You are registered in">Canada (GST/HST)</td><td data-label="Your client">A non-resident client</td><td data-label="What you charge">Often 0%: certain services supplied to a non-resident, other than to an individual while they are in Canada, can be zero-rated (<a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-imports-exports.html" rel="noopener">CRA</a>)</td><td data-label="What the invoice says">GST/HST at 0%, shown as zero-rated, with your GST/HST number. Inside Canada the province rules apply instead (<a href="/how-to-calculate-gst-on-canadian-invoices">GST on Canadian invoices</a>)</td></tr>
+<tr><td data-label="You are registered in">Australia (GST)</td><td data-label="Your client">A client outside Australia</td><td data-label="What you charge">No GST when the service is used outside Australia, or supplied to a non-resident who is not in Australia at the time. Services provided in Australia are not GST-free even if the client is abroad (<a href="https://www.ato.gov.au/businesses-and-organisations/international-tax-for-business/australians-doing-business-overseas/exports-and-gst" rel="noopener">ATO</a>)</td><td data-label="What the invoice says">No GST on the invoice. The ATO&rsquo;s own example is a freelance writer in Australia invoicing an English publisher without GST</td></tr>
+<tr><td data-label="You are registered in">Nowhere</td><td data-label="Your client">Anyone</td><td data-label="What you charge">Nothing: if you are not registered you cannot charge VAT or GST</td><td data-label="What the invoice says">No tax line and no tax number</td></tr>
+</tbody></table>
+<p>Selling from the US? Check your state&rsquo;s sales tax rules for services sold to customers abroad. Your client may still have to account for VAT or GST in its own country, which is its job, not yours.</p>
 
-  'small-business-invoicing-tips': `
-<p>Getting paid on time is mostly about process. These ten habits work for sole traders and small teams alike.</p>
-<h2>1. Invoice the day the work is delivered</h2>
-<p>Every day you wait is a day added to your payment cycle. Make invoicing part of delivery, not a monthly admin task.</p>
-<h2>2. Agree terms before you start</h2>
-<p>Put payment terms, deposit and late-fee policy in the quote or contract, then repeat them on the invoice.</p>
-<h2>3. Ask for a deposit on larger jobs</h2>
-<p>A 30&ndash;50% deposit filters out clients who are not committed and protects your cash flow.</p>
-<h2>4. Write a due date, not only a term</h2>
-<p>"Due 14 October 2026" is harder to miss than "Net 30".</p>
-<h2>5. Send it to the person who pays</h2>
-<p>Ask who handles accounts payable and whether they need a PO number. It is the most common cause of silent delays.</p>
-<h2>6. Make line items specific</h2>
-<p>Clear descriptions prevent the "what is this charge?" email that pauses payment for a week.</p>
-<h2>7. Offer the payment methods your clients use</h2>
-<p>Bank transfer details, a card payment link, or both. Every extra step is a reason to postpone.</p>
-<h2>8. Send reminders on a schedule</h2>
-<p>A polite note 3 days before the due date, on the due date, and 7 days after works well. See our <a href="/blog/how-to-write-invoice-email">invoice email templates</a>.</p>
-<h2>9. Number invoices consistently</h2>
-<p>A clean sequence makes chasing and bookkeeping faster. Read our <a href="/blog/invoice-number-format">invoice numbering guide</a>.</p>
-<h2>10. Keep a simple record</h2>
-<p>A spreadsheet with invoice number, client, amount, due date and paid date is enough to spot slow payers early.</p>`
+<h2 id="currency">Currency</h2>
+<ul>
+<li><strong>Agree it in writing before you start,</strong> and use it on every line of the invoice.</li>
+<li><strong>Name it.</strong> Write &ldquo;EUR 3,200.00&rdquo; or add &ldquo;All amounts in US dollars (USD)&rdquo;. A bare $ could be US, Canadian or Australian dollars.</li>
+<li><strong>Know who carries the exchange risk.</strong> Invoice in your own currency and the client carries it; invoice in theirs and you do, because what lands in your account moves with the rate.</li>
+<li><strong>UK VAT in another currency.</strong> If you do charge UK VAT on an invoice in euros or dollars, convert the VAT total to sterling at the UK market selling rate at the time of supply, or at HMRC&rsquo;s period rate (<a href="https://www.gov.uk/guidance/vat-guide-notice-700#value-in-foreign-currency" rel="noopener">Notice 700, 7.6</a>).</li>
+</ul>
+
+<h2 id="paid">Getting paid</h2>
+<ul>
+<li><strong>Bank details that work across borders:</strong> IBAN and BIC (SWIFT code) for international transfers, account and routing numbers for US clients paying into a US account, or a payment link.</li>
+<li><strong>Say who pays the bank charges.</strong> International transfers have three charge options: OUR (the sender pays all charges), SHA (each side pays its own bank) and BEN (the person paid bears all of them). For payments to a bank in the EU or EEA, the sending bank may offer only SHA; Barclays&rsquo; guide explains this follows the second Payment Services Directive (<a href="https://www.ib.barclays/content/dam/barclaysmicrosites/ibpublic/documents/investment-bank/barclays-bank-ireland/barclays-guide-to-overseas-delivery-charges.pdf" rel="noopener">Barclays</a>). If you need the full amount, agree OUR in the contract and write it on the invoice.</li>
+<li><strong>Give a due date, not only a term:</strong> &ldquo;Due 1 November 2026&rdquo; reads the same in every country.</li>
+</ul>
+
+<h2 id="details">Details clients abroad expect</h2>
+<ul>
+<li>The client&rsquo;s full legal name and registered address, and for an EU business its VAT number.</li>
+<li>A description that says what the service is. HMRC notes that the place of supply depends on the nature of the service, so invoices should avoid generic descriptions (<a href="https://www.gov.uk/guidance/vat-place-of-supply-of-services-notice-741a#the-impact-on-uk-suppliers" rel="noopener">Notice 741A, 2.3</a>).</li>
+<li>Dates written out: 3 April 2026, not 03/04/26, which reads as 3 April in the UK and 4 March in the US.</li>
+<li>Their purchase order number, if they gave you one.</li>
+<li>For US clients: they may ask you for Form W-8BEN (individuals) or W-8BEN-E (companies), which a foreign person gives to the payer when asked (<a href="https://www.irs.gov/forms-pubs/about-form-w-8-ben" rel="noopener">IRS</a>). The UK side of that is in <a href="/how-to-invoice-us-clients-from-uk">how to invoice US clients from the UK</a>.</li>
+</ul>
+
+<h2 id="sample">Sample: a UK designer invoicing a Dutch company</h2>
+<p>A VAT-registered UK studio sells a brand identity to a business in the Netherlands, invoices in euros and charges no UK VAT. Names, numbers and bank details are made up.</p>
+<div class="sample">
+<div class="sample-h"><span><b>INVOICE</b> INV-2026-087</span><span>2 October 2026, due 1 November 2026</span></div>
+<div class="sample-p"><p><strong>From</strong> Hollin Studio Ltd, London, United Kingdom. VAT no. GB 000 0000 00</p><p><strong>Bill to</strong> Noordkade Media B.V., Amsterdam, Netherlands. VAT no. NL000000000B00</p></div>
+<table><thead><tr><th>Description</th><th class="num">Amount</th></tr></thead><tbody>
+<tr><td>Brand identity: logo, colour palette and type system (fixed fee)</td><td class="num">EUR 2,400.00</td></tr>
+<tr><td>Brand guidelines document, 24 pages</td><td class="num">EUR 800.00</td></tr>
+<tr><td>UK VAT</td><td class="num">None</td></tr>
+<tr class="tot"><td>Total due</td><td class="num">EUR 3,200.00</td></tr>
+</tbody></table>
+<div class="sample-f"><p>Outside the scope of UK VAT: the customer belongs outside the UK. Customer to account for any VAT due in its own country.</p><p>Payment in EUR by bank transfer to IBAN GB00 BANK 0000 0000 0000 00, BIC BANKGB00. Bank charges: SHA, each side pays its own bank.</p></div>
+</div>
+<p><a class="btn-blue" href="/#prefill=${PREFILL}">Open this sample in the invoice generator</a></p>
+
+<h2 id="mistakes">Mistakes that cost time or money</h2>
+<ul>
+<li>Adding your home VAT or GST to a business client abroad out of habit. They then have to ask for a corrected invoice before they can pay.</li>
+<li>Leaving out an EU business client&rsquo;s VAT number, which the reverse charge invoice needs.</li>
+<li>Not saying who pays the bank charges, then receiving less than the invoice total.</li>
+<li>A $ sign with no currency code, or a date that reads differently on the other side of the Atlantic.</li>
+</ul>
+<p class="src">Sources checked 9 October 2026: HMRC VAT Notice 741A and VAT Notice 700 (last updated 25 June 2026), European Commission VAT invoicing rules, CRA imports and exports (modified 22 June 2026), ATO exports and GST (updated 28 July 2023), IRS Form W-8BEN (updated 2 October 2026), Barclays guide to overseas delivery charges. General information, not tax advice: the rules turn on the type of service and where it is used.</p>`,
+
 };
 
 // Bodies for the /how-to-* pages. Each targets a distinct task.
