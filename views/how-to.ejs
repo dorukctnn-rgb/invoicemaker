@@ -17,12 +17,13 @@
     { "@type": "Article", "headline": page.title, "description": page.desc, "dateModified": page.updated, "mainEntityOfPage": siteUrl + "/" + page.slug,
       "author": { "@type": "Organization", "name": "GetInvoiceMaker", "url": siteUrl }, "publisher": { "@type": "Organization", "name": "GetInvoiceMaker", "url": siteUrl } },
     { "@type": "HowTo", "name": page.title, "step": (page.steps || []).map(function (t, i) { return { "@type": "HowToStep", "position": i + 1, "name": t, "text": t }; }) },
+    page.faq && page.faq.length ? { "@type": "FAQPage", "mainEntity": page.faq.map(function (q) { return { "@type": "Question", "name": q.q, "acceptedAnswer": { "@type": "Answer", "text": q.a } }; }) } : null,
     { "@type": "BreadcrumbList", "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl + "/" },
       { "@type": "ListItem", "position": 2, "name": "Guides", "item": siteUrl + "/blog" },
       { "@type": "ListItem", "position": 3, "name": page.title, "item": siteUrl + "/" + page.slug } ] }
-  ]
-}) %>
+  ].filter(Boolean)
+}).replace(/</g, '\\u003c') %>
 </script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -71,6 +72,40 @@ nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;
 .tgrid{display:flex;flex-wrap:wrap;gap:8px}
 .tlink{background:#fff;border:1px solid #e2e8f0;padding:6px 14px;border-radius:50px;font-size:12px;color:#475569}
 .tlink:hover{background:#eff6ff;border-color:#2563eb;color:#2563eb}
+.article .answer{background:#eff6ff;border:1px solid #bfdbfe;border-left:4px solid #2563eb;border-radius:10px;padding:16px 18px;margin:0 0 22px}
+.article .answer p:last-child{margin-bottom:0}
+.article th.num,.article td.num{text-align:right;white-space:nowrap}
+.article .src{font-size:12.5px;color:#64748b;line-height:1.6}
+.article blockquote{border-left:3px solid #2563eb;background:#f8fafc;padding:12px 16px;margin:0 0 14px;font-size:14px;color:#0f172a;border-radius:0 8px 8px 0}
+.article h3{font-size:16px;font-weight:700;color:#0f172a;margin:18px 0 8px}
+.sample{background:#fff;border:1px solid #cbd5e1;border-radius:10px;margin:14px 0 18px;overflow:hidden;font-size:14px;line-height:1.55}
+.sample-h{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 14px;padding:12px 16px;border-bottom:2px solid #2563eb;color:#64748b;font-size:13px}
+.sample-h b{color:#2563eb;font-size:16px;letter-spacing:.4px;margin-right:6px}
+.sample-p{display:grid;grid-template-columns:1fr 1fr;gap:4px 18px;padding:12px 16px 4px;font-size:13.5px}
+.article .sample-p p,.article .sample-f p{margin:0 0 8px}
+.article .sample table{margin:0;border:0;font-variant-numeric:tabular-nums}
+.article .sample th,.article .sample td{border-width:0 0 1px 0;border-color:#eef2f6}
+.article .sample tr.tot td{font-weight:700;color:#0f172a;background:#f8fafc;border-bottom:0}
+.sample-f{padding:10px 16px 4px;font-size:13px;color:#475569;background:#fbfcfe;border-top:1px solid #eef2f6}
+.mail{border:1px solid #e2e8f0;border-radius:10px;margin:0 0 14px;overflow:hidden;background:#fff}
+.mail-h{font-size:14px;font-weight:700;color:#0f172a;background:#f8fafc;border-bottom:1px solid #e2e8f0;padding:9px 14px}
+.mail-b{padding:12px 14px;font-size:14px;line-height:1.65;color:#1e293b}
+.vcalc{border:2px solid #2563eb;border-radius:12px;padding:18px;margin:0 0 20px;background:#fff}
+.vc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.vc-grid label{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:600;color:#64748b}
+.vc-grid label[hidden]{display:none}
+.vc-grid input,.vc-grid select{width:100%;border:1px solid #cbd5e1;border-radius:7px;padding:9px 10px;font:500 15px inherit;font-family:inherit;color:#0f172a;background:#fff}
+.vc-grid input:focus,.vc-grid select:focus{outline:none;border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.14)}
+.article .vcalc table.vc-out{margin:14px 0 8px;display:table;font-variant-numeric:tabular-nums}
+.vc-out tr.tot td{font-weight:700;color:#0f172a;background:#f8fafc;font-size:16px}
+.vc-how{font-size:13px;color:#64748b;margin:0 !important}
+.faq-sec{margin-top:28px}
+.faq-sec h2{font-size:18px;font-weight:700;margin-bottom:10px}
+.faq-sec details{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:12px 16px;margin-bottom:8px}
+.faq-sec summary{font-weight:600;font-size:14.5px;cursor:pointer;color:#0f172a}
+.faq-sec details p{font-size:14px;color:#475569;line-height:1.7;margin-top:8px}
+@media(max-width:600px){.sample-p{grid-template-columns:1fr}.article .sample table,.article .vcalc table.vc-out{display:table}.vc-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.article table.stack{border:0;background:none}.article table.stack thead{display:none}.article table.stack tbody,.article table.stack tr,.article table.stack td{display:block}.article table.stack tr{background:#fff;border:1px solid #e2e8f0;border-radius:10px;margin:0 0 12px;padding:6px 0}.article table.stack td{border:0;padding:6px 14px}.article table.stack td::before{content:attr(data-label);display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:#64748b;margin-bottom:2px}}
 footer{background:#0f172a;color:#94a3b8;padding:28px 20px;text-align:center;font-size:12px;margin-top:48px}
 footer a{color:#64748b;margin:0 10px}
 footer a:hover{color:#fff}
@@ -101,6 +136,12 @@ footer a:hover{color:#fff}
   <% } %>
   <article class="article"><%- page.body %></article>
   <p class="updated">Last reviewed <%= page.updated %></p>
+  <% if (page.faq && page.faq.length) { %>
+  <section class="faq-sec" aria-labelledby="faqH">
+    <h2 id="faqH">Questions</h2>
+    <% page.faq.forEach(function (q) { %><details><summary><%= q.q %></summary><p><%= q.a %></p></details><% }) %>
+  </section>
+  <% } %>
   <div class="cta-box">
     <h3>Ready to create your invoice?</h3>
     <p>Free, no signup, instant PDF download. Professional invoices in 60 seconds.</p>
@@ -126,7 +167,7 @@ footer a:hover{color:#fff}
   <a href="/">Home</a><a href="/blog">Blog</a><a href="/#pricing">Pricing</a>
   <p style="margin-top:12px">&#169; 2026 GetInvoiceMaker. Free invoice generator.</p>
 </footer>
-
+<% if (page.script) { %><script src="<%= page.script %>?v=2" defer></script><% } %>
 </body>
 </html>
 

@@ -86,6 +86,12 @@
         "rankAtAction": null,
         "needs": "URL Inspection: Crawled - currently not indexed (crawled 2026-04-25); 0 impressions in 16 months. Wise, OFX, Bookipi, Flywire and Eximpe rank with currency and payment advice and no tax wording, sample invoice or official source",
         "done": "Rewrote around the tax line: table by country of registration (UK B2B and B2C per Notice 741A, EU reverse charge per European Commission, Canada zero-rating per CRA, Australia GST-free per ATO), currency and sterling VAT (Notice 700 16.4, 7.6), OUR/SHA/BEN bank charges, details clients abroad expect (W-8BEN per IRS), sample UK to Netherlands invoice that opens prefilled in the generator, mistakes; sources dated"
+      },
+      {
+        "date": "2026-10-09",
+        "rankAtAction": null,
+        "needs": "/how-to-invoice-us-clients-from-uk (URL is unknown to Google) repeated this guide's UK VAT, W-8BEN, bank and date points",
+        "done": "301 /how-to-invoice-us-clients-from-uk here; one line added on W-9 vs W-8BEN; links from the UK VAT guide replaced. Review date unchanged"
       }
     ]
   },
@@ -100,6 +106,146 @@
         "rankAtAction": 30.5,
         "needs": "The old target /blog/small-business-invoicing-tips was Crawled - currently not indexed (15 impressions in 16 months, this query at position 30.5). Its ten tips each summarised an existing guide (numbering, terms, sending, reminders, late fees)",
         "done": "Merged into /blog/how-to-write-a-professional-invoice (301): new section with the five habits the guide lacked (invoice on delivery, terms and deposit up front, reminder schedule, one-line-per-invoice record, late-payment rights), new title and description"
+      }
+    ]
+  },
+  {
+    "keyword": "invoice payment terms",
+    "targetPath": "/blog/invoice-payment-terms-guide",
+    "status": "observing",
+    "nextReviewDate": "2026-10-23",
+    "actions": [
+      {
+        "date": "2026-10-09",
+        "rankAtAction": null,
+        "needs": "URL is unknown to Google; 343 words. Housecall Pro, InvoiceFly, Relay, BILL define Net 30 with no legal defaults or discount cost",
+        "done": "Rewrote: terms table with dated examples, legal defaults (GOV.UK 30 days, 60-day B2B limit; Directive 2011/7/EU; US Prompt Payment rate), 2/10 Net 30 annualised cost, HMRC prompt-discount wording, choosing terms"
+      }
+    ]
+  },
+  {
+    "keyword": "what is a vat invoice",
+    "targetPath": "/blog/what-is-vat-invoice",
+    "status": "observing",
+    "nextReviewDate": "2026-10-23",
+    "actions": [
+      {
+        "date": "2026-10-09",
+        "rankAtAction": 56.6,
+        "needs": "Indexed (26 impressions in 16 months, avg position 56.6); 256 words; Fonoa, Stripe, Avalara list the fields without an example",
+        "done": "Rewrote: Notice 700 16.3.1 list, example VAT invoice, simplified invoices, when not to issue, 30-day rule, deposits, pro formas, foreign currency, 6-year records; removed unsourced multi-country rate table"
+      }
+    ]
+  },
+  {
+    "keyword": "invoice vs receipt",
+    "targetPath": "/blog/invoice-vs-receipt",
+    "status": "observing",
+    "nextReviewDate": "2026-10-23",
+    "actions": [
+      {
+        "date": "2026-10-09",
+        "rankAtAction": null,
+        "needs": "URL is unknown to Google; 192 words; Wise, Billdu, Patriot, Hiveage, Adobe are generic comparisons",
+        "done": "Rewrote: comparison table, one sale as invoice and receipt, which one you need (GOV.UK VAT invoices, simplified invoices, ATO 28-day rule), paid invoice as receipt, record retention UK and US"
+      }
+    ]
+  },
+  {
+    "keyword": "invoice number format",
+    "targetPath": "/blog/invoice-number-format",
+    "status": "observing",
+    "nextReviewDate": "2026-10-23",
+    "actions": [
+      {
+        "date": "2026-10-09",
+        "rankAtAction": null,
+        "needs": "URL is unknown to Google; 201 words; Dodo, Billdu, Statrys, SumUp claim legal rules without sources",
+        "done": "Rewrote: rules table (GOV.UK, Notice 700 16.3, European Commission, CRA, ATO), formats, multiple series, new year, gaps, credit notes (Notice 700 18.2.3)"
+      }
+    ]
+  },
+  {
+    "keyword": "how to calculate vat on an invoice",
+    "targetPath": "/how-to-calculate-vat-on-invoice",
+    "status": "observing",
+    "nextReviewDate": "2026-10-23",
+    "actions": [
+      {
+        "date": "2026-10-09",
+        "rankAtAction": 7,
+        "needs": "Indexed (7 impressions in 16 months); 221 words; results are support docs and a UK Business Forums thread on reverse VAT",
+        "done": "Rewrote: formula answer, live VAT calculator (add or remove, any rate, VAT fraction shown), fractions (Notice 700 7.3.1), rounding (17.5) with a worked difference, mixed rates, discounts; FAQ"
+      }
+    ]
+  },
+  {
+    "keyword": "invoice for cash payment",
+    "targetPath": "/how-to-write-invoice-for-cash-payment",
+    "status": "observing",
+    "nextReviewDate": "2026-10-23",
+    "actions": [
+      {
+        "date": "2026-10-09",
+        "rankAtAction": 53.8,
+        "needs": "Indexed (47 impressions in 16 months, avg position 53.8); 217 words; results are SoFi and software help docs",
+        "done": "Rewrote: paid-in-cash wording, example, records (GOV.UK, Notice 700/21, IRS Pub 583), Form 8300 over $10,000 incl. invoice as the customer statement (IRS), UK anti-money laundering note, mistakes; FAQ"
+      }
+    ]
+  },
+  {
+    "keyword": "how to make an invoice in word",
+    "targetPath": "/how-to-make-an-invoice-in-word",
+    "status": "observing",
+    "nextReviewDate": "2026-10-23",
+    "actions": [
+      {
+        "date": "2026-10-09",
+        "rankAtAction": null,
+        "needs": "Discovered - currently not indexed; 243 words; InvoiceOwl, Adobe, Bonsai, Deskera repeat the template route",
+        "done": "Rewrote with Microsoft-verified steps: template search, table, =PRODUCT(LEFT), =SUM(ABOVE), A1 references, F9 updates, Save as PDF; links to the site Word templates; failure table; FAQ"
+      }
+    ]
+  },
+  {
+    "keyword": "how to send an invoice",
+    "targetPath": "/how-to-send-an-invoice",
+    "status": "observing",
+    "nextReviewDate": "2026-10-23",
+    "actions": [
+      {
+        "date": "2026-10-09",
+        "rankAtAction": null,
+        "needs": "URL is unknown to Google; 233 words; results are ServiceM8 and Zoom help pages and template farms. Absorbed /blog/how-to-write-invoice-email (301)",
+        "done": "Rewrote as the sending guide: PDF, recipient, subject lines, nine email templates (new, deposit, stage, retainer, copy, pre-due, 7 days, final with statutory interest, paid), schedule, supplier portals; FAQ"
+      }
+    ]
+  },
+  {
+    "keyword": "how to invoice as a freelancer",
+    "targetPath": "/how-to-invoice-as-a-freelancer",
+    "status": "observing",
+    "nextReviewDate": "2026-10-23",
+    "actions": [
+      {
+        "date": "2026-10-09",
+        "rankAtAction": null,
+        "needs": "URL is unknown to Google; 240 words. Absorbed /how-to-create-invoice-without-company (301). MoonInvoice, FreshBooks, Howden answer without country rules",
+        "done": "Rewrote: GOV.UK invoice and sole trader requirements, country table (UK Self Assessment and VAT, US W-9 and EIN, Canada GST/HST, Australia ABN and 47% withholding, Netherlands link), steps, records; kept the Etsy tax summary link; FAQ"
+      }
+    ]
+  },
+  {
+    "keyword": "how to charge a late payment fee",
+    "targetPath": "/how-to-charge-late-payment-fee",
+    "status": "observing",
+    "nextReviewDate": "2026-10-23",
+    "actions": [
+      {
+        "date": "2026-10-09",
+        "rankAtAction": null,
+        "needs": "Discovered - currently not indexed; 304 words; FreshBooks, InvoiceSimple, Housecall Pro quote uncited US fee ranges",
+        "done": "Rewrote: clause and invoice wording, worked statutory interest line, legal table (GOV.UK interest and fixed sums, Directive art. 6, Canada Interest Act s.4 yearly-rate rule, US state law), calculations; FAQ"
       }
     ]
   }

@@ -94,11 +94,10 @@ async function withPro(req, res, next) {
 
 const BLOG_POSTS = [
   { slug: 'how-to-write-a-professional-invoice', title: 'How to Write a Professional Invoice: Checklist, Example and Tips', desc: 'The ten things every invoice needs, a worked example, the mistakes that delay payment and five habits that get invoices paid on time.', date: '2026-01-15', updated: '2026-10-09', readTime: '6 min read', category: 'Guide', content: '' },
-  { slug: 'invoice-payment-terms-guide', title: 'Invoice Payment Terms: Everything You Need to Know', desc: 'Net 30, Net 14, due on receipt: a complete guide to invoice payment terms.', date: '2026-01-22', readTime: '6 min read', category: 'Guide', content: '<h2>What are payment terms?</h2><p>Payment terms are the conditions under which a seller will complete a sale.</p>' },
-  { slug: 'what-is-vat-invoice', title: 'What is a VAT Invoice? A Complete Guide for 2026', desc: 'Learn what a VAT invoice is, when you need one, what to include, and how VAT rates work.', date: '2026-01-29', readTime: '7 min read', category: 'Tax', content: '<h2>What is a VAT invoice?</h2><p>A VAT invoice includes Value Added Tax and is required by law when the seller is VAT registered.</p><p>For UK businesses, see our <a href="/free-invoice-generator-uk">UK VAT invoice generator</a>. For Dutch businesses, see our <a href="/free-invoice-generator-netherlands">Dutch BTW invoice template</a>.</p>' },
-  { slug: 'invoice-vs-receipt', title: 'Invoice vs Receipt: What is the Difference?', desc: 'This guide explains when to use each.', date: '2026-02-12', readTime: '5 min read', category: 'Guide', content: '<h2>The key difference</h2><p>An invoice is sent before payment to request money. A receipt is issued after payment to confirm it was received.</p>' },
-  { slug: 'how-to-write-invoice-email', title: 'How to Write an Invoice Email: Templates and Examples', desc: 'Professional invoice email templates you can copy and use today.', date: '2026-02-19', readTime: '6 min read', category: 'Templates', content: '<h2>Initial invoice email template</h2><p>Hi [Client Name], please find attached invoice #INV-001 totalling [amount].</p>' },
-  { slug: 'invoice-number-format', title: 'Invoice Numbering: How to Number Your Invoices Correctly', desc: 'The best invoice numbering systems explained for small businesses and freelancers.', date: '2026-03-05', readTime: '5 min read', category: 'Guide', content: '<h2>Why invoice numbering matters</h2><p>Invoice numbers are required for accounting, tax reporting, and dispute resolution.</p>' },
+  { slug: 'invoice-payment-terms-guide', title: 'Invoice Payment Terms: Net 30, Due on Receipt and the Legal Defaults', desc: 'What each payment term means, what to write on the invoice, what the law sets when you agree nothing in the UK and EU, and what an early-payment discount really costs.', date: '2026-01-22', updated: '2026-10-09', readTime: '6 min read', category: 'Guide', content: '' },
+  { slug: 'what-is-vat-invoice', title: 'What Is a VAT Invoice? UK Requirements, Example and Time Limits', desc: 'A VAT invoice is the invoice a VAT-registered business must give a VAT-registered customer: the details HMRC requires, an example, simplified invoices of £250 or less and the 30-day rule.', date: '2026-01-29', updated: '2026-10-09', readTime: '6 min read', category: 'Tax', content: '' },
+  { slug: 'invoice-vs-receipt', title: 'Invoice vs Receipt: Differences, Examples and When You Need Each', desc: 'An invoice asks for payment; a receipt proves it was made. One sale shown as both, when a paid invoice can be the receipt, and how long to keep them in the UK and US.', date: '2026-02-12', updated: '2026-10-09', readTime: '5 min read', category: 'Guide', content: '' },
+  { slug: 'invoice-number-format', title: 'Invoice Number Format: Rules by Country and Examples', desc: 'How to number invoices: what the UK, EU, Canada and Australia actually require, formats that work, starting a new year, and what to do with a cancelled invoice.', date: '2026-03-05', updated: '2026-10-09', readTime: '5 min read', category: 'Guide', content: '' },
   { slug: 'how-to-invoice-international-clients', title: 'How to Invoice International Clients (Tax Wording by Country)', desc: 'What to write in the tax line when your client is abroad (UK, EU, Canada, Australia), with official sources, plus currency, bank charges and a sample invoice.', date: '2026-03-12', updated: '2026-10-09', readTime: '8 min read', category: 'Guide', content: '' },
 ];
 
@@ -146,18 +145,25 @@ const BLOG_REDIRECTS = {
   // Australia sections repeated those guides and its India and Singapore notes covered markets retired on 8 Oct.
   'gst-invoice-guide': '/how-to-calculate-gst-on-canadian-invoices',
   // Each of the ten tips summarised a guide that already exists; the ones that did not are now a section of this guide.
-  'small-business-invoicing-tips': '/blog/how-to-write-a-professional-invoice'
+  'small-business-invoicing-tips': '/blog/how-to-write-a-professional-invoice',
+  // 9 Oct 2026: "URL is unknown to Google". Its four templates now sit in the sending guide with five more.
+  'how-to-write-invoice-email': '/how-to-send-an-invoice'
 };
 
+// How-to pages folded into stronger guides on 9 Oct 2026 (both "URL is unknown to Google", 0 impressions in 16 months).
+const HOWTO_REDIRECTS = {
+  '/how-to-create-invoice-without-company': '/how-to-invoice-as-a-freelancer',
+  '/how-to-invoice-us-clients-from-uk': '/blog/how-to-invoice-international-clients'
+};
+Object.entries(HOWTO_REDIRECTS).forEach(([from, to]) => app.get(from, (req, res) => res.redirect(301, to)));
+
 const HOW_TO_PAGES = [
-  { slug: 'how-to-invoice-as-a-freelancer', title: 'How to Invoice as a Freelancer', desc: 'Step-by-step guide to invoicing clients as a freelancer.' },
-  { slug: 'how-to-make-an-invoice-in-word', title: 'How to Make an Invoice in Word (and a Better Alternative)', desc: 'Learn how to create invoices in Microsoft Word.' },
-  { slug: 'how-to-send-an-invoice', title: 'How to Send an Invoice: Email, PDF and Best Practices', desc: 'The right way to send invoices to clients.' },
-  { slug: 'how-to-calculate-vat-on-invoice', title: 'How to Calculate VAT on an Invoice', desc: 'Simple guide to calculating VAT on invoices.' },
-  { slug: 'how-to-write-invoice-for-cash-payment', title: 'How to Write an Invoice for Cash Payment', desc: 'Create a professional invoice for cash payments.' },
-  { slug: 'how-to-create-invoice-without-company', title: 'How to Create an Invoice Without a Registered Company', desc: 'Freelancers can invoice without a registered company.' },
-  { slug: 'how-to-invoice-us-clients-from-uk', title: 'How to Invoice US Clients from the UK', desc: 'Currency, VAT, tax rules for UK freelancers.' },
-  { slug: 'how-to-charge-late-payment-fee', title: 'How to Charge a Late Payment Fee on an Invoice', desc: 'Add late payment clauses to your invoices.' }
+  { slug: 'how-to-invoice-as-a-freelancer', title: 'How to Invoice as a Freelancer (No Company Needed)', desc: 'You can invoice under your own name. What goes on a freelance invoice, when to register or show a tax number in the UK, US, Canada, Australia and the Netherlands, and the steps to payment.', updated: '2026-10-09' },
+  { slug: 'how-to-make-an-invoice-in-word', title: 'How to Make an Invoice in Word (Template, Formulas and PDF)', desc: 'Make an invoice in Microsoft Word: start from a template, build the line-item table, total it with =SUM(ABOVE) and F9, save it as a PDF, and avoid the mistakes Word lets through.', updated: '2026-10-09' },
+  { slug: 'how-to-send-an-invoice', title: 'How to Send an Invoice by Email (Templates and Subject Lines)', desc: 'Send an invoice so it gets paid: the PDF, the right recipient, subject lines, nine email templates from first invoice to final reminder, and supplier portals.', updated: '2026-10-09' },
+  { slug: 'how-to-calculate-vat-on-invoice', title: 'How to Calculate VAT on an Invoice (Calculator and Rounding)', desc: 'Add VAT to a price or take it out of a total, line by line or on the invoice total, with HMRC rounding rules, mixed rates, discounts and a calculator.', updated: '2026-10-09' },
+  { slug: 'how-to-write-invoice-for-cash-payment', title: 'How to Write an Invoice for Cash Payment (Paid in Cash Wording)', desc: 'Invoice a cash job properly: paid-in-cash wording, an example, the records UK and US tax authorities expect, and the US Form 8300 for cash over $10,000.', updated: '2026-10-09' },
+  { slug: 'how-to-charge-late-payment-fee', title: 'How to Charge a Late Payment Fee (Wording and Legal Limits)', desc: 'Charge late fees that hold up: the clause, the invoice line, how to work out the charge, and the rules for business customers in the UK, EU and Ireland, Canada and the US.', updated: '2026-10-09' }
 ];
 
 
