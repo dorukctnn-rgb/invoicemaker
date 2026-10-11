@@ -169,6 +169,7 @@ const HOW_TO_PAGES = [
 
 const CONTENT_UPDATED = '2026-09-24';
 const PAGES_UPDATED = '2026-10-07';
+const LEGAL_UPDATED = '2026-10-11';
 BLOG_POSTS.forEach(post => {
   if (BLOG_CONTENT[post.slug]) post.content = BLOG_CONTENT[post.slug];
   const words = post.content.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
@@ -246,6 +247,8 @@ HOW_TO_PAGES.forEach(page => {
 });
 
 app.get('/activate', withPro, (req, res) => res.render('activate'));
+app.get('/privacy', (req, res) => res.render('privacy'));
+app.get('/terms', (req, res) => res.render('terms'));
 
 pro.register(app);
 
@@ -337,7 +340,9 @@ function sitemapEntries() {
     { loc: '/late-payment-interest-calculator', lastmod: LatePay.CHECKED },
     { loc: '/rent-receipt-generator', lastmod: CONTENT_UPDATED },
     { loc: '/free-invoice-generator-uk', lastmod: CONTENT_UPDATED },
-    { loc: '/free-invoice-generator-australia', lastmod: CONTENT_UPDATED }
+    { loc: '/free-invoice-generator-australia', lastmod: CONTENT_UPDATED },
+    { loc: '/privacy', lastmod: LEGAL_UPDATED },
+    { loc: '/terms', lastmod: LEGAL_UPDATED }
   ];
   INDUSTRIES.forEach(i => urls.push({ loc: '/invoice-template-' + i.slug, lastmod: PAGES_UPDATED }));
   COUNTRIES.forEach(c => {
