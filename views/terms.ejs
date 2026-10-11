@@ -1,0 +1,74 @@
+<%
+  var pageUrl = siteUrl + '/terms';
+  var title = 'Terms of Use | GetInvoiceMaker';
+  var desc = 'Terms for GetInvoiceMaker: what the free invoice generator does, checking your invoices, the $9 a month Pro plan sold through Gumroad, refunds and liability.';
+%><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title><%= title %></title>
+<meta name="description" content="<%= desc %>">
+<link rel="canonical" href="<%= pageUrl %>">
+<meta property="og:type" content="website">
+<meta property="og:title" content="<%= title %>">
+<meta property="og:description" content="<%= desc %>">
+<meta property="og:url" content="<%= pageUrl %>">
+<%- include('partials/site-head') %>
+</head>
+<body>
+<%- include('partials/nav') %>
+<section class="page-hero">
+  <div class="in">
+    <h1>Terms of use</h1>
+    <p class="lede">These terms cover your use of GetInvoiceMaker and the Pro plan. By using the site, you agree to them.</p>
+    <p class="lede">Last updated: 11 October 2026</p>
+  </div>
+</section>
+<div class="wrap prose">
+  <h2>Who we are</h2>
+  <p>GetInvoiceMaker (getinvoicemaker.com) is run by Peak Apps Studio. You can reach us at <a href="mailto:info@peakappsstudio.com">info@peakappsstudio.com</a>.</p>
+
+  <h2>What the site does</h2>
+  <p>GetInvoiceMaker lets you fill in an invoice, preview it and download it as a PDF, free and without an account. The site also has a rent receipt generator, a late payment interest calculator, sales tax calculators, invoice templates and guides.</p>
+
+  <h2>Check your invoices before you send them</h2>
+  <p>You are responsible for every invoice and receipt you create and send. Check the amounts, tax rates, totals, dates, tax IDs and payment details before a document goes to anyone. Tax rates and rules on the site are checked against official sources on the date shown on each page, but they can change. The calculators, templates and guides are general information. They are not tax, legal or accounting advice, so if you are unsure what your invoices must show or which tax applies, ask an accountant or your tax authority.</p>
+
+  <h2>Pro</h2>
+  <ul>
+    <li>Pro costs $9 (US dollars) a month. It is a subscription that renews every month until you cancel.</li>
+    <li>Pro removes the "Created with GetInvoiceMaker.com" line from invoice PDFs and rent receipts, adds your logo to your invoice PDFs and includes email support.</li>
+    <li>After you buy, Gumroad emails you a license key. Enter it on the <a href="/activate">Activate Pro</a> page to turn Pro on, and repeat on any other device you use. Please keep the key to yourself and your business, and do not post it publicly.</li>
+    <li>Payments are processed by Gumroad, which acts as the merchant of record for the sale and collects any sales tax or VAT. Gumroad's own terms also apply to your purchase.</li>
+  </ul>
+
+  <h2>Refunds and cancelling</h2>
+  <p>If the paid plan does not work for you, email us within 14 days of any charge, including a renewal, and we will refund that charge. You can cancel anytime from your Gumroad receipt; cancelling stops future payments.</p>
+  <p>After you cancel, Pro stays on until the end of the month you have already paid for. Refunds are paid back through Gumroad.</p>
+
+  <h2>Acceptable use</h2>
+  <p>Please do not:</p>
+  <ul>
+    <li>use the site to make invoices or receipts that are fraudulent or misleading, or that claim to come from a business you do not represent;</li>
+    <li>try to get around the Pro license check, or share license keys publicly;</li>
+    <li>attack, overload or probe the site, or send it large numbers of automated requests;</li>
+    <li>use the site for anything that breaks the law.</li>
+  </ul>
+  <p>We may block access for anyone who does.</p>
+
+  <h2>No warranty</h2>
+  <p>We work to keep the site accurate and running, but it is provided as it is and as available, without warranties of any kind. We do not promise that it will be free of errors, always available or suitable for your particular purpose.</p>
+
+  <h2>Limitation of liability</h2>
+  <p>As far as the law allows, we are not liable for indirect or consequential losses, such as lost profit, lost business or lost data, that come from using the site or from the documents you send. Our total liability to you is limited to the amount you paid for Pro in the 12 months before the claim. Nothing in these terms limits any liability that cannot be limited by law, or takes away your rights as a consumer.</p>
+
+  <h2>Changes to these terms</h2>
+  <p>We may update these terms when the site or Pro changes. The date at the top shows the current version. If you keep using the site after a change, the updated terms apply.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about these terms: <a href="mailto:info@peakappsstudio.com">info@peakappsstudio.com</a>. How we handle your data is explained in our <a href="/privacy">privacy policy</a>.</p>
+</div>
+<%- include('partials/footer') %>
+</body>
+</html>
