@@ -22,7 +22,7 @@
   <div class="in">
     <h1>Privacy policy</h1>
     <p class="lede">GetInvoiceMaker has no accounts, no analytics and no advertising. This page lists the data the site handles, where it goes and why.</p>
-    <p class="lede">Last updated: 11 October 2026</p>
+    <p class="lede">Last updated: 15 October 2026</p>
   </div>
 </section>
 <div class="wrap prose">
@@ -42,6 +42,7 @@
   <ul>
     <li><strong>Your own details.</strong> Your name, email address, postal address and tax ID, and the number of the last invoice you downloaded, are saved in your browser's local storage so the next invoice is quicker. They stay on your device until you clear this site's data in your browser settings.</li>
     <li><strong>Your Pro license key.</strong> If you activate Pro, the key is saved in a cookie called <code>gim_lic</code> so that Pro stays on in that browser, and a copy is kept in local storage so the cookie can be restored if it is cleared. The cookie lasts 400 days and is sent only to this site. The "Remove Pro from this browser" button on the Activate Pro page removes both.</li>
+    <li><strong>Where you came from.</strong> When you open the site, it notes what kind of site sent you, as one word such as "google", "ai-assistant", "social", or "direct" when no site did. A tag in the address you arrived at, such as the utm_source=chatgpt.com that ChatGPT adds to its links, counts before the site you came from. The word for this visit is kept in session storage and deleted when you close the tab; the first word other than "direct" is also kept in local storage until you clear this site's data. Only the word is kept, never the address of the page you came from, and it goes nowhere unless you click the Get Pro button.</li>
   </ul>
   <p>The site sets no other cookies and uses none for tracking or advertising.</p>
 
@@ -51,6 +52,7 @@
 
   <h2>Buying Pro</h2>
   <p>Pro is sold through Gumroad. The Get Pro button opens Gumroad's checkout, where you give your payment details to Gumroad, not to us. As the seller, we receive your email address and the details of your order and subscription from Gumroad, and we use them to provide email support, answer questions about your purchase and issue refunds.</p>
+  <p>When you click the Get Pro button, the link to Gumroad carries three labels: the word for the kind of site you came from (the first one kept in your browser, or else this visit's), its group (search, referral, social or none) and the name of this site. Gumroad stores them with the sale, so we can see which kinds of sites bring buyers: a search engine, an AI assistant, Pinterest, a social network, another website or none. Gumroad learns only the kind of site, never its address.</p>
 
   <h2>Hosting and fonts</h2>
   <p>The site runs on Vercel. Like any web host, Vercel processes each request, including your IP address, the page you asked for and your browser type, and keeps request logs for a limited time. The fonts are served from this site, so no font service sees your visit.</p>
@@ -63,7 +65,7 @@
     <thead><tr><th>Company</th><th>What for</th><th>Privacy policy</th></tr></thead>
     <tbody>
       <tr><td>Vercel</td><td>Hosting the site and its server</td><td><a href="https://vercel.com/legal/privacy-notice" rel="noopener">vercel.com</a></td></tr>
-      <tr><td>Gumroad</td><td>Checkout, subscription payments and license checks</td><td><a href="https://gumroad.com/privacy" rel="noopener">gumroad.com</a></td></tr>
+      <tr><td>Gumroad</td><td>Checkout, subscription payments and license checks, and the kind of site you came from when you click Get Pro</td><td><a href="https://gumroad.com/privacy" rel="noopener">gumroad.com</a></td></tr>
       <tr><td>Google</td><td>The Gmail inbox for our email</td><td><a href="https://policies.google.com/privacy" rel="noopener">policies.google.com</a></td></tr>
       <tr><td>Forward Email</td><td>Forwarding mail sent to our address</td><td><a href="https://forwardemail.net/en/privacy" rel="noopener">forwardemail.net</a></td></tr>
     </tbody>
@@ -73,7 +75,7 @@
   <h2>How long data is kept</h2>
   <ul>
     <li>Invoice and receipt details: only while the server builds your PDF.</li>
-    <li>Details saved in your browser: until you clear them. The Pro cookie expires after 400 days.</li>
+    <li>Details saved in your browser: until you clear them. The Pro cookie expires after 400 days. The word for the kind of site you came from: until you close the tab, and the first one until you clear this site's data.</li>
     <li>License check results: up to six hours in the server's memory. IP addresses from activation attempts: ten minutes.</li>
     <li>Hosting logs: kept by Vercel for a limited time under its own policy.</li>
     <li>Purchase and subscription records: kept by Gumroad under its own policy.</li>
