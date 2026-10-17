@@ -1,0 +1,324 @@
+<%
+  var pageUrl = siteUrl + '/free-invoice-generator-uae';
+  var checked = '17 October 2026';
+  var ex = example, exd = exampleData;
+  var FTA = {
+    law: 'https://tax.gov.ae//Datafolder/Files/Legislation/2025/Federal%20Decree-Law%20No.%208%20of%202017%20and%20amendments%20-%20publishing%2028%2011%202025.pdf',
+    reg: 'https://tax.gov.ae//Datafolder/Files/Legislation/2026/Law-No-8-of-2017-and-its-amendments--09-2026.pdf',
+    registration: 'https://tax.gov.ae/en/taxes/Vat/vat.topics/registration.for.vat.aspx',
+    einvoicing: 'https://tax.gov.ae/en/content/uae.einvoicing.aspx',
+    md244: 'https://tax.gov.ae/Datafolder/Files/Pdf/2026/E-invoicing/Ministerial-Decision-No.-244-of-2025-on-the-Implementation-of-the-Electronic-Invoicing-System.pdf',
+    tpl: 'https://tax.gov.ae//Datafolder/Files/Legislation/2025/Federal%20Decree-Law%20No.%2028%20of%202022%20-%20publishing%2003%2012%202025.pdf',
+    legislation: 'https://tax.gov.ae/en/legislation.aspx'
+  };
+  var faqs = [
+    ['What must a UAE tax invoice include?', 'The words "Tax Invoice"; your name, address and TRN; the customer\'s name, address and TRN if it is registered; a sequential or unique invoice number; the date of issue and the date of supply if different; a description of what you supplied; for each item the unit price, quantity, VAT rate and amount payable in AED; any discount; the gross amount and the VAT in AED, with the exchange rate if you invoice in another currency; and a reverse charge statement where it applies (Executive Regulation, Article 59(1)).'],
+    ['What is the VAT rate in the UAE?', 'The standard rate is 5% (Federal Decree-Law No. 8 of 2017, Article 3). Zero-rated supplies are invoiced at 0%, and exempt supplies carry no VAT.'],
+    ['Can I issue a tax invoice without a TRN?', 'No. A tax invoice must show the supplier\'s Tax Registration Number, and only a VAT-registered business issues one. If you are not registered, issue an ordinary invoice without VAT: under Article 65 of the Decree-Law, anyone who issues a tax invoice or collects an amount as VAT must pay that amount to the FTA.'],
+    ['When can I use a simplified tax invoice?', 'When the customer is not registered for VAT, or when it is registered and the consideration is no more than AED 10,000, and never when the reverse charge applies (Executive Regulation, Article 59(5)). A simplified tax invoice is issued on the date of supply.'],
+    ['How long do I have to issue a tax invoice?', '14 days from the date of supply (Decree-Law Article 67 and Executive Regulation Article 59(13)). A summary tax invoice for several supplies to the same customer is due within 14 days of the end of the month in which they were made.'],
+    ['Can a UAE tax invoice be in US dollars?', 'Yes, but the amounts must also be converted into UAE dirhams at the Central Bank of the UAE exchange rate on the date of supply, and the invoice must show the VAT in AED and the exchange rate used (Decree-Law Article 69, Executive Regulation Article 59(1)(k)).'],
+    ['Does a tax invoice have to be in Arabic?', 'Not to be issued. The Tax Procedures Law (Article 5) says records submitted to the FTA are in Arabic, but the FTA may accept another language if you provide an Arabic translation when it asks for one.'],
+    ['Is a PDF tax invoice an e-invoice?', 'No. The FTA says PDF, Word documents, images, scanned copies and emails are not e-invoices. Businesses with revenue of AED 50 million or more must use the e-invoicing system from 1 January 2027 and the others from 1 July 2027 (Ministerial Decision No. 244 of 2025); until your date, a PDF tax invoice like this one is how you invoice.']
+  ];
+%><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free UAE Tax Invoice Generator: VAT 5%, TRN, AED</title>
+<meta name="description" content="Make a UAE tax invoice with every Article 59 detail: the words Tax Invoice, both TRNs, VAT at 5% on each line and amounts in AED. Print or save as PDF, free.">
+<link rel="canonical" href="<%= pageUrl %>">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free UAE Tax Invoice Generator (VAT 5%, TRN, AED)">
+<meta property="og:description" content="A UAE tax invoice with the words Tax Invoice, both TRNs, VAT per line and amounts in AED. Print or save as PDF.">
+<meta property="og:url" content="<%= pageUrl %>">
+<%- include('partials/site-head') %>
+<script type="application/ld+json">
+<%- JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebPage', name: 'UAE tax invoice generator', url: pageUrl, description: 'Free UAE tax invoice generator with the Article 59 particulars, VAT at 5% per line and amounts in AED, plus the rules for simplified tax invoices, timing, foreign currency and e-invoicing.', dateModified: '2026-10-17', inLanguage: 'en',
+      citation: [FTA.law, FTA.reg, FTA.registration, FTA.einvoicing, FTA.md244] },
+    { '@type': 'WebApplication', name: 'UAE tax invoice generator', url: pageUrl + '#maker', applicationCategory: 'BusinessApplication', operatingSystem: 'Any (web browser)', offers: { '@type': 'Offer', price: '0', priceCurrency: 'AED' } },
+    { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl + '/' },
+      { '@type': 'ListItem', position: 2, name: 'UAE tax invoice generator', item: pageUrl } ] },
+    { '@type': 'FAQPage', mainEntity: faqs.map(function (f) { return { '@type': 'Question', name: f[0], acceptedAnswer: { '@type': 'Answer', text: f[1] } }; }) }
+  ]
+}).replace(/</g, '\\u003c') %>
+</script>
+<style>
+.page-hero h1{text-wrap:balance}
+.ut{max-width:1180px;margin:0 auto;padding:28px 20px 8px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,620px);gap:22px;align-items:start}
+.ut > *{min-width:0}
+.ut-form{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px}
+.ut-form h2{font-size:18px;font-weight:700;margin:18px 0 10px;font-family:'Public Sans',system-ui,sans-serif}
+.ut-form h2:first-child{margin-top:0}
+.ut-form .hint{font-size:13.5px;color:var(--muted);margin:-4px 0 12px}
+.ut-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px}
+.ut-f{display:block;margin-bottom:10px}
+.ut-f > span,.ut-line label > span{display:block;font-size:12.5px;font-weight:600;color:#475569;margin-bottom:4px}
+.ut-f input,.ut-f select,.ut-f textarea,.ut-line input,.ut-line select{width:100%;min-width:0;border:1px solid #cbd5e1;border-radius:7px;padding:10px 11px;font-size:16px;font-family:inherit;background:#fff;color:var(--ink)}
+.ut-f textarea{resize:vertical}
+.ut-f input:focus,.ut-f select:focus,.ut-f textarea:focus,.ut-line input:focus,.ut-line select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+.ut-f small{display:block;font-size:12.5px;color:var(--muted);margin-top:4px}
+.ut-f[hidden],.ut-check[hidden]{display:none}
+.ut-line{display:grid;grid-template-columns:minmax(0,1fr) 84px 120px 40px;gap:8px 10px;align-items:end;padding:10px 0;border-bottom:1px solid #f1f5f9}
+.ut-line .ut-desc{grid-column:1 / -1}
+.ut-line .ut-vat{grid-column:1}
+.ut-line label:nth-child(2){grid-row:2;grid-column:2}
+.ut-line label:nth-child(3){grid-row:2;grid-column:3}
+.ut-line .ut-vat{grid-row:2}
+.ut-del{grid-row:2;grid-column:4;height:44px;background:#fff;border:1px solid #fecaca;color:#b91c1c;border-radius:7px;font-size:18px;cursor:pointer}
+.is-plain .ut-vat,.is-plain .ut-trn-f{display:none}
+.is-plain .ut-line label:nth-child(2){grid-column:1}
+.ut-actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.ut-actions .btn{font-size:14px;padding:9px 14px}
+.ut-check{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--ink2);margin:8px 0}
+.ut-check input{width:18px;height:18px;margin-top:3px;flex:none}
+.ut-out{position:sticky;top:76px}
+.ut-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+.ut-bar .tot{font-size:14px;color:var(--muted)}
+.ut-bar .tot strong{display:block;font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums}
+.ut-warn{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:10px 14px 10px 30px;margin:0 0 10px;font-size:13.5px;color:#78350f}
+.ut-warn[hidden]{display:none}
+.ut-warn li{margin:3px 0}
+.ut-sheet{background:#fff;border:1px solid #cbd5e1;border-radius:6px;padding:24px;font-size:12.5px;color:#0f172a;box-shadow:0 10px 26px rgba(15,23,42,.06)}
+.ut-top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:3px solid #0f766e;padding-bottom:12px;margin-bottom:14px}
+.ut-title{font-family:'Source Serif 4',Georgia,serif;font-size:26px;font-weight:700;letter-spacing:.06em;color:#0f766e}
+.ut-sub{font-size:12px;color:var(--muted);margin-top:2px}
+.ut-meta{display:grid;grid-template-columns:auto auto;gap:3px 14px;margin:0;text-align:right}
+.ut-meta div{display:contents}
+.ut-meta dt{font-size:10.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);align-self:center}
+.ut-meta dd{margin:0;font-weight:600;font-size:12.5px;min-width:90px}
+.ut-parties{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px}
+.ut-k{font-size:10.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);margin-bottom:3px}
+.ut-name{font-weight:700;font-size:13.5px}
+.ut-addr{white-space:pre-line;color:#334155;line-height:1.45}
+.ut-trn{margin-top:3px;font-weight:600;font-variant-numeric:tabular-nums}
+.ut-miss{color:#b91c1c;font-weight:700}
+.ut-blank{display:inline-block;width:120px;border-bottom:1px solid #94a3b8;height:14px;vertical-align:-2px}
+.ut-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.ut-lines{width:100%;border-collapse:collapse;min-width:470px}
+.ut-lines th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.3px;color:#475569;background:#f1f5f9;padding:7px 6px;vertical-align:bottom;line-height:1.3}
+.ut-lines th.num{text-align:right}
+.ut-lines td.ut-d{min-width:130px}
+.ut-lines td{padding:7px 6px;border-bottom:1px solid #f1f5f9;vertical-align:top}
+.ut-lines .num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.ut-none{color:var(--muted);text-align:center}
+.ut-totals{margin:12px 0 0 auto;max-width:330px}
+.ut-row{display:flex;justify-content:space-between;gap:14px;padding:4px 0;font-variant-numeric:tabular-nums}
+.ut-row span:first-child{color:#475569}
+.ut-grand{border-top:2px solid #0f766e;margin-top:6px;padding-top:8px;font-size:15px;font-weight:700}
+.ut-grand span:first-child{color:#0f172a}
+.ut-aed{font-size:12px}
+.ut-notes{margin-top:14px;padding-top:10px;border-top:1px solid #e2e8f0;font-size:11.5px;color:#334155}
+.ut-notes p{margin:0 0 4px}
+.ut-pay{margin-top:10px;font-size:12px}
+.ut-pay p{margin:0;white-space:pre-line;color:#334155}
+.ut-foot{text-align:center;color:#94a3b8;font-size:10px;margin:18px 0 0}
+.ut-note{font-size:13px;color:var(--muted);margin:8px 0 0}
+.prose .tbl td:first-child{white-space:nowrap}
+@media(max-width:1060px){.ut{grid-template-columns:minmax(0,1fr)}.ut-out{position:static}}
+@media(max-width:600px){
+  .ut{padding:20px 16px 4px}
+  .ut-form{padding:16px}
+  .ut-grid,.ut-parties{grid-template-columns:1fr}
+  .ut-line{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 44px}
+  .ut-line label:nth-child(2){grid-row:2;grid-column:1}
+  .ut-line label:nth-child(3){grid-row:2;grid-column:2}
+  .ut-line .ut-vat{grid-row:3;grid-column:1 / 3}
+  .ut-del{grid-row:3;grid-column:3}
+  .ut-sheet{padding:16px}
+  .ut-meta{text-align:left;grid-template-columns:auto 1fr}
+  .ut-bar .tot strong{font-size:19px}
+  .ut-bar .btn{padding:10px 14px}
+  .prose .tbl td:first-child{white-space:normal}
+}
+@media print{
+  @page{margin:12mm}
+  body{background:#fff}
+  body *{visibility:hidden}
+  #utSheet,#utSheet *{visibility:visible}
+  #utSheet{position:absolute;left:0;top:0;width:100%;border:0;box-shadow:none;padding:0;font-size:10.5pt}
+  .ut-wrap{overflow:visible}
+  .ut-lines{min-width:0}
+}
+</style>
+</head>
+<body>
+<%- include('partials/nav') %>
+<div class="crumbs"><a href="/">Home</a> › <a href="/#templates">By country</a> › United Arab Emirates</div>
+
+<section class="page-hero">
+  <div class="in">
+    <h1>Free UAE tax invoice generator (VAT 5%)</h1>
+    <p class="lede">Make a tax invoice with everything the UAE VAT rules ask for: the words Tax Invoice, both TRNs, VAT at 5% on each line and the amounts in AED. Fill it in below, then print it or save it as a PDF. No account, and nothing you type leaves your browser.</p>
+    <div class="btns">
+      <a class="btn" href="#maker">Fill in the tax invoice</a>
+      <a class="btn ghost" href="#requirements">What a tax invoice must show</a>
+    </div>
+    <div class="facts"><span>TRN, VAT per line, AED amounts</span><span>Simplified tax invoice option</span><span>Rules checked <%= checked %></span></div>
+  </div>
+</section>
+
+<section class="ut" id="maker" aria-label="UAE tax invoice generator">
+  <form class="ut-form" id="utForm" novalidate>
+    <h2>Invoice type</h2>
+    <label class="ut-f"><span>This document is</span>
+      <select id="utType">
+        <% Object.keys(U.TYPES).forEach(function (k) { %><option value="<%= k %>"<%= k === exd.type ? ' selected' : '' %>><%= U.TYPES[k].name %></option><% }) %>
+      </select>
+      <small>A simplified tax invoice is allowed for customers that are not VAT-registered, or registered customers up to AED 10,000.</small>
+    </label>
+
+    <h2>Your business</h2>
+    <label class="ut-f"><span>Name</span><input type="text" id="utSupplierName" maxlength="120" autocomplete="organization" value="<%= exd.supplierName %>"></label>
+    <label class="ut-f"><span>Address</span><textarea id="utSupplierAddress" rows="2" maxlength="300"><%= exd.supplierAddress %></textarea></label>
+    <label class="ut-f ut-trn-f"><span>TRN (Tax Registration Number)</span><input type="text" id="utSupplierTrn" maxlength="20" inputmode="numeric" value="<%= exd.supplierTrn %>"><small>15 digits, from your VAT registration certificate.</small></label>
+
+    <h2>Customer</h2>
+    <label class="ut-f"><span>Name</span><input type="text" id="utCustomerName" maxlength="120" value="<%= exd.customerName %>"></label>
+    <label class="ut-f"><span>Address</span><textarea id="utCustomerAddress" rows="2" maxlength="300"><%= exd.customerAddress %></textarea></label>
+    <label class="ut-f ut-trn-f"><span>Customer TRN, if registered</span><input type="text" id="utCustomerTrn" maxlength="20" inputmode="numeric" value="<%= exd.customerTrn %>"></label>
+
+    <h2>Invoice details</h2>
+    <div class="ut-grid">
+      <label class="ut-f"><span>Invoice number</span><input type="text" id="utNumber" maxlength="40" value="<%= exd.number %>"></label>
+      <label class="ut-f"><span>Currency</span><select id="utCurrency"><% U.CURRENCIES.forEach(function (c) { %><option value="<%= c %>"<%= c === exd.currency ? ' selected' : '' %>><%= c %></option><% }) %></select></label>
+      <label class="ut-f"><span>Date of issue</span><input type="date" id="utIssue" value="<%= exd.issueDate %>"></label>
+      <label class="ut-f"><span>Date of supply</span><input type="date" id="utSupply" value="<%= exd.supplyDate %>"><small>Leave empty if it is the same day.</small></label>
+    </div>
+    <label class="ut-f" id="utFxWrap" hidden><span>Exchange rate: AED for 1 unit of the invoice currency</span><input type="number" id="utFx" min="0" step="any" inputmode="decimal"><small>Use the Central Bank of the UAE rate on the date of supply (Article 69).</small></label>
+
+    <h2>Lines</h2>
+    <p class="hint">VAT is worked out on each line and rounded to the nearest fils.</p>
+    <div id="utLines">
+      <% exd.lines.forEach(function (l) { %><div class="ut-line">
+        <label class="ut-desc"><span>Description</span><input type="text" name="desc" maxlength="300" value="<%= l.desc %>"></label>
+        <label><span>Qty</span><input type="number" name="qty" min="0" step="any" inputmode="decimal" value="<%= l.qty %>"></label>
+        <label><span>Unit price</span><input type="number" name="price" min="0" step="any" inputmode="decimal" value="<%= l.price %>"></label>
+        <label class="ut-vat"><span>VAT</span><select name="vat"><% Object.keys(U.TREATMENTS).forEach(function (k) { %><option value="<%= k %>"<%= k === l.vat ? ' selected' : '' %>><%= U.TREATMENTS[k].name %></option><% }) %></select></label>
+        <button type="button" class="ut-del" aria-label="Remove line">&times;</button></div>
+      <% }) %>
+    </div>
+    <div class="ut-actions"><button type="button" class="btn ghost" id="addLine">Add a line</button><button type="button" class="btn ghost" id="utBlank">Start a blank invoice</button></div>
+    <label class="ut-f"><span>Discount on the whole invoice (optional)</span><input type="number" id="utDiscount" min="0" step="any" inputmode="decimal" value="<%= exd.discount %>"></label>
+    <label class="ut-check" id="utRcWrap"><input type="checkbox" id="utRc"> <span>Reverse charge: the customer accounts for the VAT (adds the statement Article 59(1)(l) asks for)</span></label>
+    <label class="ut-f"><span>Payment details and notes</span><textarea id="utNotes" rows="3" maxlength="1500"><%= exd.notes %></textarea></label>
+  </form>
+
+  <div class="ut-out">
+    <div class="ut-bar">
+      <div class="tot">Total<strong id="utTotal"><%= U.money(ex.total, ex.data.currency) %></strong></div>
+      <button type="button" class="btn" id="utPrint">Print or save as PDF</button>
+    </div>
+    <ul class="ut-warn" id="utWarn"<%- ex.warnings.length ? '' : ' hidden' %>><% ex.warnings.forEach(function (w) { %><li><%= w %></li><% }) %></ul>
+    <div class="ut-sheet" id="utSheet"><%- sheet %></div>
+    <p class="ut-note">The first invoice is an example: the names, TRNs and bank details are made up. <em>Start a blank invoice</em> clears it. In the print dialog choose Save as PDF to get a file.</p>
+  </div>
+</section>
+
+<div class="wrap prose">
+  <h2 id="requirements">What a UAE tax invoice must show</h2>
+  <div class="answer"><p>Article 59(1) of the VAT Executive Regulation lists twelve particulars. The generator above puts each one on the invoice; the right-hand column says where.</p></div>
+  <table class="tbl">
+    <thead><tr><th>Art. 59(1)</th><th>Required</th><th>On the generated invoice</th></tr></thead>
+    <tbody>
+      <tr><td>(a)</td><td class="strong">The words "Tax Invoice" clearly displayed</td><td>The heading</td></tr>
+      <tr><td>(b)</td><td class="strong">Your name, address and TRN</td><td>Supplier block</td></tr>
+      <tr><td>(c)</td><td class="strong">The customer's name, address and TRN, where it is registered</td><td>Customer block</td></tr>
+      <tr><td>(d)</td><td class="strong">A sequential or unique invoice number</td><td>Invoice number</td></tr>
+      <tr><td>(e)</td><td class="strong">The date of issue</td><td>Date of issue</td></tr>
+      <tr><td>(f)</td><td class="strong">The date of supply, if different</td><td>Date of supply, shown when it differs</td></tr>
+      <tr><td>(g)</td><td class="strong">A description of the goods or services</td><td>Each line</td></tr>
+      <tr><td>(h)</td><td class="strong">For each item: unit price, quantity, rate of tax and the amount payable in AED</td><td>Line columns, plus a column in AED for other currencies</td></tr>
+      <tr><td>(i)</td><td class="strong">The amount of any discount</td><td>Discount line in the totals</td></tr>
+      <tr><td>(j)</td><td class="strong">The gross amount payable in AED</td><td>Total including VAT (and total in AED)</td></tr>
+      <tr><td>(k)</td><td class="strong">The VAT in AED, with the exchange rate if another currency is used</td><td>VAT line, VAT in AED and the exchange rate note</td></tr>
+      <tr><td>(l)</td><td class="strong">Under the reverse charge, a statement that the recipient accounts for the VAT, with the provision of the Decree-Law</td><td>The reverse charge box</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source: <a href="<%= FTA.reg %>" rel="noopener">Cabinet Decision No. 52 of 2017 (Executive Regulation) and its amendments, Article 59</a>, FTA consolidated English text issued 1 September 2026 and marked as not an official translation. Checked <%= checked %>.</p>
+
+  <h2 id="simplified">Simplified tax invoice</h2>
+  <p>A shorter invoice is allowed in two cases (Article 59(5)): when the customer is not registered for VAT, or when the customer is registered and the consideration is no more than <strong>AED 10,000</strong>. It is never allowed when the reverse charge applies. It still needs the words "Tax Invoice", your name, address and TRN, the date of issue, a description of the supply, and the total and the VAT in AED (Article 59(2)), and it is issued on the date of supply (Article 59(13)(a)).</p>
+  <p>Choose <em>Simplified tax invoice</em> in the generator and it warns you if the invoice is above AED 10,000 for a registered customer or uses the reverse charge.</p>
+
+  <h2 id="when">When to issue it</h2>
+  <ul>
+    <li><strong>Within 14 days of the date of supply</strong> for a full tax invoice (Decree-Law Article 67(1), Executive Regulation Article 59(13)).</li>
+    <li><strong>On the date of supply</strong> for a simplified tax invoice.</li>
+    <li><strong>Several supplies to the same customer</strong> can go on one summary tax invoice, delivered within 14 days of the end of the month in which the supplies were made (Article 59(6) and 59(13)(b)).</li>
+  </ul>
+
+  <h2 id="vat">VAT at 5%, 0% or exempt</h2>
+  <p>The standard rate is 5% (Decree-Law Article 3). Zero-rated supplies go on the invoice at 0%; exempt supplies carry no VAT. Where the VAT comes to a fraction of a fils, you may round it to the nearest fils (Executive Regulation Article 61); the generator rounds each line that way. The example invoice above:</p>
+  <div class="formula">AED 8,500.00 + AED 1,200.00 + 500 &times; AED 1.80 = AED 10,600.00<br>VAT 5% = AED 530.00<br><b>Total including VAT: AED 11,130.00</b></div>
+  <p>The customer in the example is VAT-registered and the total is above AED 10,000, so it needs a full tax invoice, not a simplified one.</p>
+
+  <h2 id="currency">Invoicing in US dollars or another currency</h2>
+  <p>You can invoice in another currency, but the amounts must also be stated in UAE dirhams, converted at the exchange rate approved by the Central Bank of the UAE on the date of supply (Decree-Law Article 69). The invoice shows the VAT in AED together with the exchange rate applied (Article 59(1)(k)). Pick the currency in the generator and enter the rate: it adds an AED column, the VAT and total in AED, and the exchange rate note.</p>
+
+  <h2 id="registration">Not registered for VAT?</h2>
+  <p>Only a registered business issues tax invoices. The FTA's thresholds:</p>
+  <ul>
+    <li><strong>Mandatory registration</strong> when taxable supplies and imports exceeded <strong>AED 375,000</strong> over the previous 12 months, or are expected to in the next 30 days. The FTA notes that this threshold does not apply to foreign businesses.</li>
+    <li><strong>Voluntary registration</strong> is possible above <strong>AED 187,500</strong> of taxable supplies and imports, or taxable expenses.</li>
+  </ul>
+  <p>Below that, choose <em>Invoice, supplier not registered for VAT</em>: the document is titled Invoice, with no TRN and no VAT. Don't add VAT to it. Under Decree-Law Article 65(4), anyone who issues a tax invoice or receives an amount as tax must pay that amount to the FTA.</p>
+  <p class="source">Source: <a href="<%= FTA.registration %>" rel="noopener">FTA, Registration for VAT</a> (page updated 6 April 2026). Checked <%= checked %>.</p>
+
+  <h2 id="reverse">Reverse charge</h2>
+  <p>When the customer, not you, must account for the VAT, the invoice carries a statement saying so and the provision of the Decree-Law that applies (Article 59(1)(l)), and you charge no VAT on it. Article 48 sets out the reverse charge cases, such as imports of goods and services for business use, and certain supplies of crude or refined oil, natural gas and hydrocarbons between registered businesses (Article 48(3)). Article 48(1), as amended by Federal Decree-Law No. 16 of 2025 with effect from 1 January 2026, says an importer accounting for the VAT under the reverse charge does not issue a tax invoice to itself.</p>
+
+  <h2 id="language">Language</h2>
+  <p>Article 59 does not set a language for the invoice. The Tax Procedures Law (Article 5) says documents submitted to the FTA are in Arabic, and that the FTA may accept another language if you provide an Arabic translation when it asks for one.</p>
+
+  <h2 id="einvoicing">E-invoicing from 2027</h2>
+  <p>The UAE e-invoicing system sends structured invoice data to the FTA through an accredited service provider. Ministerial Decision No. 244 of 2025 sets the dates:</p>
+  <table class="tbl">
+    <thead><tr><th>Who</th><th>Appoint a provider by</th><th>Use e-invoicing from</th></tr></thead>
+    <tbody>
+      <tr><td>Revenue of AED 50 million or more</td><td>31 July 2026</td><td class="strong">1 January 2027</td></tr>
+      <tr><td>Revenue below AED 50 million</td><td>31 March 2027</td><td class="strong">1 July 2027</td></tr>
+      <tr><td>Government entities</td><td>31 March 2027</td><td class="strong">1 October 2027</td></tr>
+    </tbody>
+  </table>
+  <p>Business-to-consumer transactions stay outside the system until a later decision, and voluntary use has been possible since 1 July 2026. The FTA says PDF, Word documents, images, scanned copies and emails are not e-invoices, so from your date the tax invoice has to go through the e-invoicing system. Until then, and for sales to consumers, a PDF tax invoice like this one is how you invoice.</p>
+  <p class="source">Sources: <a href="<%= FTA.md244 %>" rel="noopener">Ministerial Decision No. 244 of 2025 on the Implementation of the Electronic Invoicing System</a>; <a href="<%= FTA.einvoicing %>" rel="noopener">FTA, UAE e-Invoicing</a> (page updated 15 October 2026). Checked <%= checked %>.</p>
+
+  <h2 id="credit">Correcting an invoice</h2>
+  <p>Don't edit and resend a tax invoice that has been issued. A reduction is made with a tax credit note, which carries the words "Tax Credit Note", the value on the original invoice, the corrected value, the difference and the VAT on it in AED, and a short reason (Executive Regulation Article 60).</p>
+
+  <h2>Questions</h2>
+  <div class="faq">
+    <% faqs.forEach(function (f) { %><details><summary><%= f[0] %></summary><p><%= f[1] %></p></details><% }) %>
+  </div>
+
+  <h2>Sources</h2>
+  <ul>
+    <li><a href="<%= FTA.law %>" rel="noopener">Federal Decree-Law No. 8 of 2017 on Value Added Tax and its amendments</a>, FTA consolidated English text published 28 November 2025 (Articles 3, 48, 65, 67, 69)</li>
+    <li><a href="<%= FTA.reg %>" rel="noopener">Cabinet Decision No. 52 of 2017 on the Executive Regulation and its amendments</a>, issued 1 September 2026, published 10 September 2026 (Articles 59, 60, 61)</li>
+    <li><a href="<%= FTA.tpl %>" rel="noopener">Federal Decree-Law No. 28 of 2022 on Tax Procedures and its amendments</a>, published 3 December 2025 (Article 5)</li>
+    <li><a href="<%= FTA.registration %>" rel="noopener">FTA, Registration for VAT</a> (updated 6 April 2026)</li>
+    <li><a href="<%= FTA.md244 %>" rel="noopener">Ministerial Decision No. 244 of 2025</a> and <a href="<%= FTA.einvoicing %>" rel="noopener">FTA, UAE e-Invoicing</a> (updated 15 October 2026)</li>
+  </ul>
+  <p class="source">All read on tax.gov.ae on <%= checked %>. The FTA's English texts say they are not official translations; the Arabic text prevails. General information, not tax advice.</p>
+
+  <h2>Related</h2>
+  <ul class="linklist">
+    <li><a href="/how-to-calculate-vat-on-invoice">How to calculate VAT on an invoice</a></li>
+    <li><a href="/blog/invoice-number-format">Invoice number format</a></li>
+    <li><a href="/blog/how-to-invoice-international-clients">Invoicing international clients</a></li>
+    <li><a href="/">Invoice generator for other countries</a></li>
+  </ul>
+</div>
+
+<%- include('partials/footer') %>
+<script>window.UAE_CONFIG=<%- JSON.stringify({ footer: footer }).replace(/</g, '\\u003c') %>;</script>
+<script src="/js/uae-vat.js?v=1" defer></script>
+<script src="/js/uae-invoice.js?v=1" defer></script>
+</body>
+</html>
