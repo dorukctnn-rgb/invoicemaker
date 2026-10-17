@@ -8,6 +8,7 @@ const CANADA = require('./data/canada-rates');
 const pro = require('./lib/pro');
 const { renderInvoicePDF, currencySymbol, applyFonts } = require('./lib/pdf');
 const LatePay = require('./public/js/late-payment');
+const UaeVat = require('./public/js/uae-vat');
 const Prefill = require('./public/js/prefill');
 
 const app = express();
@@ -97,7 +98,7 @@ const BLOG_POSTS = [
   { slug: 'invoice-payment-terms-guide', title: 'Invoice Payment Terms: Net 30, Due on Receipt and the Legal Defaults', desc: 'What each payment term means, what to write on the invoice, what the law sets when you agree nothing in the UK and EU, and what an early-payment discount really costs.', date: '2026-01-22', updated: '2026-10-09', readTime: '6 min read', category: 'Guide', content: '' },
   { slug: 'what-is-vat-invoice', title: 'What Is a VAT Invoice? UK Requirements, Example and Time Limits', desc: 'A VAT invoice is the invoice a VAT-registered business must give a VAT-registered customer: the details HMRC requires, an example, simplified invoices of £250 or less and the 30-day rule.', date: '2026-01-29', updated: '2026-10-09', readTime: '6 min read', category: 'Tax', content: '' },
   { slug: 'invoice-vs-receipt', title: 'Invoice vs Receipt: Differences, Examples and When You Need Each', desc: 'An invoice asks for payment; a receipt proves it was made. One sale shown as both, when a paid invoice can be the receipt, and how long to keep them in the UK and US.', date: '2026-02-12', updated: '2026-10-09', readTime: '5 min read', category: 'Guide', content: '' },
-  { slug: 'invoice-number-format', title: 'Invoice Number Format: Rules by Country and Examples', desc: 'How to number invoices: what the UK, EU, Canada and Australia actually require, formats that work, starting a new year, and what to do with a cancelled invoice.', date: '2026-03-05', updated: '2026-10-09', readTime: '5 min read', category: 'Guide', content: '' },
+  { slug: 'invoice-number-format', title: 'Invoice Number Format: Rules by Country and Examples', desc: 'How to number invoices: what the UK, EU, Canada and Australia actually require, formats that work, starting a new year, and what to do with a cancelled invoice.', date: '2026-03-05', updated: '2026-10-17', readTime: '5 min read', category: 'Guide', content: '' },
   { slug: 'how-to-invoice-international-clients', title: 'How to Invoice International Clients (Tax Wording by Country)', desc: 'What to write in the tax line when your client is abroad (UK, EU, Canada, Australia), with official sources, plus currency, bank charges and a sample invoice.', date: '2026-03-12', updated: '2026-10-09', readTime: '8 min read', category: 'Guide', content: '' },
 ];
 
@@ -129,7 +130,7 @@ const RETIRED_PAGES = {
   '/free-invoice-generator-germany': '/?currency=EUR',
   '/free-invoice-generator-france': '/?currency=EUR',
   '/free-invoice-generator-india': '/?currency=INR',
-  '/free-invoice-generator-uae': '/?currency=AED',
+  // '/free-invoice-generator-uae' came back on 17 Oct 2026 as its own page (UAE tax invoice rules and generator), see below.
   '/free-invoice-generator-singapore': '/?currency=SGD'
 };
 Object.entries(RETIRED_PAGES).forEach(([from, to]) => {
@@ -161,7 +162,7 @@ const HOW_TO_PAGES = [
   { slug: 'how-to-invoice-as-a-freelancer', title: 'How to Invoice as a Freelancer (No Company Needed)', desc: 'You can invoice under your own name. What goes on a freelance invoice, when to register or show a tax number in the UK, US, Canada, Australia and the Netherlands, and the steps to payment.', updated: '2026-10-09' },
   { slug: 'how-to-make-an-invoice-in-word', title: 'How to Make an Invoice in Word (Template, Formulas and PDF)', desc: 'Make an invoice in Microsoft Word: start from a template, build the line-item table, total it with =SUM(ABOVE) and F9, save it as a PDF, and avoid the mistakes Word lets through.', updated: '2026-10-09' },
   { slug: 'how-to-send-an-invoice', title: 'How to Send an Invoice by Email (Templates and Subject Lines)', desc: 'Send an invoice so it gets paid: the PDF, the right recipient, subject lines, nine email templates from first invoice to final reminder, and supplier portals.', updated: '2026-10-09' },
-  { slug: 'how-to-calculate-vat-on-invoice', title: 'How to Calculate VAT on an Invoice (Calculator and Rounding)', desc: 'Add VAT to a price or take it out of a total, line by line or on the invoice total, with HMRC rounding rules, mixed rates, discounts and a calculator.', updated: '2026-10-09' },
+  { slug: 'how-to-calculate-vat-on-invoice', title: 'How to Calculate VAT on an Invoice (Calculator and Rounding)', desc: 'Add VAT to a price or take it out of a total, line by line or on the invoice total, with HMRC rounding rules, mixed rates, discounts and a calculator.', updated: '2026-10-17' },
   { slug: 'how-to-write-invoice-for-cash-payment', title: 'How to Write an Invoice for Cash Payment (Paid in Cash Wording)', desc: 'Invoice a cash job properly: paid-in-cash wording, an example, the records UK and US tax authorities expect, and the US Form 8300 for cash over $10,000.', updated: '2026-10-09' },
   { slug: 'how-to-charge-late-payment-fee', title: 'How to Charge a Late Payment Fee (Wording and Legal Limits)', desc: 'Charge late fees that hold up: the clause, the invoice line, how to work out the charge, and the rules for business customers in the UK, EU and Ireland, Canada and the US.', updated: '2026-10-09' }
 ];
@@ -209,6 +210,25 @@ app.get('/free-invoice-generator-netherlands', withPro, (req, res) => {
 });
 
 app.get('/free-invoice-generator-uk', (req, res) => res.render('uk-vat-guide'));
+
+// UAE tax invoice (17 Oct 2026). Not a currency copy of the generator: its own tool for the Article 59 particulars
+// (VAT rate per line, both TRNs, amounts in AED). Names, TRNs and bank details in the example are made up.
+const UAE_EXAMPLE = {
+  type: 'tax', currency: 'AED', number: 'INV-2026-0142', issueDate: '2026-10-15', supplyDate: '2026-10-12', discount: '',
+  supplierName: 'Sadeem Design Studio FZ-LLC', supplierAddress: 'Office 1204, Example Tower, Dubai', supplierTrn: '100000000000003',
+  customerName: 'Marsa Retail Trading LLC', customerAddress: 'Warehouse 7, Example Road, Abu Dhabi', customerTrn: '100000000000005',
+  notes: 'Payment within 30 days by bank transfer to IBAN AE00 0000 0000 0000 0000 000, quoting the invoice number.',
+  lines: [
+    { desc: 'Brand identity design (fixed fee)', qty: 1, price: 8500, vat: 'standard' },
+    { desc: 'Website hosting, 12 months', qty: 1, price: 1200, vat: 'standard' },
+    { desc: 'Printed brochures', qty: 500, price: 1.8, vat: 'standard' }
+  ]
+};
+app.get('/free-invoice-generator-uae', withPro, (req, res) => {
+  const footer = res.locals.isPro ? '' : 'Created with GetInvoiceMaker.com';
+  const example = UaeVat.compute(UAE_EXAMPLE);
+  res.render('uae-tax-invoice', { U: UaeVat, example, exampleData: UAE_EXAMPLE, sheet: UaeVat.invoiceHTML(example, { footer }), footer });
+});
 app.get('/free-invoice-generator-australia', (req, res) => res.render('australia-gst-guide'));
 
 PROVINCES.forEach(prov => {
@@ -341,6 +361,7 @@ function sitemapEntries() {
     { loc: '/rent-receipt-generator', lastmod: CONTENT_UPDATED },
     { loc: '/free-invoice-generator-uk', lastmod: CONTENT_UPDATED },
     { loc: '/free-invoice-generator-australia', lastmod: CONTENT_UPDATED },
+    { loc: '/free-invoice-generator-uae', lastmod: '2026-10-17' },
     { loc: '/privacy', lastmod: LEGAL_UPDATED },
     { loc: '/terms', lastmod: LEGAL_UPDATED }
   ];
