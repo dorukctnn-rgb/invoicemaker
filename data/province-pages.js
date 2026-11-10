@@ -22,6 +22,7 @@ module.exports = [
   },
   {
     slug: 'saskatchewan-gst-pst-calculator', code: 'SK',
+    rateNow: 'Saskatchewan charges 5% GST plus 6% PST, 11% together. Saskatchewan.ca describes PST as a six per cent sales tax.', checkedIso: '2026-11-10', checkedNow: '10 November 2026',
     name: 'Saskatchewan', abbr: 'SK', system: 'GST + PST', isHST: false,
     gst: 5, pst: 6, combined: 11, pstName: 'PST', pstFullName: 'Provincial Sales Tax',
     authority: 'Saskatchewan Ministry of Finance',
@@ -41,6 +42,7 @@ module.exports = [
   },
   {
     slug: 'manitoba-gst-pst-calculator', code: 'MB',
+    rateNow: 'Manitoba charges 5% GST plus 7% RST, 12% together. Manitoba Finance gives the general RST rate as 7%.', checkedIso: '2026-11-10', checkedNow: '10 November 2026',
     name: 'Manitoba', abbr: 'MB', system: 'GST + RST', isHST: false,
     gst: 5, pst: 7, combined: 12, pstName: 'RST', pstFullName: 'Retail Sales Tax',
     authority: 'Manitoba Finance',
@@ -60,6 +62,7 @@ module.exports = [
   },
   {
     slug: 'ontario-hst-calculator', code: 'ON',
+    rateNow: 'Ontario charges 13% HST, one combined tax. The CRA table lists no separate provincial sales tax for Ontario.', checkedIso: '2026-11-10', checkedNow: '10 November 2026',
     name: 'Ontario', abbr: 'ON', system: 'HST', isHST: true,
     gst: 5, pst: 8, combined: 13, pstName: 'HST', pstFullName: 'Harmonized Sales Tax',
     authority: 'Canada Revenue Agency',
@@ -79,6 +82,7 @@ module.exports = [
   },
   {
     slug: 'nova-scotia-hst-calculator', code: 'NS',
+    rateNow: 'Nova Scotia charges 14% HST, one combined tax. It was 15% until 31 March 2025.', checkedIso: '2026-11-10', checkedNow: '10 November 2026',
     name: 'Nova Scotia', abbr: 'NS', system: 'HST', isHST: true,
     gst: 5, pst: 9, combined: 14, pstName: 'HST', pstFullName: 'Harmonized Sales Tax',
     authority: 'Canada Revenue Agency',

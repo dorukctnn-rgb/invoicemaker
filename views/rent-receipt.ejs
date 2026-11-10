@@ -1,3 +1,14 @@
+<%
+  var faqs = [
+    ['What must a rent receipt include?', 'A rent receipt should show the date, the names of the tenant and the landlord, the address of the property, the amount paid, how it was paid, the rental period it covers and the landlord\'s signature. Add a receipt number so each payment can be traced. Some places ask for more, such as a tax number or a stamp, so check your local rules.'],
+    ['Is this rent receipt generator really free?', 'Yes. You can create and download unlimited rent receipts as PDF without signing up or paying anything. Free receipts include a small footer link to InvoiceMaker.'],
+    ['Are these rent receipts legally valid?', 'Yes, as long as the receipt contains the tenant name, landlord name, property address, period, amount, payment method, and date. It then serves as legal proof of payment in most jurisdictions. Some regions require additional fields like a revenue stamp; check your local rules.'],
+    ['Can I use this rent receipt for tax purposes?', 'Yes. Tenants commonly use rent receipts for HRA exemptions (India), Schedule E (US), or local rental tax credits. Landlords use them as proof of rental income. Always keep copies for at least 6 years.'],
+    ['Do I need to create an account?', 'No account, no email, no signup. Just fill in the form and download your PDF receipt instantly.'],
+    ['What currencies are supported?', '18 major currencies including USD, GBP, EUR, CAD, AUD, INR, AED, SGD, TRY, JPY, CHF, and more.'],
+    ['Is my data private?', 'Yes. Your data is only used to generate the PDF and is never stored on our servers.']
+  ];
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +20,16 @@
 <meta property="og:title" content="Free Rent Receipt Generator">
 <meta property="og:description" content="Fill in the tenant, landlord, property, period and amount, then download a PDF rent receipt. Free, no signup.">
 <meta property="og:url" content="https://getinvoicemaker.com/rent-receipt-generator">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Rent Receipt Generator","url":"https://getinvoicemaker.com/rent-receipt-generator","applicationCategory":"BusinessApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">
+<%- JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebApplication', name: 'Rent Receipt Generator', url: 'https://getinvoicemaker.com/rent-receipt-generator', applicationCategory: 'BusinessApplication', operatingSystem: 'Any (web browser)', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } },
+    { '@type': 'WebPage', name: 'Free Rent Receipt Generator', url: 'https://getinvoicemaker.com/rent-receipt-generator', dateModified: '2026-11-10', inLanguage: 'en' },
+    { '@type': 'FAQPage', mainEntity: faqs.map(function (f) { return { '@type': 'Question', name: f[0], acceptedAnswer: { '@type': 'Answer', text: f[1] } }; }) }
+  ]
+}).replace(/</g, '\\u003c') %>
+</script>
 <link rel="canonical" href="https://getinvoicemaker.com/rent-receipt-generator">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -60,6 +80,10 @@ textarea { resize: vertical; min-height: 70px; }
 .info-section li { margin-bottom: 6px; }
 .footer { background: #111; color: #999; padding: 40px 24px; text-align: center; margin-top: 60px; font-size: 13px; }
 .footer a { color: #ccc; margin: 0 12px; text-decoration: none; }
+.answer-block { max-width: 760px; margin: 0 auto; padding: 26px 24px 0; }
+.answer-block h2 { font-size: 20px; margin-bottom: 8px; }
+.answer-block p { color: #333; font-size: 16px; }
+.answer-block .updated { color: #666; font-size: 13px; margin-top: 8px; }
 </style>
 <%- include('partials/head') %>
 </head>
@@ -77,6 +101,12 @@ textarea { resize: vertical; min-height: 70px; }
 <section class="hero">
   <h1>Free Rent Receipt Generator</h1>
   <p>Create professional rent receipts in 30 seconds. Perfect for landlords, tenants, and tax records. No signup. Instant PDF download.</p>
+</section>
+
+<section class="answer-block" aria-label="Short answer">
+  <h2>What must a rent receipt include?</h2>
+  <p><%= faqs[0][1] %></p>
+  <p class="updated">Updated <time datetime="2026-11-10">November 10, 2026</time></p>
 </section>
 
 <div class="container">
@@ -252,30 +282,11 @@ textarea { resize: vertical; min-height: 70px; }
 
 <section class="faq-section">
   <h2 style="text-align:center;font-size:28px;margin-bottom:24px">Frequently Asked Questions</h2>
-  <div class="faq-item">
-    <div class="faq-q">Is this rent receipt generator really free?<span class="faq-icon">+</span></div>
-    <div class="faq-a">Yes. You can create and download unlimited rent receipts as PDF without signing up or paying anything. Free receipts include a small footer link to InvoiceMaker.</div>
+  <% faqs.forEach(function (f) { %><div class="faq-item">
+    <div class="faq-q"><%= f[0] %><span class="faq-icon">+</span></div>
+    <div class="faq-a"><%= f[1] %></div>
   </div>
-  <div class="faq-item">
-    <div class="faq-q">Are these rent receipts legally valid?<span class="faq-icon">+</span></div>
-    <div class="faq-a">Yes, as long as the receipt contains the tenant name, landlord name, property address, period, amount, payment method, and date. It then serves as legal proof of payment in most jurisdictions. Some regions require additional fields like a revenue stamp; check your local rules.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q">Can I use this rent receipt for tax purposes?<span class="faq-icon">+</span></div>
-    <div class="faq-a">Yes. Tenants commonly use rent receipts for HRA exemptions (India), Schedule E (US), or local rental tax credits. Landlords use them as proof of rental income. Always keep copies for at least 6 years.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q">Do I need to create an account?<span class="faq-icon">+</span></div>
-    <div class="faq-a">No account, no email, no signup. Just fill in the form and download your PDF receipt instantly.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q">What currencies are supported?<span class="faq-icon">+</span></div>
-    <div class="faq-a">18 major currencies including USD, GBP, EUR, CAD, AUD, INR, AED, SGD, TRY, JPY, CHF, and more.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q">Is my data private?<span class="faq-icon">+</span></div>
-    <div class="faq-a">Yes. Your data is only used to generate the PDF and is never stored on our servers.</div>
-  </div>
+  <% }) %>
 </section>
 
 <footer class="footer">

@@ -9,6 +9,7 @@ const pro = require('./lib/pro');
 const { renderInvoicePDF, currencySymbol, applyFonts } = require('./lib/pdf');
 const LatePay = require('./public/js/late-payment');
 const UaeVat = require('./public/js/uae-vat');
+const IndiaGst = require('./public/js/india-gst');
 const Prefill = require('./public/js/prefill');
 
 const app = express();
@@ -129,8 +130,8 @@ const RETIRED_PAGES = {
   '/free-invoice-generator-usa': '/',
   '/free-invoice-generator-germany': '/?currency=EUR',
   '/free-invoice-generator-france': '/?currency=EUR',
-  '/free-invoice-generator-india': '/?currency=INR',
   // '/free-invoice-generator-uae' came back on 17 Oct 2026 as its own page (UAE tax invoice rules and generator), see below.
+  // '/free-invoice-generator-india' came back on 10 Nov 2026 as its own page (GST tax invoice rules and generator), see below.
   '/free-invoice-generator-singapore': '/?currency=SGD'
 };
 Object.entries(RETIRED_PAGES).forEach(([from, to]) => {
@@ -228,6 +229,26 @@ app.get('/free-invoice-generator-uae', withPro, (req, res) => {
   const footer = res.locals.isPro ? '' : 'Created with GetInvoiceMaker.com';
   const example = UaeVat.compute(UAE_EXAMPLE);
   res.render('uae-tax-invoice', { U: UaeVat, example, exampleData: UAE_EXAMPLE, sheet: UaeVat.invoiceHTML(example, { footer }), footer });
+});
+
+// India GST tax invoice (10 Nov 2026). Not a currency copy of the generator: its own tool for the Rule 46 particulars
+// (CGST + SGST or IGST per line, HSN/SAC, place of supply, amount in words). Names and GSTINs in the example are made up;
+// the check characters are computed, the PANs inside them are not assignable (the fourth letter is not an entity type).
+const IN_EXAMPLE = {
+  type: 'tax', supply: 'domestic', copy: 'recipient', roundOff: false, number: '2026-27/042', issueDate: '2026-11-10',
+  supplierName: 'Kaveri Design Studio LLP', supplierAddress: '14, Example Layout, Indiranagar, Bengaluru 560038', supplierGstin: '29ABCDE1234F1ZW', supplierState: '29',
+  customerName: 'Mysore Retail Traders Pvt Ltd', customerAddress: '8, Example Road, Jayanagar, Bengaluru 560041', customerGstin: '29PQRSA5678K1ZH', placeOfSupply: '29', country: '',
+  notes: 'Payment within 30 days by NEFT to account 000000000000, IFSC XXXX0000000, quoting the invoice number.',
+  lines: [
+    { desc: 'Website design and development (fixed fee)', hsn: '998314', qty: 1, price: 60000, disc: '', gst: 18 },
+    { desc: 'Web hosting, 12 months', hsn: '998315', qty: 1, price: 12000, disc: '', gst: 18 },
+    { desc: 'Annual maintenance and support, 12 months', hsn: '998313', qty: 1, price: 24000, disc: '', gst: 18 }
+  ]
+};
+app.get('/free-invoice-generator-india', withPro, (req, res) => {
+  const footer = res.locals.isPro ? '' : 'Created with GetInvoiceMaker.com';
+  const example = IndiaGst.compute(IN_EXAMPLE);
+  res.render('india-gst-invoice', { G: IndiaGst, example, exampleData: IN_EXAMPLE, sheet: IndiaGst.invoiceHTML(example, { footer }), footer });
 });
 app.get('/free-invoice-generator-australia', (req, res) => res.render('australia-gst-guide'));
 
@@ -358,10 +379,11 @@ function sitemapEntries() {
     { loc: '/free-invoice-generator-netherlands', lastmod: PAGES_UPDATED },
     { loc: '/blog', lastmod: CONTENT_UPDATED },
     { loc: '/late-payment-interest-calculator', lastmod: LatePay.CHECKED },
-    { loc: '/rent-receipt-generator', lastmod: CONTENT_UPDATED },
+    { loc: '/rent-receipt-generator', lastmod: '2026-11-10' },
     { loc: '/free-invoice-generator-uk', lastmod: CONTENT_UPDATED },
     { loc: '/free-invoice-generator-australia', lastmod: CONTENT_UPDATED },
-    { loc: '/free-invoice-generator-uae', lastmod: '2026-10-17' },
+    { loc: '/free-invoice-generator-uae', lastmod: '2026-11-10' },
+    { loc: '/free-invoice-generator-india', lastmod: '2026-11-10' },
     { loc: '/privacy', lastmod: LEGAL_UPDATED },
     { loc: '/terms', lastmod: LEGAL_UPDATED }
   ];
@@ -370,7 +392,7 @@ function sitemapEntries() {
     if (['netherlands', 'uk', 'australia'].includes(c.slug)) return;
     urls.push({ loc: '/free-invoice-generator-' + c.slug, lastmod: PAGES_UPDATED });
   });
-  PROVINCES.forEach(p => urls.push({ loc: '/' + p.slug, lastmod: PAGES_UPDATED }));
+  PROVINCES.forEach(p => urls.push({ loc: '/' + p.slug, lastmod: p.checkedIso || PAGES_UPDATED }));
   BLOG_POSTS.forEach(p => urls.push({ loc: '/blog/' + p.slug, lastmod: p.updated }));
   HOW_TO_PAGES.forEach(p => urls.push({ loc: '/' + p.slug, lastmod: p.updated }));
   return urls;
