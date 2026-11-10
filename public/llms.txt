@@ -1,0 +1,57 @@
+# GetInvoiceMaker
+
+> GetInvoiceMaker is a free web tool that makes an invoice as a PDF: you fill in the form, check the live preview and download it, with no account. It has country versions with the tax rules built in (Canada by province, UK VAT, Australia GST, the Netherlands BTW, UAE VAT, India GST), a rent receipt generator and a late payment interest calculator for the UK and Ireland. A Pro plan paid through Gumroad removes the "Created with" line from PDFs and adds a logo.
+
+Every guide names its official source and the date it was last checked. Rates read on November 10, 2026: Ontario HST 13% and Nova Scotia HST 14% (CRA rates table), Manitoba GST 5% plus RST 7%, Saskatchewan GST 5% plus PST 6%, UAE VAT 5% (Federal Tax Authority), India GST at 5% and 18% with a 40% rate for sin and luxury goods since September 22, 2025 (Press Information Bureau). This is general information, not tax advice.
+
+## Tools
+
+- [Free invoice generator](https://getinvoicemaker.com/): Enter the lines and tax, get a PDF invoice. Free, no signup, 18 currencies.
+- [Rent receipt generator](https://getinvoicemaker.com/rent-receipt-generator): Tenant, landlord, property, period and amount to a PDF receipt, with what a rent receipt must include.
+- [Late payment interest calculator](https://getinvoicemaker.com/late-payment-interest-calculator): Interest on a late business invoice in the UK and Ireland, with a reminder invoice you can send.
+- [Canada GST/HST calculator and invoice guide](https://getinvoicemaker.com/how-to-calculate-gst-on-canadian-invoices): Tax on an invoice for every province, with rounding rules.
+
+## Invoice rules by country
+
+- [Canada invoice generator](https://getinvoicemaker.com/free-invoice-generator-canada): Pick the province and the GST, HST, PST or QST lines fill in.
+- [UK VAT invoice generator](https://getinvoicemaker.com/free-invoice-generator-uk): 20% VAT and the details HMRC requires.
+- [Australia GST invoice generator](https://getinvoicemaker.com/free-invoice-generator-australia): 10% GST, ABN and tax invoice details.
+- [Netherlands invoice generator (factuur)](https://getinvoicemaker.com/free-invoice-generator-netherlands): BTW at 21%, KVK number and the Dutch rules.
+- [UAE tax invoice generator](https://getinvoicemaker.com/free-invoice-generator-uae): The Article 59 particulars, VAT at 5% per line, amounts in AED and the e-invoicing dates.
+- [India GST invoice generator](https://getinvoicemaker.com/free-invoice-generator-india): The Rule 46 particulars, CGST and SGST or IGST per line, HSN and SAC codes, exports and bill of supply.
+
+## Sales tax by Canadian province
+
+- [Ontario HST (13%)](https://getinvoicemaker.com/ontario-hst-calculator)
+- [Nova Scotia HST (14%)](https://getinvoicemaker.com/nova-scotia-hst-calculator)
+- [Quebec GST and QST](https://getinvoicemaker.com/quebec-gst-qst-calculator)
+- [British Columbia GST and PST](https://getinvoicemaker.com/british-columbia-gst-pst-calculator)
+- [Manitoba GST and RST](https://getinvoicemaker.com/manitoba-gst-pst-calculator)
+- [Saskatchewan GST and PST](https://getinvoicemaker.com/saskatchewan-gst-pst-calculator)
+
+## Guides
+
+- [How to write a professional invoice](https://getinvoicemaker.com/blog/how-to-write-a-professional-invoice): The ten things every invoice needs and a worked example.
+- [Invoice payment terms](https://getinvoicemaker.com/blog/invoice-payment-terms-guide): Net 30, due on receipt and the legal defaults.
+- [What is a VAT invoice](https://getinvoicemaker.com/blog/what-is-vat-invoice): UK requirements, an example and time limits.
+- [Invoice vs receipt](https://getinvoicemaker.com/blog/invoice-vs-receipt): The differences and how long to keep each.
+- [Invoice number format](https://getinvoicemaker.com/blog/invoice-number-format): What the UK, EU, Canada, Australia, UAE and India require.
+- [How to invoice international clients](https://getinvoicemaker.com/blog/how-to-invoice-international-clients): Tax wording by country with official sources.
+- [How to invoice as a freelancer](https://getinvoicemaker.com/how-to-invoice-as-a-freelancer): Invoicing under your own name, and when a tax number is needed.
+- [How to make an invoice in Word](https://getinvoicemaker.com/how-to-make-an-invoice-in-word): Template, formulas and PDF.
+- [How to send an invoice](https://getinvoicemaker.com/how-to-send-an-invoice): Subject lines and nine email templates.
+- [How to calculate VAT on an invoice](https://getinvoicemaker.com/how-to-calculate-vat-on-invoice): Adding and removing VAT, rounding and mixed rates.
+- [How to write an invoice for a cash payment](https://getinvoicemaker.com/how-to-write-invoice-for-cash-payment): Paid-in-cash wording and the records tax authorities expect.
+- [How to charge a late payment fee](https://getinvoicemaker.com/how-to-charge-late-payment-fee): The clause, the invoice line and the legal limits.
+
+## Templates
+
+- [Freelance invoice template](https://getinvoicemaker.com/invoice-template-freelancer)
+- [Real estate commission invoice template](https://getinvoicemaker.com/invoice-template-real-estate)
+
+## Optional
+
+- [All guides (blog)](https://getinvoicemaker.com/blog)
+- [Privacy policy](https://getinvoicemaker.com/privacy)
+- [Terms](https://getinvoicemaker.com/terms)
+- Contact: info@peakappsstudio.com
