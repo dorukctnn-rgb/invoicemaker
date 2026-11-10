@@ -1,0 +1,98 @@
+<style>
+.page-hero h1{text-wrap:balance}
+.ut{max-width:1180px;margin:0 auto;padding:28px 20px 8px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,620px);gap:22px;align-items:start}
+.ut > *{min-width:0}
+.ut-form{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px}
+.ut-form h2{font-size:18px;font-weight:700;margin:18px 0 10px;font-family:'Public Sans',system-ui,sans-serif}
+.ut-form h2:first-child{margin-top:0}
+.ut-form .hint{font-size:13.5px;color:var(--muted);margin:-4px 0 12px}
+.ut-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px}
+.ut-f{display:block;margin-bottom:10px}
+.ut-f > span,.ut-line label > span{display:block;font-size:12.5px;font-weight:600;color:#475569;margin-bottom:4px}
+.ut-f input,.ut-f select,.ut-f textarea,.ut-line input,.ut-line select{width:100%;min-width:0;border:1px solid #cbd5e1;border-radius:7px;padding:10px 11px;font-size:16px;font-family:inherit;background:#fff;color:var(--ink)}
+.ut-f textarea{resize:vertical}
+.ut-f input:focus,.ut-f select:focus,.ut-f textarea:focus,.ut-line input:focus,.ut-line select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+.ut-f small{display:block;font-size:12.5px;color:var(--muted);margin-top:4px}
+.ut-f[hidden],.ut-check[hidden]{display:none}
+.ut-line{display:grid;grid-template-columns:minmax(0,1fr) 84px 120px 40px;gap:8px 10px;align-items:end;padding:10px 0;border-bottom:1px solid #f1f5f9}
+.ut-line .ut-desc{grid-column:1 / -1}
+.ut-line .ut-vat{grid-column:1}
+.ut-line label:nth-child(2){grid-row:2;grid-column:2}
+.ut-line label:nth-child(3){grid-row:2;grid-column:3}
+.ut-line .ut-vat{grid-row:2}
+.ut-del{grid-row:2;grid-column:4;height:44px;background:#fff;border:1px solid #fecaca;color:#b91c1c;border-radius:7px;font-size:18px;cursor:pointer}
+.is-plain .ut-vat,.is-plain .ut-trn-f{display:none}
+.is-plain .ut-line label:nth-child(2){grid-column:1}
+.ut-actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.ut-actions .btn{font-size:14px;padding:9px 14px}
+.ut-check{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--ink2);margin:8px 0}
+.ut-check input{width:18px;height:18px;margin-top:3px;flex:none}
+.ut-out{position:sticky;top:76px}
+.ut-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+.ut-bar .tot{font-size:14px;color:var(--muted)}
+.ut-bar .tot strong{display:block;font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums}
+.ut-warn{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:10px 14px 10px 30px;margin:0 0 10px;font-size:13.5px;color:#78350f}
+.ut-warn[hidden]{display:none}
+.ut-warn li{margin:3px 0}
+.ut-sheet{background:#fff;border:1px solid #cbd5e1;border-radius:6px;padding:24px;font-size:12.5px;color:#0f172a;box-shadow:0 10px 26px rgba(15,23,42,.06)}
+.ut-top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:3px solid #0f766e;padding-bottom:12px;margin-bottom:14px}
+.ut-title{font-family:'Source Serif 4',Georgia,serif;font-size:26px;font-weight:700;letter-spacing:.06em;color:#0f766e}
+.ut-sub{font-size:12px;color:var(--muted);margin-top:2px}
+.ut-meta{display:grid;grid-template-columns:auto auto;gap:3px 14px;margin:0;text-align:right}
+.ut-meta div{display:contents}
+.ut-meta dt{font-size:10.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);align-self:center}
+.ut-meta dd{margin:0;font-weight:600;font-size:12.5px;min-width:90px}
+.ut-parties{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px}
+.ut-k{font-size:10.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);margin-bottom:3px}
+.ut-name{font-weight:700;font-size:13.5px}
+.ut-addr{white-space:pre-line;color:#334155;line-height:1.45}
+.ut-trn{margin-top:3px;font-weight:600;font-variant-numeric:tabular-nums}
+.ut-miss{color:#b91c1c;font-weight:700}
+.ut-blank{display:inline-block;width:120px;border-bottom:1px solid #94a3b8;height:14px;vertical-align:-2px}
+.ut-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.ut-lines{width:100%;border-collapse:collapse;min-width:470px}
+.ut-lines th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.3px;color:#475569;background:#f1f5f9;padding:7px 6px;vertical-align:bottom;line-height:1.3}
+.ut-lines th.num{text-align:right}
+.ut-lines td.ut-d{min-width:130px}
+.ut-lines td{padding:7px 6px;border-bottom:1px solid #f1f5f9;vertical-align:top}
+.ut-lines .num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.ut-none{color:var(--muted);text-align:center}
+.ut-totals{margin:12px 0 0 auto;max-width:330px}
+.ut-row{display:flex;justify-content:space-between;gap:14px;padding:4px 0;font-variant-numeric:tabular-nums}
+.ut-row span:first-child{color:#475569}
+.ut-grand{border-top:2px solid #0f766e;margin-top:6px;padding-top:8px;font-size:15px;font-weight:700}
+.ut-grand span:first-child{color:#0f172a}
+.ut-aed{font-size:12px}
+.ut-notes{margin-top:14px;padding-top:10px;border-top:1px solid #e2e8f0;font-size:11.5px;color:#334155}
+.ut-notes p{margin:0 0 4px}
+.ut-pay{margin-top:10px;font-size:12px}
+.ut-pay p{margin:0;white-space:pre-line;color:#334155}
+.ut-foot{text-align:center;color:#94a3b8;font-size:10px;margin:18px 0 0}
+.ut-note{font-size:13px;color:var(--muted);margin:8px 0 0}
+.prose .tbl td:first-child{white-space:nowrap}
+@media(max-width:1060px){.ut{grid-template-columns:minmax(0,1fr)}.ut-out{position:static}}
+@media(max-width:600px){
+  .ut{padding:20px 16px 4px}
+  .ut-form{padding:16px}
+  .ut-grid,.ut-parties{grid-template-columns:1fr}
+  .ut-line{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 44px}
+  .ut-line label:nth-child(2){grid-row:2;grid-column:1}
+  .ut-line label:nth-child(3){grid-row:2;grid-column:2}
+  .ut-line .ut-vat{grid-row:3;grid-column:1 / 3}
+  .ut-del{grid-row:3;grid-column:3}
+  .ut-sheet{padding:16px}
+  .ut-meta{text-align:left;grid-template-columns:auto 1fr}
+  .ut-bar .tot strong{font-size:19px}
+  .ut-bar .btn{padding:10px 14px}
+  .prose .tbl td:first-child{white-space:normal}
+}
+@media print{
+  @page{margin:12mm}
+  body{background:#fff}
+  body *{visibility:hidden}
+  #utSheet,#utSheet *{visibility:visible}
+  #utSheet{position:absolute;left:0;top:0;width:100%;border:0;box-shadow:none;padding:0;font-size:10.5pt}
+  .ut-wrap{overflow:visible}
+  .ut-lines{min-width:0}
+}
+</style>

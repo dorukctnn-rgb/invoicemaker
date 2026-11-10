@@ -1,0 +1,289 @@
+<%
+  var pageUrl = siteUrl + '/free-invoice-generator-india';
+  var checked = '10 November 2026';
+  var ex = example, exd = exampleData;
+  var SRC = {
+    rule46: 'https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/rules/cgst_rules/active/chapter6/rule46_v1.00.html',
+    rule47: 'https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/rules/cgst_rules/active/chapter6/rule47_v1.00.html',
+    rule48: 'https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/rules/cgst_rules/active/chapter6/rule48_v1.00.html',
+    rule49: 'https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/rules/cgst_rules/active/chapter6/rule49_v1.00.html',
+    rule34: 'https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/rules/cgst_rules/active/chapter4/rule34_v1.00.html',
+    rule96a: 'https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/rules/cgst_rules/active/chapter10/rule96a_v1.00.html',
+    act: 'https://taxinformation.cbic.gov.in/content/html/tax_repository/gst/acts/2017_CGST_act/documents/Central_Goods_and_Services_Tax_Act__2017_28-September-2022.html',
+    hsn: 'https://www.gstcouncil.gov.in/sites/default/files/2024-05/notfctn-78-central-tax-english-2020.pdf',
+    registration: 'https://gstcouncil.gov.in/sites/default/files/e-version-gst-flyers/Registration_under_GST_Law_new.pdf',
+    rates2025: 'https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/sep/doc202594628401.pdf',
+    council57: 'https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/oct/doc_10142_20261009_21430401.pdf',
+    einvMandate: 'https://einvoice6.gst.gov.in/content/e-invoice-mandate/',
+    einv30: 'https://einvoice6.gst.gov.in/content/revised-time-limit-for-e-invoice-reporting-for-businesses-with-aato-of-%E2%82%B910-crores-above/'
+  };
+  var faqs = [
+    ['What must a GST invoice in India include?', 'For a tax invoice, Rule 46 of the CGST Rules, 2017 lists: the supplier\'s name, address and GSTIN; a consecutive serial number of up to 16 characters, unique for the financial year; the date; the recipient\'s name, address and GSTIN if registered; the HSN code of goods or SAC of services; a description; quantity and unit; the total and the taxable value after discount; the rate and amount of central, State or UT, and integrated tax; the place of supply for inter-State supplies; whether tax is payable on reverse charge; and a signature or digital signature.'],
+    ['What is the difference between CGST, SGST and IGST?', 'When the supplier and the place of supply are in the same State or Union territory, the GST is split into CGST (to the Centre) and SGST or UTGST (to the State or Union territory), each at half the rate. When the place of supply is in another State, the supply carries IGST at the full rate. The invoice shows whichever applies on each line.'],
+    ['What are the GST rates in India now?', 'Since 22 September 2025 most goods and services are taxed at 5% or 18%, a 40% rate applies to items such as tobacco, aerated drinks and luxury goods, and some supplies are exempt. The rate depends on the HSN or SAC code, so look yours up in the CBIC rate notifications.'],
+    ['Do I need a GSTIN to issue a GST invoice?', 'Yes. Only a registered person issues a tax invoice and charges GST, and it must show the supplier\'s GSTIN. If you are below the registration limit and not registered, you cannot charge GST: issue a bill of supply or an ordinary invoice without tax.'],
+    ['How many digits must the HSN code have?', 'Under Notification 78/2020-CT, 4 digits if your aggregate turnover in the previous financial year was up to ₹5 crore, and 6 digits if it was above ₹5 crore. A supplier with turnover up to ₹5 crore need not show the digits on invoices to unregistered recipients.'],
+    ['How long can an invoice number be?', 'At most 16 characters. Rule 46(b) allows letters, numerals, a hyphen and a slash, in one or more series, and the number must be unique for the financial year (1 April to 31 March).'],
+    ['Within how many days must I issue the invoice?', 'For services, within 30 days of the supply, or 45 days for an insurer, bank or other financial institution including an NBFC (Rule 47). For goods, before or at the time the goods are removed or delivered (section 31 of the CGST Act).'],
+    ['Is an invoice from this page an e-invoice?', 'No. An e-invoice carries an Invoice Reference Number and a QR code from the government Invoice Registration Portal. Businesses with aggregate turnover above ₹5 crore in any year since 2017-18 must issue invoices that way. Below that limit, a signed invoice like the one this page makes is how you invoice.'],
+    ['How do I invoice a client outside India?', 'Choose an export option. The invoice then carries the endorsement Rule 46 sets, the recipient\'s name and address, the delivery address and the country of destination. You either export under a bond or Letter of Undertaking without paying IGST, or pay IGST and claim it back as a refund.']
+  ];
+%><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free GST Invoice Generator India: CGST, SGST, IGST</title>
+<meta name="description" content="Make a GST tax invoice with every Rule 46 detail: GSTIN, HSN or SAC, CGST and SGST or IGST on each line, place of supply. Print or save as PDF, free.">
+<link rel="canonical" href="<%= pageUrl %>">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free GST Invoice Generator for India (CGST, SGST, IGST)">
+<meta property="og:description" content="A GST tax invoice with GSTIN, HSN or SAC, CGST and SGST or IGST per line and the amount in words. Print or save as PDF.">
+<meta property="og:url" content="<%= pageUrl %>">
+<%- include('partials/site-head') %>
+<script type="application/ld+json">
+<%- JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebPage', name: 'GST invoice generator for India', url: pageUrl, description: 'Free GST tax invoice generator with the Rule 46 particulars, CGST and SGST or IGST on each line, HSN or SAC codes and the amount in words, plus the rules for invoice numbers, timing, exports, bills of supply and e-invoicing.', datePublished: '2026-11-10', dateModified: '2026-11-10', inLanguage: 'en',
+      citation: [SRC.rule46, SRC.rule47, SRC.rule48, SRC.hsn, SRC.rates2025, SRC.einvMandate] },
+    { '@type': 'WebApplication', name: 'GST invoice generator for India', url: pageUrl + '#maker', applicationCategory: 'BusinessApplication', operatingSystem: 'Any (web browser)', offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' } },
+    { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl + '/' },
+      { '@type': 'ListItem', position: 2, name: 'GST invoice generator for India', item: pageUrl } ] },
+    { '@type': 'FAQPage', mainEntity: faqs.map(function (f) { return { '@type': 'Question', name: f[0], acceptedAnswer: { '@type': 'Answer', text: f[1] } }; }) }
+  ]
+}).replace(/</g, '\\u003c') %>
+</script>
+<%- include('partials/ut-styles') %>
+<style>
+.ut-line.in-line{grid-template-columns:minmax(0,1fr) 84px 120px 40px}
+.ut-line.in-line .ut-desc{grid-column:1 / -1}
+.ut-line.in-line .in-hsn{grid-row:2;grid-column:1}
+.ut-line.in-line .in-qty{grid-row:2;grid-column:2}
+.ut-line.in-line .in-price{grid-row:2;grid-column:3}
+.ut-line.in-line .ut-del{grid-row:2;grid-column:4}
+.ut-line.in-line .in-gst{grid-row:3;grid-column:1}
+.ut-line.in-line .in-disc{grid-row:3;grid-column:2 / 4}
+.in-gst input[hidden]{display:none}
+.in-gst input{margin-top:6px}
+.is-bill .in-gst,.is-bill .in-gstin-c{display:none}
+.is-bill .ut-line.in-line .in-disc{grid-column:1 / 4}
+.ut-sum{margin-top:12px}
+.ut-lines small{display:block;font-size:10px;color:#64748b;font-weight:400}
+.ut-sign{margin-top:26px;padding-top:6px;border-top:1px solid #94a3b8;width:260px;max-width:100%;font-size:10.5px;color:#475569}
+@media(max-width:600px){
+  .ut-line.in-line{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 44px}
+  .ut-line.in-line .in-hsn{grid-row:2;grid-column:1 / 3}
+  .ut-line.in-line .in-qty{grid-row:3;grid-column:1}
+  .ut-line.in-line .in-price{grid-row:3;grid-column:2}
+  .ut-line.in-line .ut-del{grid-row:2;grid-column:3}
+  .ut-line.in-line .in-gst{grid-row:4;grid-column:1}
+  .ut-line.in-line .in-disc{grid-row:4;grid-column:2 / 4}
+  .is-bill .ut-line.in-line .in-disc{grid-column:1 / 4}
+}
+</style>
+</head>
+<body>
+<%- include('partials/nav') %>
+<div class="crumbs"><a href="/">Home</a> › <a href="/#templates">By country</a> › India</div>
+
+<section class="page-hero">
+  <div class="in">
+    <h1>Free GST invoice generator for India</h1>
+    <p class="lede">Make a GST tax invoice with the particulars Rule 46 of the CGST Rules asks for: GSTIN, invoice number, HSN or SAC code, CGST and SGST or IGST on each line, place of supply and the amount in words. Fill it in below, then print it or save it as a PDF. No account, and nothing you type leaves your browser.</p>
+    <div class="btns">
+      <a class="btn" href="#maker">Fill in the tax invoice</a>
+      <a class="btn ghost" href="#requirements">What a GST invoice must show</a>
+    </div>
+    <div class="facts"><span>GSTIN, HSN/SAC, CGST + SGST or IGST</span><span>Exports and bill of supply</span><span>Rules checked <%= checked %></span></div>
+  </div>
+</section>
+
+<section class="ut" id="maker" aria-label="GST invoice generator">
+  <form class="ut-form" id="utForm" novalidate>
+    <h2>Invoice type</h2>
+    <label class="ut-f"><span>This document is</span>
+      <select id="inType">
+        <% Object.keys(G.TYPES).forEach(function (k) { %><option value="<%= k %>"<%= k === exd.type ? ' selected' : '' %>><%= G.TYPES[k].name %></option><% }) %>
+      </select>
+    </label>
+    <label class="ut-f"><span>Copy marked as</span>
+      <select id="inCopy">
+        <option value="none"<%= exd.copy === 'none' ? ' selected' : '' %>>No marking</option>
+        <% ['recipient', 'supplier', 'transporter', 'triplicate'].forEach(function (k) { %><option value="<%= k %>"<%= k === exd.copy ? ' selected' : '' %>><%= G.COPIES[k] %></option><% }) %>
+      </select>
+      <small>Rule 48 asks for the original and a duplicate on services, three copies on goods. Print once for each copy you mark.</small>
+    </label>
+    <label class="ut-f"><span>Where is the supply made?</span>
+      <select id="inSupply">
+        <% Object.keys(G.SUPPLIES).forEach(function (k) { %><option value="<%= k %>"<%= k === exd.supply ? ' selected' : '' %>><%= G.SUPPLIES[k].name %></option><% }) %>
+      </select>
+    </label>
+
+    <h2>Your business</h2>
+    <label class="ut-f"><span>Name</span><input type="text" id="inSupplierName" maxlength="120" autocomplete="organization" value="<%= exd.supplierName %>"></label>
+    <label class="ut-f"><span>Address</span><textarea id="inSupplierAddress" rows="2" maxlength="300"><%= exd.supplierAddress %></textarea></label>
+    <div class="ut-grid">
+      <label class="ut-f"><span>GSTIN</span><input type="text" id="inSupplierGstin" maxlength="15" autocapitalize="characters" spellcheck="false" value="<%= exd.supplierGstin %>"><small>15 characters. Not registered? Choose Bill of supply.</small></label>
+      <label class="ut-f"><span>Your State</span>
+        <select id="inSupplierState"><option value="">Choose</option><% G.STATES.forEach(function (s) { %><option value="<%= s[0] %>"<%= s[0] === exd.supplierState ? ' selected' : '' %>><%= s[1] %> (<%= s[0] %>)</option><% }) %></select>
+      </label>
+    </div>
+
+    <h2>Customer</h2>
+    <label class="ut-f"><span>Name</span><input type="text" id="inCustomerName" maxlength="120" value="<%= exd.customerName %>"></label>
+    <label class="ut-f"><span>Address (and delivery address, if different)</span><textarea id="inCustomerAddress" rows="2" maxlength="300"><%= exd.customerAddress %></textarea></label>
+    <div class="ut-grid">
+      <label class="ut-f in-gstin-c"><span>Customer GSTIN, if registered</span><input type="text" id="inCustomerGstin" maxlength="15" autocapitalize="characters" spellcheck="false" value="<%= exd.customerGstin %>"></label>
+      <label class="ut-f" id="inPlaceWrap"><span>Place of supply</span>
+        <select id="inPlace"><option value="">Choose</option><% G.STATES.forEach(function (s) { %><option value="<%= s[0] %>"<%= s[0] === exd.placeOfSupply ? ' selected' : '' %>><%= s[1] %> (<%= s[0] %>)</option><% }) %></select>
+        <small>Services: usually the State of a registered customer. Goods: where they are delivered.</small>
+      </label>
+      <label class="ut-f" id="inCountryWrap" hidden><span>Country of destination</span><input type="text" id="inCountry" maxlength="80" value="<%= exd.country %>"></label>
+    </div>
+
+    <h2>Invoice details</h2>
+    <div class="ut-grid">
+      <label class="ut-f"><span>Invoice number</span><input type="text" id="inNumber" maxlength="40" value="<%= exd.number %>"><small>Up to 16 characters: letters, numerals, hyphen and slash.</small></label>
+      <label class="ut-f"><span>Invoice date</span><input type="date" id="inIssue" value="<%= exd.issueDate %>"></label>
+    </div>
+
+    <h2>Lines</h2>
+    <p class="hint">GST is worked out on each line after its discount and rounded to the paisa.</p>
+    <div id="utLines">
+      <% exd.lines.forEach(function (l) { var preset = G.RATES.indexOf(String(l.gst)) >= 0; %><div class="ut-line in-line">
+        <label class="ut-desc"><span>Description</span><input type="text" name="desc" maxlength="300" value="<%= l.desc %>"></label>
+        <label class="in-hsn"><span>HSN / SAC</span><input type="text" name="hsn" maxlength="12" inputmode="numeric" value="<%= l.hsn %>"></label>
+        <label class="in-qty"><span>Qty</span><input type="number" name="qty" min="0" step="any" inputmode="decimal" value="<%= l.qty %>"></label>
+        <label class="in-price"><span>Rate (&#8377;)</span><input type="number" name="price" min="0" step="any" inputmode="decimal" value="<%= l.price %>"></label>
+        <label class="in-gst"><span>GST rate</span><select name="gst"><% G.RATES.forEach(function (r) { %><option value="<%= r %>"<%= String(l.gst) === r ? ' selected' : '' %>><%= r %>%</option><% }) %><option value="other"<%= preset ? '' : ' selected' %>>Other</option></select><input type="number" name="gstOther" min="0" max="100" step="any" inputmode="decimal" placeholder="Rate in %"<%- preset ? ' hidden' : '' %> value="<%= preset ? '' : l.gst %>"></label>
+        <label class="in-disc"><span>Discount on the line (&#8377;)</span><input type="number" name="disc" min="0" step="any" inputmode="decimal" value="<%= l.disc %>"></label>
+        <button type="button" class="ut-del" aria-label="Remove line">&times;</button></div>
+      <% }) %>
+    </div>
+    <div class="ut-actions"><button type="button" class="btn ghost" id="addLine">Add a line</button><button type="button" class="btn ghost" id="utBlank">Start a blank invoice</button></div>
+    <label class="ut-check" id="inRcWrap"><input type="checkbox" id="inRc"> <span>Tax is payable on reverse charge basis (the recipient pays the GST, none is added here)</span></label>
+    <label class="ut-check"><input type="checkbox" id="inRound"> <span>Round the total off to the nearest rupee</span></label>
+    <label class="ut-f"><span>Payment details and notes</span><textarea id="inNotes" rows="3" maxlength="1500"><%= exd.notes %></textarea></label>
+  </form>
+
+  <div class="ut-out">
+    <div class="ut-bar">
+      <div class="tot">Total<strong id="utTotal"><%= G.money(ex.grand) %></strong></div>
+      <button type="button" class="btn" id="utPrint">Print or save as PDF</button>
+    </div>
+    <ul class="ut-warn" id="utWarn"<%- ex.warnings.length ? '' : ' hidden' %>><% ex.warnings.forEach(function (w) { %><li><%= w %></li><% }) %></ul>
+    <div class="ut-sheet" id="utSheet"><%- sheet %></div>
+    <p class="ut-note">The first invoice is an example: the names and GSTINs are made up. <em>Start a blank invoice</em> clears it. In the print dialog choose Save as PDF to get a file.</p>
+  </div>
+</section>
+
+<div class="wrap prose">
+  <h2 id="requirements">What a GST tax invoice must show</h2>
+  <div class="answer"><p>Rule 46 of the CGST Rules, 2017 lists the particulars of a tax invoice. The generator above puts each one on the invoice; the right-hand column says where.</p></div>
+  <table class="tbl">
+    <thead><tr><th>Rule 46</th><th>Required</th><th>On the generated invoice</th></tr></thead>
+    <tbody>
+      <tr><td>(a)</td><td class="strong">Name, address and GSTIN of the supplier</td><td>Supplier block</td></tr>
+      <tr><td>(b)</td><td class="strong">A consecutive serial number of up to 16 characters (letters, numerals, hyphen, slash), unique for the financial year</td><td>Invoice number, checked as you type</td></tr>
+      <tr><td>(c)</td><td class="strong">The date of issue</td><td>Invoice date</td></tr>
+      <tr><td>(d)</td><td class="strong">Name, address and GSTIN of the recipient, if registered</td><td>Bill to block</td></tr>
+      <tr><td>(e), (f)</td><td class="strong">If the recipient is not registered: name, address, delivery address and the State with its code, when the taxable value is ₹50,000 or more, or less if the recipient asks</td><td>Bill to block with the State and code; a warning appears at ₹50,000</td></tr>
+      <tr><td>(g)</td><td class="strong">HSN code of goods or SAC of services</td><td>HSN/SAC column</td></tr>
+      <tr><td>(h), (i)</td><td class="strong">Description, and quantity and unit for goods</td><td>Description and Qty columns</td></tr>
+      <tr><td>(j), (k)</td><td class="strong">Total value of the supply and the taxable value after any discount</td><td>Taxable value column and totals</td></tr>
+      <tr><td>(l), (m)</td><td class="strong">Rate and amount of central, State or UT, and integrated tax, and cess</td><td>CGST and SGST (or UTGST) columns, or IGST. There is no cess column: add a cess line if you sell goods that carry it</td></tr>
+      <tr><td>(n), (o)</td><td class="strong">Place of supply with the State name for inter-State supplies, and the delivery address if it differs</td><td>Place of supply in the header; put a different delivery address in the customer address</td></tr>
+      <tr><td>(p)</td><td class="strong">Whether tax is payable on reverse charge</td><td>Header line, Yes or No</td></tr>
+      <tr><td>(q)</td><td class="strong">Signature or digital signature of the supplier or an authorised representative</td><td>Signature line</td></tr>
+      <tr><td>(r)</td><td class="strong">A QR code with the Invoice Reference Number, on e-invoices</td><td>Not produced here, see e-invoicing below</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source: <a href="<%= SRC.rule46 %>" rel="noopener">Rule 46, Central Goods and Services Tax Rules, 2017</a>, CBIC GST tax information portal. Checked <%= checked %>.</p>
+
+  <h2 id="cgst-igst">CGST and SGST, or IGST?</h2>
+  <div class="answer"><p>If you and the place of supply are in the same State or Union territory, charge CGST and SGST, each at half the GST rate. If the place of supply is in another State, charge IGST at the full rate. The generator decides from your State and the place of supply.</p></div>
+  <p>Section 9 of the CGST Act levies the central tax on intra-State supplies; the State tax is levied by each State's own GST Act, and inter-State supplies carry integrated tax under the IGST Act. Union territories without a legislature (Chandigarh, Dadra and Nagar Haveli and Daman and Diu, Lakshadweep, the Andaman and Nicobar Islands and Ladakh) charge UTGST in place of SGST. The first two digits of a GSTIN are the State code, so the State on your invoice and in your GSTIN should agree: the generator warns when they do not. The example above, ₹96,000 of services at 18% to a customer in the same State, then to a customer in Maharashtra:</p>
+  <div class="formula">Same State: CGST 9% = ₹8,640.00 + SGST 9% = ₹8,640.00<br>Another State: IGST 18% = ₹17,280.00<br><b>Total either way: ₹96,000.00 + ₹17,280.00 = ₹1,13,280.00</b></div>
+  <p class="source">Source: <a href="<%= SRC.act %>" rel="noopener">CGST Act, 2017, section 9</a>, CBIC compilation. Checked <%= checked %>.</p>
+
+  <h2 id="rates">GST rates in 2026</h2>
+  <div class="answer"><p>Since 22 September 2025 most goods and services are taxed at 5% or 18%, with a special 40% rate for items such as tobacco, aerated drinks and luxury goods. Some supplies are exempt. The rate you charge depends on the HSN or SAC code of what you sell.</p></div>
+  <p>The Press Information Bureau describes the change as a move from four slabs to two main rates, 5% and 18%, with a 40% rate for sin and luxury goods, effective 22 September 2025. The generator offers 0%, 5%, 18% and 40%, and an Other field for any other rate. The example uses 18% on IT services; look up the rate for your own code in the CBIC rate notifications before you invoice.</p>
+  <p>On 9 October 2026 the PIB summarised further recommendations of the 57th GST Council. They are recommendations until the government notifies them. One would extend e-invoicing to supplies from unregistered persons that fall under reverse charge, and to imports of services, for businesses with aggregate turnover of ₹5 crore or more.</p>
+  <p class="source">Sources: <a href="<%= SRC.rates2025 %>" rel="noopener">PIB, GST Reforms 2025</a> (4 September 2025); <a href="<%= SRC.council57 %>" rel="noopener">PIB, Next-Gen GST Process Reforms</a> (9 October 2026). Checked <%= checked %>.</p>
+
+  <h2 id="hsn">HSN and SAC codes</h2>
+  <p>HSN codes classify goods and SAC codes classify services; a SAC has six digits and starts with 99. How many digits you must show depends on your turnover in the previous financial year (Notification 78/2020-CT, from 1 April 2021):</p>
+  <table class="tbl">
+    <thead><tr><th>Aggregate turnover, previous year</th><th>Digits on the invoice</th></tr></thead>
+    <tbody>
+      <tr><td>Up to ₹5 crore</td><td class="strong">4</td></tr>
+      <tr><td>More than ₹5 crore</td><td class="strong">6</td></tr>
+    </tbody>
+  </table>
+  <p>A supplier with turnover up to ₹5 crore may leave the digits off invoices issued to unregistered recipients. The example uses SAC 998314 and 998315, in the group of IT services; confirm the code for your own work.</p>
+  <p class="source">Source: <a href="<%= SRC.hsn %>" rel="noopener">Notification No. 78/2020-Central Tax</a>, 15 October 2020, GST Council. Later amendments are listed on the CBIC notifications page. Checked <%= checked %>.</p>
+
+  <h2 id="numbering">Invoice numbers and copies</h2>
+  <ul>
+    <li><strong>Number:</strong> a consecutive serial number of up to 16 characters, in one or several series, using letters, numerals, a hyphen and a slash, and unique for the financial year (Rule 46(b)). <em>2026-27/042</em> and <em>INV-0042</em> both qualify. The serial numbers you issue in a tax period go into your GSTR-1 (Rule 48(3)).</li>
+    <li><strong>Copies:</strong> for services, an original marked ORIGINAL FOR RECIPIENT and a duplicate marked DUPLICATE FOR SUPPLIER; for goods, three copies marked ORIGINAL FOR RECIPIENT, DUPLICATE FOR TRANSPORTER and TRIPLICATE FOR SUPPLIER (Rule 48(1) and (2)). Rule 48(6) leaves e-invoices out of this.</li>
+  </ul>
+  <p class="source">Sources: <a href="<%= SRC.rule46 %>" rel="noopener">Rule 46</a>; <a href="<%= SRC.rule48 %>" rel="noopener">Rule 48</a>. Checked <%= checked %>.</p>
+
+  <h2 id="when">When to issue it</h2>
+  <ul>
+    <li><strong>Services:</strong> within <strong>30 days</strong> of the supply, or <strong>45 days</strong> if you are an insurer, a bank or another financial institution including an NBFC (Rule 47).</li>
+    <li><strong>Goods:</strong> before or at the time the goods are removed for supply, or delivered when nothing moves (section 31(1) of the CGST Act).</li>
+  </ul>
+  <p class="source">Sources: <a href="<%= SRC.rule47 %>" rel="noopener">Rule 47</a>; <a href="<%= SRC.act %>" rel="noopener">CGST Act, section 31</a>. Checked <%= checked %>.</p>
+
+  <h2 id="export">Exports and supplies to an SEZ</h2>
+  <p>On an export invoice, Rule 46 asks for an endorsement, and for the recipient's name and address, the delivery address and the country of destination in place of the State details. Choose an export option in the generator and the endorsement is printed. The two forms are:</p>
+  <div class="formula">SUPPLY MEANT FOR EXPORT/SUPPLY TO SEZ UNIT OR SEZ DEVELOPER FOR AUTHORISED OPERATIONS ON PAYMENT OF INTEGRATED TAX<br><br>SUPPLY MEANT FOR EXPORT/SUPPLY TO SEZ UNIT OR SEZ DEVELOPER FOR AUTHORISED OPERATIONS UNDER BOND OR LETTER OF UNDERTAKING WITHOUT PAYMENT OF INTEGRATED TAX</div>
+  <p>To export without paying IGST you furnish a bond or a Letter of Undertaking in Form GST RFD-11 to the jurisdictional Commissioner before the export (Rule 96A(1)). The alternative is to pay IGST on the export and claim it back as a refund. The generator invoices in rupees. If you agree a price in another currency, the value for GST is converted: for services at the rate set by generally accepted accounting principles for the date of the time of supply, for goods at the exchange rate the Board notifies under the Customs Act (Rule 34).</p>
+  <p class="source">Sources: <a href="<%= SRC.rule46 %>" rel="noopener">Rule 46</a>; <a href="<%= SRC.rule96a %>" rel="noopener">Rule 96A</a>; <a href="<%= SRC.rule34 %>" rel="noopener">Rule 34</a>. Checked <%= checked %>.</p>
+
+  <h2 id="bill">Not registered, or nothing to charge?</h2>
+  <p>Only a registered person charges GST on a tax invoice. A supplier below the registration limit, a composition taxpayer or a supplier of exempt goods or services issues a <strong>bill of supply</strong> instead, which carries no tax columns (Rule 49). It shows the supplier's name, address and GSTIN (if registered), a serial number, the date, the recipient's details, the HSN or SAC, a description, the value of the supply after discount, and a signature. Choose <em>Bill of supply</em> in the generator.</p>
+  <p>The general limit for registration is aggregate turnover above ₹40 lakh for suppliers of goods and ₹20 lakh for suppliers of services, with lower limits in some States (₹20 lakh for goods in ten listed States and ₹10 lakh for services in Manipur, Mizoram, Nagaland and Tripura). Check your State and any exceptions on the GST portal.</p>
+  <p class="source">Sources: <a href="<%= SRC.rule49 %>" rel="noopener">Rule 49</a>; <a href="<%= SRC.registration %>" rel="noopener">GST Council, Registration under GST Law</a>. Checked <%= checked %>.</p>
+
+  <h2 id="einvoicing">E-invoicing above ₹5 crore</h2>
+  <p>A registered person whose aggregate turnover in any preceding financial year from 2017-18 is more than <strong>₹5 crore</strong> has had to issue e-invoices since 1 August 2023 (Notification 10/2023-Central Tax): the invoice details are uploaded to the Invoice Registration Portal, which returns an Invoice Reference Number and a QR code. An invoice issued any other way by such a person is not treated as an invoice (Rule 48(5)). From 1 April 2025, a business with aggregate turnover of ₹10 crore or more cannot report an e-invoice that is more than 30 days old. A PDF made on this page is not an e-invoice, so it does not replace that step.</p>
+  <p class="source">Sources: <a href="<%= SRC.einvMandate %>" rel="noopener">GST e-invoice mandate, thresholds and notifications</a>; <a href="<%= SRC.einv30 %>" rel="noopener">30-day reporting limit</a>; <a href="<%= SRC.rule48 %>" rel="noopener">Rule 48</a>. Checked <%= checked %>.</p>
+
+  <h2>Questions</h2>
+  <div class="faq">
+    <% faqs.forEach(function (f) { %><details><summary><%= f[0] %></summary><p><%= f[1] %></p></details><% }) %>
+  </div>
+
+  <h2>Sources</h2>
+  <ul>
+    <li><a href="<%= SRC.rule46 %>" rel="noopener">Rules 46, 47, 48, 49, 34 and 96A of the Central Goods and Services Tax Rules, 2017</a>, CBIC GST tax information portal</li>
+    <li><a href="<%= SRC.act %>" rel="noopener">Central Goods and Services Tax Act, 2017</a>, sections 9 and 31, CBIC compilation</li>
+    <li><a href="<%= SRC.hsn %>" rel="noopener">Notification No. 78/2020-Central Tax</a>, GST Council</li>
+    <li><a href="<%= SRC.rates2025 %>" rel="noopener">PIB, GST Reforms 2025</a> and <a href="<%= SRC.council57 %>" rel="noopener">Next-Gen GST Process Reforms</a></li>
+    <li><a href="<%= SRC.registration %>" rel="noopener">GST Council, Registration under GST Law</a></li>
+    <li><a href="<%= SRC.einvMandate %>" rel="noopener">GST e-invoice portal: mandate and 30-day reporting limit</a></li>
+  </ul>
+  <p class="source">All read on <%= checked %>. General information, not tax advice: confirm your rate, code and obligations with a chartered accountant or on the GST portal.</p>
+
+  <h2>Related</h2>
+  <ul class="linklist">
+    <li><a href="/free-invoice-generator-uae">UAE tax invoice generator</a></li>
+    <li><a href="/how-to-calculate-vat-on-invoice">How to calculate VAT on an invoice</a></li>
+    <li><a href="/blog/invoice-number-format">Invoice number format</a></li>
+    <li><a href="/blog/how-to-invoice-international-clients">Invoicing international clients</a></li>
+    <li><a href="/">Invoice generator for other countries</a></li>
+  </ul>
+</div>
+
+<%- include('partials/footer') %>
+<script>window.INDIA_CONFIG=<%- JSON.stringify({ footer: footer }).replace(/</g, '\\u003c') %>;</script>
+<script src="/js/india-gst.js?v=1" defer></script>
+<script src="/js/india-invoice.js?v=1" defer></script>
+</body>
+</html>
