@@ -18,7 +18,7 @@ module.exports = [
   {
     slug: 'real-estate', label: 'Real Estate Agents',
     title: 'Real Estate Invoice Template & Commission Invoice Sample',
-    desc: 'Free real estate invoice template with a commission invoice sample: property address, sale price, rate, split and closing date. Download Word, Excel or PDF.',
+    desc: 'Free real estate invoice template with a commission invoice sample: property address, sale price, rate, split and closing date. Word, Excel and PDF.',
     h1: 'Real Estate Invoice Template and Commission Invoice Sample',
     intro: 'A commission invoice with the property, sale price, rate and split worked out, plus Word, Excel and PDF versions to download.',
     itemPlaceholder: 'e.g. Commission: 24 Oak Street sale',
