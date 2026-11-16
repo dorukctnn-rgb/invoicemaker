@@ -3,7 +3,7 @@
     "keyword": "how to calculate gst on canadian invoices?",
     "targetPath": "/how-to-calculate-gst-on-canadian-invoices",
     "status": "observing",
-    "nextReviewDate": "2026-10-21",
+    "nextReviewDate": "2026-11-30",
     "actions": [
       {
         "date": "2026-10-07",
@@ -16,6 +16,12 @@
         "rankAtAction": null,
         "needs": "A second URL competed for this query: /blog/gst-invoice-guide (Crawled - currently not indexed) took 34 of its 51 impressions in 16 months from this query at position 89",
         "done": "301 /blog/gst-invoice-guide to this page, removed it from the sitemap and replaced its two internal links (this page and the Australia guide). No content change here, so the 2026-10-21 review stands"
+      },
+      {
+        "date": "2026-11-16",
+        "rankAtAction": 29.1,
+        "needs": "GSC: 235 impressions, 0 clicks; \"how to calculate gst on canadian invoices?\" 136 at 30.3, \"online gst calculator canada\" 11 at 12.7, \"canada gst calculator online\" 3 at 10.7; the page has a GST/HST calculator but the title did not say so",
+        "done": "Title now \"GST Calculator Canada: How to Calculate GST on Invoices\"; description 146 characters (was 165) names the calculator. H1 and body untouched"
       }
     ]
   },
@@ -37,13 +43,19 @@
     "keyword": "real estate invoice sample",
     "targetPath": "/invoice-template-real-estate",
     "status": "observing",
-    "nextReviewDate": "2026-10-21",
+    "nextReviewDate": "2026-11-30",
     "actions": [
       {
         "date": "2026-10-07",
         "rankAtAction": 68.1,
         "needs": "Commission invoice sample with fields and downloadable template",
         "done": "New page content: commission calculator that fills the invoice, filled commission invoice sample, field table, referral/lease/property-management variants, DOCX/XLSX/PDF downloads, FAQ"
+      },
+      {
+        "date": "2026-11-16",
+        "rankAtAction": 17.5,
+        "needs": "GSC: \"real estate invoice template\" 27 at 17.5, 114 impressions, 0 clicks; description was 156 characters",
+        "done": "Description 148 characters, same promise. Title, H1 and body untouched"
       }
     ]
   },
@@ -79,7 +91,7 @@
     "keyword": "how to invoice international clients",
     "targetPath": "/blog/how-to-invoice-international-clients",
     "status": "observing",
-    "nextReviewDate": "2026-10-23",
+    "nextReviewDate": "2026-11-30",
     "actions": [
       {
         "date": "2026-10-09",
@@ -92,6 +104,12 @@
         "rankAtAction": null,
         "needs": "/how-to-invoice-us-clients-from-uk (URL is unknown to Google) repeated this guide's UK VAT, W-8BEN, bank and date points",
         "done": "301 /how-to-invoice-us-clients-from-uk here; one line added on W-9 vs W-8BEN; links from the UK VAT guide replaced. Review date unchanged"
+      },
+      {
+        "date": "2026-11-16",
+        "rankAtAction": 14.6,
+        "needs": "GSC 17 Oct-13 Nov: 327 impressions, 0 clicks at position 14.6 (\"can i invoice a customer in another country?\" 11 at 9.4, \"how to invoice international clients from india\" 8 at 14.5); title was 61 characters and the description 158",
+        "done": "Title cut to 60 characters and moved to the colon form; description 151 characters and says what the page holds (tax line by country, currency, bank charges, sample). Body untouched"
       }
     ]
   },
@@ -113,13 +131,19 @@
     "keyword": "invoice payment terms",
     "targetPath": "/blog/invoice-payment-terms-guide",
     "status": "observing",
-    "nextReviewDate": "2026-10-23",
+    "nextReviewDate": "2026-11-30",
     "actions": [
       {
         "date": "2026-10-09",
         "rankAtAction": null,
         "needs": "URL is unknown to Google; 343 words. Housecall Pro, InvoiceFly, Relay, BILL define Net 30 with no legal defaults or discount cost",
         "done": "Rewrote: terms table with dated examples, legal defaults (GOV.UK 30 days, 60-day B2B limit; Directive 2011/7/EU; US Prompt Payment rate), 2/10 Net 30 annualised cost, HMRC prompt-discount wording, choosing terms"
+      },
+      {
+        "date": "2026-11-16",
+        "rankAtAction": 12.2,
+        "needs": "GSC: 201 impressions, 0 clicks at position 12.2; title was 68 characters and the description 167",
+        "done": "Title 59 characters (\"Net 30, Due on Receipt and UK/EU Law\"), description 150. Body untouched"
       }
     ]
   },
@@ -197,13 +221,19 @@
     "keyword": "how to make an invoice in word",
     "targetPath": "/how-to-make-an-invoice-in-word",
     "status": "observing",
-    "nextReviewDate": "2026-10-23",
+    "nextReviewDate": "2026-11-30",
     "actions": [
       {
         "date": "2026-10-09",
         "rankAtAction": null,
         "needs": "Discovered - currently not indexed; 243 words; InvoiceOwl, Adobe, Bonsai, Deskera repeat the template route",
         "done": "Rewrote with Microsoft-verified steps: template search, table, =PRODUCT(LEFT), =SUM(ABOVE), A1 references, F9 updates, Save as PDF; links to the site Word templates; failure table; FAQ"
+      },
+      {
+        "date": "2026-11-16",
+        "rankAtAction": 38.4,
+        "needs": "GSC: 210 impressions, 0 clicks (\"create an invoice in word\" 18 at 33.3); description was 178 characters and cut off in results",
+        "done": "Description trimmed to 148 characters, same promise. Title and body untouched"
       }
     ]
   },
