@@ -9,8 +9,13 @@
   var L = {
     en: { title: 'INVOICE', billTo: 'Bill to', issue: 'Issue date', due: 'Due date', supply: 'Service date', desc: 'Description', qty: 'Qty', rate: 'Rate', amount: 'Amount', subtotal: 'Subtotal', total: 'Total due', notes: 'Notes', clientTaxId: 'Tax ID: ' },
     nl: { title: 'FACTUUR', billTo: 'Factuur aan', issue: 'Factuurdatum', due: 'Vervaldatum', supply: 'Leverdatum', desc: 'Omschrijving', qty: 'Aantal', rate: 'Prijs', amount: 'Bedrag', subtotal: 'Subtotaal', total: 'Totaal', notes: 'Opmerkingen', clientTaxId: 'Btw-id: ' },
-    'nl-en': { title: 'FACTUUR / INVOICE', billTo: 'Factuur aan / Bill to', issue: 'Factuurdatum / Date', due: 'Vervaldatum / Due', supply: 'Leverdatum / Supply date', desc: 'Omschrijving / Description', qty: 'Aantal', rate: 'Prijs', amount: 'Bedrag', subtotal: 'Subtotaal / Subtotal', total: 'Totaal / Total', notes: 'Opmerkingen / Notes', clientTaxId: 'Btw-id / VAT ID: ' }
+    'nl-en': { title: 'FACTUUR / INVOICE', billTo: 'Factuur aan / Bill to', issue: 'Factuurdatum / Date', due: 'Vervaldatum / Due', supply: 'Leverdatum / Supply date', desc: 'Omschrijving / Description', qty: 'Aantal', rate: 'Prijs', amount: 'Bedrag', subtotal: 'Subtotaal / Subtotal', total: 'Totaal / Total', notes: 'Opmerkingen / Notes', clientTaxId: 'Btw-id / VAT ID: ' },
+    de: { title: 'RECHNUNG', billTo: 'Rechnung an', issue: 'Rechnungsdatum', due: 'Zahlbar bis', supply: 'Leistungsdatum', desc: 'Beschreibung', qty: 'Menge', rate: 'Einzelpreis', amount: 'Betrag', subtotal: 'Nettobetrag', total: 'Gesamtbetrag', notes: 'Hinweise', clientTaxId: 'USt-IdNr.: ' },
+    'de-en': { title: 'RECHNUNG / INVOICE', billTo: 'Rechnung an / Bill to', issue: 'Rechnungsdatum / Date', due: 'Zahlbar bis / Due', supply: 'Leistungsdatum / Supply date', desc: 'Beschreibung / Description', qty: 'Menge', rate: 'Einzelpreis', amount: 'Betrag', subtotal: 'Nettobetrag / Net total', total: 'Gesamtbetrag / Total', notes: 'Hinweise / Notes', clientTaxId: 'USt-IdNr. / VAT ID: ' },
+    'en-tax': { title: 'TAX INVOICE', billTo: 'Bill to', issue: 'Invoice date', due: 'Due date', supply: 'Service date', desc: 'Description', qty: 'Qty', rate: 'Price excl. GST', amount: 'Amount', subtotal: 'Subtotal excl. GST', total: 'Total incl. GST', notes: 'Notes', clientTaxId: 'NZBN: ' }
   };
+  // English number format (1,234.56) for both English variants; German and Dutch use 1.234,56.
+  function isEn(lg) { return lg === 'en' || lg === 'en-tax'; }
   var color = '#2563eb';
   var logoData = '';
   var isPro = !!C.isPro;
@@ -25,11 +30,11 @@
   function money(n) {
     var lg = lang(), s = SYM[cur()] || cur() + ' ';
     var parts = Math.abs(n).toFixed(2).split('.');
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, lg === 'en' ? ',' : '.');
-    var body = parts[0] + (lg === 'en' ? '.' : ',') + parts[1];
-    return (n < 0 ? '-' : '') + s + (lg !== 'en' && s.slice(-1) !== ' ' ? ' ' : '') + body;
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, isEn(lg) ? ',' : '.');
+    var body = parts[0] + (isEn(lg) ? '.' : ',') + parts[1];
+    return (n < 0 ? '-' : '') + s + (!isEn(lg) && s.slice(-1) !== ' ' ? ' ' : '') + body;
   }
-  function rateText(r) { var s = String(Math.round(r * 1000) / 1000); return lang() === 'en' ? s : s.replace('.', ','); }
+  function rateText(r) { var s = String(Math.round(r * 1000) / 1000); return isEn(lang()) ? s : s.replace('.', ','); }
   function num(v) { var n = parseFloat(v); return isFinite(n) ? n : 0; }
 
   // ---- line items ----
@@ -97,7 +102,7 @@
     var logo = d.logo ? '<img src="' + d.logo + '" alt="" style="display:block;max-height:44px;max-width:140px;margin-bottom:10px">' : '';
     var foot = d.isPro ? '' : '<div style="margin-top:26px;text-align:center;font-size:10px;color:#94a3b8">Created with GetInvoiceMaker.com</div>';
     return '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:Helvetica,Arial,sans-serif;color:#0f172a;margin:0;padding:22px;font-size:12px}*{box-sizing:border-box}</style></head><body>' +
-      '<div style="display:flex;justify-content:space-between;gap:16px;margin-bottom:22px"><div>' + logo + '<div style="font-size:' + (d.lang === 'nl-en' ? 19 : 24) + 'px;font-weight:700;color:' + d.color + '">' + l.title + '</div><div style="color:#94a3b8;font-size:11px;margin-top:2px">#' + esc(d.invoiceNumber) + '</div></div>' +
+      '<div style="display:flex;justify-content:space-between;gap:16px;margin-bottom:22px"><div>' + logo + '<div style="font-size:' + (d.lang === 'nl-en' || d.lang === 'de-en' ? 19 : 24) + 'px;font-weight:700;color:' + d.color + '">' + l.title + '</div><div style="color:#94a3b8;font-size:11px;margin-top:2px">#' + esc(d.invoiceNumber) + '</div></div>' +
       '<div style="text-align:right;font-size:11px;color:#64748b;line-height:1.45"><div style="font-weight:700;font-size:13px;color:#0f172a">' + (esc(d.senderName) || 'Your business') + '</div>' + esc(d.senderEmail) + '<div style="white-space:pre-line">' + esc(d.senderAddress) + '</div>' + (d.senderTaxId ? '<div>' + esc(d.senderTaxId) + '</div>' : '') + '</div></div>' +
       '<div style="display:flex;justify-content:space-between;gap:16px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid ' + d.color + '"><div style="font-size:11px;color:#64748b;line-height:1.45"><div style="' + small + '">' + esc(l.billTo) + '</div><div style="font-weight:600;font-size:13px;color:#0f172a">' + (esc(d.clientName) || 'Client name') + '</div>' + esc(d.clientEmail) + '<div style="white-space:pre-line">' + esc(d.clientAddress) + '</div>' + (d.clientTaxId ? '<div>' + esc(l.clientTaxId + d.clientTaxId) + '</div>' : '') + '</div><div style="text-align:right">' + meta + '</div></div>' +
       '<table style="width:100%;border-collapse:collapse;margin-bottom:14px"><thead><tr style="background:' + d.color + ';color:#fff"><th style="padding:7px 6px;text-align:left;font-size:9px;letter-spacing:.4px">' + esc(l.desc.toUpperCase()) + '</th><th style="padding:7px 6px;text-align:center;font-size:9px">' + esc(l.qty.toUpperCase()) + '</th><th style="padding:7px 6px;text-align:right;font-size:9px">' + esc(l.rate.toUpperCase()) + '</th><th style="padding:7px 6px;text-align:right;font-size:9px">' + esc(l.amount.toUpperCase()) + '</th></tr></thead><tbody>' + rows + '</tbody></table>' +

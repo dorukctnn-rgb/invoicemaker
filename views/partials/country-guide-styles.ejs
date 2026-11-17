@@ -1,0 +1,33 @@
+<style>
+/* Shared by the German and New Zealand pages: the worked example invoice and the copy-this-wording boxes. */
+.inv{background:#fff;border:1px solid #cbd5e1;border-radius:10px;padding:24px;font-size:13.5px;margin:14px 0 6px;color:var(--ink)}
+.inv .top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;border-bottom:2px solid var(--ac);padding-bottom:14px;margin-bottom:16px}
+.inv .ttl{font-size:24px;font-weight:700;color:var(--ac);letter-spacing:.5px;line-height:1.15}
+.inv .k{color:#64748b;font-size:10.5px;text-transform:uppercase;letter-spacing:.5px}
+.inv .who{text-align:right;line-height:1.55}
+.inv .who .mut{color:#64748b}
+.inv .row2{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.inv .meta{display:grid;grid-template-columns:auto auto;gap:2px 14px;justify-content:end;text-align:right}
+.inv .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0}
+.inv table{width:100%;border-collapse:collapse}
+.inv th{background:#f1f5f9;text-align:left;padding:8px;font-size:10.5px;text-transform:uppercase;letter-spacing:.4px;color:#475569}
+.inv td{padding:8px;border-bottom:1px solid #f1f5f9;vertical-align:top}
+.inv .r{text-align:right;white-space:nowrap}
+.inv th.r{white-space:normal}
+.inv .sum{display:flex;justify-content:flex-end}
+.inv .sum > div{min-width:270px}
+.inv .sl{display:flex;justify-content:space-between;gap:16px;padding:4px 0}
+.inv .sl .mut{color:#64748b}
+.inv .sl.tot{padding:9px 0 0;margin-top:6px;border-top:2px solid var(--ac);font-size:16px;font-weight:700;color:var(--ac)}
+.inv .foot{margin-top:16px;padding-top:12px;border-top:1px solid #e2e8f0;color:#64748b;font-size:12.5px;line-height:1.6}
+.inv sup{display:inline-flex;align-items:center;justify-content:center;min-width:17px;height:17px;border-radius:50%;background:var(--ac);color:#fff;font-size:10px;font-weight:700;margin-left:3px;vertical-align:2px}
+.copy{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;background:#fff;border:1px solid var(--line);border-left:4px solid var(--ac);border-radius:8px;padding:12px 14px;margin:10px 0}
+.copy > div{flex:1;min-width:0}
+.copy small{display:block;color:var(--muted);font-size:12.5px;margin-bottom:3px}
+.copy .txt{display:block;font-size:15px;line-height:1.55;color:var(--ink);overflow-wrap:anywhere}
+.copy .en{display:block;font-size:13.5px;color:var(--muted);margin-top:3px}
+.copy button{flex:none;border:1px solid var(--line);background:#fff;border-radius:6px;padding:6px 11px;font:600 12.5px/1.2 inherit;color:var(--ink);cursor:pointer}
+.copy button:hover{border-color:var(--ac);color:var(--ac)}
+.pager{margin:8px 0 0;font-size:14px}
+@media(max-width:700px){.inv{padding:16px}.inv .meta,.inv .who{justify-content:start;text-align:left}.inv .sum > div{min-width:0;width:100%}.copy{flex-direction:column}.inv th,.inv td{padding:7px 5px}}
+</style>

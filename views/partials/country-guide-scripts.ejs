@@ -1,0 +1,20 @@
+<script>
+(function(){
+  // "Copy" buttons next to the wording boxes. Without clipboard access the text is selected so Ctrl+C works.
+  document.querySelectorAll('.copy button').forEach(function(b){
+    b.addEventListener('click', function(){
+      var box = b.parentNode.querySelector('.txt');
+      if (!box) return;
+      var text = box.textContent.trim();
+      var done = function(){ var old = b.textContent; b.textContent = 'Copied'; setTimeout(function(){ b.textContent = old; }, 1600); };
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, function(){ select(box); }); return; }
+      } catch (e) {}
+      select(box);
+    });
+  });
+  function select(el){
+    try { var r = document.createRange(); r.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); } catch (e) {}
+  }
+})();
+</script>

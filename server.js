@@ -42,8 +42,12 @@ const COUNTRIES = [
     desc: 'Free Canadian invoice generator in CAD. Pick the province and the GST, HST, PST or QST lines fill in at current rates. Download a PDF. No signup.',
     intro: 'Choose your client\'s province and the invoice gets the right tax lines: one HST line, GST only, or GST plus PST/RST/QST on separate lines.' },
   { slug: 'australia', label: 'Australia', fullName: 'Australia', currency: 'AUD', tax: 'GST', taxRate: 10 },
-  { slug: 'netherlands', label: 'Netherlands', fullName: 'Netherlands', currency: 'EUR', tax: 'BTW', taxRate: 21 }
+  { slug: 'netherlands', label: 'Netherlands', fullName: 'Netherlands', currency: 'EUR', tax: 'BTW', taxRate: 21 },
+  { slug: 'germany', label: 'Germany', fullName: 'Germany', currency: 'EUR', tax: 'USt', taxRate: 19 },
+  { slug: 'new-zealand', label: 'New Zealand', fullName: 'New Zealand', currency: 'NZD', tax: 'GST', taxRate: 15 }
 ];
+// Countries with their own view and route (not views/country.ejs). Their routes and sitemap entries are written out below.
+const OWN_PAGE_COUNTRIES = ['netherlands', 'uk', 'australia', 'germany', 'new-zealand'];
 const COUNTRY_SOURCES = {
   uk: { name: 'GOV.UK: VAT rates', url: 'https://www.gov.uk/vat-rates' }
 };
@@ -78,6 +82,29 @@ const NL_GEN = genConfig({
   senderPlaceholder: 'De Vries Design', addressPlaceholder: 'Keizersgracht 112, 1015 CV Amsterdam', clientPlaceholder: 'Bloem & Co B.V.',
   notesPlaceholder: 'Betaling binnen 30 dagen op IBAN NL00 BANK 0123 4567 89 o.v.v. het factuurnummer.'
 });
+// German invoice (17 Nov 2026): EUR, Umsatzsteuer 19%, German and English labels (lang 'de-en').
+const DE_GEN = genConfig({
+  key: 'germany', currency: 'EUR', lang: 'de-en', taxes: [{ label: 'Umsatzsteuer / VAT', rate: 19 }], invoicePrefix: '2026-',
+  langs: [['de-en', 'Deutsch + English'], ['de', 'Deutsch'], ['en', 'English']],
+  items: [{ desc: 'Beratung: Analyse der Lagerprozesse, Stunden', qty: 12, rate: 95 }, { desc: 'Workshop vor Ort, ganztägig', qty: 1, rate: 480 }],
+  itemPlaceholder: 'Beschreibung / description',
+  senderIdLabel: 'Steuernummer or USt-IdNr.', senderIdRequired: true, senderIdPlaceholder: 'Steuernr. 00/000/00000 or USt-IdNr. DE000000000',
+  supplyDateLabel: 'Leistungsdatum / date of supply', supplyDateRequired: true,
+  clientIdLabel: 'Client USt-IdNr. (for business clients in other EU countries)', clientIdPlaceholder: 'e.g. DE000000000 or ATU00000000',
+  senderPlaceholder: 'Lindner Beratung', addressPlaceholder: 'Beispielstraße 12, 20095 Hamburg', clientPlaceholder: 'Muster Logistik GmbH',
+  notesPlaceholder: 'Zahlbar innerhalb von 14 Tagen auf IBAN DE00 0000 0000 0000 0000 00 unter Angabe der Rechnungsnummer.'
+});
+// New Zealand GST tax invoice (17 Nov 2026): NZD, GST 15%, the heading TAX INVOICE (lang 'en-tax').
+const NZ_GEN = genConfig({
+  key: 'new-zealand', currency: 'NZD', lang: 'en-tax', taxes: [{ label: 'GST', rate: 15 }], invoicePrefix: 'INV-',
+  langs: [['en-tax', 'English, headed TAX INVOICE'], ['en', 'English, headed INVOICE']],
+  items: [{ desc: 'Brand identity design: logo and style guide (fixed fee)', qty: 1, rate: 2400 }, { desc: 'Website design, hours', qty: 20, rate: 95 }],
+  itemPlaceholder: 'Service or product description',
+  senderIdLabel: 'GST number (needed on a tax invoice over $200)', senderIdRequired: true, senderIdPlaceholder: 'Your GST number (may be your IRD number)',
+  clientIdLabel: 'Client NZBN', clientIdPlaceholder: 'Over $1,000, the client\'s name and address are enough',
+  senderPlaceholder: 'Hinemoa Design Ltd', addressPlaceholder: '14 Example Street, Ponsonby, Auckland 1011', clientPlaceholder: 'Kauri Coffee Roasters Ltd',
+  notesPlaceholder: 'Payment within 14 days by bank transfer to 00-0000-0000000-00, quoting the invoice number. All amounts in NZD.'
+});
 function industryGen(ind) {
   return genConfig({ key: 'industry-' + ind.slug, items: ind.items, itemPlaceholder: ind.itemPlaceholder, notesPlaceholder: ind.notes || GEN_DEFAULT.notesPlaceholder });
 }
@@ -101,10 +128,10 @@ async function withPro(req, res, next) {
 const BLOG_POSTS = [
   { slug: 'how-to-write-a-professional-invoice', title: 'How to Write a Professional Invoice: Checklist, Example and Tips', desc: 'The ten things every invoice needs, a worked example, the mistakes that delay payment and five habits that get invoices paid on time.', date: '2026-01-15', updated: '2026-10-09', readTime: '6 min read', category: 'Guide', content: '' },
   { slug: 'invoice-payment-terms-guide', title: 'Invoice Payment Terms: Net 30, Due on Receipt and UK/EU Law', desc: 'What each payment term means (net 14, net 30, due on receipt), what to write on the invoice, the UK and EU legal defaults and early-payment discounts.', date: '2026-01-22', updated: '2026-10-09', readTime: '6 min read', category: 'Guide', content: '' },
-  { slug: 'what-is-vat-invoice', title: 'What Is a VAT Invoice? UK Requirements, Example and Time Limits', desc: 'A VAT invoice is what a VAT-registered business gives a VAT-registered customer: the HMRC details, an example, simplified invoices (£250) and the 30-day rule.', date: '2026-01-29', updated: '2026-10-09', readTime: '6 min read', category: 'Tax', content: '' },
+  { slug: 'what-is-vat-invoice', title: 'What Is a VAT Invoice? UK Requirements, Example and Time Limits', desc: 'A VAT invoice is what a VAT-registered business gives a VAT-registered customer: the HMRC details, an example, simplified invoices (£250) and the 30-day rule.', date: '2026-01-29', updated: '2026-11-17', readTime: '6 min read', category: 'Tax', content: '' },
   { slug: 'invoice-vs-receipt', title: 'Invoice vs Receipt: Differences, Examples and When You Need Each', desc: 'An invoice asks for payment; a receipt proves it was made. One sale shown as both, when a paid invoice is the receipt, and how long to keep them.', date: '2026-02-12', updated: '2026-10-09', readTime: '5 min read', category: 'Guide', content: '' },
-  { slug: 'invoice-number-format', title: 'Invoice Number Format: Rules by Country and Examples', desc: 'How to number invoices: what the UK, EU, Canada, Australia, UAE and India require, formats that work, new-year restarts and cancelled invoices.', date: '2026-03-05', updated: '2026-11-10', readTime: '5 min read', category: 'Guide', content: '' },
-  { slug: 'how-to-invoice-international-clients', title: 'How to Invoice International Clients: Tax Wording by Country', desc: 'Invoicing a client abroad: the tax line by country (UK, EU, Canada, Australia) with official sources, plus currency, bank charges and a sample invoice.', date: '2026-03-12', updated: '2026-10-09', readTime: '8 min read', category: 'Guide', content: '' },
+  { slug: 'invoice-number-format', title: 'Invoice Number Format: Rules by Country and Examples', desc: 'How to number invoices: what the UK, EU, Canada, Australia, UAE and India require, formats that work, new-year restarts and cancelled invoices.', date: '2026-03-05', updated: '2026-11-17', readTime: '5 min read', category: 'Guide', content: '' },
+  { slug: 'how-to-invoice-international-clients', title: 'How to Invoice International Clients: Tax Wording by Country', desc: 'Invoicing a client abroad: the tax line by country (UK, EU, Canada, Australia) with official sources, plus currency, bank charges and a sample invoice.', date: '2026-03-12', updated: '2026-11-17', readTime: '8 min read', category: 'Guide', content: '' },
 ];
 
 // Templated pages retired on 8 Oct 2026. Each repeated one layout with a different job title or
@@ -132,10 +159,10 @@ const RETIRED_PAGES = {
   '/invoice-template-landscaper': '/',
   '/invoice-template-restaurant': '/',
   '/free-invoice-generator-usa': '/',
-  '/free-invoice-generator-germany': '/?currency=EUR',
   '/free-invoice-generator-france': '/?currency=EUR',
   // '/free-invoice-generator-uae' came back on 17 Oct 2026 as its own page (UAE tax invoice rules and generator), see below.
   // '/free-invoice-generator-india' came back on 10 Nov 2026 as its own page (GST tax invoice rules and generator), see below.
+  // '/free-invoice-generator-germany' came back on 17 Nov 2026 as its own page (German invoice rules, template and generator), see below.
   '/free-invoice-generator-singapore': '/?currency=SGD'
 };
 Object.entries(RETIRED_PAGES).forEach(([from, to]) => {
@@ -164,10 +191,10 @@ const HOWTO_REDIRECTS = {
 Object.entries(HOWTO_REDIRECTS).forEach(([from, to]) => app.get(from, (req, res) => res.redirect(301, to)));
 
 const HOW_TO_PAGES = [
-  { slug: 'how-to-invoice-as-a-freelancer', title: 'How to Invoice as a Freelancer (No Company Needed)', desc: 'You can invoice under your own name. What goes on a freelance invoice, when a tax number is needed in five countries, and the steps to getting paid.', updated: '2026-10-09' },
+  { slug: 'how-to-invoice-as-a-freelancer', title: 'How to Invoice as a Freelancer (No Company Needed)', desc: 'You can invoice under your own name. What goes on a freelance invoice, when a tax number is needed in five countries, and the steps to getting paid.', updated: '2026-11-17' },
   { slug: 'how-to-make-an-invoice-in-word', title: 'How to Make an Invoice in Word (Template, Formulas and PDF)', desc: 'Make an invoice in Word: start from a template, build the line-item table, total it with =SUM(ABOVE) and F9, save as PDF, and avoid common mistakes.', updated: '2026-10-09' },
   { slug: 'how-to-send-an-invoice', title: 'How to Send an Invoice by Email (Templates and Subject Lines)', desc: 'Send an invoice so it gets paid: the PDF, the right recipient, subject lines, nine email templates from first invoice to final reminder, and supplier portals.', updated: '2026-10-09' },
-  { slug: 'how-to-calculate-vat-on-invoice', title: 'How to Calculate VAT on an Invoice (Calculator and Rounding)', desc: 'Add VAT to a price or take it out of a total, line by line or on the invoice total, with HMRC rounding rules, mixed rates, discounts and a calculator.', updated: '2026-11-10' },
+  { slug: 'how-to-calculate-vat-on-invoice', title: 'How to Calculate VAT on an Invoice (Calculator and Rounding)', desc: 'Add VAT to a price or take it out of a total, line by line or on the invoice total, with HMRC rounding rules, mixed rates, discounts and a calculator.', updated: '2026-11-17' },
   { slug: 'how-to-write-invoice-for-cash-payment', title: 'How to Write an Invoice for Cash Payment (Paid in Cash Wording)', desc: 'Invoice a cash job properly: paid-in-cash wording, an example, the records UK and US tax authorities expect, and the US Form 8300 for cash over $10,000.', updated: '2026-10-09' },
   { slug: 'how-to-charge-late-payment-fee', title: 'How to Charge a Late Payment Fee (Wording and Legal Limits)', desc: 'Charge late fees that hold up: the clause, the invoice line, how to work out the charge, and the rules for business customers in the UK, EU, Canada and US.', updated: '2026-10-09' }
 ];
@@ -256,6 +283,11 @@ app.get('/free-invoice-generator-india', withPro, (req, res) => {
 });
 app.get('/free-invoice-generator-australia', (req, res) => res.render('australia-gst-guide'));
 
+// Germany (17 Nov 2026, back from the 8 Oct retirement) and New Zealand (new): each its own page with the country's rules from the
+// tax authority's pages, a worked example, copyable wording, a template download and a generator preset. Not currency copies.
+app.get('/free-invoice-generator-germany', withPro, (req, res) => res.render('germany-rechnung-guide', { gen: DE_GEN }));
+app.get('/free-invoice-generator-new-zealand', withPro, (req, res) => res.render('nz-gst-tax-invoice', { gen: NZ_GEN }));
+
 PROVINCES.forEach(prov => {
   app.get('/' + prov.slug, (req, res) => res.render('province-guide', { province: prov, provinces: PROVINCES }));
 });
@@ -267,7 +299,7 @@ INDUSTRIES.forEach(ind => {
 });
 
 COUNTRIES.forEach(c => {
-  if (c.slug === 'netherlands' || c.slug === 'uk' || c.slug === 'australia') return;
+  if (OWN_PAGE_COUNTRIES.includes(c.slug)) return;
   app.get('/free-invoice-generator-' + c.slug, withPro, (req, res) => {
     res.render('country', { countries: COUNTRIES, country: c, gen: countryGen(c), ratesChecked: COUNTRY_RATES_CHECKED, provinces: PROVINCES });
   });
@@ -381,21 +413,23 @@ function sitemapEntries() {
   const urls = [
     { loc: '/', lastmod: PAGES_UPDATED },
     { loc: '/how-to-calculate-gst-on-canadian-invoices', lastmod: PAGES_UPDATED },
-    { loc: '/free-invoice-generator-netherlands', lastmod: PAGES_UPDATED },
+    { loc: '/free-invoice-generator-netherlands', lastmod: '2026-11-17' },
     { loc: '/blog', lastmod: CONTENT_UPDATED },
     { loc: '/late-payment-interest-calculator', lastmod: LatePay.CHECKED },
     { loc: '/rent-receipt-generator', lastmod: '2026-11-10' },
-    { loc: '/free-invoice-generator-uk', lastmod: CONTENT_UPDATED },
-    { loc: '/free-invoice-generator-australia', lastmod: CONTENT_UPDATED },
+    { loc: '/free-invoice-generator-uk', lastmod: '2026-11-17' },
+    { loc: '/free-invoice-generator-australia', lastmod: '2026-11-17' },
     { loc: '/free-invoice-generator-uae', lastmod: '2026-11-10' },
     { loc: '/free-invoice-generator-india', lastmod: '2026-11-10' },
+    { loc: '/free-invoice-generator-germany', lastmod: '2026-11-17' },
+    { loc: '/free-invoice-generator-new-zealand', lastmod: '2026-11-17' },
     { loc: '/privacy', lastmod: LEGAL_UPDATED },
     { loc: '/terms', lastmod: LEGAL_UPDATED },
     { loc: '/refund', lastmod: LEGAL_UPDATED }
   ];
   INDUSTRIES.forEach(i => urls.push({ loc: '/invoice-template-' + i.slug, lastmod: PAGES_UPDATED }));
   COUNTRIES.forEach(c => {
-    if (['netherlands', 'uk', 'australia'].includes(c.slug)) return;
+    if (OWN_PAGE_COUNTRIES.includes(c.slug)) return;
     urls.push({ loc: '/free-invoice-generator-' + c.slug, lastmod: PAGES_UPDATED });
   });
   PROVINCES.forEach(p => urls.push({ loc: '/' + p.slug, lastmod: p.checkedIso || PAGES_UPDATED }));
