@@ -39,7 +39,7 @@
   <ul>
     <li>Pro costs $9 (US dollars) a month. It is a subscription that renews every month until you cancel.</li>
     <li>Pro removes the "Created with GetInvoiceMaker.com" line from invoice PDFs and rent receipts, adds your logo to your invoice PDFs and includes email support.</li>
-    <li>After you buy, you receive a license key by email. Enter it on the <a href="/activate">Activate Pro</a> page to turn Pro on, and repeat on any other device you use. Please keep the key to yourself and your business, and do not post it publicly.</li>
+    <% if (locals.paddleCheckout) { %><li>After you pay, Pro turns on in your browser, and we e-mail you a Pro link that turns it on in your other browsers. Please keep the link to yourself and your business, and do not post it publicly. If you bought Pro on Gumroad, enter the license key from your Gumroad receipt on the <a href="/activate">Activate Pro</a> page instead.</li><% } else { %><li>After you buy, you receive a license key by email. Enter it on the <a href="/activate">Activate Pro</a> page to turn Pro on, and repeat on any other device you use. Please keep the key to yourself and your business, and do not post it publicly.</li><% } %>
     <li>Our order process is conducted by our online resellers Paddle.com and Gumroad. They are the Merchant of Record for all our orders, handle payment, sales tax/VAT and refunds, and their own terms also apply to your purchase.</li>
   </ul>
 

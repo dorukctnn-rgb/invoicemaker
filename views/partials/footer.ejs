@@ -38,4 +38,5 @@
     </div>
   </div>
   <div class="bottom">Built by Peak Apps Studio, which also makes <a href="https://peakappsstudio.com/tools/" rel="noopener">free browser tools</a> for Etsy sellers, self-publishers and makers.<br>&copy; 2026 GetInvoiceMaker. Tax figures are checked against official sources on the date shown on each page; they are general information, not tax advice.</div>
-</footer>
+</footer><% if (locals.paddleCheckout) { %>
+<script src="/gim-pay.js?v=20261117" data-pro="<%= locals.isPro ? 1 : 0 %>" defer></script><% } %>

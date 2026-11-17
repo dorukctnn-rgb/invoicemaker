@@ -29,8 +29,8 @@
   '@graph': [
     { '@type': 'WebApplication', name: 'GetInvoiceMaker', url: 'https://getinvoicemaker.com/', applicationCategory: 'BusinessApplication', operatingSystem: 'Any (web browser)',
       description: 'Free online invoice generator. Fill in a form, see a live preview and download a PDF invoice without signing up.',
-      offers: checkout.available
-        ? [ { '@type': 'Offer', name: 'Free', price: '0', priceCurrency: 'USD' }, { '@type': 'Offer', name: 'Pro', price: proPrice.amount, priceCurrency: proPrice.currency, url: checkout.url } ]
+      offers: (checkout.available || locals.paddleCheckout)
+        ? [ { '@type': 'Offer', name: 'Free', price: '0', priceCurrency: 'USD' }, { '@type': 'Offer', name: 'Pro', price: proPrice.amount, priceCurrency: proPrice.currency, url: locals.paddleCheckout ? siteUrl + '/#pricing' : checkout.url } ]
         : { '@type': 'Offer', name: 'Free', price: '0', priceCurrency: 'USD' } },
     { '@type': 'FAQPage', mainEntity: faqs.map(function (f) { return { '@type': 'Question', name: f[0], acceptedAnswer: { '@type': 'Answer', text: f[1] } }; }) }
   ]
@@ -108,9 +108,9 @@
       </ul>
       <% if (isPro) { %>
         <a class="btn" href="#gen">Pro is active in this browser</a>
-      <% } else if (checkout.available) { %>
-        <a class="btn" href="<%= checkout.url %>" rel="noopener">Get Pro: <%= proPrice.label %></a>
-        <p class="muted">Billed monthly, cancel anytime. Our order process is conducted by our online resellers Paddle.com and Gumroad, the Merchant of Record: they handle payment, tax and refunds. After paying, paste the license key from your receipt on the <a href="/activate">activation page</a>. See the <a href="/refund">refund policy</a> and the <a href="/terms">terms</a>.</p>
+      <% } else if (checkout.available || locals.paddleCheckout) { %>
+        <a class="btn" href="<%= checkout.url %>" rel="noopener"<% if (locals.paddleCheckout) { %> data-buy-pro<% } %>>Get Pro: <%= proPrice.label %></a>
+        <% if (locals.paddleCheckout) { %><p class="muted">Billed monthly, cancel anytime. Paddle.com is the seller of record, the Merchant of Record: it handles payment, tax and refunds. Pro turns on in this browser right after you pay, and we e-mail you a link that turns it on in your other browsers. See the <a href="/refund">refund policy</a> and the <a href="/terms">terms</a>.</p><% } else { %><p class="muted">Billed monthly, cancel anytime. Our order process is conducted by our online resellers Paddle.com and Gumroad, the Merchant of Record: they handle payment, tax and refunds. After paying, paste the license key from your receipt on the <a href="/activate">activation page</a>. See the <a href="/refund">refund policy</a> and the <a href="/terms">terms</a>.</p><% } %>
       <% } else { %>
         <p class="muted">Pro checkout is paused while we update it. The free generator is not affected. Already a customer? <a href="/activate">Activate with your license key</a>.</p>
       <% } %>
