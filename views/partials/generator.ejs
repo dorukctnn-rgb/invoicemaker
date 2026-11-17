@@ -40,9 +40,7 @@
       <div class="g-f"><label for="supplyDate">Service / supply date <span class="opt">(optional)</span></label><input type="text" id="supplyDate" placeholder="e.g. 1–31 March 2026"></div>
       <div class="g-f"><label for="lang">Invoice language</label>
         <select id="lang">
-          <option value="en"<%= g.lang === 'en' ? ' selected' : '' %>>English</option>
-          <option value="nl"<%= g.lang === 'nl' ? ' selected' : '' %>>Nederlands</option>
-          <option value="nl-en"<%= g.lang === 'nl-en' ? ' selected' : '' %>>Nederlands + English</option>
+          <% (g.langs || [['en', 'English'], ['nl', 'Nederlands'], ['nl-en', 'Nederlands + English']]).forEach(function(l){ %><option value="<%= l[0] %>"<%= g.lang === l[0] ? ' selected' : '' %>><%= l[1] %></option><% }) %>
         </select>
       </div>
     </div>
@@ -102,4 +100,4 @@
 </div>
 <script>window.GEN_CONFIG=<%- JSON.stringify({ items: g.items, isPro: !!isPro, provinces: g.provinces ? g.provinces.map(function(p){ return { code: p.code, taxes: p.taxes }; }) : null, itemPlaceholder: g.itemPlaceholder, invoicePrefix: g.invoicePrefix, key: g.key }).replace(/</g, '\\u003c') %>;</script>
 <script src="/js/prefill.js?v=1" defer></script>
-<script src="/js/generator.js?v=4" defer></script>
+<script src="/js/generator.js?v=5" defer></script>

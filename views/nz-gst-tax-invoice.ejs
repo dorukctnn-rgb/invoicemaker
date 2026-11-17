@@ -1,0 +1,229 @@
+<%
+  var pageUrl = siteUrl + '/free-invoice-generator-new-zealand';
+  var checked = '17 November 2026';
+  var IRD = {
+    works: 'https://www.ird.govt.nz/gst/tax-invoices-for-gst/how-tax-invoices-for-gst-work',
+    tsi: 'https://www.ird.govt.nz/gst/tax-invoices-for-gst',
+    guide: 'https://www.ird.govt.nz/-/media/project/ir/home/documents/forms-and-guides/ir300---ir399/ir375/ir375.pdf?modified=20260331214047',
+    register: 'https://www.ird.govt.nz/gst/registering-for-gst',
+    calc: 'https://www.ird.govt.nz/gst/filing-and-paying-gst-and-refunds/calculating-gst',
+    charging: 'https://www.ird.govt.nz/gst/charging-gst',
+    zero: 'https://www.ird.govt.nz/gst/charging-gst/zero-rated-supplies',
+    correction: 'https://www.ird.govt.nz/gst/tax-invoices-for-gst/supply-correction-information',
+    records: 'https://www.ird.govt.nz/managing-my-tax/record-keeping'
+  };
+  var faqs = [
+    ['What must a New Zealand tax invoice show?', 'It depends on the amount. For $200 or less: the seller\'s name or trade name, the date, a description and the price. Over $200 and up to $1,000: also the seller\'s GST number, and either the GST-exclusive amount, the GST amount and the GST-inclusive amount, or the GST-inclusive amount with a statement that GST is included. Over $1,000: the same, and for a GST-registered buyer the buyer\'s name and one or more of its address, phone number, email address, trading name, NZBN or website (Inland Revenue).'],
+    ['Is it still called a tax invoice in New Zealand?', 'Since 1 April 2023 the law asks you to provide and keep "taxable supply information" instead of a tax invoice. Inland Revenue says you do not need to change the wording of your GST documents, and you may keep giving taxable supply information in one document marked "tax invoice".'],
+    ['What is the GST rate and how do I work it out?', 'The rate is 15%. To add GST, multiply the price by 0.15: $100 becomes $115. To take GST out of a price that includes it, multiply the total by 3 and divide by 23: $115 gives $15 of GST and $100 before GST.'],
+    ['Do I have to put my client\'s details on the invoice?', 'Only over $1,000, and only when the buyer is GST registered. Then you show the buyer\'s name and one or more identifiers, such as an address, phone number, email address, trading name, NZBN or website. Up to $1,000 the buyer\'s details are not required.'],
+    ['When do I have to register for GST?', 'When you carry out a taxable activity and your turnover was at least $60,000 in the last 12 months, or you expect it to be in the next 12 months. You must also register if you add GST to your prices. Below $60,000 you can register voluntarily. Only a registered business charges GST.'],
+    ['Do I charge GST to a client overseas?', 'Often no. Services supplied to a non-resident outside New Zealand when you perform them, and goods you export, can be zero-rated, which means GST at 0%. Services performed outside New Zealand are zero-rated too. The details and the proof you need are on Inland Revenue\'s zero-rated supplies page.'],
+    ['Can I invoice in US dollars?', 'Inland Revenue\'s GST guide says amounts of money in taxable supply information must be expressed in New Zealand currency. So write the amounts in NZD.'],
+    ['How soon must I send it, and how long do I keep it?', 'For a supply over $200 to a GST-registered buyer, within 28 days of a request, or by a date you agree. Keep your records, including taxable supply information, for at least 7 tax years, in English or Māori unless Inland Revenue approves another language.']
+  ];
+%><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>New Zealand Invoice Template: Free GST Tax Invoice (NZD)</title>
+<meta name="description" content="Free New Zealand invoice template with GST at 15%. Fill in a tax invoice online or download Word, Excel or PDF. What IRD says it must show at each amount.">
+<link rel="canonical" href="<%= pageUrl %>">
+<link rel="alternate" hreflang="en" href="<%= pageUrl %>">
+<meta property="og:type" content="website">
+<meta property="og:title" content="New Zealand Invoice Template: GST Tax Invoice in NZD">
+<meta property="og:description" content="A New Zealand tax invoice with GST at 15%: fill it in online or download it as Word, Excel or PDF.">
+<meta property="og:url" content="<%= pageUrl %>">
+<%- include('partials/site-head') %>
+<script type="application/ld+json">
+<%- JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Article', headline: 'New Zealand invoice template: the GST tax invoice rules and a ready NZD invoice', url: pageUrl, mainEntityOfPage: pageUrl,
+      description: 'What a New Zealand GST tax invoice must show at each amount level according to Inland Revenue, GST at 15%, registration, zero-rated exports, corrections, and a free template in NZD.',
+      datePublished: '2026-11-17', dateModified: '2026-11-17', inLanguage: 'en',
+      author: { '@type': 'Organization', name: 'GetInvoiceMaker', url: siteUrl + '/' }, publisher: { '@type': 'Organization', name: 'GetInvoiceMaker', url: siteUrl + '/' },
+      citation: [IRD.works, IRD.tsi, IRD.guide, IRD.register, IRD.calc, IRD.zero, IRD.correction, IRD.records] },
+    { '@type': 'WebApplication', name: 'New Zealand tax invoice generator', url: pageUrl + '#gen', applicationCategory: 'BusinessApplication', operatingSystem: 'Any (web browser)', offers: { '@type': 'Offer', price: '0', priceCurrency: 'NZD' } },
+    { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl + '/' },
+      { '@type': 'ListItem', position: 2, name: 'New Zealand invoice template', item: pageUrl } ] },
+    { '@type': 'FAQPage', mainEntity: faqs.map(function (f) { return { '@type': 'Question', name: f[0], acceptedAnswer: { '@type': 'Answer', text: f[1] } }; }) }
+  ]
+}).replace(/</g, '\\u003c') %>
+</script>
+<style>:root{--ac:#0e7490}</style>
+<%- include('partials/country-guide-styles') %>
+</head>
+<body>
+<%- include('partials/nav') %>
+<div class="crumbs"><a href="/">Home</a> › <a href="/#templates">By country</a> › New Zealand</div>
+
+<section class="page-hero">
+  <div class="in">
+    <h1>New Zealand Tax Invoice Template: GST at 15%</h1>
+    <p class="lede">A free New Zealand invoice template in NZD. Fill in a GST tax invoice below and download a PDF, or get the Word, Excel or PDF file. It follows what Inland Revenue (IRD) says an invoice must show, at each amount level.</p>
+    <div class="btns">
+      <a class="btn" href="#gen">Fill in the tax invoice online</a>
+      <a class="btn ghost" href="#download">Download Word, Excel or PDF</a>
+    </div>
+    <div class="facts"><span>GST at 15%, amounts in NZD</span><span>TAX INVOICE heading</span><span>Rules checked <%= checked %></span></div>
+  </div>
+</section>
+
+<div class="wrap prose" style="padding-bottom:0">
+  <h2>New Zealand tax invoice example</h2>
+  <p>A GST-registered designer in Auckland bills a company in Wellington. The total is over $1,000, so the invoice carries every detail IRD asks for at that level. The numbers match the list further down. The names, numbers and bank account are made up.</p>
+  <div class="inv" role="img" aria-label="Example New Zealand tax invoice with numbered required details">
+    <div class="top">
+      <div><div class="ttl">TAX INVOICE<sup>1</sup></div></div>
+      <div class="who">
+        <strong>Hinemoa Design Ltd</strong><sup>2</sup><br>14 Example Street, Ponsonby, Auckland 1011<br>
+        <span class="mut">GST number 000-000-000</span><sup>3</sup>
+      </div>
+    </div>
+    <div class="row2">
+      <div style="line-height:1.55"><div class="k">Bill to</div><strong>Kauri Coffee Roasters Ltd</strong><sup>4</sup><br>8 Sample Road, Te Aro, Wellington 6011<sup>4</sup><br><span class="mut">GST number 000-000-001</span><sup>4</sup></div>
+      <div class="meta">
+        <span class="k">Invoice no.</span><strong>INV-0087</strong>
+        <span class="k">Invoice date</span><strong>16 November 2026<sup>5</sup></strong>
+        <span class="k">Due date</span><strong>30 November 2026</strong>
+      </div>
+    </div>
+    <div class="tw"><table>
+      <thead><tr><th>Description<sup>6</sup></th><th class="r">Qty</th><th class="r">Price excl. GST</th><th class="r">Amount excl. GST<sup>7</sup></th></tr></thead>
+      <tbody>
+        <tr><td>Brand identity design: logo and style guide (fixed fee)</td><td class="r">1</td><td class="r">$2,400.00</td><td class="r">$2,400.00</td></tr>
+        <tr><td>Website design, hours</td><td class="r">20</td><td class="r">$95.00</td><td class="r">$1,900.00</td></tr>
+      </tbody>
+    </table></div>
+    <div class="sum"><div>
+      <div class="sl"><span class="mut">Subtotal excl. GST<sup>7</sup></span><span>$4,300.00</span></div>
+      <div class="sl"><span class="mut">GST 15%<sup>8</sup></span><span>$645.00</span></div>
+      <div class="sl tot"><span>Total incl. GST (NZD)<sup>9</sup></span><span>$4,945.00</span></div>
+    </div></div>
+    <div class="foot">Payment within 14 days by bank transfer to 00-0000-0000000-00, quoting INV-0087. All amounts are in NZD.</div>
+  </div>
+  <p class="source">Example business, numbers and bank account are made up.</p>
+</div>
+
+<%- include('partials/generator') %>
+
+<div class="wrap prose">
+  <h2 id="name">Is it still called a tax invoice?</h2>
+  <p>Not in the law any more. From 1 April 2023 the requirement to use tax invoices was replaced by a requirement to provide and keep <strong>taxable supply information</strong>. A debit or credit note became <strong>supply correction information</strong>. The rules for what GST you charge did not change.</p>
+  <p>IRD says you do not need to change the wording of the GST documents you use, and you may keep giving taxable supply information in one document marked "tax invoice". This template keeps the heading (number 1 in the example). Other countries, such as the UK, still ask for a VAT invoice with its own list of details: see <a href="/blog/what-is-vat-invoice">what is a VAT invoice</a>. In New Zealand the information can also sit in several records, such as a contract and a bank statement, and sellers can send it by automated exchange between software, for example PEPPOL eInvoicing.</p>
+  <p class="source">Sources: <a href="<%= IRD.tsi %>" rel="noopener">IRD, Taxable supply information for GST</a> (updated 27 November 2024) and <a href="<%= IRD.works %>" rel="noopener">How taxable supply information for GST works</a> (updated 31 March 2026). Checked <%= checked %>.</p>
+
+  <h2 id="requirements">What a New Zealand tax invoice must show</h2>
+  <p>What you must show depends on the amount of the supply. The numbers in brackets refer to the example above. Number 1 is the heading, which is optional.</p>
+  <table class="tbl">
+    <thead><tr><th>Detail</th><th>$200 or less</th><th>Over $200, up to $1,000</th><th>Over $1,000</th></tr></thead>
+    <tbody>
+      <tr><td class="strong">Seller (2, 3)</td><td>Name or trade name</td><td>Name or trade name, and GST number</td><td>Name or trade name, and GST number</td></tr>
+      <tr><td class="strong">Buyer (4)</td><td>Not required</td><td>Not required</td><td>If the buyer is GST registered: its name, and one or more of address, phone number, email address, trading name if different, NZBN or website</td></tr>
+      <tr><td class="strong">Date (5)</td><td>Date of invoice, or the time of supply if there is no invoice</td><td>The same</td><td>The same</td></tr>
+      <tr><td class="strong">What you supplied (6)</td><td>Description of the goods or services</td><td>The same</td><td>The same</td></tr>
+      <tr><td class="strong">Amounts (7, 8, 9)</td><td>The price</td><td>Either the GST-exclusive amount, the GST amount and the GST-inclusive amount, or the GST-inclusive amount with a statement that GST is included, charged at the standard rate on all items</td><td>The same as the middle column</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Sources: <a href="<%= IRD.works %>" rel="noopener">IRD, How taxable supply information for GST works</a> and <a href="<%= IRD.guide %>" rel="noopener">IRD GST guide IR375</a> (March 2026). Checked <%= checked %>. Imported goods and services and secondhand goods have their own lists on those pages.</p>
+  <ul>
+    <li><strong>$200 or less, including GST:</strong> you do not have to give the buyer anything. You and a registered buyer each keep your own record of the sale.</li>
+    <li><strong>Over $200:</strong> give it to a GST-registered buyer within 28 days of a request, or by a date you agree. Give it once. If the buyer loses it, send a copy, and you do not need to mark it as a copy.</li>
+    <li><strong>Amounts in NZD.</strong> IRD's guide says amounts of money must be expressed in New Zealand currency.</li>
+    <li><strong>Your GST number.</strong> The guide tells you to give it to customers as part of the information.</li>
+  </ul>
+
+  <h2 id="gst">GST at 15%: adding it and taking it out</h2>
+  <p>The rate of GST is 15%. To add it, multiply the price by 0.15. To take it out of a price that includes GST, multiply the total by 3, divide by 23, and subtract the result. IRD calls this the fraction method and says it always gives an accurate answer.</p>
+  <div class="formula">Adding GST: $4,300.00 x 0.15 = $645.00 GST<br><b>$4,300.00 + $645.00 = $4,945.00 including GST</b><br>Taking GST out: $4,945.00 x 3 / 23 = $645.00 GST, so $4,300.00 before GST<br>IRD's own example: $115 including GST holds $15 of GST. $100 including GST holds $13.04.</div>
+  <p>For the same sums on a UK, Dutch or other VAT invoice, see <a href="/how-to-calculate-vat-on-invoice">how to calculate VAT on an invoice</a>.</p>
+  <p class="source">Sources: <a href="<%= IRD.calc %>" rel="noopener">IRD, Calculating your GST</a> (updated 14 April 2025), <a href="<%= IRD.charging %>" rel="noopener">Charging GST</a> (updated 1 April 2026) and the <a href="<%= IRD.guide %>" rel="noopener">GST guide IR375</a>. Checked <%= checked %>.</p>
+
+  <h2 id="register">Do you need a GST number?</h2>
+  <p>You must register for GST when you carry out a taxable activity and your turnover was at least $60,000 in the last 12 months, or you expect it to be in the next 12 months. You must also register if you add GST to your prices, whatever your turnover. Below $60,000 you can register voluntarily.</p>
+  <p>IRD words the limit two ways: its registering page says "at least $60,000" and its March 2026 GST guide says "over $60,000". If your turnover is close to the line, ask IRD before you decide. The registration confirmation gives your GST number, which may be the same as your IRD number.</p>
+  <p>Only a registered business can charge GST. If you are not registered, send an ordinary invoice with no GST line and no GST number.</p>
+  <p class="source">Sources: <a href="<%= IRD.register %>" rel="noopener">IRD, Registering for GST</a> (updated 13 February 2025) and the <a href="<%= IRD.guide %>" rel="noopener">GST guide IR375</a>. Checked <%= checked %>.</p>
+
+  <h2 id="export">Clients overseas: zero-rated supplies</h2>
+  <p>Some supplies are charged at 0% GST. They still go on the invoice, shown at 0% GST, and they go in a separate box on your GST return. IRD lists these among the exported services and goods:</p>
+  <ul>
+    <li>Services supplied to non-residents outside New Zealand when you perform them.</li>
+    <li>Remote services to non-residents. You must show the customer is not a New Zealand resident, using your usual checks or any 2 of: billing address, IP address or other geolocation, bank details, mobile country code of the SIM, or fixed landline location.</li>
+    <li>Services performed outside New Zealand.</li>
+    <li>Goods you export. Goods entered for export must leave within 28 days of the time of supply, unless IRD agrees to more time.</li>
+  </ul>
+  <p>The list has many more cases and conditions, so check the page for yours. Wording for other countries is in <a href="/blog/how-to-invoice-international-clients">how to invoice international clients</a>. If you also invoice in Australia, see the <a href="/free-invoice-generator-australia">Australian GST invoice guide</a>.</p>
+  <p class="source">Source: <a href="<%= IRD.zero %>" rel="noopener">IRD, Zero-rated supplies</a> (updated 22 June 2026). Checked <%= checked %>.</p>
+
+  <h2 id="fix">Correcting an invoice: supply correction information</h2>
+  <p>Give supply correction information when the first document had the wrong GST amount, or the sale changed after you sent it. It does not matter whether the buyer has paid. Cases include a cancelled sale, goods sent back, a wrong description, wrong buyer details, a wrong date, GST at the wrong rate or a wrong GST amount. It must show:</p>
+  <ul>
+    <li>your name or trade name and your GST number,</li>
+    <li>the date you gave the correction,</li>
+    <li>details that identify the original, such as the invoice number,</li>
+    <li>the correction, including any change to the GST charged.</li>
+  </ul>
+  <p>You and the buyer both keep it. You can put a correction for an earlier sale in the same document as a new invoice. For how to number invoices and their corrections, see <a href="/blog/invoice-number-format">invoice number format</a>.</p>
+  <p class="source">Sources: <a href="<%= IRD.correction %>" rel="noopener">IRD, Supply correction information</a> (updated 1 April 2023) and the <a href="<%= IRD.guide %>" rel="noopener">GST guide IR375</a> (page 18). Checked <%= checked %>.</p>
+
+  <h2 id="records">Records</h2>
+  <p>Keep all your records, including electronic ones, for at least 7 tax years. Records must be in English or Māori unless IRD approves another language. If you keep records overseas, including in the cloud, you or your provider needs IRD's approval. Source: <a href="<%= IRD.records %>" rel="noopener">IRD, Record keeping</a> (updated 14 May 2026). Checked <%= checked %>.</p>
+
+  <h2 id="wording">Wording to copy</h2>
+  <div class="copy"><div><small>Heading, as IRD allows</small><span class="txt">TAX INVOICE</span></div><button type="button" aria-label="Copy the heading">Copy</button></div>
+  <div class="copy"><div><small>For a total over $200 that shows only the GST-inclusive amount</small><span class="txt">All prices include GST at 15%, the standard rate, on every item listed.</span></div><button type="button" aria-label="Copy the GST-inclusive statement">Copy</button></div>
+  <div class="copy"><div><small>A zero-rated export of services</small><span class="txt">GST at 0%: zero-rated services supplied to a non-resident outside New Zealand.</span></div><button type="button" aria-label="Copy the zero-rated wording">Copy</button></div>
+  <div class="copy"><div><small>A supply correction (example figures)</small><span class="txt">Supply correction for invoice INV-0042 dated 3 November 2026: hours reduced from 20 to 18. Amount reduced by $190.00 plus GST of $28.50, a total of $218.50.</span></div><button type="button" aria-label="Copy the supply correction wording">Copy</button></div>
+  <div class="copy"><div><small>Payment line</small><span class="txt">Payment within 14 days by bank transfer to 00-0000-0000000-00, quoting the invoice number. All amounts are in NZD.</span></div><button type="button" aria-label="Copy the payment line">Copy</button></div>
+
+  <h2 id="download">Download the New Zealand tax invoice template</h2>
+  <p>Files in NZD with GST at 15%, a field for each detail in the table above, and the payment line ready to edit. Free, no signup.</p>
+  <div class="dl">
+    <a href="/templates/nz-tax-invoice-template.docx" download>Word (.docx) <small>opens in Word or Google Docs</small></a>
+    <a href="/templates/nz-tax-invoice-template.xlsx" download>Excel (.xlsx) <small>GST and totals calculate</small></a>
+    <a href="/templates/nz-tax-invoice-template.pdf" download>PDF <small>fillable form</small></a>
+  </div>
+
+  <h2>Questions</h2>
+  <div class="faq">
+    <% faqs.forEach(function(f){ %><details><summary><%= f[0] %></summary><p><%= f[1] %></p></details><% }) %>
+  </div>
+
+  <h2>Sources</h2>
+  <ul>
+    <li><a href="<%= IRD.tsi %>" rel="noopener">Taxable supply information for GST</a>, Inland Revenue, page updated 27 November 2024, last checked <%= checked %></li>
+    <li><a href="<%= IRD.works %>" rel="noopener">How taxable supply information for GST works</a>, Inland Revenue, page updated 31 March 2026, last checked <%= checked %></li>
+    <li><a href="<%= IRD.guide %>" rel="noopener">GST guide IR375</a>, Inland Revenue, March 2026, last checked <%= checked %></li>
+    <li><a href="<%= IRD.register %>" rel="noopener">Registering for GST</a>, Inland Revenue, page updated 13 February 2025, last checked <%= checked %></li>
+    <li><a href="<%= IRD.calc %>" rel="noopener">Calculating your GST</a>, Inland Revenue, page updated 14 April 2025, last checked <%= checked %></li>
+    <li><a href="<%= IRD.charging %>" rel="noopener">Charging GST</a>, Inland Revenue, page updated 1 April 2026, last checked <%= checked %></li>
+    <li><a href="<%= IRD.zero %>" rel="noopener">Zero-rated supplies</a>, Inland Revenue, page updated 22 June 2026, last checked <%= checked %></li>
+    <li><a href="<%= IRD.correction %>" rel="noopener">Supply correction information</a>, Inland Revenue, page updated 1 April 2023, last checked <%= checked %></li>
+    <li><a href="<%= IRD.records %>" rel="noopener">Record keeping</a>, Inland Revenue, page updated 14 May 2026, last checked <%= checked %></li>
+  </ul>
+  <p class="source">All read on ird.govt.nz on <%= checked %>. General information, not tax advice.</p>
+
+  <h2>Related</h2>
+  <ul class="linklist">
+    <li><a href="/">Free invoice generator</a></li>
+    <li><a href="/blog/how-to-invoice-international-clients">Invoicing international clients</a></li>
+    <li><a href="/blog/invoice-number-format">Invoice number format</a></li>
+    <li><a href="/blog/what-is-vat-invoice">What is a VAT invoice?</a></li>
+    <li><a href="/free-invoice-generator-australia">Australia GST invoice guide</a></li>
+    <li><a href="/free-invoice-generator-germany">German invoice template</a></li>
+    <li><a href="/free-invoice-generator-netherlands">Dutch invoice template</a></li>
+    <li><a href="/free-invoice-generator-uk">UK VAT invoice generator</a></li>
+    <li><a href="/free-invoice-generator-uae">UAE tax invoice generator</a></li>
+    <li><a href="/free-invoice-generator-india">India GST invoice generator</a></li>
+    <li><a href="/invoice-template-freelancer">Freelance invoice template</a></li>
+  </ul>
+</div>
+
+<%- include('partials/footer') %>
+<%- include('partials/country-guide-scripts') %>
+</body>
+</html>

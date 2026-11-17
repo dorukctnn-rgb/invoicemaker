@@ -1,8 +1,8 @@
 # GetInvoiceMaker
 
-> GetInvoiceMaker is a free web tool that makes an invoice as a PDF: you fill in the form, check the live preview and download it, with no account. It has country versions with the tax rules built in (Canada by province, UK VAT, Australia GST, the Netherlands BTW, UAE VAT, India GST), a rent receipt generator and a late payment interest calculator for the UK and Ireland. A Pro plan paid through Gumroad removes the "Created with" line from PDFs and adds a logo.
+> GetInvoiceMaker is a free web tool that makes an invoice as a PDF: you fill in the form, check the live preview and download it, with no account. It has country versions with the tax rules built in (Canada by province, UK VAT, Australia GST, the Netherlands BTW, Germany VAT, New Zealand GST, UAE VAT, India GST), a rent receipt generator and a late payment interest calculator for the UK and Ireland. A Pro plan paid through Gumroad removes the "Created with" line from PDFs and adds a logo.
 
-Every guide names its official source and the date it was last checked. Rates read on November 10, 2026: Ontario HST 13% and Nova Scotia HST 14% (CRA rates table), Manitoba GST 5% plus RST 7%, Saskatchewan GST 5% plus PST 6%, UAE VAT 5% (Federal Tax Authority), India GST at 5% and 18% with a 40% rate for sin and luxury goods since September 22, 2025 (Press Information Bureau). This is general information, not tax advice.
+Every guide names its official source and the date it was last checked. Rates read on November 10, 2026: Ontario HST 13% and Nova Scotia HST 14% (CRA rates table), Manitoba GST 5% plus RST 7%, Saskatchewan GST 5% plus PST 6%, UAE VAT 5% (Federal Tax Authority), India GST at 5% and 18% with a 40% rate for sin and luxury goods since September 22, 2025 (Press Information Bureau). Read on November 17, 2026: German VAT 19% and 7% (Umsatzsteuergesetz, section 12) and New Zealand GST 15% (Inland Revenue). This is general information, not tax advice.
 
 ## Tools
 
@@ -19,6 +19,8 @@ Every guide names its official source and the date it was last checked. Rates re
 - [Netherlands invoice generator (factuur)](https://getinvoicemaker.com/free-invoice-generator-netherlands): BTW at 21%, KVK number and the Dutch rules.
 - [UAE tax invoice generator](https://getinvoicemaker.com/free-invoice-generator-uae): The Article 59 particulars, VAT at 5% per line, amounts in AED and the e-invoicing dates.
 - [India GST invoice generator](https://getinvoicemaker.com/free-invoice-generator-india): The Rule 46 particulars, CGST and SGST or IGST per line, HSN and SAC codes, exports and bill of supply.
+- [German invoice template (Rechnung)](https://getinvoicemaker.com/free-invoice-generator-germany): The section 14 details, VAT at 19% and 7%, small-business wording, e-invoice dates, and a template in German and English.
+- [New Zealand tax invoice template](https://getinvoicemaker.com/free-invoice-generator-new-zealand): What Inland Revenue says an invoice must show at each amount, GST at 15%, zero-rated exports, and a template in NZD.
 
 ## Sales tax by Canadian province
 
@@ -35,7 +37,7 @@ Every guide names its official source and the date it was last checked. Rates re
 - [Invoice payment terms](https://getinvoicemaker.com/blog/invoice-payment-terms-guide): Net 30, due on receipt and the legal defaults.
 - [What is a VAT invoice](https://getinvoicemaker.com/blog/what-is-vat-invoice): UK requirements, an example and time limits.
 - [Invoice vs receipt](https://getinvoicemaker.com/blog/invoice-vs-receipt): The differences and how long to keep each.
-- [Invoice number format](https://getinvoicemaker.com/blog/invoice-number-format): What the UK, EU, Canada, Australia, UAE and India require.
+- [Invoice number format](https://getinvoicemaker.com/blog/invoice-number-format): What the UK, EU, Canada, Australia, UAE, India, Germany and New Zealand require.
 - [How to invoice international clients](https://getinvoicemaker.com/blog/how-to-invoice-international-clients): Tax wording by country with official sources.
 - [How to invoice as a freelancer](https://getinvoicemaker.com/how-to-invoice-as-a-freelancer): Invoicing under your own name, and when a tax number is needed.
 - [How to make an invoice in Word](https://getinvoicemaker.com/how-to-make-an-invoice-in-word): Template, formulas and PDF.

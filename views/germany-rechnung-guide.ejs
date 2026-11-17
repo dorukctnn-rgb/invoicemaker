@@ -1,0 +1,276 @@
+<%
+  var pageUrl = siteUrl + '/free-invoice-generator-germany';
+  var checked = '17 November 2026';
+  var G = 'https://www.gesetze-im-internet.de/';
+  var SRC = {
+    p14: G + 'ustg_1980/__14.html',
+    p14a: G + 'ustg_1980/__14a.html',
+    p14b: G + 'ustg_1980/__14b.html',
+    p14c: G + 'ustg_1980/__14c.html',
+    p12: G + 'ustg_1980/__12.html',
+    p19: G + 'ustg_1980/__19.html',
+    p27: G + 'ustg_1980/__27.html',
+    d33: G + 'ustdv_1980/__33.html',
+    d34a: G + 'ustdv_1980/__34a.html',
+    ao87: G + 'ao_1977/__87.html',
+    idnr: 'https://www.bzst.de/DE/Unternehmen/Identifikationsnummern/Umsatzsteuer-Identifikationsnummer/Vergabe_USt_IdNr/vergabe_ust_idnr.html',
+    aufbau: 'https://www.bzst.de/SharedDocs/Downloads/DE/Merkblaetter/ust_idnr_aufbau.pdf?__blob=publicationFile&v=8',
+    erB2b: 'https://e-rechnung-bund.de/e-rechnung/e-rechnung-zwischen-unternehmen-b2b',
+    erPdf: 'https://e-rechnung-bund.de/e-rechnung/unterschied-zwischen-papier-pdf-und-erechnung',
+    nrw: 'https://www.finanzamt.nrw.de/steuerinfos/unternehmen/umsatzsteuer/kleinunternehmerinnen-und-kleinunternehmer'
+  };
+  var faqs = [
+    ['What must a German invoice contain?', 'Under section 14(4) of the VAT Act: the full name and address of you and your customer, your tax number or VAT ID (USt-IdNr.), the date of issue, a sequential invoice number, the quantity and type of what you supplied, the date of supply, the net amount split by tax rate, and the tax rate and the VAT amount, or a note that an exemption applies. Two more notes apply only in special cases: the customer\'s duty to keep the invoice, and the word Gutschrift when the customer issues the invoice.'],
+    ['Do I need a Steuernummer or a USt-IdNr. on my invoice?', 'One of the two. Section 14(4) no. 2 asks for the tax number your Finanzamt gave you or the VAT ID from the Federal Central Tax Office (BZSt). The USt-IdNr. is a separate number issued in addition to the tax number. It is DE followed by nine digits.'],
+    ['Which VAT rate do I charge in Germany?', '19% is the standard rate and 7% the reduced rate (section 12 of the VAT Act). The 7% rate covers the goods listed in Annex 2 of the Act and a list of services, such as admission to theatres and concerts, short-term accommodation and restaurant and catering services other than drinks. Some supplies are exempt and carry no VAT.'],
+    ['How do I invoice as a Kleinunternehmer?', 'If your turnover was at most EUR 25,000 in the previous year and stays at most EUR 100,000 in the current year, you can use the small-business scheme (section 19). You show no VAT, and you add a note that the exemption applies (section 34a of the VAT Implementing Regulation). If you show VAT anyway, you owe it to the tax office (section 14c(2)).'],
+    ['Can I write a German invoice in English?', 'Section 14 sets no language for an invoice. German is the official language of the tax authorities, though, and a Finanzamt can ask you to hand in a translation of a foreign-language document without delay (section 87 of the Fiscal Code). A bilingual invoice avoids that step.'],
+    ['Is a PDF invoice still allowed after 2027?', 'It depends on the supply and your turnover. Between German businesses the e-invoice is the rule since 1 January 2025, with transition rules. A normal PDF is an "other invoice". It is allowed for supplies up to 31 December 2026 for everyone, and for supplies in 2027 if your turnover in the previous year was at most EUR 800,000. Small-business invoices and invoices up to EUR 250 can always be other invoices.'],
+    ['How long must I keep German invoices?', 'Eight years. The period starts at the end of the calendar year in which the invoice was issued. You keep a copy of each invoice you issue and every invoice you receive (section 14b).'],
+    ['By when must I issue the invoice?', 'For work for another business or for a legal person that is not a business, within six months after you did the work (section 14(2)).']
+  ];
+%><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>German Invoice Template: Free Rechnung (German/English)</title>
+<meta name="description" content="Free German invoice template in German and English: fill it in online or download Word, Excel or PDF. Section 14 details, VAT at 19% and 7%.">
+<link rel="canonical" href="<%= pageUrl %>">
+<link rel="alternate" hreflang="en" href="<%= pageUrl %>">
+<meta property="og:type" content="website">
+<meta property="og:title" content="German Invoice Template (Rechnung) in German and English">
+<meta property="og:description" content="A German invoice with every section 14 detail: fill it in online or download it as Word, Excel or PDF.">
+<meta property="og:url" content="<%= pageUrl %>">
+<%- include('partials/site-head') %>
+<script type="application/ld+json">
+<%- JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Article', headline: 'German invoice template (Rechnung): the requirements and a ready invoice in German and English', url: pageUrl, mainEntityOfPage: pageUrl,
+      description: 'The details a German invoice must show under section 14 of the VAT Act, VAT at 19% and 7%, small-business wording, e-invoice dates, retention, and a free template in German and English.',
+      datePublished: '2026-11-17', dateModified: '2026-11-17', inLanguage: 'en',
+      author: { '@type': 'Organization', name: 'GetInvoiceMaker', url: siteUrl + '/' }, publisher: { '@type': 'Organization', name: 'GetInvoiceMaker', url: siteUrl + '/' },
+      citation: [SRC.p14, SRC.p12, SRC.p19, SRC.p27, SRC.d34a, SRC.p14b, SRC.idnr, SRC.erB2b] },
+    { '@type': 'WebApplication', name: 'German invoice generator', url: pageUrl + '#gen', applicationCategory: 'BusinessApplication', operatingSystem: 'Any (web browser)', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' } },
+    { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl + '/' },
+      { '@type': 'ListItem', position: 2, name: 'German invoice template', item: pageUrl } ] },
+    { '@type': 'FAQPage', mainEntity: faqs.map(function (f) { return { '@type': 'Question', name: f[0], acceptedAnswer: { '@type': 'Answer', text: f[1] } }; }) }
+  ]
+}).replace(/</g, '\\u003c') %>
+</script>
+<style>:root{--ac:#1e3a8a}</style>
+<%- include('partials/country-guide-styles') %>
+</head>
+<body>
+<%- include('partials/nav') %>
+<div class="crumbs"><a href="/">Home</a> › <a href="/#templates">By country</a> › Germany</div>
+
+<section class="page-hero">
+  <div class="in">
+    <h1>German Invoice Template (Rechnung) and Requirements</h1>
+    <p class="lede">A free German invoice template in German, English or both. Fill it in below and download a PDF, or get the Word, Excel or PDF file. It has every detail section 14 of the German VAT Act asks for, with VAT at 19% or 7%.</p>
+    <div class="btns">
+      <a class="btn" href="#gen">Fill in the invoice online</a>
+      <a class="btn ghost" href="#download">Download Word, Excel or PDF</a>
+    </div>
+    <div class="facts"><span>German and English labels</span><span>Steuernummer and USt-IdNr. fields</span><span>Rules checked <%= checked %></span></div>
+  </div>
+</section>
+
+<div class="wrap prose" style="padding-bottom:0">
+  <h2>German invoice example</h2>
+  <p>This is a complete Rechnung from a Hamburg consultant to a logistics company in Munich. The numbers match the list of required details further down. The names, numbers and IBAN are made up.</p>
+  <div class="inv" role="img" aria-label="Example German invoice with numbered required details">
+    <div class="top">
+      <div><div class="ttl">RECHNUNG</div><div class="k">Invoice</div></div>
+      <div class="who">
+        <strong>Lindner Beratung</strong><sup>1</sup><br>Beispielstra&szlig;e 12, 20095 Hamburg<sup>1</sup><br>
+        <span class="mut">Steuernummer 00/000/00000</span><sup>2</sup><br>
+        <span class="mut">IBAN DE89 3704 0044 0532 0130 00</span>
+      </div>
+    </div>
+    <div class="row2">
+      <div style="line-height:1.55"><div class="k">Rechnung an / Bill to</div><strong>Muster Logistik GmbH</strong><sup>1</sup><br>Beispielweg 5, 80331 M&uuml;nchen<sup>1</sup></div>
+      <div class="meta">
+        <span class="k">Rechnungsnummer</span><strong>2026-043<sup>4</sup></strong>
+        <span class="k">Rechnungsdatum</span><strong>16.11.2026<sup>3</sup></strong>
+        <span class="k">Leistungsdatum</span><strong>12.11.2026<sup>6</sup></strong>
+        <span class="k">Zahlbar bis</span><strong>30.11.2026</strong>
+      </div>
+    </div>
+    <div class="tw"><table>
+      <thead><tr><th>Beschreibung / Description<sup>5</sup></th><th class="r">Menge</th><th class="r">Einzelpreis netto</th><th class="r">Betrag netto<sup>7</sup></th></tr></thead>
+      <tbody>
+        <tr><td>Beratung: Analyse der Lagerprozesse, Stunden</td><td class="r">12</td><td class="r">95,00 &euro;</td><td class="r">1.140,00 &euro;</td></tr>
+        <tr><td>Workshop vor Ort, ganzt&auml;gig</td><td class="r">1</td><td class="r">480,00 &euro;</td><td class="r">480,00 &euro;</td></tr>
+      </tbody>
+    </table></div>
+    <div class="sum"><div>
+      <div class="sl"><span class="mut">Nettobetrag / Net total<sup>7</sup></span><span>1.620,00 &euro;</span></div>
+      <div class="sl"><span class="mut">Umsatzsteuer 19 % / VAT<sup>8</sup></span><span>307,80 &euro;</span></div>
+      <div class="sl tot"><span>Gesamtbetrag / Total</span><span>1.927,80 &euro;</span></div>
+    </div></div>
+    <div class="foot">Zahlbar bis 30.11.2026 ohne Abzug auf IBAN DE89 3704 0044 0532 0130 00 unter Angabe der Rechnungsnummer 2026-043.<br><em>Payable by 30 November 2026, no deduction, quoting the invoice number.</em></div>
+  </div>
+  <p class="source">Example business, numbers and IBAN are made up.</p>
+</div>
+
+<%- include('partials/generator') %>
+
+<div class="wrap prose">
+  <h2 id="requirements">What a German invoice must show: section 14 UStG</h2>
+  <p>Section 14(4) of the VAT Act (Umsatzsteuergesetz, UStG) lists what an invoice must contain. In section 14(1) an invoice is any document that bills a supply or service, whatever you call it. The numbers below refer to the example above.</p>
+  <table class="tbl">
+    <thead><tr><th>#</th><th>Required (German)</th><th>In English</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td class="strong">Vollst&auml;ndiger Name und vollst&auml;ndige Anschrift des leistenden Unternehmers und des Leistungsempf&auml;ngers</td><td>Full name and full address of the supplier and of the customer</td></tr>
+      <tr><td>2</td><td class="strong">Steuernummer oder USt-IdNr. des leistenden Unternehmers</td><td>The supplier's tax number from the Finanzamt, or the VAT ID from the Federal Central Tax Office</td></tr>
+      <tr><td>3</td><td class="strong">Ausstellungsdatum</td><td>Date of issue</td></tr>
+      <tr><td>4</td><td class="strong">Rechnungsnummer</td><td>A sequential number with one or more number series, given once by you to identify this invoice</td></tr>
+      <tr><td>5</td><td class="strong">Menge und Art der Lieferung oder Umfang und Art der Leistung</td><td>Quantity and type of the goods, or the scope and type of the service</td></tr>
+      <tr><td>6</td><td class="strong">Zeitpunkt der Lieferung oder Leistung</td><td>Date of supply, or the date a payment in advance was received if that date is fixed and differs from the issue date</td></tr>
+      <tr><td>7</td><td class="strong">Entgelt, aufgeschl&uuml;sselt nach Steuers&auml;tzen und Steuerbefreiungen</td><td>The net amount split by tax rate and by exemption, plus any discount agreed in advance that is not already in the price</td></tr>
+      <tr><td>8</td><td class="strong">Steuersatz und Steuerbetrag, oder Hinweis auf eine Steuerbefreiung</td><td>The tax rate and the VAT amount, or a note that an exemption applies</td></tr>
+      <tr><td>9</td><td class="strong">Hinweis auf die Aufbewahrungspflicht des Leistungsempf&auml;ngers</td><td>A note on the customer's duty to keep the invoice. It applies only in the cases section 14b(1) sentence 5 names</td></tr>
+      <tr><td>10</td><td class="strong">Angabe &bdquo;Gutschrift&ldquo;</td><td>The word Gutschrift, when the customer or a third party it hired issues the invoice for you (self-billing)</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source: <a href="<%= SRC.p14 %>" rel="noopener">&sect; 14 UStG, Ausstellung von Rechnungen</a>, Federal Ministry of Justice. The English wording is ours. Checked <%= checked %>.</p>
+  <p>A due date, your IBAN and a payment reference are not on this list. Add them anyway, because your customer needs them to pay.</p>
+
+  <h2 id="numbers">Steuernummer or USt-IdNr.: which number goes on the invoice</h2>
+  <p>Item 2 asks for one of two numbers. The <strong>Steuernummer</strong> is the tax number your Finanzamt gave you. The <strong>USt-IdNr.</strong> is the VAT ID from the Federal Central Tax Office (Bundeszentralamt f&uuml;r Steuern, BZSt).</p>
+  <ul>
+    <li>The USt-IdNr. is a separate number. The BZSt issues it in addition to your tax number.</li>
+    <li>It is <code>DE</code> followed by nine digits, for example <code>DE000000000</code>.</li>
+    <li>You need one when you supply or receive goods and services within the EU single market. A new business can ask for it at the Finanzamt.</li>
+  </ul>
+  <p class="source">Sources: <a href="<%= SRC.idnr %>" rel="noopener">BZSt, Vergabe und Erteilung der USt-IdNr.</a> and <a href="<%= SRC.aufbau %>" rel="noopener">BZSt, structure of the USt-IdNr.</a> Checked <%= checked %>.</p>
+  <p>For the numbering of the invoices themselves, see <a href="/blog/invoice-number-format">invoice number format</a>: item 4 only asks for a sequence in which every number is used once.</p>
+
+  <h2 id="vat">VAT rates: 19% and 7%</h2>
+  <table class="tbl">
+    <thead><tr><th class="num">Rate</th><th>Name</th><th>Applies to</th></tr></thead>
+    <tbody>
+      <tr><td class="num strong">19%</td><td>Regelsteuersatz (standard)</td><td>Each taxable supply that is not on the reduced list. Most services, such as consulting work</td></tr>
+      <tr><td class="num strong">7%</td><td>Erm&auml;&szlig;igter Steuersatz (reduced)</td><td>The goods in Annex 2 of the Act and a list of services in section 12(2): admission to theatres and concerts, short-term accommodation, some local passenger transport, restaurant and catering services other than drinks, and electronic publications with exceptions</td></tr>
+    </tbody>
+  </table>
+  <p class="source">Source: <a href="<%= SRC.p12 %>" rel="noopener">&sect; 12 UStG, Steuers&auml;tze</a>. Checked <%= checked %>. The list in section 12(2) has exceptions. Check it for your own case.</p>
+  <p>Some supplies are exempt. An exempt supply carries no VAT, and item 8 then asks for a note that an exemption applies. If one invoice has lines at 19% and 7%, show the net amount and the VAT for each rate (items 7 and 8).</p>
+  <div class="formula">Net EUR 1.620,00 x 0,19 = EUR 307,80 VAT<br><b>Net EUR 1.620,00 + VAT EUR 307,80 = EUR 1.927,80 total</b><br>Taking VAT out of a total: EUR 1.927,80 / 1,19 = EUR 1.620,00 net</div>
+  <p>The working for line-by-line rounding and mixed rates is in <a href="/how-to-calculate-vat-on-invoice">how to calculate VAT on an invoice</a>.</p>
+
+  <h2 id="kleinunternehmer">Small business (Kleinunternehmer) invoices</h2>
+  <p>Section 19 exempts a small business from VAT when two limits are met:</p>
+  <ul>
+    <li>Total turnover in the <strong>previous calendar year</strong> was at most <strong>EUR 25,000</strong>.</li>
+    <li>Turnover in the <strong>current calendar year</strong> stays at most <strong>EUR 100,000</strong>.</li>
+  </ul>
+  <p>Turnover is counted from the payments you received. The tax office's page adds that only the sales above EUR 100,000 are taxed in the year you pass it. A new business that passes EUR 25,000 in its first year pays VAT on the sale that takes it over. You can give up the exemption by the end of February of the second following year, and you are then bound for at least five calendar years.</p>
+  <p>A small-business invoice has fewer required details (section 34a of the VAT Implementing Regulation):</p>
+  <ul>
+    <li>Full name and address of you and your customer.</li>
+    <li>Your tax number, VAT ID or small-business ID.</li>
+    <li>The date of issue.</li>
+    <li>The quantity and type of what you supplied.</li>
+    <li>The payment as one total, and a note that the small-business exemption applies.</li>
+  </ul>
+  <p>Do not show VAT on it. A business that shows VAT without the right to do so owes the amount shown to the tax office (section 14c(2)). The tax office's page says a small business does not have to put a VAT ID on its invoices.</p>
+  <div class="copy"><div><small>Sample wording for the note. The rule asks for a note that the exemption applies and does not give exact words.</small><span class="txt">Gem&auml;&szlig; &sect; 19 UStG wird keine Umsatzsteuer berechnet.</span><span class="en">No VAT is charged under the small-business scheme (section 19 UStG).</span></div><button type="button" aria-label="Copy the small-business wording">Copy</button></div>
+  <p class="source">Sources: <a href="<%= SRC.p19 %>" rel="noopener">&sect; 19 UStG</a>, <a href="<%= SRC.d34a %>" rel="noopener">&sect; 34a UStDV</a>, <a href="<%= SRC.p14c %>" rel="noopener">&sect; 14c UStG</a> and <a href="<%= SRC.nrw %>" rel="noopener">Finanzverwaltung NRW, Kleinunternehmerinnen und Kleinunternehmer</a>. Checked <%= checked %>.</p>
+
+  <h2 id="eu">Customers in other EU countries</h2>
+  <p>Two extra rules matter when you sell across a border inside the EU. For an intra-community supply of goods, the invoice shows the VAT ID of both sides. When the customer, not you, owes the VAT, you charge none and the invoice says so with the words <strong>Steuerschuldnerschaft des Leistungsempf&auml;ngers</strong>. For the cases in section 14a(1) and (3), issue the invoice by the 15th day of the month after the supply.</p>
+  <div class="copy"><div><small>Reverse charge note, when the customer owes the VAT</small><span class="txt">Steuerschuldnerschaft des Leistungsempf&auml;ngers</span><span class="en">The customer is liable for the tax.</span></div><button type="button" aria-label="Copy the reverse charge wording">Copy</button></div>
+  <p>Whether a supply falls under these rules depends on what you sell and to whom. The tax wording by country is in <a href="/blog/how-to-invoice-international-clients">how to invoice international clients</a>. A Dutch client has its own rules: see the <a href="/free-invoice-generator-netherlands">Dutch invoice template</a>.</p>
+  <p class="source">Source: <a href="<%= SRC.p14a %>" rel="noopener">&sect; 14a UStG, zus&auml;tzliche Pflichten bei der Ausstellung von Rechnungen</a>. Checked <%= checked %>.</p>
+
+  <h2 id="einvoice">E-invoices (E-Rechnung): the dates</h2>
+  <p>An e-invoice is an invoice in a structured electronic format that follows the European standard EN 16931 (XRechnung is the German version), or a format both sides agree on under set conditions. A PDF or Word file is only a picture of an invoice. It is not an e-invoice. The invoice you make on this page is a PDF, which the Act calls an other invoice (sonstige Rechnung).</p>
+  <table class="tbl">
+    <thead><tr><th>When</th><th>What applies</th></tr></thead>
+    <tbody>
+      <tr><td class="strong">From 1 January 2025</td><td>The e-invoice is the rule for supplies to another business when both sides are based in Germany. Transition rules let you keep using other invoices for a while.</td></tr>
+      <tr><td class="strong">Supplies up to 31 December 2026</td><td>Paper, or another electronic format if the customer agrees, is still allowed for every business.</td></tr>
+      <tr><td class="strong">Supplies in 2027</td><td>Paper, or another electronic format if the customer agrees, is still allowed if your total turnover in the previous year was at most EUR 800,000. Above that, you issue e-invoices from 1 January 2027.</td></tr>
+      <tr><td class="strong">From 1 January 2028</td><td>The transition rules in section 27(38) have ended. Every business issues e-invoices for these supplies, except in the cases below.</td></tr>
+    </tbody>
+  </table>
+  <p>Two cases can always use an other invoice: a small-business invoice (section 34a) and an invoice for a total of up to EUR 250 (section 33 of the Implementing Regulation). A small business must still be able to receive e-invoices.</p>
+  <p class="source">Sources: <a href="<%= SRC.p27 %>" rel="noopener">&sect; 27 UStG, paragraph 38</a>, <a href="<%= SRC.p14 %>" rel="noopener">&sect; 14 UStG</a>, <a href="<%= SRC.d33 %>" rel="noopener">&sect; 33 UStDV</a>, <a href="<%= SRC.erB2b %>" rel="noopener">E-Rechnung zwischen Unternehmen (B2B)</a>, <a href="<%= SRC.erPdf %>" rel="noopener">Unterschied zwischen Papier-, PDF- und E-Rechnung</a> and <a href="<%= SRC.nrw %>" rel="noopener">Finanzverwaltung NRW</a>. Checked <%= checked %>.</p>
+
+  <h2 id="keep">How long to keep German invoices</h2>
+  <p>Keep invoices for <strong>eight years</strong>. The period starts at the end of the calendar year in which the invoice was issued. You keep a copy of every invoice you issue and every invoice you receive. If you store them electronically, the tax office must be able to call up, download and use the data online. Source: <a href="<%= SRC.p14b %>" rel="noopener">&sect; 14b UStG</a>. Checked <%= checked %>.</p>
+
+  <h2 id="language">Language and currency</h2>
+  <p>Section 14 does not name a language or a currency for an invoice. German is the official language of the tax authorities. A Finanzamt that gets a document in another language can ask for a translation without delay, and in justified cases for a certified one (section 87 of the Fiscal Code, <a href="<%= SRC.ao87 %>" rel="noopener">&sect; 87 AO</a>). A bilingual invoice reads well for your customer and for the tax office, and for you.</p>
+
+  <h2 id="wording">Wording to copy</h2>
+  <div class="copy"><div><small>Payment line</small><span class="txt">Zahlbar innerhalb von 14 Tagen ohne Abzug auf IBAN DE00 0000 0000 0000 0000 00 unter Angabe der Rechnungsnummer.</span><span class="en">Payable within 14 days, no deduction, to the IBAN above, quoting the invoice number.</span></div><button type="button" aria-label="Copy the payment line">Copy</button></div>
+  <div class="copy"><div><small>Self-billing, when the customer issues the invoice for you</small><span class="txt">Gutschrift</span><span class="en">The word section 14(4) no. 10 asks for when the customer issues the invoice for you.</span></div><button type="button" aria-label="Copy the word Gutschrift">Copy</button></div>
+  <div class="copy"><div><small>Date of supply line</small><span class="txt">Leistungsdatum: 12.11.2026</span><span class="en">Date of supply: 12 November 2026</span></div><button type="button" aria-label="Copy the date of supply line">Copy</button></div>
+
+  <h2 id="terms">German invoice terms in English</h2>
+  <table class="tbl">
+    <thead><tr><th>German</th><th>English</th></tr></thead>
+    <tbody>
+      <tr><td class="strong">Rechnung / Rechnungsnummer</td><td>Invoice / invoice number</td></tr>
+      <tr><td class="strong">Rechnungsdatum / Leistungsdatum</td><td>Date of issue / date of supply</td></tr>
+      <tr><td class="strong">Zahlbar bis / Zahlungsziel</td><td>Due date / payment term</td></tr>
+      <tr><td class="strong">Beschreibung / Menge / Einzelpreis</td><td>Description / quantity / unit price</td></tr>
+      <tr><td class="strong">Nettobetrag / Bruttobetrag</td><td>Net amount (before VAT) / gross amount (with VAT)</td></tr>
+      <tr><td class="strong">Umsatzsteuer (USt) / Mehrwertsteuer (MwSt.)</td><td>VAT. The Act uses the term Umsatzsteuer</td></tr>
+      <tr><td class="strong">Steuernummer / USt-IdNr.</td><td>Tax number / VAT ID</td></tr>
+      <tr><td class="strong">Kleinunternehmer</td><td>Small business exempt from VAT under section 19</td></tr>
+      <tr><td class="strong">Steuerschuldnerschaft des Leistungsempf&auml;ngers</td><td>Reverse charge: the customer owes the tax</td></tr>
+      <tr><td class="strong">Unter Angabe der Rechnungsnummer</td><td>Quoting the invoice number</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="download">Download the German invoice template</h2>
+  <p>Bilingual (Deutsch / English) files with a field for each detail in the table above, a VAT column for 19% and 7%, and the small-business and payment lines ready to keep or delete. Free, no signup.</p>
+  <div class="dl">
+    <a href="/templates/german-invoice-template-rechnung.docx" download>Word (.docx) <small>opens in Word or Google Docs</small></a>
+    <a href="/templates/german-invoice-template-rechnung.xlsx" download>Excel (.xlsx) <small>VAT and totals calculate</small></a>
+    <a href="/templates/german-invoice-template-rechnung.pdf" download>PDF <small>fillable form</small></a>
+  </div>
+
+  <h2>Questions</h2>
+  <div class="faq">
+    <% faqs.forEach(function(f){ %><details><summary><%= f[0] %></summary><p><%= f[1] %></p></details><% }) %>
+  </div>
+
+  <h2>Sources</h2>
+  <ul>
+    <li><a href="<%= SRC.p14 %>" rel="noopener">&sect; 14 UStG Ausstellung von Rechnungen</a>, <a href="<%= SRC.p14a %>" rel="noopener">&sect; 14a</a>, <a href="<%= SRC.p14b %>" rel="noopener">&sect; 14b</a>, <a href="<%= SRC.p14c %>" rel="noopener">&sect; 14c</a>, <a href="<%= SRC.p12 %>" rel="noopener">&sect; 12</a>, <a href="<%= SRC.p19 %>" rel="noopener">&sect; 19</a> and <a href="<%= SRC.p27 %>" rel="noopener">&sect; 27</a>: Umsatzsteuergesetz on gesetze-im-internet.de, last checked <%= checked %></li>
+    <li><a href="<%= SRC.d33 %>" rel="noopener">&sect; 33 UStDV Rechnungen &uuml;ber Kleinbetr&auml;ge</a> and <a href="<%= SRC.d34a %>" rel="noopener">&sect; 34a UStDV Rechnungen von Kleinunternehmern</a>: Umsatzsteuer-Durchf&uuml;hrungsverordnung, last checked <%= checked %></li>
+    <li><a href="<%= SRC.ao87 %>" rel="noopener">&sect; 87 AO Amtssprache</a>: Abgabenordnung, last checked <%= checked %></li>
+    <li><a href="<%= SRC.idnr %>" rel="noopener">Vergabe und Erteilung der USt-IdNr.</a> and <a href="<%= SRC.aufbau %>" rel="noopener">Aufbau der USt-IdNr. in den EU-Mitgliedstaaten</a>: Bundeszentralamt f&uuml;r Steuern, last checked <%= checked %></li>
+    <li><a href="<%= SRC.erB2b %>" rel="noopener">E-Rechnung zwischen Unternehmen (B2B)</a> and <a href="<%= SRC.erPdf %>" rel="noopener">Unterschied zwischen Papier-, PDF- und E-Rechnung</a>: E-Rechnung in der Bundesverwaltung, last checked <%= checked %></li>
+    <li><a href="<%= SRC.nrw %>" rel="noopener">Kleinunternehmerinnen und Kleinunternehmer</a>: Finanzverwaltung Nordrhein-Westfalen, last checked <%= checked %></li>
+  </ul>
+  <p class="source">The laws are read in German on gesetze-im-internet.de, the legal database of the Federal Ministry of Justice. The English wording on this page is our own and is not an official translation. General information, not tax advice.</p>
+
+  <h2>Related</h2>
+  <ul class="linklist">
+    <li><a href="/">Free invoice generator</a></li>
+    <li><a href="/blog/how-to-invoice-international-clients">Invoicing international clients</a></li>
+    <li><a href="/blog/invoice-number-format">Invoice number format</a></li>
+    <li><a href="/blog/what-is-vat-invoice">What is a VAT invoice?</a></li>
+    <li><a href="/free-invoice-generator-netherlands">Dutch invoice template</a></li>
+    <li><a href="/free-invoice-generator-uk">UK VAT invoice generator</a></li>
+    <li><a href="/free-invoice-generator-australia">Australia GST invoice guide</a></li>
+    <li><a href="/free-invoice-generator-new-zealand">New Zealand tax invoice template</a></li>
+    <li><a href="/free-invoice-generator-uae">UAE tax invoice generator</a></li>
+    <li><a href="/free-invoice-generator-india">India GST invoice generator</a></li>
+    <li><a href="/invoice-template-freelancer">Freelance invoice template</a></li>
+  </ul>
+</div>
+
+<%- include('partials/footer') %>
+<%- include('partials/country-guide-scripts') %>
+</body>
+</html>
