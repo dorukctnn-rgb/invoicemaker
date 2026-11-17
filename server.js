@@ -171,7 +171,7 @@ const HOW_TO_PAGES = [
 
 const CONTENT_UPDATED = '2026-09-24';
 const PAGES_UPDATED = '2026-10-07';
-const LEGAL_UPDATED = '2026-10-11';
+const LEGAL_UPDATED = '2026-11-17';
 BLOG_POSTS.forEach(post => {
   if (BLOG_CONTENT[post.slug]) post.content = BLOG_CONTENT[post.slug];
   const words = post.content.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
@@ -290,6 +290,7 @@ HOW_TO_PAGES.forEach(page => {
 app.get('/activate', withPro, (req, res) => res.render('activate'));
 app.get('/privacy', (req, res) => res.render('privacy'));
 app.get('/terms', (req, res) => res.render('terms'));
+app.get('/refund', (req, res) => res.render('refund'));
 
 pro.register(app);
 
@@ -385,7 +386,8 @@ function sitemapEntries() {
     { loc: '/free-invoice-generator-uae', lastmod: '2026-11-10' },
     { loc: '/free-invoice-generator-india', lastmod: '2026-11-10' },
     { loc: '/privacy', lastmod: LEGAL_UPDATED },
-    { loc: '/terms', lastmod: LEGAL_UPDATED }
+    { loc: '/terms', lastmod: LEGAL_UPDATED },
+    { loc: '/refund', lastmod: LEGAL_UPDATED }
   ];
   INDUSTRIES.forEach(i => urls.push({ loc: '/invoice-template-' + i.slug, lastmod: PAGES_UPDATED }));
   COUNTRIES.forEach(c => {
