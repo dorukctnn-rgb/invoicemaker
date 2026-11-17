@@ -47,10 +47,12 @@
 
   <h2>License checks</h2>
   <p>When you activate Pro, our server sends your license key to the service of the reseller you bought from (for Gumroad purchases, api.gumroad.com) to confirm that it belongs to an active purchase: not refunded, charged back or ended. The server checks the key again on later visits and keeps the answer in its memory for up to six hours. The answer includes details of the purchase; we use it only to decide whether Pro is on, and we do not store it.</p>
-  <p>To stop the activation form being misused, the server also keeps your IP address in its memory for ten minutes after each activation attempt.</p>
+  <% if (locals.paddleCheckout) { %><p>A purchase made with Paddle needs no key from you. When the payment is done, the page sends the payment's number to our Pro service (a small program on Cloudflare), which asks Paddle whether it is a valid purchase and answers with a key that our server keeps in the Pro cookie. On later visits the server asks the Pro service about that key again and keeps the answer in its memory for up to six hours. The Pro service stores no email address and no key.</p>
+  <% } %><p>To stop the activation form being misused, the server also keeps your IP address in its memory for ten minutes after each activation attempt.</p>
 
   <h2>Buying Pro</h2>
-  <p>Pro is sold by our online resellers Paddle.com and Gumroad, which are the Merchant of Record for each order. The Get Pro button opens their checkout, where you give your payment details to the reseller, not to us. We receive your email address and the details of your order and subscription from the reseller, and we use them to provide email support, answer questions about your purchase and issue refunds. The reseller also sends you a receipt. The steps for a refund or to cancel are on our <a href="/refund">refund policy</a> page.</p>
+  <% if (locals.paddleCheckout) { %><p>Pro is sold by Paddle.com, the Merchant of Record. The Get Pro button opens Paddle's checkout in a panel on this page; your email address, country and payment details go to Paddle, not to us. Paddle tells us your email address, country and the details of your order and subscription, and we use them to provide email support, answer questions about your purchase and issue refunds. Paddle emails your receipt, and our Pro service emails you one link that turns Pro on in your other browsers; the Activate Pro page can send that link again to the address you paid with. The steps for a refund or to cancel are on our <a href="/refund">refund policy</a> page.</p>
+  <p>Before the switch to Paddle, Pro was sold through Gumroad. Those purchases keep working with their license key; for them, we received your email address and the details of your order from Gumroad.</p><% } else { %><p>Pro is sold by our online resellers Paddle.com and Gumroad, which are the Merchant of Record for each order. The Get Pro button opens their checkout, where you give your payment details to the reseller, not to us. We receive your email address and the details of your order and subscription from the reseller, and we use them to provide email support, answer questions about your purchase and issue refunds. The reseller also sends you a receipt. The steps for a refund or to cancel are on our <a href="/refund">refund policy</a> page.</p><% } %>
 
   <h2>Hosting and fonts</h2>
   <p>The site runs on Vercel. Like any web host, Vercel processes each request, including your IP address, the page you asked for and your browser type, and keeps request logs for a limited time. The fonts are served from this site, so no font service sees your visit.</p>
@@ -66,10 +68,11 @@
       <tr><td>Paddle</td><td>Checkout, subscription payments, sales tax and receipts (Merchant of Record)</td><td><a href="https://www.paddle.com/legal/privacy" rel="noopener">paddle.com</a></td></tr>
       <tr><td>Gumroad</td><td>Checkout, subscription payments and license checks</td><td><a href="https://gumroad.com/privacy" rel="noopener">gumroad.com</a></td></tr>
       <tr><td>Google</td><td>The Gmail inbox for our email</td><td><a href="https://policies.google.com/privacy" rel="noopener">policies.google.com</a></td></tr>
-      <tr><td>Forward Email</td><td>Forwarding mail sent to our address</td><td><a href="https://forwardemail.net/en/privacy" rel="noopener">forwardemail.net</a></td></tr>
+      <% if (locals.paddleCheckout) { %><tr><td>Cloudflare</td><td>Running the Pro service that checks Paddle purchases</td><td><a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">cloudflare.com</a></td></tr>
+      <% } %><tr><td>Forward Email</td><td><%= locals.paddleCheckout ? 'Forwarding mail sent to our address, and sending the Pro link' : 'Forwarding mail sent to our address' %></td><td><a href="https://forwardemail.net/en/privacy" rel="noopener">forwardemail.net</a></td></tr>
     </tbody>
   </table>
-  <p>Vercel, Gumroad and Google are based in the United States and Paddle in the United Kingdom, so your data may be processed there. We do not sell your data, and we do not share it with advertisers.</p>
+  <p>Vercel, Gumroad<% if (locals.paddleCheckout) { %>, Google and Cloudflare<% } else { %> and Google<% } %> are based in the United States and Paddle in the United Kingdom, so your data may be processed there. We do not sell your data, and we do not share it with advertisers.</p>
 
   <h2>How long data is kept</h2>
   <ul>

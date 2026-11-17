@@ -6,6 +6,8 @@ const INDUSTRIES = require('./data/industries');
 const PROVINCES = require('./data/province-pages');
 const CANADA = require('./data/canada-rates');
 const pro = require('./lib/pro');
+// The Paddle checkout switch (off: every page renders as before; see lib/paddle.js).
+const paddle = require('./lib/paddle');
 const { renderInvoicePDF, currencySymbol, applyFonts } = require('./lib/pdf');
 const LatePay = require('./public/js/late-payment');
 const UaeVat = require('./public/js/uae-vat');
@@ -87,6 +89,8 @@ app.use((req, res, next) => {
   res.locals.proPrice = PRO_PRICE;
   res.locals.isPro = false;
   res.locals.canada = CANADA;
+  res.locals.paddleCheckout = paddle.enabled();
+  if (res.locals.paddleCheckout) res.set('Content-Security-Policy', paddle.CSP);
   next();
 });
 async function withPro(req, res, next) {

@@ -95,7 +95,7 @@
     <iframe id="pframe" title="Invoice preview"></iframe>
     <% if (isPro) { %>
     <div class="g-pro active"><p>Pro is active in this browser: no footer, logo on your PDFs.</p></div>
-    <% } else if (checkout.available) { %>
+    <% } else if (checkout.available || locals.paddleCheckout) { %>
     <div class="g-pro"><p>Pro removes the "Created with GetInvoiceMaker" footer and adds your logo to every PDF.</p><a href="/#pricing">See Pro</a></div>
     <% } %>
   </div>

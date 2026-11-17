@@ -19,7 +19,12 @@
 .msg.ok{display:block;background:#dcfce7;color:#166534}
 .msg.err{display:block;background:#fee2e2;color:#991b1b}
 .act .small{font-size:13px;color:var(--muted);margin-top:16px}
-.linkbtn{background:none;border:0;color:var(--blue);cursor:pointer;font:inherit;padding:0;text-decoration:underline}
+.linkbtn{background:none;border:0;color:var(--blue);cursor:pointer;font:inherit;padding:0;text-decoration:underline}<% if (locals.paddleCheckout) { %>
+.pp-mail{border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:20px}
+.pp-mail p{margin-bottom:10px}
+.act .pp-mail input{text-transform:none;letter-spacing:0;font-family:inherit}
+.pp-mail .btn{background:#fff;color:var(--blue);border:1px solid var(--line)}
+.pp-mail .msg{margin-top:12px}<% } %>
 </style>
 </head>
 <body>
@@ -31,9 +36,20 @@
       <p>Your PDFs are created without the "Created with GetInvoiceMaker" line, and your logo is added when you upload one.</p>
       <a class="btn" href="/#gen">Create an invoice</a>
       <p class="small">On a shared computer? <button type="button" class="linkbtn" id="deact">Remove Pro from this browser</button></p>
-    <% } else { %>
+      <% if (locals.paddleCheckout) { %><p class="small"><button type="button" class="linkbtn" id="ppManage" hidden>Manage or cancel your subscription</button></p>
+      <% } %>    <% } else { %>
       <h1>Activate Pro</h1>
-      <p>Paste the license key from your Gumroad receipt email. Pro is then active in this browser; repeat on any other device you use.</p>
+      <% if (locals.paddleCheckout) { %><p>Pro turns on in your browser right after you pay. To turn it on in another browser, open the Pro link we e-mailed you.</p>
+      <div class="pp-mail">
+        <p><strong>Bought Pro already?</strong> We can e-mail your Pro link to the address you paid with.</p>
+        <form id="ppRestore" novalidate>
+          <label for="ppEmail">Your e-mail address</label>
+          <input id="ppEmail" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+          <button type="submit" id="ppSend" class="btn">E-mail my Pro link</button>
+        </form>
+        <div class="msg" id="ppNote" role="status"></div>
+      </div>
+      <p>Bought Pro on Gumroad? Paste the license key from your Gumroad receipt email.</p><% } else { %><p>Paste the license key from your Gumroad receipt email. Pro is then active in this browser; repeat on any other device you use.</p><% } %>
       <label for="key">License key</label>
       <input type="text" id="key" autocomplete="off" spellcheck="false" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX">
       <button type="button" class="btn" id="go">Activate Pro</button>
@@ -52,7 +68,7 @@
     go.addEventListener('click',function(){
       var k=document.getElementById('key').value.trim();
       if(!k){show(false,'Paste your license key first.');return;}
-      go.disabled=true;go.textContent='Checking with Gumroad...';
+      go.disabled=true;go.textContent='<%= locals.paddleCheckout ? 'Checking your key...' : 'Checking with Gumroad...' %>';
       fetch('/activate-pro',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({license_key:k})})
         .then(function(r){return r.json();})
         .then(function(d){
