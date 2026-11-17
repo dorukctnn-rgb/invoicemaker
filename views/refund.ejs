@@ -1,0 +1,55 @@
+<%
+  var pageUrl = siteUrl + '/refund';
+  var title = 'Refund Policy | GetInvoiceMaker';
+  var desc = 'Refund policy for GetInvoiceMaker Pro: $9 a month, a 14-day refund on any charge, how to ask for it, how to cancel and how the money is paid back.';
+%><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title><%= title %></title>
+<meta name="description" content="<%= desc %>">
+<link rel="canonical" href="<%= pageUrl %>">
+<meta property="og:type" content="website">
+<meta property="og:title" content="<%= title %>">
+<meta property="og:description" content="<%= desc %>">
+<meta property="og:url" content="<%= pageUrl %>">
+<%- include('partials/site-head') %>
+</head>
+<body>
+<%- include('partials/nav') %>
+<section class="page-hero">
+  <div class="in">
+    <h1>Refund policy</h1>
+    <p class="lede">How refunds and cancelling work for GetInvoiceMaker Pro. It says the same as the refunds section of our <a href="/terms">terms of use</a>.</p>
+    <p class="lede">Last updated: 17 November 2026</p>
+  </div>
+</section>
+<div class="wrap prose">
+  <h2>What Pro costs</h2>
+  <p>Pro costs $9 (US dollars) a month. It is a subscription that renews every month until you cancel. The free invoice generator needs no payment.</p>
+
+  <h2>14-day refund</h2>
+  <p>If Pro does not work for you, email us within 14 days of any charge, including a renewal, and we will refund that charge.</p>
+
+  <h2>How to ask for a refund</h2>
+  <p>Write to <a href="mailto:info@peakappsstudio.com">info@peakappsstudio.com</a> from the email address you used for the purchase and say that you would like a refund. GetInvoiceMaker is run by Peak Apps Studio.</p>
+
+  <h2>How to cancel</h2>
+  <p>You can cancel at any time from the link in your payment receipt email, or by writing to us. Cancelling stops future payments. Pro stays on until the end of the month you have already paid for.</p>
+
+  <h2>How you are paid back</h2>
+  <p>Our order process is conducted by our online resellers Paddle.com and Gumroad. They are the Merchant of Record for all our orders, handle payment, sales tax/VAT and refunds, and their own terms also apply to your purchase. Refunds are paid back through the reseller you paid.</p>
+
+  <h2>After a refund</h2>
+  <p>Pro stops working once a purchase is refunded or a subscription has ended.</p>
+
+  <h2>Your rights under the law</h2>
+  <p>Nothing on this page takes away a right to a refund or to cancel that the law of your country gives you as a consumer.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about refunds: <a href="mailto:info@peakappsstudio.com">info@peakappsstudio.com</a>. How we handle your data is explained in our <a href="/privacy">privacy policy</a>.</p>
+</div>
+<%- include('partials/footer') %>
+</body>
+</html>

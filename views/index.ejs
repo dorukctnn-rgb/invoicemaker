@@ -110,7 +110,7 @@
         <a class="btn" href="#gen">Pro is active in this browser</a>
       <% } else if (checkout.available) { %>
         <a class="btn" href="<%= checkout.url %>" rel="noopener">Get Pro: <%= proPrice.label %></a>
-        <p class="muted">Paid through Gumroad. After paying, paste the license key from your receipt on the <a href="/activate">activation page</a>.</p>
+        <p class="muted">Billed monthly, cancel anytime. Our order process is conducted by our online resellers Paddle.com and Gumroad, the Merchant of Record: they handle payment, tax and refunds. After paying, paste the license key from your receipt on the <a href="/activate">activation page</a>. See the <a href="/refund">refund policy</a> and the <a href="/terms">terms</a>.</p>
       <% } else { %>
         <p class="muted">Pro checkout is paused while we update it. The free generator is not affected. Already a customer? <a href="/activate">Activate with your license key</a>.</p>
       <% } %>

@@ -54,4 +54,5 @@ Every guide names its official source and the date it was last checked. Rates re
 - [All guides (blog)](https://getinvoicemaker.com/blog)
 - [Privacy policy](https://getinvoicemaker.com/privacy)
 - [Terms](https://getinvoicemaker.com/terms)
+- [Refund policy](https://getinvoicemaker.com/refund)
 - Contact: info@peakappsstudio.com
