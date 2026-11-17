@@ -13,13 +13,13 @@
     records: 'https://www.ird.govt.nz/managing-my-tax/record-keeping'
   };
   var faqs = [
-    ['What must a New Zealand tax invoice show?', 'It depends on the amount. For $200 or less: the seller\'s name or trade name, the date, a description and the price. Over $200 and up to $1,000: also the seller\'s GST number, and either the GST-exclusive amount, the GST amount and the GST-inclusive amount, or the GST-inclusive amount with a statement that GST is included. Over $1,000: the same, and for a GST-registered buyer the buyer\'s name and one or more of its address, phone number, email address, trading name, NZBN or website (Inland Revenue).'],
+    ['What must a New Zealand tax invoice show?', 'It depends on the amount. For $200 or less: the seller\'s name or trade name, the date, a description and the price. Over $200 and up to $1,000: also the seller\'s GST number, and either the GST-exclusive amount, the GST amount and the GST-inclusive amount, or the GST-inclusive amount with a statement that GST is included, when every item is charged GST at the standard rate. Over $1,000: the same, and for a GST-registered buyer the buyer\'s name and one or more of its address, phone number, email address, trading name, NZBN or website (Inland Revenue).'],
     ['Is it still called a tax invoice in New Zealand?', 'Since 1 April 2023 the law asks you to provide and keep "taxable supply information" instead of a tax invoice. Inland Revenue says you do not need to change the wording of your GST documents, and you may keep giving taxable supply information in one document marked "tax invoice".'],
     ['What is the GST rate and how do I work it out?', 'The rate is 15%. To add GST, multiply the price by 0.15: $100 becomes $115. To take GST out of a price that includes it, multiply the total by 3 and divide by 23: $115 gives $15 of GST and $100 before GST.'],
     ['Do I have to put my client\'s details on the invoice?', 'Only over $1,000, and only when the buyer is GST registered. Then you show the buyer\'s name and one or more identifiers, such as an address, phone number, email address, trading name, NZBN or website. Up to $1,000 the buyer\'s details are not required.'],
     ['When do I have to register for GST?', 'When you carry out a taxable activity and your turnover was at least $60,000 in the last 12 months, or you expect it to be in the next 12 months. You must also register if you add GST to your prices. Below $60,000 you can register voluntarily. Only a registered business charges GST.'],
     ['Do I charge GST to a client overseas?', 'Often no. Services supplied to a non-resident outside New Zealand when you perform them, and goods you export, can be zero-rated, which means GST at 0%. Services performed outside New Zealand are zero-rated too. The details and the proof you need are on Inland Revenue\'s zero-rated supplies page.'],
-    ['Can I invoice in US dollars?', 'Inland Revenue\'s GST guide says amounts of money in taxable supply information must be expressed in New Zealand currency. So write the amounts in NZD.'],
+    ['Can I invoice in US dollars?', 'Inland Revenue\'s GST guide says amounts of money in taxable supply information must be expressed in New Zealand currency. If you agree a price in US dollars, show the NZD amounts on the invoice as well.'],
     ['How soon must I send it, and how long do I keep it?', 'For a supply over $200 to a GST-registered buyer, within 28 days of a request, or by a date you agree. Keep your records, including taxable supply information, for at least 7 tax years, in English or Māori unless Inland Revenue approves another language.']
   ];
 %><!DOCTYPE html>
@@ -84,7 +84,7 @@
       </div>
     </div>
     <div class="row2">
-      <div style="line-height:1.55"><div class="k">Bill to</div><strong>Kauri Coffee Roasters Ltd</strong><sup>4</sup><br>8 Sample Road, Te Aro, Wellington 6011<sup>4</sup><br><span class="mut">GST number 000-000-001</span><sup>4</sup></div>
+      <div style="line-height:1.55"><div class="k">Bill to</div><strong>Kauri Coffee Roasters Ltd</strong><sup>4</sup><br>8 Sample Road, Te Aro, Wellington 6011<sup>4</sup></div>
       <div class="meta">
         <span class="k">Invoice no.</span><strong>INV-0087</strong>
         <span class="k">Invoice date</span><strong>16 November 2026<sup>5</sup></strong>
@@ -149,7 +149,7 @@
   <p class="source">Sources: <a href="<%= IRD.register %>" rel="noopener">IRD, Registering for GST</a> (updated 13 February 2025) and the <a href="<%= IRD.guide %>" rel="noopener">GST guide IR375</a>. Checked <%= checked %>.</p>
 
   <h2 id="export">Clients overseas: zero-rated supplies</h2>
-  <p>Some supplies are charged at 0% GST. They still go on the invoice, shown at 0% GST, and they go in a separate box on your GST return. IRD lists these among the exported services and goods:</p>
+  <p>Some supplies are charged at 0% GST. IRD&rsquo;s GST guide says zero-rated invoices go in a separate box on your GST return, so keep them apart from your other invoices. IRD lists these among the exported services and goods:</p>
   <ul>
     <li>Services supplied to non-residents outside New Zealand when you perform them.</li>
     <li>Remote services to non-residents. You must show the customer is not a New Zealand resident, using your usual checks or any 2 of: billing address, IP address or other geolocation, bank details, mobile country code of the SIM, or fixed landline location.</li>
@@ -157,7 +157,7 @@
     <li>Goods you export. Goods entered for export must leave within 28 days of the time of supply, unless IRD agrees to more time.</li>
   </ul>
   <p>The list has many more cases and conditions, so check the page for yours. Wording for other countries is in <a href="/blog/how-to-invoice-international-clients">how to invoice international clients</a>. If you also invoice in Australia, see the <a href="/free-invoice-generator-australia">Australian GST invoice guide</a>.</p>
-  <p class="source">Source: <a href="<%= IRD.zero %>" rel="noopener">IRD, Zero-rated supplies</a> (updated 22 June 2026). Checked <%= checked %>.</p>
+  <p class="source">Source: <a href="<%= IRD.zero %>" rel="noopener">IRD, Zero-rated supplies</a> (updated 22 June 2026) and the <a href="<%= IRD.guide %>" rel="noopener">GST guide IR375</a> (page 8). Checked <%= checked %>.</p>
 
   <h2 id="fix">Correcting an invoice: supply correction information</h2>
   <p>Give supply correction information when the first document had the wrong GST amount, or the sale changed after you sent it. It does not matter whether the buyer has paid. Cases include a cancelled sale, goods sent back, a wrong description, wrong buyer details, a wrong date, GST at the wrong rate or a wrong GST amount. It must show:</p>

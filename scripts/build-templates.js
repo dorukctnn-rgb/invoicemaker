@@ -89,7 +89,7 @@ const TEMPLATES = [
     title: 'TAX INVOICE',
     color: '0E7490',
     from: ['Your name or trading name', 'Address', 'GST number (may be your IRD number)', 'Email and phone'],
-    to: ['Client name', 'Client address', 'Client GST number, NZBN, email or phone (over $1,000 for a GST-registered client)'],
+    to: ['Client name', 'Client address', 'Client email, phone or NZBN (not needed if the address is shown)'],
     meta: [['Invoice no.', 'INV-001'], ['Invoice date', ''], ['Due date', ''], ['Supply date (if different)', '']],
     cols: ['Description', 'Qty', 'Price excl. GST', 'Amount excl. GST'],
     rows: 8,

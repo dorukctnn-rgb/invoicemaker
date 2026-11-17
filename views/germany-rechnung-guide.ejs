@@ -25,7 +25,7 @@
     ['Which VAT rate do I charge in Germany?', '19% is the standard rate and 7% the reduced rate (section 12 of the VAT Act). The 7% rate covers the goods listed in Annex 2 of the Act and a list of services, such as admission to theatres and concerts, short-term accommodation and restaurant and catering services other than drinks. Some supplies are exempt and carry no VAT.'],
     ['How do I invoice as a Kleinunternehmer?', 'If your turnover was at most EUR 25,000 in the previous year and stays at most EUR 100,000 in the current year, you can use the small-business scheme (section 19). You show no VAT, and you add a note that the exemption applies (section 34a of the VAT Implementing Regulation). If you show VAT anyway, you owe it to the tax office (section 14c(2)).'],
     ['Can I write a German invoice in English?', 'Section 14 sets no language for an invoice. German is the official language of the tax authorities, though, and a Finanzamt can ask you to hand in a translation of a foreign-language document without delay (section 87 of the Fiscal Code). A bilingual invoice avoids that step.'],
-    ['Is a PDF invoice still allowed after 2027?', 'It depends on the supply and your turnover. Between German businesses the e-invoice is the rule since 1 January 2025, with transition rules. A normal PDF is an "other invoice". It is allowed for supplies up to 31 December 2026 for everyone, and for supplies in 2027 if your turnover in the previous year was at most EUR 800,000. Small-business invoices and invoices up to EUR 250 can always be other invoices.'],
+    ['Can I still send a PDF invoice to a German business?', 'It depends on the dates and your turnover. Between German businesses the e-invoice is the rule since 1 January 2025, with transition rules. A normal PDF is an "other invoice" and needs the customer\'s agreement. It is allowed for supplies in 2025 and 2026 if you issue it by 31 December 2026, and for supplies in 2027 if you issue it by 31 December 2027 and your turnover in the previous year was at most EUR 800,000. Small-business invoices and invoices up to EUR 250 can always be other invoices.'],
     ['How long must I keep German invoices?', 'Eight years. The period starts at the end of the calendar year in which the invoice was issued. You keep a copy of each invoice you issue and every invoice you receive (section 14b).'],
     ['By when must I issue the invoice?', 'For work for another business or for a legal person that is not a business, within six months after you did the work (section 14(2)).']
   ];
@@ -88,7 +88,7 @@
       <div class="who">
         <strong>Lindner Beratung</strong><sup>1</sup><br>Beispielstra&szlig;e 12, 20095 Hamburg<sup>1</sup><br>
         <span class="mut">Steuernummer 00/000/00000</span><sup>2</sup><br>
-        <span class="mut">IBAN DE89 3704 0044 0532 0130 00</span>
+        <span class="mut">IBAN DE00 0000 0000 0000 0000 00</span>
       </div>
     </div>
     <div class="row2">
@@ -112,7 +112,7 @@
       <div class="sl"><span class="mut">Umsatzsteuer 19 % / VAT<sup>8</sup></span><span>307,80 &euro;</span></div>
       <div class="sl tot"><span>Gesamtbetrag / Total</span><span>1.927,80 &euro;</span></div>
     </div></div>
-    <div class="foot">Zahlbar bis 30.11.2026 ohne Abzug auf IBAN DE89 3704 0044 0532 0130 00 unter Angabe der Rechnungsnummer 2026-043.<br><em>Payable by 30 November 2026, no deduction, quoting the invoice number.</em></div>
+    <div class="foot">Zahlbar bis 30.11.2026 ohne Abzug auf IBAN DE00 0000 0000 0000 0000 00 unter Angabe der Rechnungsnummer 2026-043.<br><em>Payable by 30 November 2026, no deduction, quoting the invoice number.</em></div>
   </div>
   <p class="source">Example business, numbers and IBAN are made up.</p>
 </div>
@@ -159,7 +159,7 @@
     </tbody>
   </table>
   <p class="source">Source: <a href="<%= SRC.p12 %>" rel="noopener">&sect; 12 UStG, Steuers&auml;tze</a>. Checked <%= checked %>. The list in section 12(2) has exceptions. Check it for your own case.</p>
-  <p>Some supplies are exempt. An exempt supply carries no VAT, and item 8 then asks for a note that an exemption applies. If one invoice has lines at 19% and 7%, show the net amount and the VAT for each rate (items 7 and 8).</p>
+  <p>Some supplies are exempt. An exempt supply carries no VAT, and item 8 then asks for a note that an exemption applies. If one invoice has lines at 19% and 7%, show the net amount and the VAT for each rate (items 7 and 8). The online form applies one VAT rate to the whole invoice. For lines at both rates, use the Excel file, which totals 19% and 7% separately.</p>
   <div class="formula">Net EUR 1.620,00 x 0,19 = EUR 307,80 VAT<br><b>Net EUR 1.620,00 + VAT EUR 307,80 = EUR 1.927,80 total</b><br>Taking VAT out of a total: EUR 1.927,80 / 1,19 = EUR 1.620,00 net</div>
   <p>The working for line-by-line rounding and mixed rates is in <a href="/how-to-calculate-vat-on-invoice">how to calculate VAT on an invoice</a>.</p>
 
@@ -169,7 +169,7 @@
     <li>Total turnover in the <strong>previous calendar year</strong> was at most <strong>EUR 25,000</strong>.</li>
     <li>Turnover in the <strong>current calendar year</strong> stays at most <strong>EUR 100,000</strong>.</li>
   </ul>
-  <p>Turnover is counted from the payments you received. The tax office's page adds that only the sales above EUR 100,000 are taxed in the year you pass it. A new business that passes EUR 25,000 in its first year pays VAT on the sale that takes it over. You can give up the exemption by the end of February of the second following year, and you are then bound for at least five calendar years.</p>
+  <p>Turnover is counted from the payments you received. The tax office's page adds that in the year you pass EUR 100,000, the sale that takes you over the limit is taxed in full, and the normal rules apply from that sale on. A new business that passes EUR 25,000 in its first year pays VAT on the sale that takes it over. You can give up the exemption by the end of February of the second following year, and you are then bound for at least five calendar years.</p>
   <p>A small-business invoice has fewer required details (section 34a of the VAT Implementing Regulation):</p>
   <ul>
     <li>Full name and address of you and your customer.</li>
@@ -183,7 +183,7 @@
   <p class="source">Sources: <a href="<%= SRC.p19 %>" rel="noopener">&sect; 19 UStG</a>, <a href="<%= SRC.d34a %>" rel="noopener">&sect; 34a UStDV</a>, <a href="<%= SRC.p14c %>" rel="noopener">&sect; 14c UStG</a> and <a href="<%= SRC.nrw %>" rel="noopener">Finanzverwaltung NRW, Kleinunternehmerinnen und Kleinunternehmer</a>. Checked <%= checked %>.</p>
 
   <h2 id="eu">Customers in other EU countries</h2>
-  <p>Two extra rules matter when you sell across a border inside the EU. For an intra-community supply of goods, the invoice shows the VAT ID of both sides. When the customer, not you, owes the VAT, you charge none and the invoice says so with the words <strong>Steuerschuldnerschaft des Leistungsempf&auml;ngers</strong>. For the cases in section 14a(1) and (3), issue the invoice by the 15th day of the month after the supply.</p>
+  <p>Two extra rules matter when you sell across a border inside the EU. For an intra-community supply of goods, and for a service to a business in another EU country that owes the VAT there, the invoice shows your USt-IdNr. and the customer&rsquo;s VAT ID (section 14a(1) and (3)). When the customer, not you, owes the VAT, you charge none and the invoice says so with the words <strong>Steuerschuldnerschaft des Leistungsempf&auml;ngers</strong>. For the cases in section 14a(1) and (3), issue the invoice by the 15th day of the month after the supply.</p>
   <div class="copy"><div><small>Reverse charge note, when the customer owes the VAT</small><span class="txt">Steuerschuldnerschaft des Leistungsempf&auml;ngers</span><span class="en">The customer is liable for the tax.</span></div><button type="button" aria-label="Copy the reverse charge wording">Copy</button></div>
   <p>Whether a supply falls under these rules depends on what you sell and to whom. The tax wording by country is in <a href="/blog/how-to-invoice-international-clients">how to invoice international clients</a>. A Dutch client has its own rules: see the <a href="/free-invoice-generator-netherlands">Dutch invoice template</a>.</p>
   <p class="source">Source: <a href="<%= SRC.p14a %>" rel="noopener">&sect; 14a UStG, zus&auml;tzliche Pflichten bei der Ausstellung von Rechnungen</a>. Checked <%= checked %>.</p>
@@ -194,19 +194,20 @@
     <thead><tr><th>When</th><th>What applies</th></tr></thead>
     <tbody>
       <tr><td class="strong">From 1 January 2025</td><td>The e-invoice is the rule for supplies to another business when both sides are based in Germany. Transition rules let you keep using other invoices for a while.</td></tr>
-      <tr><td class="strong">Supplies up to 31 December 2026</td><td>Paper, or another electronic format if the customer agrees, is still allowed for every business.</td></tr>
-      <tr><td class="strong">Supplies in 2027</td><td>Paper, or another electronic format if the customer agrees, is still allowed if your total turnover in the previous year was at most EUR 800,000. Above that, you issue e-invoices from 1 January 2027.</td></tr>
+      <tr><td class="strong">Supplies in 2025 and 2026</td><td>Paper, or another electronic format if the customer agrees, is still allowed for every business if you issue the invoice by 31 December 2026.</td></tr>
+      <tr><td class="strong">Supplies in 2027</td><td>Paper, or another electronic format if the customer agrees, is still allowed if your total turnover in the previous year was at most EUR 800,000 and you issue the invoice by 31 December 2027. Above that, you issue e-invoices from 1 January 2027.</td></tr>
       <tr><td class="strong">From 1 January 2028</td><td>The transition rules in section 27(38) have ended. Every business issues e-invoices for these supplies, except in the cases below.</td></tr>
     </tbody>
   </table>
+  <p>The dates in section 27(38) are also deadlines for issuing the invoice. Work done in 2026 but invoiced in 2027 is not covered by the 2026 rule.</p>
   <p>Two cases can always use an other invoice: a small-business invoice (section 34a) and an invoice for a total of up to EUR 250 (section 33 of the Implementing Regulation). A small business must still be able to receive e-invoices.</p>
   <p class="source">Sources: <a href="<%= SRC.p27 %>" rel="noopener">&sect; 27 UStG, paragraph 38</a>, <a href="<%= SRC.p14 %>" rel="noopener">&sect; 14 UStG</a>, <a href="<%= SRC.d33 %>" rel="noopener">&sect; 33 UStDV</a>, <a href="<%= SRC.erB2b %>" rel="noopener">E-Rechnung zwischen Unternehmen (B2B)</a>, <a href="<%= SRC.erPdf %>" rel="noopener">Unterschied zwischen Papier-, PDF- und E-Rechnung</a> and <a href="<%= SRC.nrw %>" rel="noopener">Finanzverwaltung NRW</a>. Checked <%= checked %>.</p>
 
   <h2 id="keep">How long to keep German invoices</h2>
-  <p>Keep invoices for <strong>eight years</strong>. The period starts at the end of the calendar year in which the invoice was issued. You keep a copy of every invoice you issue and every invoice you receive. If you store them electronically, the tax office must be able to call up, download and use the data online. Source: <a href="<%= SRC.p14b %>" rel="noopener">&sect; 14b UStG</a>. Checked <%= checked %>.</p>
+  <p>Keep invoices for <strong>eight years</strong>. The period starts at the end of the calendar year in which the invoice was issued. You keep a copy of every invoice you issue and every invoice you receive. Keep them in Germany. Invoices stored electronically may also be kept in another EU country if the tax office can view, download and use them online, and you tell the Finanzamt where they are kept. Source: <a href="<%= SRC.p14b %>" rel="noopener">&sect; 14b UStG</a>. Checked <%= checked %>.</p>
 
   <h2 id="language">Language and currency</h2>
-  <p>Section 14 does not name a language or a currency for an invoice. German is the official language of the tax authorities. A Finanzamt that gets a document in another language can ask for a translation without delay, and in justified cases for a certified one (section 87 of the Fiscal Code, <a href="<%= SRC.ao87 %>" rel="noopener">&sect; 87 AO</a>). A bilingual invoice reads well for your customer and for the tax office, and for you.</p>
+  <p>Section 14 does not name a language or a currency for an invoice. German is the official language of the tax authorities. A Finanzamt that gets a document in another language can ask for a translation without delay, and in justified cases for a certified one (section 87 of the Fiscal Code, <a href="<%= SRC.ao87 %>" rel="noopener">&sect; 87 AO</a>). A bilingual invoice works for your customer and for the Finanzamt.</p>
 
   <h2 id="wording">Wording to copy</h2>
   <div class="copy"><div><small>Payment line</small><span class="txt">Zahlbar innerhalb von 14 Tagen ohne Abzug auf IBAN DE00 0000 0000 0000 0000 00 unter Angabe der Rechnungsnummer.</span><span class="en">Payable within 14 days, no deduction, to the IBAN above, quoting the invoice number.</span></div><button type="button" aria-label="Copy the payment line">Copy</button></div>

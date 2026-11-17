@@ -88,7 +88,8 @@ const DE_GEN = genConfig({
   langs: [['de-en', 'Deutsch + English'], ['de', 'Deutsch'], ['en', 'English']],
   items: [{ desc: 'Beratung: Analyse der Lagerprozesse, Stunden', qty: 12, rate: 95 }, { desc: 'Workshop vor Ort, ganztägig', qty: 1, rate: 480 }],
   itemPlaceholder: 'Beschreibung / description',
-  senderIdLabel: 'Steuernummer or USt-IdNr.', senderIdPlaceholder: 'Steuernr. 00/000/00000 or USt-IdNr. DE000000000',
+  senderIdLabel: 'Steuernummer or USt-IdNr.', senderIdRequired: true, senderIdPlaceholder: 'Steuernr. 00/000/00000 or USt-IdNr. DE000000000',
+  supplyDateLabel: 'Leistungsdatum / date of supply', supplyDateRequired: true,
   clientIdLabel: 'Client USt-IdNr. (for business clients in other EU countries)', clientIdPlaceholder: 'e.g. DE000000000 or ATU00000000',
   senderPlaceholder: 'Lindner Beratung', addressPlaceholder: 'Beispielstraße 12, 20095 Hamburg', clientPlaceholder: 'Muster Logistik GmbH',
   notesPlaceholder: 'Zahlbar innerhalb von 14 Tagen auf IBAN DE00 0000 0000 0000 0000 00 unter Angabe der Rechnungsnummer.'
@@ -99,8 +100,8 @@ const NZ_GEN = genConfig({
   langs: [['en-tax', 'English, headed TAX INVOICE'], ['en', 'English, headed INVOICE']],
   items: [{ desc: 'Brand identity design: logo and style guide (fixed fee)', qty: 1, rate: 2400 }, { desc: 'Website design, hours', qty: 20, rate: 95 }],
   itemPlaceholder: 'Service or product description',
-  senderIdLabel: 'GST number', senderIdPlaceholder: 'Your GST number (may be your IRD number)',
-  clientIdLabel: 'Client GST number or NZBN', clientIdPlaceholder: 'Needed over $1,000 if the client is GST registered',
+  senderIdLabel: 'GST number (needed on a tax invoice over $200)', senderIdRequired: true, senderIdPlaceholder: 'Your GST number (may be your IRD number)',
+  clientIdLabel: 'Client NZBN', clientIdPlaceholder: 'Over $1,000, the client\'s name and address are enough',
   senderPlaceholder: 'Hinemoa Design Ltd', addressPlaceholder: '14 Example Street, Ponsonby, Auckland 1011', clientPlaceholder: 'Kauri Coffee Roasters Ltd',
   notesPlaceholder: 'Payment within 14 days by bank transfer to 00-0000-0000000-00, quoting the invoice number. All amounts in NZD.'
 });

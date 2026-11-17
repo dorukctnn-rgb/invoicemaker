@@ -12,7 +12,7 @@
       <div class="g-f"><label for="fromEmail">Email</label><input type="email" id="fromEmail" autocomplete="email" placeholder="hello@acme.com"></div>
     </div>
     <div class="g-row one"><div class="g-f"><label for="fromAddress">Address</label><textarea id="fromAddress" rows="2" placeholder="<%= g.addressPlaceholder || '123 Main St, City' %>"></textarea></div></div>
-    <div class="g-row one"><div class="g-f"><label for="senderTaxId"><%= g.senderIdLabel %> <span class="opt">(optional)</span></label><input type="text" id="senderTaxId" placeholder="<%= g.senderIdPlaceholder %>"></div></div>
+    <div class="g-row one"><div class="g-f"><label for="senderTaxId"><%= g.senderIdLabel %><% if (!g.senderIdRequired) { %> <span class="opt">(optional)</span><% } %></label><input type="text" id="senderTaxId" placeholder="<%= g.senderIdPlaceholder %>"></div></div>
     <div class="g-row one"><div class="g-f"><label for="logoFile">Logo <span class="g-chip">PRO</span></label><input type="file" id="logoFile" accept="image/png,image/jpeg"><small class="g-small" id="logoHint"><%= isPro ? 'PNG or JPG under 500 KB. Added to your downloaded PDF.' : 'PNG or JPG under 500 KB. Shown in the preview; added to the PDF with Pro.' %></small></div></div>
 
     <div class="g-st">Bill to</div>
@@ -37,7 +37,7 @@
       <div class="g-f"><label for="dueDate">Due date</label><input type="date" id="dueDate"></div>
     </div>
     <div class="g-row">
-      <div class="g-f"><label for="supplyDate">Service / supply date <span class="opt">(optional)</span></label><input type="text" id="supplyDate" placeholder="e.g. 1–31 March 2026"></div>
+      <div class="g-f"><label for="supplyDate"><%= g.supplyDateLabel || 'Service / supply date' %><% if (!g.supplyDateRequired) { %> <span class="opt">(optional)</span><% } %></label><input type="text" id="supplyDate" placeholder="e.g. 1–31 March 2026"></div>
       <div class="g-f"><label for="lang">Invoice language</label>
         <select id="lang">
           <% (g.langs || [['en', 'English'], ['nl', 'Nederlands'], ['nl-en', 'Nederlands + English']]).forEach(function(l){ %><option value="<%= l[0] %>"<%= g.lang === l[0] ? ' selected' : '' %>><%= l[1] %></option><% }) %>
